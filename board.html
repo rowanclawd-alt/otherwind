@@ -190,6 +190,17 @@
         .column.completed .column-header { color: #888; }
         .column.completed .card { opacity: 0.6; }
 
+        /* Collapsed columns */
+        .column.collapsed .cards-container { display: none; }
+        .column-header { cursor: pointer; }
+        .column-header .toggle { 
+            margin-left: 0.5rem; 
+            font-size: 0.6rem; 
+            color: #444;
+        }
+        .column.collapsed .toggle::after { content: '▶'; }
+        .column:not(.collapsed) .toggle::after { content: '▼'; }
+
         /* Log Section */
         .log-section {
             margin-top: 2rem;
@@ -444,9 +455,29 @@
             return log.filter(entry => !deleted.includes(entry.id));
         }
 
+        // === COLLAPSE STATE ===
+        function getCollapsedColumns() {
+            const stored = localStorage.getItem('board-collapsed');
+            // Default: completed is collapsed
+            return stored ? JSON.parse(stored) : ['completed'];
+        }
+
+        function toggleColumn(key) {
+            const collapsed = getCollapsedColumns();
+            const idx = collapsed.indexOf(key);
+            if (idx > -1) {
+                collapsed.splice(idx, 1);
+            } else {
+                collapsed.push(key);
+            }
+            localStorage.setItem('board-collapsed', JSON.stringify(collapsed));
+            renderBoard();
+        }
+
         // === RENDER ===
         function renderBoard() {
             const board = document.getElementById('board');
+            const collapsed = getCollapsedColumns();
             const columns = [
                 { key: 'active', label: 'Active', class: 'active' },
                 { key: 'monitoring', label: 'Monitoring', class: 'monitoring' },
@@ -457,20 +488,23 @@
 
             board.innerHTML = columns.map(col => {
                 const visibleTasks = getVisibleTasks(col.key);
+                const isCollapsed = collapsed.includes(col.key);
                 return `
-                <div class="column ${col.class}">
-                    <div class="column-header">
-                        <span>${col.label}</span>
+                <div class="column ${col.class}${isCollapsed ? ' collapsed' : ''}">
+                    <div class="column-header" onclick="toggleColumn('${col.key}')">
+                        <span>${col.label}<span class="toggle"></span></span>
                         <span class="count">${visibleTasks.length}</span>
                     </div>
-                    ${visibleTasks.map(task => `
-                        <div class="card">
-                            <button class="card-delete" onclick="deleteTask('${task.id}')" title="Remove">×</button>
-                            <div class="card-title">${task.title}</div>
-                            <div class="card-desc">${task.desc}</div>
-                            ${task.date ? `<div class="card-meta">${task.date}</div>` : ''}
-                        </div>
-                    `).join('')}
+                    <div class="cards-container">
+                        ${visibleTasks.map(task => `
+                            <div class="card">
+                                <button class="card-delete" onclick="event.stopPropagation(); deleteTask('${task.id}')" title="Remove">×</button>
+                                <div class="card-title">${task.title}</div>
+                                <div class="card-desc">${task.desc}</div>
+                                ${task.date ? `<div class="card-meta">${task.date}</div>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
             `}).join('');
 
