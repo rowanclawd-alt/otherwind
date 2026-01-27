@@ -665,10 +665,11 @@
                             s.userData.readyToExpand = false;
                             s.userData.firstTapTime = 0;
                         });
+                        stickyHoveredShape = touchedShape;
+                        touchedShape.userData.readyToExpand = true; // Mark ready for second tap
+                        touchedShape.userData.firstTapTime = Date.now(); // Record time of first tap
                     }
-                    stickyHoveredShape = touchedShape;
-                    touchedShape.userData.readyToExpand = true; // Mark ready for second tap
-                    touchedShape.userData.firstTapTime = Date.now(); // Record time of first tap
+                    // If same shape but tap was too quick, don't reset the timer - just wait for valid second tap
                     isTouching = true;
                 } else {
                     // Tapped empty space - deselect and reset flags
