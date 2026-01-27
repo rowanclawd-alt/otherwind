@@ -418,6 +418,7 @@
         const labelTitle = document.getElementById('label-title');
         const labelStatus = document.getElementById('label-status');
         let hoveredShape = null;
+        let stickyHoveredShape = null;
 
         // Touch
         let touchStart = { x: 0, y: 0 };
@@ -567,35 +568,54 @@
             particles.geometry.attributes.position.needsUpdate = true;
             particles.rotation.y += 0.0003;
 
-            // Raycasting
+            // Raycasting with sticky hover
             raycaster.setFromCamera(mouse, camera);
             const intersects = raycaster.intersectObjects(interactiveShapes);
 
             interactiveShapes.forEach(s => s.userData.hovered = false);
 
+            // Check if we're hovering a new shape
             if (intersects.length > 0) {
                 const obj = intersects[0].object;
-                obj.userData.hovered = true;
-
-                if (hoveredShape !== obj) {
-                    hoveredShape = obj;
-                    labelTitle.textContent = obj.userData.name;
-                    labelStatus.textContent = obj.userData.status;
-
-                    const vector = obj.position.clone();
-                    vector.project(camera);
-                    const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
-                    const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
-
-                    // Keep label in viewport
-                    const labelWidth = 200;
-                    const clampedX = Math.max(labelWidth/2 + 10, Math.min(window.innerWidth - labelWidth/2 - 10, x));
-                    const clampedY = Math.max(60, Math.min(window.innerHeight - 100, y + 60));
-
-                    label.style.left = clampedX + 'px';
-                    label.style.top = clampedY + 'px';
-                    label.classList.add('visible');
+                stickyHoveredShape = obj; // Lock onto this shape
+            } else if (stickyHoveredShape) {
+                // Check distance from mouse to sticky shape's screen position
+                const vector = stickyHoveredShape.position.clone();
+                vector.project(camera);
+                const shapeScreenX = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                const shapeScreenY = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+                const mouseScreenX = (mouse.x * 0.5 + 0.5) * window.innerWidth;
+                const mouseScreenY = (-mouse.y * 0.5 + 0.5) * window.innerHeight;
+                const dist = Math.sqrt((shapeScreenX - mouseScreenX) ** 2 + (shapeScreenY - mouseScreenY) ** 2);
+                
+                // Release if mouse is far enough away (200px threshold)
+                if (dist > 200) {
+                    stickyHoveredShape = null;
                 }
+            }
+
+            if (stickyHoveredShape) {
+                stickyHoveredShape.userData.hovered = true;
+
+                if (hoveredShape !== stickyHoveredShape) {
+                    hoveredShape = stickyHoveredShape;
+                    labelTitle.textContent = stickyHoveredShape.userData.name;
+                    labelStatus.textContent = stickyHoveredShape.userData.status;
+                }
+                
+                // Update label position to follow shape
+                const vector = stickyHoveredShape.position.clone();
+                vector.project(camera);
+                const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+
+                const labelWidth = 200;
+                const clampedX = Math.max(labelWidth/2 + 10, Math.min(window.innerWidth - labelWidth/2 - 10, x));
+                const clampedY = Math.max(60, Math.min(window.innerHeight - 100, y + 60));
+
+                label.style.left = clampedX + 'px';
+                label.style.top = clampedY + 'px';
+                label.classList.add('visible');
                 document.body.style.cursor = 'pointer';
             } else {
                 if (hoveredShape) {
