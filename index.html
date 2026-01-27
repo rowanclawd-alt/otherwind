@@ -205,55 +205,30 @@
             opacity: 1;
         }
 
-        .expanded-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
         .back-button {
-            width: 36px;
-            height: 36px;
             background: none;
-            border: 1px solid rgba(79, 209, 165, 0.3);
-            border-radius: 50%;
+            border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            position: relative;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            padding: 0.5rem 0;
         }
 
         .back-button:hover {
-            border-color: var(--accent);
-            background: rgba(79, 209, 165, 0.1);
-        }
-
-        .back-button svg {
-            width: 20px;
-            height: 20px;
-            animation: spin 15s linear infinite;
-        }
-
-        .back-button:hover svg {
-            animation-duration: 2s;
+            opacity: 1;
         }
 
         .back-button .arrow {
-            position: absolute;
-            color: var(--accent);
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 300;
-            font-family: 'IBM Plex Sans', sans-serif;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .expanded-title {
@@ -262,6 +237,8 @@
             font-size: 2.2rem;
             font-weight: 400;
             color: var(--fg);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .expanded-subtitle {
@@ -727,22 +704,10 @@
             
             // Populate content with back button in header
             expandedContent.innerHTML = `
-                <div class="expanded-header">
-                    <button class="back-button" id="back-button" aria-label="Go back">
-                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="50" r="25" stroke="#4fd1a5" stroke-width="1" opacity="0.3"/>
-                            <circle cx="50" cy="50" r="40" stroke="#4fd1a5" stroke-width="0.5" opacity="0.15"/>
-                            <circle cx="50" cy="15" r="2" fill="#4fd1a5" opacity="0.7"/>
-                            <circle cx="80" cy="35" r="1.5" fill="#4fd1a5" opacity="0.5"/>
-                            <circle cx="80" cy="65" r="2" fill="#4fd1a5" opacity="0.4"/>
-                            <circle cx="50" cy="85" r="1.5" fill="#4fd1a5" opacity="0.6"/>
-                            <circle cx="20" cy="65" r="1.5" fill="#4fd1a5" opacity="0.4"/>
-                            <circle cx="20" cy="35" r="2" fill="#4fd1a5" opacity="0.5"/>
-                        </svg>
-                        <span class="arrow">&lt;</span>
-                    </button>
-                    <h1 class="expanded-title">${content.title}</h1>
-                </div>
+                <button class="back-button" id="back-button" aria-label="Go back">
+                    <span class="arrow">←</span> back
+                </button>
+                <h1 class="expanded-title">${content.title}</h1>
                 <p class="expanded-subtitle">${content.subtitle}</p>
                 <div class="expanded-body">${content.body}${membersHtml}</div>
             `;
@@ -772,6 +737,13 @@
             document.querySelector('header').style.opacity = '1';
             document.querySelector('footer').style.opacity = '1';
         }
+
+        // Click outside content to close
+        expandedOverlay.addEventListener('click', (e) => {
+            if (e.target === expandedOverlay) {
+                collapseView();
+            }
+        });
 
         renderer.domElement.addEventListener('click', onCanvasClick);
 
