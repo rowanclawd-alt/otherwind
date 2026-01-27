@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 50%, #1a3528 100%);
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 50%, #122a1c 100%);
             font-family: 'IBM Plex Sans', -apple-system, sans-serif;
             color: var(--fg);
         }
@@ -369,23 +369,23 @@
             scene.add(mesh);
         }
 
-        // Particles
-        const particleCount = 150;
+        // Particles (stars)
+        const particleCount = 400;
         const particleGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
 
         for (let i = 0; i < particleCount; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 40;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 25;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 20 - 5;
+            positions[i * 3] = (Math.random() - 0.5) * 50;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 35;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 30 - 10;
         }
 
         particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         const particleMat = new THREE.PointsMaterial({
-            color: 0x4fd1a5,
-            size: 0.04,
+            color: 0xffffff,
+            size: 0.03,
             transparent: true,
-            opacity: 0.5,
+            opacity: 0.6,
             sizeAttenuation: true,
         });
         const particles = new THREE.Points(particleGeo, particleMat);
@@ -513,14 +513,17 @@
                         targetY = Math.sin(newAngle) * distance * 1.1;
                         targetZ = d.originalPos.z - 2;
                     } else {
-                        // Normal floating behavior
-                        const floatY = Math.sin(time * d.floatSpeed + d.floatOffset) * 0.4;
-                        const orbitX = Math.sin(time * d.orbitSpeed + d.floatOffset) * d.orbitRadius;
-                        const orbitZ = Math.cos(time * d.orbitSpeed + d.floatOffset) * d.orbitRadius * 0.5;
+                        // Default: slow orbit around center + gentle float
+                        const baseAngle = Math.atan2(d.originalPos.y, d.originalPos.x);
+                        const distance = Math.sqrt(d.originalPos.x ** 2 + d.originalPos.y ** 2);
+                        const orbitAngle = baseAngle + time * 0.05; // Slow orbit
                         
-                        targetX = d.originalPos.x + orbitX;
-                        targetY = d.originalPos.y + floatY;
-                        targetZ = d.originalPos.z + orbitZ;
+                        const floatY = Math.sin(time * d.floatSpeed + d.floatOffset) * 0.3;
+                        const floatZ = Math.cos(time * d.orbitSpeed + d.floatOffset) * 0.4;
+                        
+                        targetX = Math.cos(orbitAngle) * distance;
+                        targetY = Math.sin(orbitAngle) * distance + floatY;
+                        targetZ = d.originalPos.z + floatZ;
                     }
                     
                     shape.position.x += (targetX - shape.position.x) * 0.08;
