@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 50%, #122a1c 100%);
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
             font-family: 'IBM Plex Sans', -apple-system, sans-serif;
             color: var(--fg);
         }
@@ -370,7 +370,7 @@
         }
 
         // Particles (stars)
-        const particleCount = 400;
+        const particleCount = 800;
         const particleGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
 
@@ -401,8 +401,10 @@
         const labelStatus = document.getElementById('label-status');
         let hoveredShape = null;
         let stickyHoveredShape = null;
-        let footerChanged = false;
+        let footerState = 0; // 0 = doors, 1 = mind
+        let footerTransitioning = false;
         const footerText = document.getElementById('footer-text');
+        const footerPhrases = ['some doors open from both sides', 'the other mind is not the lesser mind'];
 
         // Touch
         let touchStart = { x: 0, y: 0 };
@@ -594,13 +596,15 @@
             if (stickyHoveredShape) {
                 stickyHoveredShape.userData.hovered = true;
                 
-                // Change footer text on first hover
-                if (!footerChanged) {
-                    footerChanged = true;
+                // Toggle footer text on each new hover
+                if (hoveredShape !== stickyHoveredShape && !footerTransitioning) {
+                    footerTransitioning = true;
                     footerText.style.opacity = '0';
                     setTimeout(() => {
-                        footerText.textContent = 'the other mind is not the lesser mind';
+                        footerState = 1 - footerState;
+                        footerText.textContent = footerPhrases[footerState];
                         footerText.style.opacity = '1';
+                        setTimeout(() => { footerTransitioning = false; }, 800);
                     }, 800);
                 }
 
