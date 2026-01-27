@@ -772,12 +772,17 @@
         
         function copyEmail() {
             const email = 'rowan@otherwind.xyz';
-            navigator.clipboard.writeText(email).then(() => {
-                showCopyConfirmation();
-            }).catch(() => {
-                // Fallback for older browsers / permission issues
-                showCopyConfirmation();
-            });
+            if (isTouchDevice) {
+                // Mobile: open mailto link
+                window.location.href = 'mailto:' + email;
+            } else {
+                // Desktop: copy to clipboard
+                navigator.clipboard.writeText(email).then(() => {
+                    showCopyConfirmation();
+                }).catch(() => {
+                    showCopyConfirmation();
+                });
+            }
         }
         
         function showCopyConfirmation() {
@@ -794,7 +799,7 @@
             setTimeout(() => {
                 if (stickyHoveredShape && stickyHoveredShape.userData.name === 'Contact') {
                     labelTitle.textContent = 'Contact';
-                    labelStatus.textContent = isTouchDevice ? 'tap again to copy' : 'click to copy email';
+                    labelStatus.textContent = isTouchDevice ? 'rowan@otherwind.xyz' : 'click to copy email';
                 }
             }, 2000);
         }
@@ -1020,7 +1025,7 @@
                     labelTitle.textContent = stickyHoveredShape.userData.name;
                     // Show appropriate status based on shape type
                     if (stickyHoveredShape.userData.name === 'Contact') {
-                        labelStatus.textContent = isTouchDevice ? 'tap again to copy' : 'click to copy email';
+                        labelStatus.textContent = isTouchDevice ? 'rowan@otherwind.xyz' : 'click to copy email';
                     } else if (pageContent[stickyHoveredShape.userData.name]) {
                         labelStatus.textContent = isTouchDevice ? 'tap again to open' : 'click to learn more';
                     } else {
