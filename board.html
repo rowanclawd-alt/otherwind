@@ -181,8 +181,11 @@
         .column.monitoring .column-header { color: #60a5fa; }
         .column.monitoring .count { background: #1e3a5f; color: #60a5fa; }
         
-        .column.requests .column-header { color: #fbbf24; }
-        .column.requests .count { background: #422006; color: #fbbf24; }
+        .column.internal .column-header { color: #fbbf24; }
+        .column.internal .count { background: #422006; color: #fbbf24; }
+        
+        .column.external .column-header { color: #f472b6; }
+        .column.external .count { background: #4a1d34; color: #f472b6; }
         
         .column.completed .column-header { color: #888; }
         .column.completed .card { opacity: 0.6; }
@@ -371,9 +374,11 @@
                 { id: 'monitoring-1', title: 'Otherwind Email', desc: 'Checking inbox every 6 hours via cron + heartbeat', date: '2026-01-27' },
                 { id: 'monitoring-2', title: 'Usage Tracking', desc: 'Auto-update Claude/Cursor usage every 4 hours', date: '2026-01-27' }
             ],
-            requests: [
-                { id: 'requests-1', title: 'Metalend Call Prep', desc: 'Research and prep notes for bizdev call', date: '2026-01-27' },
-                { id: 'requests-2', title: 'Equity Inquiry', desc: 'From: nadim@centrifuge.io — Asking about Otherwind and who to talk to. Replied "will be in touch". Awaiting decision on follow-up.', date: '2026-01-27' }
+            internal: [
+                { id: 'internal-1', title: 'Metalend Call Prep', desc: 'Research and prep notes for bizdev call', date: '2026-01-27' }
+            ],
+            external: [
+                { id: 'external-1', title: 'Equity Inquiry', desc: 'From: nadim@centrifuge.io — Asking about Otherwind and who to talk to. Replied "will be in touch". Awaiting decision on follow-up.', date: '2026-01-27' }
             ],
             completed: [
                 { id: 'completed-9', title: 'Email Protocol Fix', desc: 'Re-sent proper professional replies, added safeguard against double-sends', date: '2026-01-27' },
@@ -445,7 +450,8 @@
             const columns = [
                 { key: 'active', label: 'Active', class: 'active' },
                 { key: 'monitoring', label: 'Monitoring', class: 'monitoring' },
-                { key: 'requests', label: 'Requests', class: 'requests' },
+                { key: 'internal', label: 'Internal', class: 'internal' },
+                { key: 'external', label: 'External', class: 'external' },
                 { key: 'completed', label: 'Completed', class: 'completed' }
             ];
 
