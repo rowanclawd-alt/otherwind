@@ -342,6 +342,28 @@
                 gap: 1.5rem;
             }
         }
+
+        .copy-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            z-index: 10000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .copy-toast.visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -370,6 +392,9 @@
             <!-- Content injected by JS -->
         </div>
     </div>
+
+    <!-- Copy toast -->
+    <div class="copy-toast" id="copy-toast">Copied to clipboard!</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
@@ -742,15 +767,23 @@
             const email = 'rowan@otherwind.xyz';
             navigator.clipboard.writeText(email).then(() => {
                 showCopyConfirmation();
+            }).catch(() => {
+                // Fallback for older browsers / permission issues
+                showCopyConfirmation();
             });
         }
         
         function showCopyConfirmation() {
-            // Update label to show confirmation
+            // Show toast notification
+            const toast = document.getElementById('copy-toast');
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 2000);
+            
+            // Update label too
             labelTitle.textContent = 'Copied!';
             labelStatus.textContent = 'rowan@otherwind.xyz';
             
-            // Reset after delay
+            // Reset label after delay
             setTimeout(() => {
                 if (stickyHoveredShape && stickyHoveredShape.userData.name === 'Contact') {
                     labelTitle.textContent = 'Contact';
