@@ -396,6 +396,13 @@
     <!-- Copy toast -->
     <div class="copy-toast" id="copy-toast">Copied to clipboard!</div>
 
+    <script>
+        // Failsafe: hide loading after 5s no matter what
+        setTimeout(function() {
+            var el = document.getElementById('loading');
+            if (el) el.classList.add('hidden');
+        }, 5000);
+    </script>
     <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
     <script>
         const container = document.getElementById('canvas-container');
@@ -1057,11 +1064,6 @@
                 document.getElementById('loading').classList.add('hidden');
             }, 600);
         });
-
-        // Fallback: hide loading after 5s even if something fails
-        setTimeout(() => {
-            document.getElementById('loading').classList.add('hidden');
-        }, 5000);
 
         animate();
     </script>
