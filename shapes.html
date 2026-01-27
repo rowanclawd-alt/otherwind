@@ -1396,9 +1396,34 @@
       showConfigModal(`Update "${editingShape}"`, configLine, `Replace the existing "${editingShape}" entry in <code>shapeConfigs</code>:`);
     }
     
-    function showConfigModal(title, configLine, instruction) {
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (e) {
+        // Fallback for file:// or non-secure contexts
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          return true;
+        } catch (e2) {
+          document.body.removeChild(textarea);
+          return false;
+        }
+      }
+    }
+    
+    async function showConfigModal(title, configLine, instruction) {
       const existing = document.getElementById('config-modal');
       if (existing) existing.remove();
+      
+      const copied = await copyToClipboard(configLine);
       
       const modal = document.createElement('div');
       modal.className = 'modal-overlay active';
@@ -1407,8 +1432,12 @@
         <div class="modal" style="width: 520px;">
           <div class="modal-title">${title}</div>
           <p style="color: #888; font-size: 12px; margin-bottom: 12px;">${instruction}</p>
-          <div class="config-output" style="margin-bottom: 14px;">${configLine}</div>
-          <p style="color: #555; font-size: 11px; margin-bottom: 14px;">Config copied to clipboard ✓</p>
+          <textarea id="config-textarea" style="width:100%;height:80px;background:#111;border:1px solid #333;border-radius:6px;color:#4ade80;font-family:monospace;font-size:11px;padding:10px;resize:none;margin-bottom:10px;" readonly>${configLine}</textarea>
+          <div style="display:flex;gap:8px;margin-bottom:14px;">
+            <button class="btn btn-secondary" onclick="document.getElementById('config-textarea').select();document.execCommand('copy');showToast('Copied!');" style="flex:1;">📋 Copy</button>
+            <button class="btn btn-secondary" onclick="selectAllConfig()" style="flex:1;">Select All</button>
+          </div>
+          <p style="color: #555; font-size: 11px; margin-bottom: 14px;">${copied ? '✓ Copied to clipboard' : '⚠️ Select and copy manually (Cmd+C)'}</p>
           <div class="modal-buttons">
             <button class="btn btn-secondary" onclick="document.getElementById('config-modal').remove()">Close</button>
             <button class="btn btn-primary" onclick="window.open('https://github.com/rowanclawd-alt/otherwind/edit/main/index.html', '_blank')">Edit on GitHub</button>
@@ -1417,12 +1446,21 @@
       `;
       document.body.appendChild(modal);
       modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+      
+      // Auto-select for easy copying
+      setTimeout(() => document.getElementById('config-textarea').select(), 100);
     }
     
-    function copyConfig() {
+    function selectAllConfig() {
+      const textarea = document.getElementById('config-textarea');
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+    }
+    
+    async function copyConfig() {
       const config = generateConfig();
-      navigator.clipboard.writeText(JSON.stringify(config, null, 2));
-      showToast('Config copied! 📋');
+      const copied = await copyToClipboard(JSON.stringify(config, null, 2));
+      showToast(copied ? 'Config copied! 📋' : 'Copy failed - check console');
     }
     
     // ===== RANDOMIZE =====
