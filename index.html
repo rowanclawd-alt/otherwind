@@ -175,7 +175,7 @@
         .expanded-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(5, 10, 7, 0.85);
+            background: rgba(5, 10, 7, 0.75);
             z-index: 300;
             opacity: 0;
             pointer-events: none;
@@ -747,9 +747,12 @@
                 <div class="expanded-body">${content.body}${membersHtml}</div>
             `;
             
-            // Show overlay
+            // Show overlay, clear hover state
             expandedOverlay.classList.add('visible');
             label.classList.remove('visible');
+            stickyHoveredShape = null;
+            hoveredShape = null;
+            document.body.style.cursor = 'default';
             
             // Attach back button listener
             document.getElementById('back-button').addEventListener('click', collapseView);
@@ -849,9 +852,9 @@
                     let targetScale, targetOpacity;
                     
                     if (isExpanded) {
-                        // When expanded: only show the expanded shape
-                        targetScale = (shape === expandedShape) ? 1.4 : 0.5;
-                        targetOpacity = (shape === expandedShape) ? 0.9 : 0;
+                        // When expanded: all shapes visible but muted, expanded one highlighted
+                        targetScale = (shape === expandedShape) ? 1.3 : 0.9;
+                        targetOpacity = (shape === expandedShape) ? 0.8 : 0.3;
                     } else if (d.hovered) {
                         targetScale = 1.8;
                         targetOpacity = 1;
@@ -877,30 +880,33 @@
             particles.geometry.attributes.position.needsUpdate = true;
             particles.rotation.y += 0.0003;
 
-            // Raycasting with sticky hover
+            // Raycasting with sticky hover (disabled when expanded)
             raycaster.setFromCamera(mouse, camera);
             const intersects = raycaster.intersectObjects(interactiveShapes);
 
             interactiveShapes.forEach(s => s.userData.hovered = false);
 
-            // Check if we're hovering a new shape (desktop only - touch handles its own selection)
-            if (!isTouchDevice) {
-                if (intersects.length > 0) {
-                    const obj = intersects[0].object;
-                    stickyHoveredShape = obj; // Lock onto this shape
-                } else if (stickyHoveredShape) {
-                    // Check distance from mouse to sticky shape's screen position
-                    const vector = stickyHoveredShape.position.clone();
-                    vector.project(camera);
-                    const shapeScreenX = (vector.x * 0.5 + 0.5) * window.innerWidth;
-                    const shapeScreenY = (-vector.y * 0.5 + 0.5) * window.innerHeight;
-                    const mouseScreenX = (mouse.x * 0.5 + 0.5) * window.innerWidth;
-                    const mouseScreenY = (-mouse.y * 0.5 + 0.5) * window.innerHeight;
-                    const dist = Math.sqrt((shapeScreenX - mouseScreenX) ** 2 + (shapeScreenY - mouseScreenY) ** 2);
-                    
-                    // Release if mouse is far enough away (200px threshold)
-                    if (dist > 200) {
-                        stickyHoveredShape = null;
+            // Skip hover interactions when expanded
+            if (!isExpanded) {
+                // Check if we're hovering a new shape (desktop only - touch handles its own selection)
+                if (!isTouchDevice) {
+                    if (intersects.length > 0) {
+                        const obj = intersects[0].object;
+                        stickyHoveredShape = obj; // Lock onto this shape
+                    } else if (stickyHoveredShape) {
+                        // Check distance from mouse to sticky shape's screen position
+                        const vector = stickyHoveredShape.position.clone();
+                        vector.project(camera);
+                        const shapeScreenX = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                        const shapeScreenY = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+                        const mouseScreenX = (mouse.x * 0.5 + 0.5) * window.innerWidth;
+                        const mouseScreenY = (-mouse.y * 0.5 + 0.5) * window.innerHeight;
+                        const dist = Math.sqrt((shapeScreenX - mouseScreenX) ** 2 + (shapeScreenY - mouseScreenY) ** 2);
+                        
+                        // Release if mouse is far enough away (200px threshold)
+                        if (dist > 200) {
+                            stickyHoveredShape = null;
+                        }
                     }
                 }
             }
