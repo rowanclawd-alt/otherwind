@@ -187,6 +187,77 @@
         .column.completed .column-header { color: #888; }
         .column.completed .card { opacity: 0.6; }
 
+        /* Log Section */
+        .log-section {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #222;
+        }
+
+        .log-header {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .log-list {
+            list-style: none;
+        }
+
+        .log-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 0.75rem;
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-item a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .log-item a:hover {
+            text-decoration: underline;
+        }
+
+        .log-date {
+            color: #444;
+            font-size: 0.65rem;
+            margin-left: 0.5rem;
+        }
+
+        .log-item {
+            position: relative;
+            padding-right: 1.5rem;
+        }
+
+        .log-delete {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #444;
+            cursor: pointer;
+            font-size: 0.65rem;
+            opacity: 0;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        .log-item:hover .log-delete {
+            opacity: 1;
+        }
+
+        .log-delete:hover {
+            color: #ff4444;
+        }
+
         /* Footer */
         footer {
             margin-top: 2rem;
@@ -218,6 +289,11 @@
         </header>
 
         <div class="board" id="board"></div>
+
+        <section class="log-section">
+            <div class="log-header">Log</div>
+            <ul class="log-list" id="log"></ul>
+        </section>
 
         <footer>
             last updated: <span id="last-updated"></span>
@@ -262,6 +338,13 @@
             ]
         };
 
+        // === LOG DATA ===
+        const log = [
+            { id: 'log-1', title: 'Board launched', url: null, date: '2026-01-27' },
+            { id: 'log-2', title: 'DNS configured for otherwind.xyz', url: null, date: '2026-01-27' },
+            { id: 'log-3', title: 'Email hosting activated', url: null, date: '2026-01-27' }
+        ];
+
         // === DELETED TASKS (localStorage) ===
         function getDeletedTasks() {
             const deleted = localStorage.getItem('board-deleted');
@@ -280,6 +363,20 @@
         function getVisibleTasks(columnKey) {
             const deleted = getDeletedTasks();
             return tasks[columnKey].filter(task => !deleted.includes(task.id));
+        }
+
+        function deleteLog(logId) {
+            const deleted = getDeletedTasks();
+            if (!deleted.includes(logId)) {
+                deleted.push(logId);
+                localStorage.setItem('board-deleted', JSON.stringify(deleted));
+            }
+            renderLog();
+        }
+
+        function getVisibleLogs() {
+            const deleted = getDeletedTasks();
+            return log.filter(entry => !deleted.includes(entry.id));
         }
 
         // === RENDER ===
@@ -314,6 +411,20 @@
             document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
         }
 
+        function renderLog() {
+            const logList = document.getElementById('log');
+            const visibleLogs = getVisibleLogs();
+            logList.innerHTML = visibleLogs.map(entry => `
+                <li class="log-item">
+                    ${entry.url 
+                        ? `<a href="${entry.url}" target="_blank">${entry.title}</a>` 
+                        : entry.title}
+                    <span class="log-date">${entry.date}</span>
+                    <button class="log-delete" onclick="deleteLog('${entry.id}')" title="Remove">×</button>
+                </li>
+            `).join('');
+        }
+
         // === INIT ===
         document.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('auth-overlay');
@@ -325,6 +436,7 @@
                 overlay.classList.add('hidden');
                 content.style.display = 'block';
                 renderBoard();
+                renderLog();
             }
 
             input.addEventListener('keydown', (e) => {
@@ -333,6 +445,7 @@
                         overlay.classList.add('hidden');
                         content.style.display = 'block';
                         renderBoard();
+                        renderLog();
                     } else {
                         error.textContent = 'incorrect';
                         input.value = '';
