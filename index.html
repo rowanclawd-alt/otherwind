@@ -690,6 +690,20 @@
                 const obj = intersects[0].object;
                 const content = pageContent[obj.userData.name];
                 
+                // Handle Contact shape - copy email
+                if (obj.userData.name === 'Contact') {
+                    if (isTouchDevice) {
+                        if (stickyHoveredShape === obj && obj.userData.readyToExpand) {
+                            copyEmail();
+                        } else {
+                            obj.userData.readyToExpand = true;
+                        }
+                    } else {
+                        copyEmail();
+                    }
+                    return;
+                }
+                
                 if (content) {
                     // Touch: require shape to already be selected (hovered) before expanding
                     if (isTouchDevice) {
@@ -705,6 +719,27 @@
                     }
                 }
             }
+        }
+        
+        function copyEmail() {
+            const email = 'rowan@otherwind.xyz';
+            navigator.clipboard.writeText(email).then(() => {
+                showCopyConfirmation();
+            });
+        }
+        
+        function showCopyConfirmation() {
+            // Update label to show confirmation
+            labelTitle.textContent = 'Copied!';
+            labelStatus.textContent = 'rowan@otherwind.xyz';
+            
+            // Reset after delay
+            setTimeout(() => {
+                if (stickyHoveredShape && stickyHoveredShape.userData.name === 'Contact') {
+                    labelTitle.textContent = 'Contact';
+                    labelStatus.textContent = isTouchDevice ? 'tap again to copy' : 'click to copy email';
+                }
+            }, 2000);
         }
 
         function expandShape(shape, content) {
@@ -926,8 +961,10 @@
                 if (hoveredShape !== stickyHoveredShape) {
                     hoveredShape = stickyHoveredShape;
                     labelTitle.textContent = stickyHoveredShape.userData.name;
-                    // Show appropriate status for expandable shapes
-                    if (pageContent[stickyHoveredShape.userData.name]) {
+                    // Show appropriate status based on shape type
+                    if (stickyHoveredShape.userData.name === 'Contact') {
+                        labelStatus.textContent = isTouchDevice ? 'tap again to copy' : 'click to copy email';
+                    } else if (pageContent[stickyHoveredShape.userData.name]) {
                         labelStatus.textContent = isTouchDevice ? 'tap again to open' : 'click to learn more';
                     } else {
                         labelStatus.textContent = stickyHoveredShape.userData.status;
