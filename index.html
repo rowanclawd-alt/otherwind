@@ -389,12 +389,18 @@
 
         // Color palettes
         const palettes = [
-            ['#4fd1a5', '#2d8b6f', '#1a5c4a', '#3d9b7f', '#5ae0b4'],
-            ['#c9a962', '#8b6b4a', '#6b8b4a', '#a68b52', '#4a6b3a'],
-            ['#6b9b8a', '#4a7b6a', '#3a6b5a', '#5a8b7a', '#2a5b4a'],
-            ['#8bc9a9', '#6ba989', '#5a9979', '#7ab999', '#4a8969'],
-            ['#a5c97b', '#85a95b', '#75994b', '#95b96b', '#65893b'],
-            ['#7b9bc9', '#5b7ba9', '#4b6b99', '#6b8bb9', '#3b5b89'],
+            ['#4fd1a5', '#2d8b6f', '#1a5c4a', '#3d9b7f', '#5ae0b4'], // 0: Mint
+            ['#c9a962', '#8b6b4a', '#6b8b4a', '#a68b52', '#4a6b3a'], // 1: Earth
+            ['#6b9b8a', '#4a7b6a', '#3a6b5a', '#5a8b7a', '#2a5b4a'], // 2: Sage
+            ['#8bc9a9', '#6ba989', '#5a9979', '#7ab999', '#4a8969'], // 3: Spring
+            ['#a5c97b', '#85a95b', '#75994b', '#95b96b', '#65893b'], // 4: Lime
+            ['#7b9bc9', '#5b7ba9', '#4b6b99', '#6b8bb9', '#3b5b89'], // 5: Ocean
+            ['#2d5a3d', '#1a3d2a', '#0f2a1a', '#4a7a5d', '#3d6b4d'], // 6: Forest
+            ['#0d9488', '#14b8a6', '#2dd4bf', '#5eead4', '#99f6e4'], // 7: Teal
+            ['#059669', '#10b981', '#34d399', '#6ee7b7', '#a7f3d0'], // 8: Emerald
+            ['#4a5d4a', '#3d4d3d', '#2d3d2d', '#5a6d5a', '#6a7d6a'], // 9: Moss
+            ['#1a2a2a', '#0f1f1f', '#0a1515', '#2a3a3a', '#3a4a4a'], // 10: Night
+            ['#fbbf24', '#f59e0b', '#d97706', '#92400e', '#78350f'], // 11: Dawn
         ];
 
         function createCellTexture(colorPalette, cellCount = 15) {
@@ -456,7 +462,7 @@
             { geo: 'icosahedron', size: 1.3, pos: [3.5, 3, 0], palette: 3, rotSpeed: 0.007, name: 'Team', status: 'neither leads, both arrive' },
             { geo: 'tetrahedron', size: 1.6, pos: [0, -3.5, -3], palette: 4, rotSpeed: 0.012, name: 'Insights', status: 'coming soon' },
             { geo: 'dodecahedron', size: 1.1, pos: [-6, -0.5, 2], palette: 5, rotSpeed: 0.009, name: 'About', status: 'coming soon' },
-            { geo: 'octahedron', size: 0.9, pos: [6.5, 1, 1], palette: 0, rotSpeed: 0.015, name: 'News', status: 'coming soon' },
+            { geo: 'torus', size: 0.8, pos: [0, 0, 0], palette: 11, rotSpeed: 0.012, name: 'News', status: 'coming soon' },
         ];
 
         const shapes = [];
@@ -469,6 +475,13 @@
                 case 'dodecahedron': geometry = new THREE.DodecahedronGeometry(config.size, 0); break;
                 case 'octahedron': geometry = new THREE.OctahedronGeometry(config.size, 0); break;
                 case 'tetrahedron': geometry = new THREE.TetrahedronGeometry(config.size, 0); break;
+                case 'sphere': geometry = new THREE.SphereGeometry(config.size, 32, 32); break;
+                case 'torus': geometry = new THREE.TorusGeometry(config.size * 0.7, config.size * 0.3, 16, 48); break;
+                case 'torusKnot': geometry = new THREE.TorusKnotGeometry(config.size * 0.6, config.size * 0.2, 64, 8); break;
+                case 'cone': geometry = new THREE.ConeGeometry(config.size * 0.8, config.size * 1.5, 32); break;
+                case 'cylinder': geometry = new THREE.CylinderGeometry(config.size * 0.6, config.size * 0.6, config.size * 1.4, 32); break;
+                case 'box': geometry = new THREE.BoxGeometry(config.size * 1.2, config.size * 1.2, config.size * 1.2); break;
+                default: geometry = new THREE.IcosahedronGeometry(config.size, 1); break;
             }
 
             const texture = createCellTexture(palettes[config.palette], 12 + Math.floor(Math.random() * 10));
