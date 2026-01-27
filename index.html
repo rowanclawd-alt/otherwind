@@ -632,11 +632,24 @@
                 const intersects = raycaster.intersectObjects(interactiveShapes);
                 if (intersects.length > 0) {
                     touchedShape = intersects[0].object;
-                    // If selecting a different shape, reset all readyToExpand flags
+                    const content = pageContent[touchedShape.userData.name];
+                    
+                    // Second tap on same shape - perform action
+                    if (stickyHoveredShape === touchedShape && touchedShape.userData.readyToExpand && !isExpanded) {
+                        if (touchedShape.userData.name === 'Contact') {
+                            copyEmail();
+                        } else if (content) {
+                            expandShape(touchedShape, content);
+                        }
+                        return;
+                    }
+                    
+                    // First tap or different shape - select it
                     if (stickyHoveredShape !== touchedShape) {
                         interactiveShapes.forEach(s => s.userData.readyToExpand = false);
                     }
-                    stickyHoveredShape = touchedShape; // Lock selection on tap
+                    stickyHoveredShape = touchedShape;
+                    touchedShape.userData.readyToExpand = true; // Mark ready for second tap
                     isTouching = true;
                 } else {
                     // Tapped empty space - deselect and reset flags
