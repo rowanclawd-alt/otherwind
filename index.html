@@ -360,8 +360,6 @@
         <p id="label-status">coming soon</p>
     </div>
 
-    <div class="mobile-hint">drag to spin</div>
-
     <footer>
         <div id="footer-text">some doors open from both sides</div>
     </footer>
@@ -681,15 +679,6 @@
                 mouseTarget.y = -(y / window.innerHeight) * 2 + 1;
                 mouse.x = mouseTarget.x;
                 mouse.y = mouseTarget.y;
-
-                if (isTouching && touchedShape) {
-                    const dx = (x - touchStart.x) * 0.01;
-                    const dy = (y - touchStart.y) * 0.01;
-                    touchedShape.userData.touchRotY += dx;
-                    touchedShape.userData.touchRotX += dy;
-                    touchStart.x = x;
-                    touchStart.y = y;
-                }
             }
         }
 
