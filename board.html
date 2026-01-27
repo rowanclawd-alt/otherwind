@@ -10,22 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a1a12;
-            --bg-elevated: #0f2318;
-            --bg-card: #132a1c;
-            --border: #1a3d2e;
-            --border-hover: #2d5a45;
-            --fg: #e8efe9;
-            --muted: #8ba896;
-            --subtle: #4a6b5a;
+            --bg: #0a0a0a;
+            --bg-elevated: #111111;
+            --bg-card: #161616;
+            --border: #252525;
+            --border-hover: #3a3a3a;
+            --fg: #f0f0f0;
+            --muted: #888888;
+            --subtle: #555555;
             --accent: #4fd1a5;
-            --accent-dim: rgba(79, 209, 165, 0.15);
+            --accent-dim: rgba(79, 209, 165, 0.1);
             --accent-gold: #c9a962;
-            --blue: #7bb8d9;
-            --yellow: #d9c97b;
-            --pink: #d97ba8;
-            --red: #d97b7b;
-            --green: #7bd9a5;
+            --blue: #8ab4d4;
+            --yellow: #d4c88a;
+            --pink: #d48aab;
+            --red: #d48a8a;
+            --green: #4fd1a5;
         }
 
         * {
@@ -36,8 +36,7 @@
 
         body {
             font-family: 'IBM Plex Sans', -apple-system, sans-serif;
-            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 50%, #1a3528 100%);
-            background-attachment: fixed;
+            background: var(--bg);
             color: var(--fg);
             min-height: 100vh;
             font-size: 14px;
@@ -48,7 +47,7 @@
         #auth-overlay {
             position: fixed;
             inset: 0;
-            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 50%, #1a3528 100%);
+            background: var(--bg);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -151,7 +150,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--green);
+            background: var(--accent);
             animation: pulse 2s ease-in-out infinite;
         }
 
@@ -484,21 +483,21 @@
             border-radius: 2px;
         }
 
-        .column.active .column-title { color: var(--green); }
-        .column.active .column-count { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+        .column.active .column-title { color: var(--fg); }
+        .column.active .column-count { background: var(--accent-dim); color: var(--accent); }
 
-        .column.monitoring .column-title { color: var(--blue); }
-        .column.monitoring .column-count { background: rgba(96, 165, 250, 0.15); color: var(--blue); }
+        .column.monitoring .column-title { color: var(--fg); }
+        .column.monitoring .column-count { background: var(--border); color: var(--muted); }
 
-        .column.internal .column-title { color: var(--yellow); }
-        .column.internal .column-count { background: rgba(251, 191, 36, 0.15); color: var(--yellow); }
+        .column.internal .column-title { color: var(--fg); }
+        .column.internal .column-count { background: var(--border); color: var(--muted); }
 
-        .column.external .column-title { color: var(--pink); }
-        .column.external .column-count { background: rgba(244, 114, 182, 0.15); color: var(--pink); }
+        .column.external .column-title { color: var(--fg); }
+        .column.external .column-count { background: var(--border); color: var(--muted); }
 
         .column.completed .column-title { color: var(--subtle); }
-        .column.completed .column-count { background: var(--border); color: var(--muted); }
-        .column.completed .card { opacity: 0.5; }
+        .column.completed .column-count { background: var(--border); color: var(--subtle); }
+        .column.completed .card { opacity: 0.4; }
 
         .column.collapsed { min-height: auto; }
         .column.collapsed .cards-container { display: none; }
@@ -584,7 +583,7 @@
         }
 
         .log-item a {
-            color: var(--blue);
+            color: var(--accent);
             text-decoration: none;
         }
 
