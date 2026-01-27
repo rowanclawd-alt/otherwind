@@ -185,6 +185,7 @@
             align-items: center;
             padding: 4rem;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .expanded-overlay.visible {
@@ -198,6 +199,7 @@
             transform: translateY(20px);
             opacity: 0;
             transition: all 0.6s ease 0.3s;
+            padding-bottom: 2rem;
         }
 
         .expanded-overlay.visible .expanded-content {
@@ -323,10 +325,12 @@
                 transform: translateX(-50%) translateY(0);
             }
             .expanded-overlay {
-                padding: 3rem 2rem;
+                padding: 4rem 2rem 3rem;
+                align-items: flex-start;
             }
             .expanded-content {
                 padding: 0 0.5rem;
+                margin-top: 1rem;
             }
             .expanded-title {
                 font-size: 1.6rem;
