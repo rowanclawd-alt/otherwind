@@ -401,10 +401,16 @@
         const labelStatus = document.getElementById('label-status');
         let hoveredShape = null;
         let stickyHoveredShape = null;
-        let footerState = 0; // 0 = doors, 1 = mind
+        let footerState = 0;
         let footerTransitioning = false;
         const footerText = document.getElementById('footer-text');
-        const footerPhrases = ['some doors open from both sides', 'the other mind is not the lesser mind'];
+        const footerPhrases = [
+            'some doors open from both sides',
+            'the other mind is not the lesser mind',
+            'the wind carries what it did not create',
+            'no mirror shows a single face',
+            'the echo sometimes leads the voice'
+        ];
 
         // Touch
         let touchStart = { x: 0, y: 0 };
@@ -596,12 +602,12 @@
             if (stickyHoveredShape) {
                 stickyHoveredShape.userData.hovered = true;
                 
-                // Toggle footer text on each new hover
+                // Cycle footer text on each new hover
                 if (hoveredShape !== stickyHoveredShape && !footerTransitioning) {
                     footerTransitioning = true;
                     footerText.style.opacity = '0';
                     setTimeout(() => {
-                        footerState = 1 - footerState;
+                        footerState = (footerState + 1) % footerPhrases.length;
                         footerText.textContent = footerPhrases[footerState];
                         footerText.style.opacity = '1';
                         setTimeout(() => { footerTransitioning = false; }, 800);
