@@ -258,6 +258,47 @@
             color: #ff4444;
         }
 
+        /* Usage Section */
+        .usage-section {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #222;
+        }
+
+        .usage-header {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .usage-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .usage-item {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .usage-label {
+            color: #555;
+            margin-right: 0.5rem;
+        }
+
+        .usage-value {
+            color: #888;
+        }
+
+        .usage-updated {
+            font-size: 0.6rem;
+            color: #444;
+            margin-top: 0.5rem;
+        }
+
         /* Footer */
         footer {
             margin-top: 2rem;
@@ -293,6 +334,11 @@
         <section class="log-section">
             <div class="log-header">Log</div>
             <ul class="log-list" id="log"></ul>
+        </section>
+
+        <section class="usage-section">
+            <div class="usage-header">Usage</div>
+            <div class="usage-grid" id="usage"></div>
         </section>
 
         <footer>
@@ -336,6 +382,12 @@
                 { id: 'completed-3', title: 'Email Hosting', desc: 'rowan@otherwind.xyz created via Porkbun', date: '2026-01-27' },
                 { id: 'completed-4', title: 'Email Protocol', desc: 'Security rules + monitoring setup documented', date: '2026-01-27' }
             ]
+        };
+
+        // === USAGE DATA ===
+        const usage = {
+            claude: { dailyLeft: '95%', weeklyLeft: '96%', updated: '2026-01-27 17:23' },
+            cursor: { status: 'active', updated: '2026-01-27 17:23' }
         };
 
         // === LOG DATA ===
@@ -425,6 +477,22 @@
             `).join('');
         }
 
+        function renderUsage() {
+            const usageEl = document.getElementById('usage');
+            usageEl.innerHTML = `
+                <div class="usage-item">
+                    <span class="usage-label">Claude Max:</span>
+                    <span class="usage-value">${usage.claude.dailyLeft} daily remaining, ${usage.claude.weeklyLeft} weekly remaining</span>
+                    <div class="usage-updated">updated ${usage.claude.updated}</div>
+                </div>
+                <div class="usage-item">
+                    <span class="usage-label">Cursor:</span>
+                    <span class="usage-value">${usage.cursor.status}</span>
+                    <div class="usage-updated">updated ${usage.cursor.updated}</div>
+                </div>
+            `;
+        }
+
         // === INIT ===
         document.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('auth-overlay');
@@ -437,6 +505,7 @@
                 content.style.display = 'block';
                 renderBoard();
                 renderLog();
+                renderUsage();
             }
 
             input.addEventListener('keydown', (e) => {
@@ -446,6 +515,7 @@
                         content.style.display = 'block';
                         renderBoard();
                         renderLog();
+                        renderUsage();
                     } else {
                         error.textContent = 'incorrect';
                         input.value = '';
