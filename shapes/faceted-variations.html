@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Faceted Form Variations</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050505; font-family: system-ui; padding: 20px; color: #fff; }
+    h1 { text-align: center; margin-bottom: 10px; font-weight: 300; color: #4ade80; }
+    h2 { font-size: 14px; color: #666; text-align: center; margin-bottom: 30px; }
+    .section { margin-bottom: 40px; }
+    .section-title { font-size: 16px; color: #888; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 5px; }
+    .row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
+    .card { background: #0a0f0a; border-radius: 10px; padding: 15px; text-align: center; width: 180px; }
+    .shape-box { width: 150px; height: 150px; margin: 0 auto 10px; position: relative; }
+    .label { font-size: 11px; color: #666; }
+    
+    /* Base faceted shape */
+    .faceted { position: relative; width: 100%; height: 100%; filter: drop-shadow(0 0 20px var(--glow)); }
+    .faceted .f { position: absolute; }
+    .faceted .f1 { width: 75px; height: 65px; top: 5px; left: 37px; clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
+    .faceted .f2 { width: 65px; height: 55px; top: 35px; left: 5px; clip-path: polygon(100% 0%, 100% 100%, 0% 50%); }
+    .faceted .f3 { width: 65px; height: 55px; top: 35px; right: 5px; clip-path: polygon(0% 0%, 100% 50%, 0% 100%); }
+    .faceted .f4 { width: 95px; height: 45px; top: 65px; left: 27px; clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%); }
+    .faceted .f5 { width: 75px; height: 35px; bottom: 15px; left: 37px; clip-path: polygon(0% 0%, 100% 0%, 50% 100%); }
+    
+    /* Green */
+    .green { --glow: rgba(34,197,94,0.5); }
+    .green .f1 { background: linear-gradient(180deg, #4ade80, #22c55e); }
+    .green .f2 { background: linear-gradient(180deg, #15803d, #22c55e); }
+    .green .f3 { background: linear-gradient(180deg, #4ade80, #22c55e); }
+    .green .f4 { background: linear-gradient(180deg, #22c55e, #166534); }
+    .green .f5 { background: linear-gradient(180deg, #166534, #14532d); }
+    
+    /* Magenta */
+    .magenta { --glow: rgba(236,72,153,0.5); }
+    .magenta .f1 { background: linear-gradient(180deg, #f472b6, #ec4899); }
+    .magenta .f2 { background: linear-gradient(180deg, #be185d, #ec4899); }
+    .magenta .f3 { background: linear-gradient(180deg, #f472b6, #ec4899); }
+    .magenta .f4 { background: linear-gradient(180deg, #ec4899, #9d174d); }
+    .magenta .f5 { background: linear-gradient(180deg, #9d174d, #831843); }
+    
+    /* Cyan */
+    .cyan { --glow: rgba(34,211,238,0.5); }
+    .cyan .f1 { background: linear-gradient(180deg, #67e8f9, #22d3ee); }
+    .cyan .f2 { background: linear-gradient(180deg, #0891b2, #22d3ee); }
+    .cyan .f3 { background: linear-gradient(180deg, #67e8f9, #22d3ee); }
+    .cyan .f4 { background: linear-gradient(180deg, #22d3ee, #0e7490); }
+    .cyan .f5 { background: linear-gradient(180deg, #0e7490, #164e63); }
+    
+    /* Gold */
+    .gold { --glow: rgba(251,191,36,0.5); }
+    .gold .f1 { background: linear-gradient(180deg, #fcd34d, #fbbf24); }
+    .gold .f2 { background: linear-gradient(180deg, #b45309, #f59e0b); }
+    .gold .f3 { background: linear-gradient(180deg, #fcd34d, #fbbf24); }
+    .gold .f4 { background: linear-gradient(180deg, #f59e0b, #92400e); }
+    .gold .f5 { background: linear-gradient(180deg, #92400e, #78350f); }
+    
+    /* Violet */
+    .violet { --glow: rgba(168,85,247,0.5); }
+    .violet .f1 { background: linear-gradient(180deg, #c084fc, #a855f7); }
+    .violet .f2 { background: linear-gradient(180deg, #7c3aed, #a855f7); }
+    .violet .f3 { background: linear-gradient(180deg, #c084fc, #a855f7); }
+    .violet .f4 { background: linear-gradient(180deg, #a855f7, #6b21a8); }
+    .violet .f5 { background: linear-gradient(180deg, #6b21a8, #581c87); }
+    
+    /* Coral */
+    .coral { --glow: rgba(251,113,133,0.5); }
+    .coral .f1 { background: linear-gradient(180deg, #fda4af, #fb7185); }
+    .coral .f2 { background: linear-gradient(180deg, #e11d48, #fb7185); }
+    .coral .f3 { background: linear-gradient(180deg, #fda4af, #fb7185); }
+    .coral .f4 { background: linear-gradient(180deg, #fb7185, #be123c); }
+    .coral .f5 { background: linear-gradient(180deg, #be123c, #9f1239); }
+    
+    /* Texture: Noise */
+    .noise .f { background-blend-mode: overlay; }
+    .noise .f::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.15; mix-blend-mode: overlay; clip-path: inherit; }
+    
+    /* Texture: Metallic */
+    .metallic .f1 { background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 30%, var(--c3) 50%, var(--c2) 70%, var(--c1) 100%) !important; }
+    .metallic .f2 { background: linear-gradient(225deg, var(--c4) 0%, var(--c2) 50%, var(--c4) 100%) !important; }
+    .metallic .f3 { background: linear-gradient(135deg, var(--c1) 0%, var(--c3) 50%, var(--c1) 100%) !important; }
+    .metallic .f4 { background: linear-gradient(180deg, var(--c2) 0%, var(--c4) 100%) !important; }
+    .metallic .f5 { background: linear-gradient(180deg, var(--c4) 0%, var(--c5) 100%) !important; }
+    .metallic.green { --c1: #86efac; --c2: #4ade80; --c3: #fff; --c4: #22c55e; --c5: #14532d; }
+    .metallic.magenta { --c1: #fbcfe8; --c2: #f472b6; --c3: #fff; --c4: #ec4899; --c5: #831843; }
+    .metallic.cyan { --c1: #a5f3fc; --c2: #67e8f9; --c3: #fff; --c4: #22d3ee; --c5: #164e63; }
+    .metallic.gold { --c1: #fef3c7; --c2: #fcd34d; --c3: #fff; --c4: #fbbf24; --c5: #78350f; }
+    .metallic.violet { --c1: #e9d5ff; --c2: #c084fc; --c3: #fff; --c4: #a855f7; --c5: #581c87; }
+    .metallic.coral { --c1: #fecdd3; --c2: #fda4af; --c3: #fff; --c4: #fb7185; --c5: #9f1239; }
+    
+    /* Texture: Glass */
+    .glass .f { opacity: 0.7; }
+    .glass .f1::before { content: ''; position: absolute; top: 5px; left: 20%; width: 40%; height: 20%; background: rgba(255,255,255,0.3); border-radius: 50%; filter: blur(3px); }
+  </style>
+</head>
+<body>
+  <h1>Faceted Form</h1>
+  <h2>5 colors × 3 textures = 15 variations</h2>
+  
+  <div class="section">
+    <div class="section-title">🟢 Green (Base)</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="faceted green"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Flat</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted green metallic"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Metallic</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted green glass"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Glass</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🩷 Magenta</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="faceted magenta"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Flat</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted magenta metallic"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Metallic</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted magenta glass"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Glass</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🩵 Cyan</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="faceted cyan"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Flat</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted cyan metallic"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Metallic</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted cyan glass"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Glass</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🟡 Gold</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="faceted gold"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Flat</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted gold metallic"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Metallic</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted gold glass"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Glass</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🟣 Violet</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="faceted violet"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Flat</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted violet metallic"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Metallic</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted violet glass"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Glass</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🔴 Coral</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="faceted coral"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Flat</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted coral metallic"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Metallic</div></div>
+      <div class="card"><div class="shape-box"><div class="faceted coral glass"><div class="f f1"></div><div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div></div></div><div class="label">Glass</div></div>
+    </div>
+  </div>
+</body>
+</html>

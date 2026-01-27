@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proto 12 - Brutalist</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #f0f0f0;
+      color: #0a0a0a;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      z-index: 10;
+      position: relative;
+    }
+    .hero h1 span { color: #22c55e; }
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.7;
+      margin-top: 1rem;
+      z-index: 10;
+      position: relative;
+    }
+    /* Brutalist blocks */
+    .block {
+      position: absolute;
+      background: #22c55e;
+    }
+    .block-1 {
+      width: 200px;
+      height: 400px;
+      top: -50px;
+      right: 100px;
+      transform: rotate(-5deg);
+    }
+    .block-2 {
+      width: 300px;
+      height: 150px;
+      bottom: 50px;
+      left: -50px;
+      background: #0a0a0a;
+      transform: rotate(3deg);
+    }
+    .block-3 {
+      width: 100px;
+      height: 100px;
+      top: 40%;
+      left: 20%;
+      background: #ff3366;
+    }
+    .block-4 {
+      width: 80px;
+      height: 250px;
+      bottom: 100px;
+      right: 50px;
+      background: #0a0a0a;
+    }
+    /* Outline shapes */
+    .outline {
+      position: absolute;
+      border: 3px solid #0a0a0a;
+      background: transparent;
+    }
+    .outline-1 {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      top: 20%;
+      left: 10%;
+    }
+    .outline-2 {
+      width: 150px;
+      height: 150px;
+      bottom: 30%;
+      right: 25%;
+      transform: rotate(45deg);
+    }
+    /* Text elements */
+    .deco-text {
+      position: absolute;
+      font-size: 8rem;
+      font-weight: 900;
+      color: rgba(0,0,0,0.03);
+      white-space: nowrap;
+    }
+    .deco-text-1 { top: 10%; left: -5%; transform: rotate(-5deg); }
+    .deco-text-2 { bottom: 10%; right: -10%; transform: rotate(5deg); }
+    .label {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #0a0a0a;
+      color: #f0f0f0;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="deco-text deco-text-1">OTHERWIND</div>
+    <div class="deco-text deco-text-2">OTHERWIND</div>
+    <div class="block block-1"></div>
+    <div class="block block-2"></div>
+    <div class="block block-3"></div>
+    <div class="block block-4"></div>
+    <div class="outline outline-1"></div>
+    <div class="outline outline-2"></div>
+    <div>
+      <h1>neither leads,<br><span>both arrive</span></h1>
+      <p class="subtitle">agent-led consulting for the emergent era</p>
+    </div>
+  </div>
+  <div class="label">12 — Brutalist + Light Mode + Red Pop</div>
+</body>
+</html>

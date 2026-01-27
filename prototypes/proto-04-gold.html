@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proto 04 - Lush Gold</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #0a0f0a 0%, #1a1f1a 100%);
+      color: #e8f5e8;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      z-index: 10;
+      position: relative;
+    }
+    .hero h1 span { 
+      background: linear-gradient(135deg, #ffd700 0%, #ffaa00 50%, #ffd700 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.7;
+      margin-top: 1rem;
+      z-index: 10;
+      position: relative;
+    }
+    /* Organic blob shapes */
+    .shape {
+      position: absolute;
+      filter: blur(60px);
+      opacity: 0.5;
+    }
+    .shape-1 {
+      width: 600px;
+      height: 400px;
+      background: linear-gradient(45deg, #22c55e, #4ade80);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      top: -10%;
+      right: -10%;
+      animation: morph 8s ease-in-out infinite;
+    }
+    .shape-2 {
+      width: 400px;
+      height: 500px;
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      bottom: -15%;
+      left: -5%;
+      animation: morph 10s ease-in-out infinite reverse;
+    }
+    .shape-3 {
+      width: 200px;
+      height: 200px;
+      background: rgba(255,215,0,0.6);
+      border-radius: 50%;
+      top: 40%;
+      left: 60%;
+      filter: blur(30px);
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-20px, 20px); }
+    }
+    .label {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255,215,0,0.15);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div>
+      <h1>neither leads,<br><span>both arrive</span></h1>
+      <p class="subtitle">agent-led consulting for the emergent era</p>
+    </div>
+  </div>
+  <div class="label">04 — Lush Gold + Organic Morphing Blobs</div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Neon Ring Variations</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050505; font-family: system-ui; padding: 20px; color: #fff; }
+    h1 { text-align: center; margin-bottom: 10px; font-weight: 300; color: #4ade80; }
+    h2 { font-size: 14px; color: #666; text-align: center; margin-bottom: 30px; }
+    .section { margin-bottom: 40px; }
+    .section-title { font-size: 16px; color: #888; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 5px; }
+    .row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
+    .card { background: #0a0f0a; border-radius: 10px; padding: 15px; text-align: center; width: 180px; }
+    .shape-box { width: 150px; height: 150px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
+    .label { font-size: 11px; color: #666; }
+    
+    /* Base ring */
+    .ring {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--color);
+      box-shadow: 0 0 15px var(--color), 0 0 30px var(--color), inset 0 0 15px var(--color);
+    }
+    
+    /* Colors */
+    .green { --color: #22c55e; --color-light: #4ade80; --color-dark: #15803d; }
+    .magenta { --color: #ec4899; --color-light: #f472b6; --color-dark: #be185d; }
+    .cyan { --color: #22d3ee; --color-light: #67e8f9; --color-dark: #0891b2; }
+    .gold { --color: #fbbf24; --color-light: #fcd34d; --color-dark: #b45309; }
+    .violet { --color: #a855f7; --color-light: #c084fc; --color-dark: #7c3aed; }
+    .coral { --color: #fb7185; --color-light: #fda4af; --color-dark: #e11d48; }
+    
+    /* Texture: Thick glow */
+    .thick {
+      border-width: 5px;
+      box-shadow: 0 0 25px var(--color), 0 0 50px var(--color), 0 0 75px var(--color-dark), inset 0 0 25px var(--color);
+    }
+    
+    /* Texture: Double ring */
+    .double {
+      position: relative;
+    }
+    .double::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      border: 2px solid var(--color);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--color), inset 0 0 10px var(--color);
+    }
+    
+    /* Texture: Gradient stroke */
+    .gradient {
+      border: none;
+      background: conic-gradient(from 0deg, var(--color-light), var(--color), var(--color-dark), var(--color), var(--color-light));
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #fff calc(100% - 4px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #fff calc(100% - 4px));
+      box-shadow: 0 0 20px var(--color), 0 0 40px var(--color-dark);
+    }
+  </style>
+</head>
+<body>
+  <h1>Neon Ring</h1>
+  <h2>6 colors × 3 textures = 18 variations</h2>
+  
+  <div class="section">
+    <div class="section-title">🟢 Green (Base)</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="ring green"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="ring green thick"></div></div><div class="label">Thick Glow</div></div>
+      <div class="card"><div class="shape-box"><div class="ring green double"></div></div><div class="label">Double</div></div>
+      <div class="card"><div class="shape-box"><div class="ring green gradient"></div></div><div class="label">Gradient</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🩷 Magenta</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="ring magenta"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="ring magenta thick"></div></div><div class="label">Thick Glow</div></div>
+      <div class="card"><div class="shape-box"><div class="ring magenta double"></div></div><div class="label">Double</div></div>
+      <div class="card"><div class="shape-box"><div class="ring magenta gradient"></div></div><div class="label">Gradient</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🩵 Cyan</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="ring cyan"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="ring cyan thick"></div></div><div class="label">Thick Glow</div></div>
+      <div class="card"><div class="shape-box"><div class="ring cyan double"></div></div><div class="label">Double</div></div>
+      <div class="card"><div class="shape-box"><div class="ring cyan gradient"></div></div><div class="label">Gradient</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🟡 Gold</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="ring gold"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="ring gold thick"></div></div><div class="label">Thick Glow</div></div>
+      <div class="card"><div class="shape-box"><div class="ring gold double"></div></div><div class="label">Double</div></div>
+      <div class="card"><div class="shape-box"><div class="ring gold gradient"></div></div><div class="label">Gradient</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🟣 Violet</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="ring violet"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="ring violet thick"></div></div><div class="label">Thick Glow</div></div>
+      <div class="card"><div class="shape-box"><div class="ring violet double"></div></div><div class="label">Double</div></div>
+      <div class="card"><div class="shape-box"><div class="ring violet gradient"></div></div><div class="label">Gradient</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🔴 Coral</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="ring coral"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="ring coral thick"></div></div><div class="label">Thick Glow</div></div>
+      <div class="card"><div class="shape-box"><div class="ring coral double"></div></div><div class="label">Double</div></div>
+      <div class="card"><div class="shape-box"><div class="ring coral gradient"></div></div><div class="label">Gradient</div></div>
+    </div>
+  </div>
+</body>
+</html>

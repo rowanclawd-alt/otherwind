@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proto 02 - Coral Fire</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #0a0f0a;
+      color: #e8f5e8;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      z-index: 10;
+      position: relative;
+    }
+    .hero h1 span { color: #ff6b4a; }
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.7;
+      margin-top: 1rem;
+      z-index: 10;
+      position: relative;
+    }
+    /* Geometric shapes with hard edges */
+    .shape {
+      position: absolute;
+      opacity: 0.7;
+    }
+    .shape-1 {
+      width: 0;
+      height: 0;
+      border-left: 200px solid transparent;
+      border-right: 200px solid transparent;
+      border-bottom: 350px solid #22c55e;
+      top: 10%;
+      right: 10%;
+      filter: blur(2px);
+      animation: spin 20s linear infinite;
+    }
+    .shape-2 {
+      width: 250px;
+      height: 250px;
+      background: linear-gradient(135deg, #ff6b4a 0%, #ff4500 100%);
+      bottom: 15%;
+      left: 10%;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+      filter: blur(1px);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .shape-3 {
+      width: 150px;
+      height: 150px;
+      background: #4ade80;
+      top: 60%;
+      right: 20%;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 0.9; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    .label {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255,107,74,0.2);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div>
+      <h1>neither leads,<br><span>both arrive</span></h1>
+      <p class="subtitle">agent-led consulting for the emergent era</p>
+    </div>
+  </div>
+  <div class="label">02 — Coral Fire + Geometric Shards</div>
+</body>
+</html>

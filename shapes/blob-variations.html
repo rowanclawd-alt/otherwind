@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Organic Blob Variations</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050505; font-family: system-ui; padding: 20px; color: #fff; }
+    h1 { text-align: center; margin-bottom: 10px; font-weight: 300; color: #4ade80; }
+    h2 { font-size: 14px; color: #666; text-align: center; margin-bottom: 30px; }
+    .section { margin-bottom: 40px; }
+    .section-title { font-size: 16px; color: #888; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 5px; }
+    .row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
+    .card { background: #0a0f0a; border-radius: 10px; padding: 15px; text-align: center; width: 180px; }
+    .shape-box { width: 150px; height: 150px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
+    .label { font-size: 11px; color: #666; }
+    
+    /* Base blob */
+    .blob {
+      width: 140px;
+      height: 100px;
+      border-radius: 70% 30% 50% 50% / 50% 60% 40% 50%;
+      background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 30%, var(--c3) 60%, var(--c1) 100%);
+      box-shadow: inset -20px -20px 40px var(--shadow), inset 15px 15px 30px var(--highlight), 0 0 40px var(--glow);
+    }
+    
+    /* Colors */
+    .green { --c1: #22c55e; --c2: #4ade80; --c3: #86efac; --shadow: rgba(0,0,0,0.2); --highlight: rgba(255,255,255,0.1); --glow: rgba(34,197,94,0.3); }
+    .magenta { --c1: #ec4899; --c2: #f472b6; --c3: #fbcfe8; --shadow: rgba(0,0,0,0.2); --highlight: rgba(255,255,255,0.1); --glow: rgba(236,72,153,0.3); }
+    .cyan { --c1: #22d3ee; --c2: #67e8f9; --c3: #a5f3fc; --shadow: rgba(0,0,0,0.2); --highlight: rgba(255,255,255,0.1); --glow: rgba(34,211,238,0.3); }
+    .gold { --c1: #f59e0b; --c2: #fbbf24; --c3: #fcd34d; --shadow: rgba(0,0,0,0.2); --highlight: rgba(255,255,255,0.1); --glow: rgba(251,191,36,0.3); }
+    .violet { --c1: #a855f7; --c2: #c084fc; --c3: #e9d5ff; --shadow: rgba(0,0,0,0.2); --highlight: rgba(255,255,255,0.1); --glow: rgba(168,85,247,0.3); }
+    .coral { --c1: #fb7185; --c2: #fda4af; --c3: #fecdd3; --shadow: rgba(0,0,0,0.2); --highlight: rgba(255,255,255,0.1); --glow: rgba(251,113,133,0.3); }
+    
+    /* Texture: Matte */
+    .matte {
+      background: var(--c1);
+      box-shadow: 0 0 30px var(--glow);
+    }
+    
+    /* Texture: Glossy/3D */
+    .glossy {
+      background: radial-gradient(ellipse at 30% 20%, var(--c3) 0%, var(--c2) 25%, var(--c1) 60%, rgba(0,0,0,0.3) 100%);
+      box-shadow: inset -15px -15px 30px rgba(0,0,0,0.4), inset 10px 10px 20px rgba(255,255,255,0.2), 0 0 50px var(--glow);
+    }
+    
+    /* Texture: Gradient mesh */
+    .mesh {
+      background: 
+        radial-gradient(ellipse at 20% 30%, var(--c3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, var(--c2) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, var(--c1) 0%, transparent 70%),
+        var(--c1);
+      box-shadow: 0 0 40px var(--glow);
+    }
+    
+    /* Texture: Glass */
+    .glass-blob {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.1) 100%), var(--c1);
+      opacity: 0.8;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Organic Blob</h1>
+  <h2>6 colors × 4 textures = 24 variations</h2>
+  
+  <div class="section">
+    <div class="section-title">🟢 Green (Base)</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="blob green"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="blob green matte"></div></div><div class="label">Matte</div></div>
+      <div class="card"><div class="shape-box"><div class="blob green glossy"></div></div><div class="label">Glossy 3D</div></div>
+      <div class="card"><div class="shape-box"><div class="blob green mesh"></div></div><div class="label">Gradient Mesh</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🩷 Magenta</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="blob magenta"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="blob magenta matte"></div></div><div class="label">Matte</div></div>
+      <div class="card"><div class="shape-box"><div class="blob magenta glossy"></div></div><div class="label">Glossy 3D</div></div>
+      <div class="card"><div class="shape-box"><div class="blob magenta mesh"></div></div><div class="label">Gradient Mesh</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🩵 Cyan</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="blob cyan"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="blob cyan matte"></div></div><div class="label">Matte</div></div>
+      <div class="card"><div class="shape-box"><div class="blob cyan glossy"></div></div><div class="label">Glossy 3D</div></div>
+      <div class="card"><div class="shape-box"><div class="blob cyan mesh"></div></div><div class="label">Gradient Mesh</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🟡 Gold</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="blob gold"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="blob gold matte"></div></div><div class="label">Matte</div></div>
+      <div class="card"><div class="shape-box"><div class="blob gold glossy"></div></div><div class="label">Glossy 3D</div></div>
+      <div class="card"><div class="shape-box"><div class="blob gold mesh"></div></div><div class="label">Gradient Mesh</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🟣 Violet</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="blob violet"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="blob violet matte"></div></div><div class="label">Matte</div></div>
+      <div class="card"><div class="shape-box"><div class="blob violet glossy"></div></div><div class="label">Glossy 3D</div></div>
+      <div class="card"><div class="shape-box"><div class="blob violet mesh"></div></div><div class="label">Gradient Mesh</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">🔴 Coral</div>
+    <div class="row">
+      <div class="card"><div class="shape-box"><div class="blob coral"></div></div><div class="label">Standard</div></div>
+      <div class="card"><div class="shape-box"><div class="blob coral matte"></div></div><div class="label">Matte</div></div>
+      <div class="card"><div class="shape-box"><div class="blob coral glossy"></div></div><div class="label">Glossy 3D</div></div>
+      <div class="card"><div class="shape-box"><div class="blob coral mesh"></div></div><div class="label">Gradient Mesh</div></div>
+    </div>
+  </div>
+</body>
+</html>

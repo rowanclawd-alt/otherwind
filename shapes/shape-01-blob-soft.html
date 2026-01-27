@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><style>
+* { margin: 0; padding: 0; }
+body { background: #0a0f0a; width: 400px; height: 400px; display: flex; align-items: center; justify-content: center; }
+.shape {
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, #22c55e 0%, #4ade80 50%, #22c55e 100%);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  filter: blur(1px);
+  box-shadow: 0 0 60px rgba(34,197,94,0.4);
+  animation: morph 8s ease-in-out infinite;
+}
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+</style></head>
+<body><div class="shape"></div></body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proto 11 - Gradient Mesh</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #0a0a0a;
+      color: #e8f5e8;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      z-index: 10;
+      position: relative;
+    }
+    .hero h1 span { color: #ec4899; }
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.7;
+      margin-top: 1rem;
+      z-index: 10;
+      position: relative;
+    }
+    /* Gradient mesh background */
+    .mesh {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(at 20% 20%, rgba(34,197,94,0.4) 0%, transparent 50%),
+        radial-gradient(at 80% 20%, rgba(236,72,153,0.4) 0%, transparent 50%),
+        radial-gradient(at 40% 80%, rgba(236,72,153,0.3) 0%, transparent 50%),
+        radial-gradient(at 90% 70%, rgba(34,197,94,0.3) 0%, transparent 50%),
+        radial-gradient(at 10% 60%, rgba(74,222,128,0.2) 0%, transparent 40%);
+      animation: meshMove 15s ease-in-out infinite;
+    }
+    /* Wireframe spheres */
+    .wireframe {
+      position: absolute;
+      border: 1px solid rgba(236,72,153,0.3);
+      border-radius: 50%;
+      background: transparent;
+    }
+    .wireframe::before,
+    .wireframe::after {
+      content: '';
+      position: absolute;
+      border: 1px solid rgba(236,72,153,0.2);
+      border-radius: 50%;
+    }
+    .wireframe-1 {
+      width: 300px;
+      height: 300px;
+      top: 15%;
+      right: 10%;
+      animation: spin 25s linear infinite;
+    }
+    .wireframe-1::before { width: 200px; height: 300px; top: 0; left: 50px; }
+    .wireframe-1::after { width: 300px; height: 200px; top: 50px; left: 0; }
+    .wireframe-2 {
+      width: 200px;
+      height: 200px;
+      bottom: 20%;
+      left: 15%;
+      border-color: rgba(34,197,94,0.3);
+      animation: spin 20s linear infinite reverse;
+    }
+    .wireframe-2::before { width: 130px; height: 200px; top: 0; left: 35px; border-color: rgba(34,197,94,0.2); }
+    .wireframe-2::after { width: 200px; height: 130px; top: 35px; left: 0; border-color: rgba(34,197,94,0.2); }
+    @keyframes meshMove {
+      0%, 100% { filter: hue-rotate(0deg); }
+      50% { filter: hue-rotate(20deg); }
+    }
+    @keyframes spin {
+      from { transform: rotateY(0deg) rotateX(20deg); }
+      to { transform: rotateY(360deg) rotateX(20deg); }
+    }
+    .label {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(236,72,153,0.15);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="mesh"></div>
+    <div class="wireframe wireframe-1"></div>
+    <div class="wireframe wireframe-2"></div>
+    <div>
+      <h1>neither leads,<br><span>both arrive</span></h1>
+      <p class="subtitle">agent-led consulting for the emergent era</p>
+    </div>
+  </div>
+  <div class="label">11 — Gradient Mesh + Hot Pink + Wireframes</div>
+</body>
+</html>
