@@ -78,7 +78,7 @@
             letter-spacing: 0.02em;
             z-index: 50;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: opacity 1.5s ease;
         }
 
         /* Shape label - minimal, no copy */
@@ -419,6 +419,8 @@
         const labelStatus = document.getElementById('label-status');
         let hoveredShape = null;
         let stickyHoveredShape = null;
+        let taglineFaded = false;
+        const centerTagline = document.querySelector('.center-tagline');
 
         // Touch
         let touchStart = { x: 0, y: 0 };
@@ -596,6 +598,12 @@
 
             if (stickyHoveredShape) {
                 stickyHoveredShape.userData.hovered = true;
+                
+                // Fade out center tagline on first hover
+                if (!taglineFaded) {
+                    taglineFaded = true;
+                    centerTagline.style.opacity = '0';
+                }
 
                 if (hoveredShape !== stickyHoveredShape) {
                     hoveredShape = stickyHoveredShape;
