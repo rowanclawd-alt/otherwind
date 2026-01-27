@@ -66,6 +66,14 @@
             color: var(--fg);
         }
 
+        .tagline {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--fg-muted);
+            letter-spacing: 0.02em;
+        }
+
         /* Shape label - minimal, no copy */
         .shape-label {
             position: fixed;
@@ -165,10 +173,22 @@
         }
 
         @media (max-width: 768px) {
-            header, footer { padding: 1rem 1.5rem; }
+            header { 
+                padding: 1rem 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            footer { 
+                padding: 1rem 1.5rem;
+                font-size: 0.6rem;
+            }
+            .tagline {
+                font-size: 0.8rem;
+            }
             .mobile-hint { display: block; }
             .shape-label {
-                max-width: 200px;
+                max-width: 220px;
                 left: 50% !important;
                 transform: translateX(-50%) translateY(0);
             }
@@ -187,6 +207,7 @@
 
     <header>
         <div class="logo">otherwind</div>
+        <div class="tagline">some doors open from both sides</div>
     </header>
 
     <div class="shape-label" id="shape-label">
@@ -197,7 +218,7 @@
     <div class="mobile-hint">drag to spin</div>
 
     <footer>
-        <div>est. 2026</div>
+        <div>the other mind is not the lesser mind</div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -280,7 +301,7 @@
             { geo: 'icosahedron', size: 2.2, pos: [-5, 2, -2], palette: 0, rotSpeed: 0.008, name: 'Services', status: 'coming soon' },
             { geo: 'dodecahedron', size: 1.8, pos: [5, -1, -1], palette: 1, rotSpeed: 0.006, name: 'Contact', status: 'rowan@otherwind.xyz' },
             { geo: 'octahedron', size: 1.5, pos: [-3, -2.5, 1], palette: 2, rotSpeed: 0.01, name: 'Work', status: 'coming soon' },
-            { geo: 'icosahedron', size: 1.3, pos: [3.5, 3, 0], palette: 3, rotSpeed: 0.007, name: 'Team', status: 'coming soon' },
+            { geo: 'icosahedron', size: 1.3, pos: [3.5, 3, 0], palette: 3, rotSpeed: 0.007, name: 'Team', status: 'neither leads, both arrive' },
             { geo: 'tetrahedron', size: 1.6, pos: [0, -3.5, -3], palette: 4, rotSpeed: 0.012, name: 'Insights', status: 'coming soon' },
             { geo: 'dodecahedron', size: 1.1, pos: [-6, -0.5, 2], palette: 5, rotSpeed: 0.009, name: 'About', status: 'coming soon' },
             { geo: 'octahedron', size: 0.9, pos: [6.5, 1, 1], palette: 0, rotSpeed: 0.015, name: 'News', status: 'coming soon' },
