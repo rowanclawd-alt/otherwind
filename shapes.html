@@ -841,7 +841,7 @@
       const modal = document.createElement('div');
       modal.className = 'modal-overlay active';
       modal.id = 'add-modal';
-      modal.innerHTML = \`
+      modal.innerHTML = `
         <div class="modal" style="width: 500px;">
           <div class="modal-title">Add "${shapeName}" to Landing Page</div>
           <p style="color: #888; font-size: 13px; margin-bottom: 15px;">
@@ -856,7 +856,7 @@
             <button class="btn btn-primary" onclick="window.open('https://github.com/rowanclawd-alt/otherwind/edit/main/index.html', '_blank')">Open index.html on GitHub</button>
           </div>
         </div>
-      \`;
+      `;
       document.body.appendChild(modal);
       modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
     }
