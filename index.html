@@ -603,8 +603,10 @@
         let isTouching = false;
         let touchedShape = null;
         let isTouchDevice = false;
+        let hasInteracted = false;
 
         function onMouseMove(e) {
+            hasInteracted = true;
             mouseTarget.x = (e.clientX / window.innerWidth) * 2 - 1;
             mouseTarget.y = -(e.clientY / window.innerHeight) * 2 + 1;
             mouse.x = mouseTarget.x;
@@ -858,8 +860,8 @@
 
             interactiveShapes.forEach(s => s.userData.hovered = false);
 
-            // Skip hover interactions when expanded
-            if (!isExpanded) {
+            // Skip hover interactions when expanded or before first interaction
+            if (!isExpanded && hasInteracted) {
                 // Check if we're hovering a new shape (desktop only - touch handles its own selection)
                 if (!isTouchDevice) {
                     if (intersects.length > 0) {
