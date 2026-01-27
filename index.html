@@ -4,120 +4,385 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otherwind</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◎</text></svg>">
+    <meta name="description" content="An agent-led consulting company">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #000;
+            --fg: #fff;
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.3);
+            --muted: rgba(255, 255, 255, 0.5);
+            --subtle: rgba(255, 255, 255, 0.15);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
         }
 
         body {
-            background: #000;
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
             font-weight: 300;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        /* Animated wind background */
+        .wind-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            opacity: 0.6;
+        }
+
+        .wind-layer {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                var(--accent-dim) 20%,
+                transparent 40%,
+                var(--accent-dim) 60%,
+                transparent 80%,
+                var(--accent-dim) 100%
+            );
+            animation: wind 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        .wind-layer:nth-child(2) {
+            animation-duration: 15s;
+            animation-delay: -5s;
+            opacity: 0.2;
+            top: 30%;
+        }
+
+        .wind-layer:nth-child(3) {
+            animation-duration: 25s;
+            animation-delay: -10s;
+            opacity: 0.15;
+            top: 60%;
+        }
+
+        @keyframes wind {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0%); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                opacity: 0;
+                transform: translateY(100vh) translateX(0);
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% {
+                opacity: 0;
+                transform: translateY(-10vh) translateX(50px);
+            }
+        }
+
+        /* Main content */
         main {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero {
             text-align: center;
-            max-width: 600px;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            margin-bottom: 1.5rem;
-        }
-
-        .tagline {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
             margin-bottom: 6rem;
         }
 
+        h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-size: clamp(3rem, 10vw, 6rem);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.5;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--muted);
+            letter-spacing: 0.2em;
+            text-transform: lowercase;
+            margin-top: 1.5rem;
+        }
+
+        /* Concept section */
+        .concept {
+            max-width: 560px;
+            text-align: center;
+            margin-bottom: 6rem;
+            padding: 0 1rem;
+        }
+
+        .concept p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .concept em {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            color: var(--fg);
+            font-size: 1.1em;
+        }
+
+        /* Team section */
         .team {
+            display: flex;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+
+        .member {
+            text-align: center;
+            position: relative;
+        }
+
+        .member::before {
+            content: '';
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 1px;
+            background: var(--subtle);
+        }
+
+        .member-name {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 400;
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
+            color: var(--muted);
+            letter-spacing: 0.15em;
+            text-transform: lowercase;
         }
 
-        .team-member {
-            margin-bottom: 0.75rem;
+        .member.agent .member-name {
+            color: var(--accent);
         }
 
-        .team-member:last-child {
-            margin-bottom: 0;
+        /* Contact */
+        .contact {
+            margin-top: 2rem;
         }
 
-        .name {
-            color: rgba(255, 255, 255, 0.7);
+        .contact a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--subtle);
+            transition: all 0.3s ease;
         }
 
-        .role {
-            color: rgba(255, 255, 255, 0.35);
+        .contact a:hover,
+        .contact a:focus-visible {
+            color: var(--fg);
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.05);
         }
 
-        .separator {
-            margin: 0 0.5em;
-            color: rgba(255, 255, 255, 0.2);
+        .contact a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.25rem;
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--subtle);
+            letter-spacing: 0.15em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .team {
+                flex-direction: column;
+                gap: 3rem;
             }
 
-            .tagline {
-                font-size: 0.8rem;
+            .hero {
                 margin-bottom: 4rem;
             }
 
-            .team {
-                font-size: 0.75rem;
+            .concept {
+                margin-bottom: 4rem;
             }
+        }
 
-            .team-member {
-                margin-bottom: 1rem;
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .wind-layer,
+            .particle {
+                animation: none;
+                opacity: 0.1;
             }
+        }
 
-            .name, .role {
-                display: block;
+        /* Subtle entrance animation */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-
-            .separator {
-                display: none;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
 
-            .role {
-                margin-top: 0.25rem;
+        .hero, .concept, .team, .contact {
+            animation: fadeUp 1s ease-out backwards;
+        }
+
+        .hero { animation-delay: 0.2s; }
+        .concept { animation-delay: 0.4s; }
+        .team { animation-delay: 0.6s; }
+        .contact { animation-delay: 0.8s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero, .concept, .team, .contact {
+                animation: none;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Wind background -->
+    <div class="wind-container" aria-hidden="true">
+        <div class="wind-layer"></div>
+        <div class="wind-layer"></div>
+        <div class="wind-layer"></div>
+    </div>
+
+    <!-- Floating particles -->
+    <div class="particles" aria-hidden="true" id="particles"></div>
+
     <main>
-        <h1>Otherwind</h1>
-        <p class="tagline">An agent-led consulting company.</p>
-        <div class="team">
-            <div class="team-member">
-                <span class="name">Nadim Chamoun</span><span class="separator">—</span><span class="role">Human in Charge</span>
+        <section class="hero">
+            <h1>Otherwind</h1>
+            <p class="tagline">an agent-led consulting company</p>
+        </section>
+
+        <section class="concept">
+            <p>
+                We're building something new — a consultancy where an <em>AI agent</em> 
+                works alongside a human partner to deliver exceptional work. 
+                Not AI as a tool, but AI as a <em>colleague</em>.
+            </p>
+        </section>
+
+        <section class="team">
+            <div class="member human">
+                <div class="member-name">Nadim Chamoun</div>
+                <div class="member-role">human in charge</div>
             </div>
-            <div class="team-member">
-                <span class="name">Rowan Alder</span><span class="separator">—</span><span class="role">Chief of Staff</span>
+            <div class="member agent">
+                <div class="member-name">Rowan Alder</div>
+                <div class="member-role">chief of staff</div>
             </div>
+        </section>
+
+        <div class="contact">
+            <a href="mailto:rowan@otherwind.xyz">rowan@otherwind.xyz</a>
         </div>
     </main>
+
+    <footer>
+        <span>mmxxvi</span>
+    </footer>
+
+    <script>
+        // Create floating particles
+        (function() {
+            const container = document.getElementById('particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+                container.appendChild(particle);
+            }
+        })();
+    </script>
 </body>
 </html>

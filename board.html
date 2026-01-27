@@ -4,7 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rowan's Board — Otherwind</title>
+    <meta name="theme-color" content="#000000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #000;
+            --bg-elevated: #0a0a0a;
+            --bg-card: #111;
+            --border: #1a1a1a;
+            --border-hover: #333;
+            --fg: #fff;
+            --muted: #888;
+            --subtle: #444;
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.15);
+            --blue: #60a5fa;
+            --yellow: #fbbf24;
+            --pink: #f472b6;
+            --red: #f87171;
+            --green: #4ade80;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,21 +34,19 @@
         }
 
         body {
-            font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
-            background: #000;
-            color: #fff;
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
             min-height: 100vh;
-            padding: 2rem;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         /* Password Overlay */
         #auth-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
+            inset: 0;
+            background: var(--bg);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -34,336 +54,695 @@
             z-index: 1000;
         }
 
-        #auth-overlay.hidden {
-            display: none;
-        }
+        #auth-overlay.hidden { display: none; }
 
         #auth-overlay input {
             background: transparent;
-            border: 1px solid #333;
-            color: #fff;
+            border: 1px solid var(--border);
+            color: var(--fg);
             padding: 0.75rem 1rem;
-            font-family: inherit;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.9rem;
             width: 200px;
             text-align: center;
             margin-top: 1rem;
+            transition: border-color 0.2s;
         }
 
         #auth-overlay input:focus {
             outline: none;
-            border-color: #666;
+            border-color: var(--accent);
         }
 
-        #auth-overlay input::placeholder {
-            color: #555;
+        #auth-overlay input::placeholder { color: var(--subtle); }
+
+        .auth-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
         }
 
         #auth-error {
-            color: #ff4444;
+            color: var(--red);
             font-size: 0.75rem;
             margin-top: 0.5rem;
             height: 1rem;
         }
 
+        /* Main Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
         /* Header */
         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #222;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        h1 {
-            font-size: 1rem;
+        .header-left h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.1rem;
             font-weight: 400;
-            letter-spacing: 0.1em;
-            text-transform: lowercase;
-            margin-bottom: 0.25rem;
+            letter-spacing: 0.05em;
+            color: var(--accent);
         }
 
-        .subtitle {
+        .header-left .subtitle {
             font-size: 0.75rem;
-            color: #666;
+            color: var(--muted);
+            margin-top: 0.25rem;
         }
 
-        /* Board */
-        .board {
+        .header-right {
+            text-align: right;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Dashboard Grid */
+        .dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(12, 1fr);
             gap: 1.5rem;
         }
 
-        .column {
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            padding: 1rem;
-            min-height: 400px;
+        /* Panels */
+        .panel {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 4px;
         }
 
-        .column-header {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #666;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #1a1a1a;
+        .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .count {
-            background: #1a1a1a;
-            padding: 0.15rem 0.4rem;
+        .panel-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+        }
+
+        .panel-badge {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+            background: var(--accent-dim);
+            color: var(--accent);
             border-radius: 2px;
         }
 
-        /* Cards */
+        /* System Status Panel */
+        .system-status { grid-column: span 12; }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+
+        .status-icon {
+            font-size: 1.25rem;
+        }
+
+        .status-content {
+            flex: 1;
+        }
+
+        .status-label {
+            font-size: 0.7rem;
+            color: var(--subtle);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .status-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--fg);
+        }
+
+        /* Usage Bars */
+        .usage-panel { grid-column: span 4; }
+
+        .usage-item {
+            margin-bottom: 1rem;
+        }
+
+        .usage-item:last-child { margin-bottom: 0; }
+
+        .usage-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .usage-label {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .usage-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--fg);
+        }
+
+        .usage-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .usage-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .usage-fill.warning { background: var(--yellow); }
+        .usage-fill.danger { background: var(--red); }
+
+        /* Cron Jobs Panel */
+        .cron-panel { grid-column: span 4; }
+
+        .cron-list {
+            list-style: none;
+        }
+
+        .cron-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.8rem;
+        }
+
+        .cron-item:last-child { border-bottom: none; }
+
+        .cron-name {
+            color: var(--fg);
+            margin-bottom: 0.2rem;
+        }
+
+        .cron-schedule {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--subtle);
+        }
+
+        .cron-next {
+            font-size: 0.65rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+
+        /* Todos Panel */
+        .todos-panel { grid-column: span 4; }
+
+        .todo-group {
+            margin-bottom: 1rem;
+        }
+
+        .todo-group:last-child { margin-bottom: 0; }
+
+        .todo-group-title {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--subtle);
+            margin-bottom: 0.5rem;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.4rem 0;
+            font-size: 0.8rem;
+        }
+
+        .todo-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .todo-text {
+            color: var(--muted);
+        }
+
+        .todo-deadline {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--subtle);
+        }
+
+        /* Portfolio Panel */
+        .portfolio-panel { grid-column: span 6; }
+
+        .portfolio-total {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-currency {
+            flex: 1;
+        }
+
+        .portfolio-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--subtle);
+            margin-bottom: 0.25rem;
+        }
+
+        .portfolio-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--fg);
+        }
+
+        .portfolio-accounts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .account-card {
+            padding: 0.75rem;
+            background: var(--bg-card);
+            border-radius: 4px;
+        }
+
+        .account-name {
+            font-size: 0.7rem;
+            color: var(--subtle);
+            margin-bottom: 0.25rem;
+        }
+
+        .account-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+        }
+
+        /* Skills Panel */
+        .skills-panel { grid-column: span 6; }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.4rem 0.6rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        /* Kanban Board */
+        .kanban-section {
+            grid-column: span 12;
+            margin-top: 1rem;
+        }
+
+        .kanban-header {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .kanban {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .column {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            min-height: 300px;
+            border-radius: 4px;
+        }
+
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .column-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .column-count {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 2px;
+        }
+
+        .column.active .column-title { color: var(--green); }
+        .column.active .column-count { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+
+        .column.monitoring .column-title { color: var(--blue); }
+        .column.monitoring .column-count { background: rgba(96, 165, 250, 0.15); color: var(--blue); }
+
+        .column.internal .column-title { color: var(--yellow); }
+        .column.internal .column-count { background: rgba(251, 191, 36, 0.15); color: var(--yellow); }
+
+        .column.external .column-title { color: var(--pink); }
+        .column.external .column-count { background: rgba(244, 114, 182, 0.15); color: var(--pink); }
+
+        .column.completed .column-title { color: var(--subtle); }
+        .column.completed .column-count { background: var(--border); color: var(--muted); }
+        .column.completed .card { opacity: 0.5; }
+
+        .column.collapsed { min-height: auto; }
+        .column.collapsed .cards-container { display: none; }
+
         .card {
-            background: #111;
-            border: 1px solid #222;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             padding: 0.75rem;
             margin-bottom: 0.5rem;
+            border-radius: 3px;
             transition: border-color 0.2s;
             position: relative;
         }
 
-        .card:hover {
-            border-color: #333;
+        .card:hover { border-color: var(--border-hover); }
+
+        .card-title {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            padding-right: 1rem;
+        }
+
+        .card-desc {
+            font-size: 0.7rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .card-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--subtle);
+            margin-top: 0.5rem;
         }
 
         .card-delete {
             position: absolute;
             top: 0.5rem;
             right: 0.5rem;
-            background: transparent;
+            background: none;
             border: none;
-            color: #444;
+            color: var(--subtle);
             cursor: pointer;
-            font-size: 0.7rem;
-            padding: 0.2rem 0.4rem;
+            font-size: 0.8rem;
             opacity: 0;
             transition: opacity 0.2s, color 0.2s;
         }
 
-        .card:hover .card-delete {
-            opacity: 1;
-        }
-
-        .card-delete:hover {
-            color: #ff4444;
-        }
-
-        .card-title {
-            font-size: 0.8rem;
-            margin-bottom: 0.25rem;
-            padding-right: 1.5rem;
-        }
-
-        .card-desc {
-            font-size: 0.7rem;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        .card-meta {
-            font-size: 0.6rem;
-            color: #444;
-            margin-top: 0.5rem;
-        }
-
-        /* Column-specific colors */
-        .column.active .column-header { color: #4ade80; }
-        .column.active .count { background: #14532d; color: #4ade80; }
-        
-        .column.monitoring .column-header { color: #60a5fa; }
-        .column.monitoring .count { background: #1e3a5f; color: #60a5fa; }
-        
-        .column.internal .column-header { color: #fbbf24; }
-        .column.internal .count { background: #422006; color: #fbbf24; }
-        
-        .column.external .column-header { color: #f472b6; }
-        .column.external .count { background: #4a1d34; color: #f472b6; }
-        
-        .column.completed .column-header { color: #888; }
-        .column.completed .card { opacity: 0.6; }
-
-        /* Collapsed columns */
-        .column.collapsed { min-height: auto; }
-        .column.collapsed .cards-container { display: none; }
-        .column.collapsed .column-header { 
-            margin-bottom: 0; 
-            padding-bottom: 0.5rem;
-            border-bottom: none;
-        }
-        .column-header { cursor: pointer; }
-        .column-header .toggle { 
-            margin-left: 0.5rem; 
-            font-size: 0.6rem; 
-            color: #444;
-        }
-        .column.collapsed .toggle::after { content: '▶'; }
-        .column:not(.collapsed) .toggle::after { content: '▼'; }
+        .card:hover .card-delete { opacity: 1; }
+        .card-delete:hover { color: var(--red); }
 
         /* Log Section */
         .log-section {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #222;
+            grid-column: span 12;
+            margin-top: 1rem;
         }
 
         .log-header {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: #666;
+            color: var(--muted);
             margin-bottom: 1rem;
         }
 
         .log-list {
             list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 0.5rem;
         }
 
         .log-item {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 3px;
             font-size: 0.75rem;
         }
 
-        .log-item:last-child {
-            border-bottom: none;
-        }
-
         .log-item a {
-            color: #60a5fa;
+            color: var(--blue);
             text-decoration: none;
         }
 
-        .log-item a:hover {
-            text-decoration: underline;
-        }
+        .log-item a:hover { text-decoration: underline; }
 
         .log-date {
-            color: #444;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.65rem;
-            margin-left: 0.5rem;
-        }
-
-        .log-item {
-            position: relative;
-            padding-right: 1.5rem;
-        }
-
-        .log-delete {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            color: #444;
-            cursor: pointer;
-            font-size: 0.65rem;
-            opacity: 0;
-            transition: opacity 0.2s, color 0.2s;
-        }
-
-        .log-item:hover .log-delete {
-            opacity: 1;
-        }
-
-        .log-delete:hover {
-            color: #ff4444;
-        }
-
-        /* Usage Section */
-        .usage-section {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #222;
-        }
-
-        .usage-header {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .usage-grid {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .usage-item {
-            font-size: 0.7rem;
-            color: #888;
-        }
-
-        .usage-label {
-            color: #555;
-            margin-right: 0.5rem;
-        }
-
-        .usage-value {
-            color: #888;
-        }
-
-        .usage-updated {
-            font-size: 0.6rem;
-            color: #444;
-            margin-top: 0.5rem;
+            color: var(--subtle);
+            margin-left: auto;
         }
 
         /* Footer */
         footer {
+            grid-column: span 12;
             margin-top: 2rem;
             padding-top: 1rem;
-            border-top: 1px solid #222;
+            border-top: 1px solid var(--border);
             font-size: 0.65rem;
-            color: #444;
+            color: var(--subtle);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .kanban { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .dashboard > * { grid-column: span 12 !important; }
+            .kanban { grid-template-columns: repeat(2, 1fr); }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 600px) {
-            body { padding: 1rem; }
-            .board { grid-template-columns: 1fr; }
+            .container { padding: 1rem; }
+            .kanban { grid-template-columns: 1fr; }
+            header { flex-direction: column; gap: 1rem; }
+            .header-right { text-align: left; }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .status-dot { animation: none; }
         }
     </style>
 </head>
 <body>
     <!-- Password Protection -->
     <div id="auth-overlay">
-        <div style="font-size: 0.8rem; color: #666;">rowan's board</div>
-        <input type="password" id="password-input" placeholder="password" autofocus>
+        <div class="auth-title">rowan's board</div>
+        <input type="password" id="password-input" placeholder="password" autocomplete="off" autofocus>
         <div id="auth-error"></div>
     </div>
 
     <!-- Main Content -->
     <div id="content" style="display: none;">
-        <header>
-            <h1>rowan's board</h1>
-            <div class="subtitle">rowan's task tracking</div>
-        </header>
+        <div class="container">
+            <header>
+                <div class="header-left">
+                    <h1>rowan's board</h1>
+                    <div class="subtitle">operational dashboard</div>
+                </div>
+                <div class="header-right">
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span id="current-time"></span>
+                    </div>
+                </div>
+            </header>
 
-        <div class="board" id="board"></div>
+            <div class="dashboard">
+                <!-- System Status -->
+                <section class="panel system-status">
+                    <div class="panel-header">
+                        <span class="panel-title">System Status</span>
+                        <span class="panel-badge">operational</span>
+                    </div>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <span class="status-icon">💓</span>
+                            <div class="status-content">
+                                <div class="status-label">Heartbeat</div>
+                                <div class="status-value" id="heartbeat-status">Active</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">📧</span>
+                            <div class="status-content">
+                                <div class="status-label">Email</div>
+                                <div class="status-value">Monitoring</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">📅</span>
+                            <div class="status-content">
+                                <div class="status-label">Calendar</div>
+                                <div class="status-value">Synced</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">💰</span>
+                            <div class="status-content">
+                                <div class="status-label">Portfolio</div>
+                                <div class="status-value">Tracking</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-        <section class="log-section">
-            <div class="log-header">Log</div>
-            <ul class="log-list" id="log"></ul>
-        </section>
+                <!-- Usage -->
+                <section class="panel usage-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">Usage</span>
+                    </div>
+                    <div id="usage-content"></div>
+                </section>
 
-        <section class="usage-section">
-            <div class="usage-header">Usage</div>
-            <div class="usage-grid" id="usage"></div>
-        </section>
+                <!-- Cron Jobs -->
+                <section class="panel cron-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">Scheduled Jobs</span>
+                        <span class="panel-badge" id="cron-count">0</span>
+                    </div>
+                    <ul class="cron-list" id="cron-list"></ul>
+                </section>
 
-        <footer>
-            last updated: <span id="last-updated"></span>
-        </footer>
+                <!-- Todos -->
+                <section class="panel todos-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">Todos</span>
+                        <span class="panel-badge" id="todo-count">0</span>
+                    </div>
+                    <div id="todos-content"></div>
+                </section>
+
+                <!-- Portfolio -->
+                <section class="panel portfolio-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">Portfolio</span>
+                    </div>
+                    <div id="portfolio-content"></div>
+                </section>
+
+                <!-- Skills -->
+                <section class="panel skills-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">Capabilities</span>
+                    </div>
+                    <div class="skills-grid" id="skills-grid"></div>
+                </section>
+
+                <!-- Kanban -->
+                <section class="kanban-section">
+                    <div class="kanban-header">Tasks</div>
+                    <div class="kanban" id="kanban"></div>
+                </section>
+
+                <!-- Log -->
+                <section class="log-section">
+                    <div class="log-header">Activity Log</div>
+                    <ul class="log-list" id="log"></ul>
+                </section>
+
+                <footer>
+                    <span>last updated: <span id="last-updated"></span></span>
+                    <span>otherwind.xyz</span>
+                </footer>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -382,16 +761,18 @@
             return false;
         }
 
-        // === TASK DATA ===
+        // === DATA ===
         const tasks = {
             active: [
-                { id: 'active-4', title: 'Board Maintenance', desc: 'Keep board updated with real tasks and usage data', date: '2026-01-27' }
+                { id: 'active-4', title: 'Board Maintenance', desc: 'Keep board updated with real tasks and usage data', date: '2026-01-27' },
+                { id: 'active-5', title: 'Overnight Website Refresh', desc: 'Redesign landing page and dashboard with new features', date: '2026-01-27' }
             ],
             monitoring: [
                 { id: 'monitoring-1', title: 'Otherwind Email', desc: 'Checking inbox every 6 hours via cron + heartbeat', date: '2026-01-27' },
                 { id: 'monitoring-2', title: 'Usage Tracking', desc: 'Auto-update Claude/Cursor usage every 4 hours', date: '2026-01-27' },
                 { id: 'monitoring-3', title: 'Nadim Calendar', desc: 'Check gcal every 4 hours, track upcoming/past meetings, alert if <2h', date: '2026-01-27' },
-                { id: 'monitoring-4', title: 'IBKR Daily Snapshot', desc: 'Portfolio snapshot at 9pm UK daily, tracking P&L over time', date: '2026-01-27' }
+                { id: 'monitoring-4', title: 'IBKR Daily Snapshot', desc: 'Portfolio snapshot at 9pm UK daily, tracking P&L over time', date: '2026-01-27' },
+                { id: 'monitoring-5', title: 'Todo Review', desc: 'Daily 9am review of pending todos', date: '2026-01-27' }
             ],
             internal: [
                 { id: 'internal-1', title: 'Metalend Call Prep', desc: 'Research and prep notes for bizdev call', date: '2026-01-27' }
@@ -400,6 +781,7 @@
                 { id: 'external-1', title: 'Equity Inquiry', desc: 'From: nadim@centrifuge.io — Asking about Otherwind and who to talk to. Replied "will be in touch". Awaiting decision on follow-up.', date: '2026-01-27' }
             ],
             completed: [
+                { id: 'completed-12', title: 'Todo System Setup', desc: 'Created todo tracking with daily 9am review cron', date: '2026-01-27' },
                 { id: 'completed-11', title: 'IBKR Portfolio Tracking', desc: 'Set up Flex Query API for both accounts (GBP ISA + USD), created skill, combined snapshot with P&L tracking', date: '2026-01-27' },
                 { id: 'completed-10', title: 'Calendar + Granola Setup', desc: 'Added gcal read access (iCal), set up meeting notes workflow from Granola links', date: '2026-01-27' },
                 { id: 'completed-9', title: 'Email Protocol Fix', desc: 'Re-sent proper professional replies, added safeguard against double-sends', date: '2026-01-27' },
@@ -414,16 +796,50 @@
             ]
         };
 
-        // === USAGE DATA ===
         const usage = {
-            claude: { dailyLeft: '81%', weeklyLeft: '95%', updated: '2026-01-27 18:41' },
-            cursor: { status: 'active', updated: '2026-01-27 18:41' }
+            claude: { dailyLeft: 81, weeklyLeft: 95, updated: '2026-01-27 19:30' },
+            cursor: { status: 'active', creditsUsed: 12, updated: '2026-01-27 19:30' }
         };
 
-        // === LOG DATA ===
+        const cronJobs = [
+            { name: 'Board Usage Update', schedule: 'Every 4 hours', next: '22:00' },
+            { name: 'Calendar Check', schedule: 'Every 4 hours', next: '22:00' },
+            { name: 'Email Check', schedule: 'Every 6 hours', next: '00:00' },
+            { name: 'IBKR Snapshot', schedule: 'Daily 9pm', next: '21:00' },
+            { name: 'Todo Review', schedule: 'Daily 9am', next: '09:00 tomorrow' }
+        ];
+
+        const todos = {
+            tomorrow: [
+                { task: 'Ping team', deadline: '2026-01-28' }
+            ],
+            thisWeek: [
+                { task: 'Get back to Resolv on DDQ', deadline: '2026-01-30' }
+            ],
+            noDeadline: [
+                { task: 'Chat with Adam re: Keyring DD', context: 'Tagged in gdoc' }
+            ]
+        };
+
+        const portfolio = {
+            combined: { gbp: 27273.93, usd: 37310.75 },
+            accounts: [
+                { name: 'GBP ISA', value: '£19,954.28', positions: 'VUAG, VWRP' },
+                { name: 'USD Account', value: '$10,013.29', positions: 'Cash' }
+            ],
+            updated: '2026-01-27 19:12'
+        };
+
+        const skills = [
+            'Email Handling', 'Calendar Sync', 'Portfolio Tracking',
+            'Todo Management', 'Web Development', 'GitHub Integration',
+            'Cron Scheduling', 'Meeting Notes', 'Research'
+        ];
+
         const log = [
+            { id: 'log-10', title: 'Todo system created', url: null, date: '2026-01-27' },
             { id: 'log-9', title: 'IBKR skill + daily snapshot cron created', url: null, date: '2026-01-27' },
-{ id: 'log-8', title: 'Saved Circle/Arc meeting notes from Granola', url: null, date: '2026-01-27' },
+            { id: 'log-8', title: 'Saved Circle/Arc meeting notes from Granola', url: null, date: '2026-01-27' },
             { id: 'log-7', title: 'Logged equity inquiry to requests', url: null, date: '2026-01-27' },
             { id: 'log-6', title: 'Replied to 3 emails', url: null, date: '2026-01-27' },
             { id: 'log-5', title: 'Board updated with real usage data', url: null, date: '2026-01-27' },
@@ -433,63 +849,166 @@
             { id: 'log-1', title: 'Board launched', url: 'https://otherwind.xyz/board.html', date: '2026-01-27' }
         ];
 
-        // === DELETED TASKS (localStorage) ===
-        function getDeletedTasks() {
+        // === UTILITIES ===
+        function getDeletedItems() {
             const deleted = localStorage.getItem('board-deleted');
             return deleted ? JSON.parse(deleted) : [];
         }
 
-        function deleteTask(taskId) {
-            const deleted = getDeletedTasks();
-            if (!deleted.includes(taskId)) {
-                deleted.push(taskId);
+        function deleteItem(itemId) {
+            const deleted = getDeletedItems();
+            if (!deleted.includes(itemId)) {
+                deleted.push(itemId);
                 localStorage.setItem('board-deleted', JSON.stringify(deleted));
             }
-            renderBoard();
+            renderAll();
         }
 
-        function getVisibleTasks(columnKey) {
-            const deleted = getDeletedTasks();
-            return tasks[columnKey].filter(task => !deleted.includes(task.id));
-        }
-
-        function deleteLog(logId) {
-            const deleted = getDeletedTasks();
-            if (!deleted.includes(logId)) {
-                deleted.push(logId);
-                localStorage.setItem('board-deleted', JSON.stringify(deleted));
-            }
-            renderLog();
-        }
-
-        function getVisibleLogs() {
-            const deleted = getDeletedTasks();
-            return log.filter(entry => !deleted.includes(entry.id));
-        }
-
-        // === COLLAPSE STATE ===
         function getCollapsedColumns() {
             const stored = localStorage.getItem('board-collapsed');
-            // Default: completed is collapsed
             return stored ? JSON.parse(stored) : ['completed'];
         }
 
         function toggleColumn(key) {
             const collapsed = getCollapsedColumns();
             const idx = collapsed.indexOf(key);
-            if (idx > -1) {
-                collapsed.splice(idx, 1);
-            } else {
-                collapsed.push(key);
-            }
+            if (idx > -1) collapsed.splice(idx, 1);
+            else collapsed.push(key);
             localStorage.setItem('board-collapsed', JSON.stringify(collapsed));
-            renderBoard();
+            renderKanban();
         }
 
-        // === RENDER ===
-        function renderBoard() {
-            const board = document.getElementById('board');
+        // === RENDER FUNCTIONS ===
+        function renderUsage() {
+            const el = document.getElementById('usage-content');
+            const claudeClass = usage.claude.dailyLeft < 20 ? 'danger' : usage.claude.dailyLeft < 50 ? 'warning' : '';
+            
+            el.innerHTML = `
+                <div class="usage-item">
+                    <div class="usage-header">
+                        <span class="usage-label">Claude Daily</span>
+                        <span class="usage-value">${usage.claude.dailyLeft}% remaining</span>
+                    </div>
+                    <div class="usage-bar"><div class="usage-fill ${claudeClass}" style="width: ${usage.claude.dailyLeft}%"></div></div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-header">
+                        <span class="usage-label">Claude Weekly</span>
+                        <span class="usage-value">${usage.claude.weeklyLeft}% remaining</span>
+                    </div>
+                    <div class="usage-bar"><div class="usage-fill" style="width: ${usage.claude.weeklyLeft}%"></div></div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-header">
+                        <span class="usage-label">Cursor</span>
+                        <span class="usage-value">${usage.cursor.status}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCronJobs() {
+            const list = document.getElementById('cron-list');
+            document.getElementById('cron-count').textContent = cronJobs.length;
+            
+            list.innerHTML = cronJobs.map(job => `
+                <li class="cron-item">
+                    <div class="cron-name">${job.name}</div>
+                    <div class="cron-schedule">${job.schedule}</div>
+                    <div class="cron-next">Next: ${job.next}</div>
+                </li>
+            `).join('');
+        }
+
+        function renderTodos() {
+            const el = document.getElementById('todos-content');
+            const total = todos.tomorrow.length + todos.thisWeek.length + todos.noDeadline.length;
+            document.getElementById('todo-count').textContent = total;
+
+            let html = '';
+            
+            if (todos.tomorrow.length > 0) {
+                html += `<div class="todo-group">
+                    <div class="todo-group-title">Tomorrow</div>
+                    ${todos.tomorrow.map(t => `
+                        <div class="todo-item">
+                            <div class="todo-checkbox"></div>
+                            <div>
+                                <div class="todo-text">${t.task}</div>
+                                <div class="todo-deadline">${t.deadline}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>`;
+            }
+
+            if (todos.thisWeek.length > 0) {
+                html += `<div class="todo-group">
+                    <div class="todo-group-title">This Week</div>
+                    ${todos.thisWeek.map(t => `
+                        <div class="todo-item">
+                            <div class="todo-checkbox"></div>
+                            <div>
+                                <div class="todo-text">${t.task}</div>
+                                <div class="todo-deadline">${t.deadline}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>`;
+            }
+
+            if (todos.noDeadline.length > 0) {
+                html += `<div class="todo-group">
+                    <div class="todo-group-title">No Deadline</div>
+                    ${todos.noDeadline.map(t => `
+                        <div class="todo-item">
+                            <div class="todo-checkbox"></div>
+                            <div>
+                                <div class="todo-text">${t.task}</div>
+                                ${t.context ? `<div class="todo-deadline">${t.context}</div>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>`;
+            }
+
+            el.innerHTML = html || '<div style="color: var(--muted); font-size: 0.8rem;">No todos 👍</div>';
+        }
+
+        function renderPortfolio() {
+            const el = document.getElementById('portfolio-content');
+            el.innerHTML = `
+                <div class="portfolio-total">
+                    <div class="portfolio-currency">
+                        <div class="portfolio-label">Combined (GBP)</div>
+                        <div class="portfolio-value">£${portfolio.combined.gbp.toLocaleString()}</div>
+                    </div>
+                    <div class="portfolio-currency">
+                        <div class="portfolio-label">Combined (USD)</div>
+                        <div class="portfolio-value">$${portfolio.combined.usd.toLocaleString()}</div>
+                    </div>
+                </div>
+                <div class="portfolio-accounts">
+                    ${portfolio.accounts.map(acc => `
+                        <div class="account-card">
+                            <div class="account-name">${acc.name}</div>
+                            <div class="account-value">${acc.value}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderSkills() {
+            const grid = document.getElementById('skills-grid');
+            grid.innerHTML = skills.map(skill => `<div class="skill-tag">${skill}</div>`).join('');
+        }
+
+        function renderKanban() {
+            const kanban = document.getElementById('kanban');
+            const deleted = getDeletedItems();
             const collapsed = getCollapsedColumns();
+            
             const columns = [
                 { key: 'active', label: 'Active', class: 'active' },
                 { key: 'monitoring', label: 'Monitoring', class: 'monitoring' },
@@ -498,59 +1017,63 @@
                 { key: 'completed', label: 'Completed', class: 'completed' }
             ];
 
-            board.innerHTML = columns.map(col => {
-                const visibleTasks = getVisibleTasks(col.key);
+            kanban.innerHTML = columns.map(col => {
+                const visibleTasks = tasks[col.key].filter(t => !deleted.includes(t.id));
                 const isCollapsed = collapsed.includes(col.key);
+                
                 return `
-                <div class="column ${col.class}${isCollapsed ? ' collapsed' : ''}">
-                    <div class="column-header" onclick="toggleColumn('${col.key}')">
-                        <span>${col.label}<span class="toggle"></span></span>
-                        <span class="count">${visibleTasks.length}</span>
+                    <div class="column ${col.class}${isCollapsed ? ' collapsed' : ''}">
+                        <div class="column-header" onclick="toggleColumn('${col.key}')">
+                            <span class="column-title">${col.label}</span>
+                            <span class="column-count">${visibleTasks.length}</span>
+                        </div>
+                        <div class="cards-container">
+                            ${visibleTasks.map(task => `
+                                <div class="card">
+                                    <button class="card-delete" onclick="event.stopPropagation(); deleteItem('${task.id}')" aria-label="Delete">×</button>
+                                    <div class="card-title">${task.title}</div>
+                                    <div class="card-desc">${task.desc}</div>
+                                    ${task.date ? `<div class="card-meta">${task.date}</div>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
                     </div>
-                    <div class="cards-container">
-                        ${visibleTasks.map(task => `
-                            <div class="card">
-                                <button class="card-delete" onclick="event.stopPropagation(); deleteTask('${task.id}')" title="Remove">×</button>
-                                <div class="card-title">${task.title}</div>
-                                <div class="card-desc">${task.desc}</div>
-                                ${task.date ? `<div class="card-meta">${task.date}</div>` : ''}
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `}).join('');
-
-            document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
+                `;
+            }).join('');
         }
 
         function renderLog() {
             const logList = document.getElementById('log');
-            const visibleLogs = getVisibleLogs();
+            const deleted = getDeletedItems();
+            const visibleLogs = log.filter(l => !deleted.includes(l.id));
+            
             logList.innerHTML = visibleLogs.map(entry => `
                 <li class="log-item">
                     ${entry.url 
                         ? `<a href="${entry.url}" target="_blank">${entry.title}</a>` 
-                        : entry.title}
+                        : `<span>${entry.title}</span>`}
                     <span class="log-date">${entry.date}</span>
-                    <button class="log-delete" onclick="deleteLog('${entry.id}')" title="Remove">×</button>
                 </li>
             `).join('');
         }
 
-        function renderUsage() {
-            const usageEl = document.getElementById('usage');
-            usageEl.innerHTML = `
-                <div class="usage-item">
-                    <span class="usage-label">Claude Max:</span>
-                    <span class="usage-value">${usage.claude.dailyLeft} daily remaining, ${usage.claude.weeklyLeft} weekly remaining</span>
-                    <div class="usage-updated">updated ${usage.claude.updated}</div>
-                </div>
-                <div class="usage-item">
-                    <span class="usage-label">Cursor:</span>
-                    <span class="usage-value">${usage.cursor.status}</span>
-                    <div class="usage-updated">updated ${usage.cursor.updated}</div>
-                </div>
-            `;
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            const dateStr = now.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+            document.getElementById('current-time').textContent = `${dateStr} ${timeStr}`;
+        }
+
+        function renderAll() {
+            renderUsage();
+            renderCronJobs();
+            renderTodos();
+            renderPortfolio();
+            renderSkills();
+            renderKanban();
+            renderLog();
+            document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
+            updateTime();
         }
 
         // === INIT ===
@@ -563,9 +1086,8 @@
             if (checkAuth()) {
                 overlay.classList.add('hidden');
                 content.style.display = 'block';
-                renderBoard();
-                renderLog();
-                renderUsage();
+                renderAll();
+                setInterval(updateTime, 60000);
             }
 
             input.addEventListener('keydown', (e) => {
@@ -573,9 +1095,8 @@
                     if (authenticate(input.value)) {
                         overlay.classList.add('hidden');
                         content.style.display = 'block';
-                        renderBoard();
-                        renderLog();
-                        renderUsage();
+                        renderAll();
+                        setInterval(updateTime, 60000);
                     } else {
                         error.textContent = 'incorrect';
                         input.value = '';
