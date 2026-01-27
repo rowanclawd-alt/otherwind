@@ -779,8 +779,8 @@
             requestAnimationFrame(animate);
             time += 0.016;
 
-            mouseCurrent.x += (mouseTarget.x - mouseCurrent.x) * 0.08;
-            mouseCurrent.y += (mouseTarget.y - mouseCurrent.y) * 0.08;
+            mouseCurrent.x += (mouseTarget.x - mouseCurrent.x) * 0.05;
+            mouseCurrent.y += (mouseTarget.y - mouseCurrent.y) * 0.05;
 
             camera.position.x = mouseCurrent.x * 2.5;
             camera.position.y = mouseCurrent.y * 1.5;
@@ -799,8 +799,8 @@
                 if (d.touchRotX !== undefined) {
                     shape.rotation.x += d.touchRotX;
                     shape.rotation.y += d.touchRotY;
-                    d.touchRotX *= 0.95;
-                    d.touchRotY *= 0.95;
+                    d.touchRotX *= 0.97;
+                    d.touchRotY *= 0.97;
                 }
 
                 if (d.originalPos) {
@@ -835,9 +835,9 @@
                         targetZ = d.originalPos.z + floatZ;
                     }
                     
-                    shape.position.x += (targetX - shape.position.x) * 0.08;
-                    shape.position.y += (targetY - shape.position.y) * 0.08;
-                    shape.position.z += (targetZ - shape.position.z) * 0.08;
+                    shape.position.x += (targetX - shape.position.x) * 0.04;
+                    shape.position.y += (targetY - shape.position.y) * 0.04;
+                    shape.position.z += (targetZ - shape.position.z) * 0.04;
                 } else {
                     shape.position.x += d.driftX;
                     shape.position.y += Math.sin(time * d.floatSpeed + d.floatOffset) * 0.003;
@@ -863,19 +863,19 @@
                         targetOpacity = 0.85;
                     }
                     
-                    shape.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
-                    shape.material.opacity += (targetOpacity - shape.material.opacity) * 0.1;
+                    shape.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.05);
+                    shape.material.opacity += (targetOpacity - shape.material.opacity) * 0.05;
                 }
             });
 
-            // Particles
+            // Particles (gentle drift)
             const pos = particles.geometry.attributes.position.array;
             for (let i = 0; i < particleCount; i++) {
-                pos[i * 3] += Math.sin(time + i * 0.1) * 0.003;
-                pos[i * 3 + 1] += Math.cos(time * 0.7 + i * 0.1) * 0.002;
+                pos[i * 3] += Math.sin(time * 0.5 + i * 0.1) * 0.001;
+                pos[i * 3 + 1] += Math.cos(time * 0.3 + i * 0.1) * 0.001;
             }
             particles.geometry.attributes.position.needsUpdate = true;
-            particles.rotation.y += 0.0003;
+            particles.rotation.y += 0.0001;
 
             // Raycasting with sticky hover (disabled when expanded)
             raycaster.setFromCamera(mouse, camera);
@@ -900,8 +900,8 @@
                         const mouseScreenY = (-mouse.y * 0.5 + 0.5) * window.innerHeight;
                         const dist = Math.sqrt((shapeScreenX - mouseScreenX) ** 2 + (shapeScreenY - mouseScreenY) ** 2);
                         
-                        // Release if mouse is far enough away (200px threshold)
-                        if (dist > 200) {
+                        // Release if mouse is far enough away (350px threshold)
+                        if (dist > 350) {
                             stickyHoveredShape = null;
                         }
                     }
