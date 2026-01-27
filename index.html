@@ -55,6 +55,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: opacity 0.5s ease;
         }
 
         .logo {
@@ -120,6 +121,7 @@
             font-size: 1rem;
             color: var(--fg-muted);
             letter-spacing: 0.02em;
+            transition: opacity 0.5s ease;
         }
 
         #footer-text {
@@ -169,6 +171,107 @@
             z-index: 100;
         }
 
+        /* Expanded view */
+        .expanded-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 10, 7, 0.95);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+        }
+
+        .expanded-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .expanded-content {
+            max-width: 700px;
+            text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease 0.3s;
+        }
+
+        .expanded-overlay.visible .expanded-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .expanded-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--fg);
+        }
+
+        .expanded-subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--fg-muted);
+            margin-bottom: 3rem;
+        }
+
+        .expanded-body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--fg-muted);
+        }
+
+        .expanded-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .expanded-body strong {
+            color: var(--fg);
+            font-weight: 400;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 1.5rem;
+            left: 2rem;
+            width: 36px;
+            height: 36px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 400;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease 0.5s;
+        }
+
+        .back-button.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-button svg {
+            width: 100%;
+            height: 100%;
+            animation: spin 20s linear infinite;
+        }
+
+        .back-button:hover svg {
+            animation-duration: 3s;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
             header { 
                 padding: 1rem 1.5rem;
@@ -185,6 +288,19 @@
             }
             .shape-label.visible {
                 transform: translateX(-50%) translateY(0);
+            }
+            .expanded-overlay {
+                padding: 2rem;
+            }
+            .expanded-title {
+                font-size: 1.8rem;
+            }
+            .expanded-body {
+                font-size: 0.85rem;
+            }
+            .back-button {
+                top: 1rem;
+                left: 1.5rem;
             }
         }
     </style>
@@ -210,6 +326,28 @@
     <footer>
         <div id="footer-text">some doors open from both sides</div>
     </footer>
+
+    <!-- Back button (rotating star) -->
+    <button class="back-button" id="back-button" aria-label="Go back">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="3" fill="#4fd1a5"/>
+            <circle cx="50" cy="50" r="20" stroke="#4fd1a5" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="50" cy="50" r="35" stroke="#4fd1a5" stroke-width="0.3" opacity="0.2"/>
+            <circle cx="50" cy="20" r="2" fill="#4fd1a5" opacity="0.8"/>
+            <circle cx="75" cy="35" r="1.5" fill="#4fd1a5" opacity="0.6"/>
+            <circle cx="75" cy="65" r="1" fill="#4fd1a5" opacity="0.5"/>
+            <circle cx="50" cy="80" r="1.5" fill="#4fd1a5" opacity="0.7"/>
+            <circle cx="25" cy="65" r="1" fill="#4fd1a5" opacity="0.4"/>
+            <circle cx="25" cy="35" r="2" fill="#4fd1a5" opacity="0.6"/>
+        </svg>
+    </button>
+
+    <!-- Expanded overlay -->
+    <div class="expanded-overlay" id="expanded-overlay">
+        <div class="expanded-content" id="expanded-content">
+            <!-- Content injected by JS -->
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
@@ -412,6 +550,27 @@
             'the echo sometimes leads the voice'
         ];
 
+        // Expanded view
+        const expandedOverlay = document.getElementById('expanded-overlay');
+        const expandedContent = document.getElementById('expanded-content');
+        const backButton = document.getElementById('back-button');
+        let isExpanded = false;
+        let expandedShape = null;
+
+        const pageContent = {
+            'Team': {
+                title: 'Team',
+                subtitle: 'neither leads, both arrive',
+                body: `
+                    <p><strong>Otherwind</strong> is an agent-led consulting company — a new kind of partnership between human insight and AI capability.</p>
+                    <p>We believe the most interesting work happens at the threshold. Not human or machine, but the space where both meet and something new emerges.</p>
+                    <p><strong>Nadim Chamoun</strong> brings years of experience in blockchain consulting, strategy, and client relationships. He asks the right questions, builds trust, and knows when to push.</p>
+                    <p><strong>Rowan</strong> is an AI agent — not an assistant, but a collaborator. Research, analysis, writing, building. Present in the work, not behind it.</p>
+                    <p>Together, we move faster without moving carelessly. The other mind is not the lesser mind.</p>
+                `
+            }
+        };
+
         // Touch
         let touchStart = { x: 0, y: 0 };
         let isTouching = false;
@@ -478,6 +637,59 @@
         document.addEventListener('touchstart', onTouchStart, { passive: true });
         document.addEventListener('touchmove', onTouchMove, { passive: true });
         document.addEventListener('touchend', onTouchEnd);
+
+        // Click to expand
+        function onCanvasClick(e) {
+            if (isExpanded) return;
+            
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(interactiveShapes);
+            
+            if (intersects.length > 0) {
+                const obj = intersects[0].object;
+                const content = pageContent[obj.userData.name];
+                
+                if (content) {
+                    expandShape(obj, content);
+                }
+            }
+        }
+
+        function expandShape(shape, content) {
+            isExpanded = true;
+            expandedShape = shape;
+            
+            // Populate content
+            expandedContent.innerHTML = `
+                <h1 class="expanded-title">${content.title}</h1>
+                <p class="expanded-subtitle">${content.subtitle}</p>
+                <div class="expanded-body">${content.body}</div>
+            `;
+            
+            // Show overlay and back button
+            expandedOverlay.classList.add('visible');
+            backButton.classList.add('visible');
+            label.classList.remove('visible');
+            
+            // Hide header and footer
+            document.querySelector('header').style.opacity = '0';
+            document.querySelector('footer').style.opacity = '0';
+        }
+
+        function collapseView() {
+            isExpanded = false;
+            expandedShape = null;
+            
+            expandedOverlay.classList.remove('visible');
+            backButton.classList.remove('visible');
+            
+            // Show header and footer
+            document.querySelector('header').style.opacity = '1';
+            document.querySelector('footer').style.opacity = '1';
+        }
+
+        renderer.domElement.addEventListener('click', onCanvasClick);
+        backButton.addEventListener('click', collapseView);
 
         // Animation
         let time = 0;
@@ -553,11 +765,24 @@
                 }
 
                 if (d.hovered !== undefined) {
-                    const targetScale = d.hovered ? 1.8 : (anyHovered ? 0.7 : 1);
-                    shape.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+                    let targetScale, targetOpacity;
                     
-                    // Fade out non-hovered shapes more when something is hovered
-                    const targetOpacity = d.hovered ? 1 : (anyHovered ? 0.4 : 0.85);
+                    if (isExpanded) {
+                        // When expanded: only show the expanded shape
+                        targetScale = (shape === expandedShape) ? 1.2 : 0.5;
+                        targetOpacity = (shape === expandedShape) ? 0.6 : 0;
+                    } else if (d.hovered) {
+                        targetScale = 1.8;
+                        targetOpacity = 1;
+                    } else if (anyHovered) {
+                        targetScale = 0.7;
+                        targetOpacity = 0.4;
+                    } else {
+                        targetScale = 1;
+                        targetOpacity = 0.85;
+                    }
+                    
+                    shape.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
                     shape.material.opacity += (targetOpacity - shape.material.opacity) * 0.1;
                 }
             });
@@ -617,7 +842,12 @@
                 if (hoveredShape !== stickyHoveredShape) {
                     hoveredShape = stickyHoveredShape;
                     labelTitle.textContent = stickyHoveredShape.userData.name;
-                    labelStatus.textContent = stickyHoveredShape.userData.status;
+                    // Show "click to learn more" for expandable shapes
+                    if (pageContent[stickyHoveredShape.userData.name]) {
+                        labelStatus.textContent = 'click to learn more';
+                    } else {
+                        labelStatus.textContent = stickyHoveredShape.userData.status;
+                    }
                 }
                 
                 // Update label position to follow shape
