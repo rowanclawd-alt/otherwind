@@ -365,13 +365,11 @@
         // === TASK DATA ===
         const tasks = {
             active: [
-                { id: 'active-1', title: 'DNS Propagation', desc: 'Waiting for otherwind.xyz DNS to propagate globally', date: '2026-01-27' },
-                { id: 'active-2', title: 'Email Setup', desc: 'Monitoring rowan@otherwind.xyz inbox', date: '2026-01-27' },
-                { id: 'active-3', title: 'Kanban Board', desc: 'Building this task board', date: '2026-01-27' }
+                { id: 'active-4', title: 'Board Maintenance', desc: 'Keep board updated with real tasks and usage data', date: '2026-01-27' }
             ],
             monitoring: [
-                { id: 'monitoring-1', title: 'Otherwind Email', desc: 'Checking inbox every 6 hours + heartbeat', date: '2026-01-27' },
-                { id: 'monitoring-2', title: 'Heartbeat Tasks', desc: 'Periodic system checks when active', date: '2026-01-27' }
+                { id: 'monitoring-1', title: 'Otherwind Email', desc: 'Checking inbox every 6 hours via cron + heartbeat', date: '2026-01-27' },
+                { id: 'monitoring-2', title: 'Usage Tracking', desc: 'Auto-update Claude/Cursor usage every 4 hours', date: '2026-01-27' }
             ],
             requests: [
                 { id: 'requests-1', title: 'Metalend Call Prep', desc: 'Research and prep notes for bizdev call', date: '2026-01-27' }
@@ -380,21 +378,26 @@
                 { id: 'completed-1', title: 'GitHub Pages Setup', desc: 'Site deployed to rowanclawd-alt.github.io/otherwind', date: '2026-01-27' },
                 { id: 'completed-2', title: 'Porkbun DNS Config', desc: 'A records + CNAME configured for GitHub Pages', date: '2026-01-27' },
                 { id: 'completed-3', title: 'Email Hosting', desc: 'rowan@otherwind.xyz created via Porkbun', date: '2026-01-27' },
-                { id: 'completed-4', title: 'Email Protocol', desc: 'Security rules + monitoring setup documented', date: '2026-01-27' }
+                { id: 'completed-4', title: 'Email Protocol', desc: 'Security rules + monitoring setup documented', date: '2026-01-27' },
+                { id: 'completed-5', title: 'Kanban Board', desc: 'Built task board with password protection', date: '2026-01-27' },
+                { id: 'completed-6', title: 'DNS Propagation', desc: 'otherwind.xyz fully propagated', date: '2026-01-27' },
+                { id: 'completed-7', title: 'Cron Jobs Setup', desc: 'Email check (6h) + usage update (4h) scheduled', date: '2026-01-27' }
             ]
         };
 
         // === USAGE DATA ===
         const usage = {
-            claude: { dailyLeft: '95%', weeklyLeft: '96%', updated: '2026-01-27 17:25' },
-            cursor: { status: 'active', updated: '2026-01-27 17:25' }
+            claude: { dailyLeft: '86%', weeklyLeft: '95%', updated: '2026-01-27 17:38' },
+            cursor: { status: 'active', updated: '2026-01-27 17:38' }
         };
 
         // === LOG DATA ===
         const log = [
-            { id: 'log-1', title: 'Board launched', url: null, date: '2026-01-27' },
+            { id: 'log-5', title: 'Board updated with real usage data', url: null, date: '2026-01-27' },
+            { id: 'log-4', title: 'Cron jobs configured (email + usage)', url: null, date: '2026-01-27' },
+            { id: 'log-3', title: 'Email hosting activated', url: null, date: '2026-01-27' },
             { id: 'log-2', title: 'DNS configured for otherwind.xyz', url: null, date: '2026-01-27' },
-            { id: 'log-3', title: 'Email hosting activated', url: null, date: '2026-01-27' }
+            { id: 'log-1', title: 'Board launched', url: 'https://otherwind.xyz/board.html', date: '2026-01-27' }
         ];
 
         // === DELETED TASKS (localStorage) ===
