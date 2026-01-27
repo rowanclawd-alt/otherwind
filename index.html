@@ -621,14 +621,20 @@
                 mouse.y = -(touchStart.y / window.innerHeight) * 2 + 1;
                 
                 isTouchDevice = true;
+                hasInteracted = true;
                 raycaster.setFromCamera(mouse, camera);
                 const intersects = raycaster.intersectObjects(interactiveShapes);
                 if (intersects.length > 0) {
                     touchedShape = intersects[0].object;
+                    // If selecting a different shape, reset all readyToExpand flags
+                    if (stickyHoveredShape !== touchedShape) {
+                        interactiveShapes.forEach(s => s.userData.readyToExpand = false);
+                    }
                     stickyHoveredShape = touchedShape; // Lock selection on tap
                     isTouching = true;
                 } else {
-                    // Tapped empty space - deselect
+                    // Tapped empty space - deselect and reset flags
+                    interactiveShapes.forEach(s => s.userData.readyToExpand = false);
                     stickyHoveredShape = null;
                     hoveredShape = null;
                     label.classList.remove('visible');
@@ -667,7 +673,7 @@
         document.addEventListener('touchmove', onTouchMove, { passive: true });
         document.addEventListener('touchend', onTouchEnd);
 
-        // Click to expand
+        // Click to expand (desktop: single click, touch: double tap)
         function onCanvasClick(e) {
             if (isExpanded) return;
             
@@ -679,7 +685,18 @@
                 const content = pageContent[obj.userData.name];
                 
                 if (content) {
-                    expandShape(obj, content);
+                    // Touch: require shape to already be selected (hovered) before expanding
+                    if (isTouchDevice) {
+                        if (stickyHoveredShape === obj && obj.userData.readyToExpand) {
+                            expandShape(obj, content);
+                        } else {
+                            // First tap - mark as ready for second tap
+                            obj.userData.readyToExpand = true;
+                        }
+                    } else {
+                        // Desktop: single click expands
+                        expandShape(obj, content);
+                    }
                 }
             }
         }
@@ -903,9 +920,9 @@
                 if (hoveredShape !== stickyHoveredShape) {
                     hoveredShape = stickyHoveredShape;
                     labelTitle.textContent = stickyHoveredShape.userData.name;
-                    // Show "click to learn more" for expandable shapes
+                    // Show appropriate status for expandable shapes
                     if (pageContent[stickyHoveredShape.userData.name]) {
-                        labelStatus.textContent = 'click to learn more';
+                        labelStatus.textContent = isTouchDevice ? 'tap again to open' : 'click to learn more';
                     } else {
                         labelStatus.textContent = stickyHoveredShape.userData.status;
                     }
