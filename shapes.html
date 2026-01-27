@@ -110,6 +110,46 @@
     }
     .add-color-btn:hover { border-color: #22c55e; color: #22c55e; }
     
+    .meta-input {
+      width: 100%;
+      padding: 10px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .meta-input:focus { outline: none; border-color: #22c55e; }
+    .meta-input::placeholder { color: #444; }
+    
+    .position-row {
+      display: flex;
+      gap: 8px;
+    }
+    .pos-input-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pos-input-group label {
+      font-size: 10px;
+      color: #555;
+      text-transform: uppercase;
+    }
+    .pos-input {
+      width: 100%;
+      padding: 8px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+    }
+    .pos-input:focus { outline: none; border-color: #22c55e; }
+    
     .slider-row { margin-bottom: 12px; }
     .slider-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
     .slider-label { font-size: 11px; color: #666; }
@@ -322,9 +362,30 @@
       </div>
       
       <div class="section">
+        <div class="section-title">Shape Metadata</div>
+        <input type="text" class="meta-input" id="shape-name" placeholder="Name (e.g. Services)">
+        <input type="text" class="meta-input" id="shape-status" placeholder="Status text (e.g. coming soon)">
+        <div class="position-row">
+          <div class="pos-input-group">
+            <label>X</label>
+            <input type="number" class="pos-input" id="pos-x" value="0" step="0.5">
+          </div>
+          <div class="pos-input-group">
+            <label>Y</label>
+            <input type="number" class="pos-input" id="pos-y" value="0" step="0.5">
+          </div>
+          <div class="pos-input-group">
+            <label>Z</label>
+            <input type="number" class="pos-input" id="pos-z" value="0" step="0.5">
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
         <button class="btn btn-random" onclick="randomize()">🎲 Randomize</button>
-        <button class="btn btn-primary" onclick="openSaveModal()">💾 Save Preset</button>
-        <button class="btn btn-secondary" onclick="copyConfig()">📋 Copy Config for Landing Page</button>
+        <button class="btn btn-primary" onclick="addToLandingPage()">🚀 Add to Landing Page</button>
+        <button class="btn btn-secondary" onclick="openSaveModal()">💾 Save Preset</button>
+        <button class="btn btn-secondary" onclick="copyConfig()">📋 Copy Config</button>
       </div>
       
       <div class="section" style="flex: 1; display: flex; flex-direction: column; min-height: 150px;">
@@ -727,18 +788,77 @@
     }
     
     function copyConfig() {
-      const config = {
-        geo: state.geometry,
-        size: state.size,
-        palette: state.useCustomColors ? state.customColors : state.palette,
-        cellCount: state.cellCount,
-        opacity: state.opacity / 100,
-        rotSpeed: state.rotationSpeed / 1000,
-      };
-      
+      const config = generateConfig();
       const configStr = JSON.stringify(config, null, 2);
       navigator.clipboard.writeText(configStr);
-      showToast('Config copied! Paste into shapeConfigs in index.html 📋');
+      showToast('Config copied! 📋');
+    }
+    
+    function generateConfig() {
+      const name = document.getElementById('shape-name').value.trim() || 'New Shape';
+      const status = document.getElementById('shape-status').value.trim() || 'coming soon';
+      const posX = parseFloat(document.getElementById('pos-x').value) || 0;
+      const posY = parseFloat(document.getElementById('pos-y').value) || 0;
+      const posZ = parseFloat(document.getElementById('pos-z').value) || 0;
+      
+      return {
+        geo: state.geometry,
+        size: state.size,
+        pos: [posX, posY, posZ],
+        palette: state.useCustomColors ? 'custom' : state.palette,
+        customPalette: state.useCustomColors ? state.customColors : null,
+        rotSpeed: state.rotationSpeed / 1000,
+        name: name,
+        status: status,
+      };
+    }
+    
+    async function addToLandingPage() {
+      const name = document.getElementById('shape-name').value.trim();
+      if (!name) {
+        showToast('Please enter a shape name first!');
+        document.getElementById('shape-name').focus();
+        return;
+      }
+      
+      const config = generateConfig();
+      
+      // Format as JS object for shapeConfigs array
+      const paletteStr = config.customPalette 
+        ? JSON.stringify(config.customPalette)
+        : config.palette;
+      
+      const configLine = `{ geo: '${config.geo}', size: ${config.size}, pos: [${config.pos.join(', ')}], palette: ${typeof paletteStr === 'number' ? paletteStr : "'" + paletteStr + "'"}, rotSpeed: ${config.rotSpeed}, name: '${config.name}', status: '${config.status}' }`;
+      
+      // Copy to clipboard
+      await navigator.clipboard.writeText(configLine);
+      
+      // Show modal with instructions
+      showAddModal(configLine, config.name);
+    }
+    
+    function showAddModal(configLine, shapeName) {
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay active';
+      modal.id = 'add-modal';
+      modal.innerHTML = \`
+        <div class="modal" style="width: 500px;">
+          <div class="modal-title">Add "${shapeName}" to Landing Page</div>
+          <p style="color: #888; font-size: 13px; margin-bottom: 15px;">
+            Config copied to clipboard! Add this line to <code style="color: #22c55e;">shapeConfigs</code> array in index.html:
+          </p>
+          <div class="config-output" style="margin-bottom: 15px;">${configLine}</div>
+          <p style="color: #666; font-size: 12px; margin-bottom: 15px;">
+            Or tell Rowan: "Add shape ${shapeName} to landing page" and paste the config.
+          </p>
+          <div class="modal-buttons">
+            <button class="btn btn-secondary" onclick="document.getElementById('add-modal').remove()">Close</button>
+            <button class="btn btn-primary" onclick="window.open('https://github.com/rowanclawd-alt/otherwind/edit/main/index.html', '_blank')">Open index.html on GitHub</button>
+          </div>
+        </div>
+      \`;
+      document.body.appendChild(modal);
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
     }
     
     function hslToHex(h, s, l) {
