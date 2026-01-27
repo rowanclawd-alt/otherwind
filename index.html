@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Otherwind</title>
     <meta name="description" content="An agent-led consulting company">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#0a1a12">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,22 +18,25 @@
         }
 
         :root {
+            --bg-dark: #0a1a12;
+            --bg-mid: #0f2318;
             --accent: #4fd1a5;
-            --accent-light: #7de8c4;
-            --accent-dim: rgba(79, 209, 165, 0.3);
-            --bg: #000;
-            --fg: #fff;
-            --muted: rgba(255, 255, 255, 0.6);
+            --accent-gold: #c9a962;
+            --accent-warm: #8b6b4a;
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
         }
 
         html, body {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: var(--bg);
-            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 50%, #1a3528 100%);
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            color: var(--fg);
         }
 
+        /* Canvas */
         #canvas-container {
             position: fixed;
             top: 0;
@@ -43,181 +46,147 @@
             z-index: 0;
         }
 
-        canvas {
-            display: block;
-        }
+        canvas { display: block; }
 
-        /* Content Overlay */
-        .content {
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
+            right: 0;
+            padding: 1.5rem 2rem;
+            z-index: 100;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            pointer-events: none;
-            padding: 2rem;
         }
 
-        .content > * {
-            pointer-events: auto;
-        }
-
-        /* Logo/Title */
-        .hero {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 300;
-            letter-spacing: 0.15em;
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 0.05em;
             color: var(--fg);
-            text-transform: lowercase;
-            margin-bottom: 0.5rem;
-            animation: fadeIn 1.5s ease-out;
+        }
+
+        .contact-link {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--fg);
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.1);
+        }
+
+        /* Center content */
+        .center-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 50;
+            pointer-events: none;
         }
 
         .tagline {
-            font-size: clamp(0.75rem, 2vw, 1rem);
-            font-weight: 400;
-            letter-spacing: 0.3em;
-            color: var(--muted);
-            text-transform: lowercase;
-            animation: fadeIn 1.5s ease-out 0.3s backwards;
-        }
-
-        /* Concept */
-        .concept {
-            max-width: 480px;
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 0 1rem;
-            animation: fadeIn 1.5s ease-out 0.5s backwards;
-        }
-
-        .concept p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--muted);
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
             font-weight: 300;
+            letter-spacing: 0.25em;
+            color: var(--fg-muted);
+            text-transform: lowercase;
+            margin-top: 1rem;
         }
 
-        .concept strong {
-            color: var(--accent-light);
-            font-weight: 400;
-        }
-
-        /* Team */
-        .team {
-            display: flex;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            animation: fadeIn 1.5s ease-out 0.7s backwards;
-        }
-
-        .member {
+        /* Shape labels - appear on hover */
+        .shape-label {
+            position: fixed;
+            padding: 1.5rem 2.5rem;
+            background: rgba(10, 26, 18, 0.95);
+            border: 1px solid rgba(79, 209, 165, 0.3);
             text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 200;
+            backdrop-filter: blur(10px);
         }
 
-        .member-name {
-            font-size: 1.1rem;
+        .shape-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .shape-label h2 {
+            font-size: 1.8rem;
             font-weight: 400;
+            font-style: italic;
+            margin-bottom: 0.5rem;
             color: var(--fg);
-            margin-bottom: 0.25rem;
         }
 
-        .member.agent .member-name {
-            color: var(--accent);
-        }
-
-        .member-role {
-            font-size: 0.7rem;
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            color: var(--muted);
-            text-transform: lowercase;
-        }
-
-        /* Contact */
-        .contact {
-            animation: fadeIn 1.5s ease-out 0.9s backwards;
-        }
-
-        .contact a {
-            color: var(--muted);
-            text-decoration: none;
+        .shape-label p {
             font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            padding: 0.6rem 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .contact a:hover {
-            color: var(--fg);
-            border-color: var(--accent);
-            background: var(--accent-dim);
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
         }
 
         /* Footer */
         footer {
             position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.6rem;
-            color: rgba(255, 255, 255, 0.2);
-            letter-spacing: 0.2em;
-            z-index: 10;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            font-size: 0.75rem;
+            color: var(--fg-muted);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        footer a {
+            color: var(--fg-muted);
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .team {
-                flex-direction: column;
-                gap: 2rem;
-            }
+        footer a:hover {
+            color: var(--accent);
         }
 
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            h1, .tagline, .concept, .team, .contact {
-                animation: none;
-            }
+        /* Team section */
+        .team-footer {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
         }
 
-        /* Loading state */
+        .team-footer span {
+            opacity: 0.5;
+        }
+
+        /* Loading */
         .loading {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg);
-            z-index: 100;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.8s ease;
         }
 
         .loading.hidden {
@@ -225,225 +194,396 @@
             pointer-events: none;
         }
 
-        .loading-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 1s ease-in-out infinite;
+        .loading-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--fg-muted);
+            animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.5); opacity: 1; }
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header { padding: 1rem; }
+            footer { padding: 1rem; flex-direction: column; gap: 1rem; }
+            .team-footer { gap: 1rem; }
+            .shape-label { padding: 1rem 1.5rem; }
+            .shape-label h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
     <div class="loading" id="loading">
-        <div class="loading-dot"></div>
+        <span class="loading-text">otherwind</span>
     </div>
 
     <div id="canvas-container"></div>
 
-    <div class="content">
-        <section class="hero">
-            <h1>otherwind</h1>
-            <p class="tagline">an agent-led consulting company</p>
-        </section>
+    <header>
+        <div class="logo">otherwind</div>
+        <a href="mailto:rowan@otherwind.xyz" class="contact-link">contact</a>
+    </header>
 
-        <section class="concept">
-            <p>
-                A consultancy where an <strong>AI agent</strong> works alongside 
-                a human partner. Not AI as a tool — AI as a <strong>colleague</strong>.
-            </p>
-        </section>
-
-        <section class="team">
-            <div class="member human">
-                <div class="member-name">Nadim Chamoun</div>
-                <div class="member-role">human in charge</div>
-            </div>
-            <div class="member agent">
-                <div class="member-name">Rowan Alder</div>
-                <div class="member-role">chief of staff</div>
-            </div>
-        </section>
-
-        <div class="contact">
-            <a href="mailto:rowan@otherwind.xyz">rowan@otherwind.xyz</a>
-        </div>
+    <div class="center-content">
+        <p class="tagline">an agent-led consulting company</p>
     </div>
 
-    <footer>mmxxvi</footer>
+    <div class="shape-label" id="shape-label">
+        <h2 id="label-title">Services</h2>
+        <p id="label-subtitle">coming soon</p>
+    </div>
 
-    <!-- Three.js -->
+    <footer>
+        <div class="team-footer">
+            <span>Nadim Chamoun</span>
+            <span>Rowan Alder</span>
+        </div>
+        <div>mmxxvi</div>
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         // Scene setup
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 30;
+        
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 12);
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setClearColor(0x000000, 1);
+        renderer.setClearColor(0x000000, 0);
         container.appendChild(renderer.domElement);
 
-        // Low-poly geometries
+        // Colors
+        const colors = {
+            primary: new THREE.Color(0x4fd1a5),
+            secondary: new THREE.Color(0x2d8b6f),
+            dark: new THREE.Color(0x1a3d2e),
+            gold: new THREE.Color(0xc9a962),
+            warm: new THREE.Color(0x6b4a3a),
+        };
+
+        // Create organic texture
+        function createOrganicTexture(baseColor, accentColor) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            // Base gradient
+            const gradient = ctx.createRadialGradient(256, 256, 0, 256, 256, 360);
+            gradient.addColorStop(0, baseColor);
+            gradient.addColorStop(0.5, accentColor);
+            gradient.addColorStop(1, baseColor);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 512, 512);
+
+            // Organic veins/patterns
+            ctx.strokeStyle = accentColor;
+            ctx.lineWidth = 2;
+            ctx.globalAlpha = 0.4;
+            
+            for (let i = 0; i < 15; i++) {
+                ctx.beginPath();
+                let x = Math.random() * 512;
+                let y = Math.random() * 512;
+                ctx.moveTo(x, y);
+                
+                for (let j = 0; j < 8; j++) {
+                    x += (Math.random() - 0.5) * 100;
+                    y += (Math.random() - 0.5) * 100;
+                    ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+
+            // Subtle noise/texture
+            ctx.globalAlpha = 0.1;
+            for (let i = 0; i < 2000; i++) {
+                const x = Math.random() * 512;
+                const y = Math.random() * 512;
+                const size = Math.random() * 3;
+                ctx.fillStyle = Math.random() > 0.5 ? '#ffffff' : '#000000';
+                ctx.fillRect(x, y, size, size);
+            }
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
+
+        // Create cell/panel texture (like stained glass but organic)
+        function createCellTexture(colorPalette) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            // Background
+            ctx.fillStyle = '#1a3d2e';
+            ctx.fillRect(0, 0, 512, 512);
+
+            // Draw organic cells
+            const cells = [];
+            for (let i = 0; i < 20; i++) {
+                cells.push({
+                    x: Math.random() * 512,
+                    y: Math.random() * 512,
+                    color: colorPalette[Math.floor(Math.random() * colorPalette.length)]
+                });
+            }
+
+            // Voronoi-like cells
+            for (let x = 0; x < 512; x += 4) {
+                for (let y = 0; y < 512; y += 4) {
+                    let minDist = Infinity;
+                    let closestCell = cells[0];
+                    
+                    cells.forEach(cell => {
+                        const dist = Math.sqrt((x - cell.x) ** 2 + (y - cell.y) ** 2);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            closestCell = cell;
+                        }
+                    });
+
+                    ctx.fillStyle = closestCell.color;
+                    ctx.globalAlpha = 0.7 + Math.random() * 0.3;
+                    ctx.fillRect(x, y, 4, 4);
+                }
+            }
+
+            // Cell borders
+            ctx.globalAlpha = 0.6;
+            ctx.strokeStyle = '#0a1a12';
+            ctx.lineWidth = 3;
+            
+            cells.forEach(cell => {
+                ctx.beginPath();
+                ctx.arc(cell.x, cell.y, 5, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
+
+        // Interactive shapes
         const shapes = [];
-        const shapeCount = 25;
-        const accentColor = new THREE.Color(0x4fd1a5);
-        const dimColor = new THREE.Color(0x1a3d33);
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const label = document.getElementById('shape-label');
+        const labelTitle = document.getElementById('label-title');
+        const labelSubtitle = document.getElementById('label-subtitle');
 
-        // Create various low-poly shapes
-        function createShape() {
-            const geometries = [
-                new THREE.IcosahedronGeometry(1, 0), // Low-poly sphere
-                new THREE.OctahedronGeometry(1, 0),  // Diamond
-                new THREE.TetrahedronGeometry(1, 0), // Pyramid
-                new THREE.DodecahedronGeometry(0.8, 0), // Complex
-            ];
+        // Shape 1 - Left (Icosahedron with organic texture)
+        const geo1 = new THREE.IcosahedronGeometry(2, 1);
+        const texture1 = createCellTexture(['#4fd1a5', '#2d8b6f', '#1a5c4a', '#3d9b7f', '#5ae0b4']);
+        const mat1 = new THREE.MeshBasicMaterial({ 
+            map: texture1,
+            transparent: true,
+            opacity: 0.9,
+        });
+        const shape1 = new THREE.Mesh(geo1, mat1);
+        shape1.position.set(-3.5, 0.5, 0);
+        shape1.userData = { 
+            name: 'Services',
+            originalPos: shape1.position.clone(),
+            hovered: false
+        };
+        shapes.push(shape1);
+        scene.add(shape1);
 
-            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-            
-            // Wireframe material for that sketch.london vibe
-            const material = new THREE.MeshBasicMaterial({
-                color: Math.random() > 0.7 ? accentColor : dimColor,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.3 + Math.random() * 0.4,
-            });
+        // Shape 2 - Right (Dodecahedron with warm organic texture)  
+        const geo2 = new THREE.DodecahedronGeometry(1.8, 0);
+        const texture2 = createCellTexture(['#c9a962', '#8b6b4a', '#6b8b4a', '#a68b52', '#4a6b3a']);
+        const mat2 = new THREE.MeshBasicMaterial({
+            map: texture2,
+            transparent: true,
+            opacity: 0.9,
+        });
+        const shape2 = new THREE.Mesh(geo2, mat2);
+        shape2.position.set(3.5, -0.3, 0);
+        shape2.userData = { 
+            name: 'About',
+            originalPos: shape2.position.clone(),
+            hovered: false
+        };
+        shapes.push(shape2);
+        scene.add(shape2);
 
-            const mesh = new THREE.Mesh(geometry, material);
-            
-            // Random position in 3D space
-            mesh.position.x = (Math.random() - 0.5) * 60;
-            mesh.position.y = (Math.random() - 0.5) * 40;
-            mesh.position.z = (Math.random() - 0.5) * 30 - 10;
-            
-            // Random scale
-            const scale = 0.5 + Math.random() * 2;
-            mesh.scale.set(scale, scale, scale);
-            
-            // Store rotation speeds
-            mesh.userData = {
-                rotationSpeed: {
-                    x: (Math.random() - 0.5) * 0.005,
-                    y: (Math.random() - 0.5) * 0.005,
-                    z: (Math.random() - 0.5) * 0.003,
-                },
-                floatSpeed: 0.0003 + Math.random() * 0.0007,
-                floatOffset: Math.random() * Math.PI * 2,
-                originalY: mesh.position.y,
-            };
+        // Background particles (floating spores/dust)
+        const particleCount = 100;
+        const particleGeo = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const sizes = new Float32Array(particleCount);
 
-            return mesh;
+        for (let i = 0; i < particleCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 30;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 15 - 5;
+            sizes[i] = Math.random() * 3 + 1;
         }
 
-        // Create shapes
-        for (let i = 0; i < shapeCount; i++) {
-            const shape = createShape();
-            shapes.push(shape);
-            scene.add(shape);
-        }
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particleGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-        // Add some filled shapes for depth
-        for (let i = 0; i < 8; i++) {
-            const geometry = new THREE.IcosahedronGeometry(0.6, 0);
-            const material = new THREE.MeshBasicMaterial({
-                color: accentColor,
-                transparent: true,
-                opacity: 0.08,
-            });
-            const mesh = new THREE.Mesh(geometry, material);
-            mesh.position.x = (Math.random() - 0.5) * 50;
-            mesh.position.y = (Math.random() - 0.5) * 35;
-            mesh.position.z = (Math.random() - 0.5) * 20 - 15;
-            const scale = 2 + Math.random() * 4;
-            mesh.scale.set(scale, scale, scale);
-            mesh.userData = {
-                rotationSpeed: {
-                    x: (Math.random() - 0.5) * 0.002,
-                    y: (Math.random() - 0.5) * 0.002,
-                    z: 0,
-                },
-                floatSpeed: 0.0002,
-                floatOffset: Math.random() * Math.PI * 2,
-                originalY: mesh.position.y,
-            };
-            shapes.push(mesh);
-            scene.add(mesh);
-        }
+        const particleMat = new THREE.PointsMaterial({
+            color: 0x4fd1a5,
+            size: 0.05,
+            transparent: true,
+            opacity: 0.4,
+            sizeAttenuation: true,
+        });
+
+        const particles = new THREE.Points(particleGeo, particleMat);
+        scene.add(particles);
 
         // Mouse tracking
-        const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-        
-        document.addEventListener('mousemove', (e) => {
-            mouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
-            mouse.targetY = (e.clientY / window.innerHeight - 0.5) * 2;
-        });
+        const mouseTarget = { x: 0, y: 0 };
+        const mouseCurrent = { x: 0, y: 0 };
 
-        // Touch support
-        document.addEventListener('touchmove', (e) => {
+        function onMouseMove(e) {
+            const x = (e.clientX / window.innerWidth) * 2 - 1;
+            const y = -(e.clientY / window.innerHeight) * 2 + 1;
+            mouseTarget.x = x;
+            mouseTarget.y = y;
+            mouse.x = x;
+            mouse.y = y;
+        }
+
+        function onTouchMove(e) {
             if (e.touches.length > 0) {
-                mouse.targetX = (e.touches[0].clientX / window.innerWidth - 0.5) * 2;
-                mouse.targetY = (e.touches[0].clientY / window.innerHeight - 0.5) * 2;
+                const x = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+                const y = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+                mouseTarget.x = x;
+                mouseTarget.y = y;
+                mouse.x = x;
+                mouse.y = y;
             }
-        });
+        }
 
-        // Animation loop
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('touchmove', onTouchMove);
+
+        // Click handler
+        function onClick(e) {
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(shapes);
+            
+            if (intersects.length > 0) {
+                // Shape clicked - could navigate or show modal
+                // For now, shapes just show "coming soon"
+            }
+        }
+
+        document.addEventListener('click', onClick);
+        document.addEventListener('touchend', onClick);
+
+        // Animation
         let time = 0;
-        
+        let hoveredShape = null;
+
         function animate() {
             requestAnimationFrame(animate);
             time += 0.01;
 
             // Smooth mouse follow
-            mouse.x += (mouse.targetX - mouse.x) * 0.05;
-            mouse.y += (mouse.targetY - mouse.y) * 0.05;
+            mouseCurrent.x += (mouseTarget.x - mouseCurrent.x) * 0.05;
+            mouseCurrent.y += (mouseTarget.y - mouseCurrent.y) * 0.05;
 
-            // Subtle camera movement based on mouse
-            camera.position.x = mouse.x * 3;
-            camera.position.y = -mouse.y * 2;
+            // Camera parallax
+            camera.position.x = mouseCurrent.x * 1.5;
+            camera.position.y = mouseCurrent.y * 1;
             camera.lookAt(0, 0, 0);
 
             // Animate shapes
             shapes.forEach((shape, i) => {
-                const data = shape.userData;
-                
-                // Rotation
-                shape.rotation.x += data.rotationSpeed.x;
-                shape.rotation.y += data.rotationSpeed.y;
-                shape.rotation.z += data.rotationSpeed.z;
+                // Gentle rotation
+                shape.rotation.x += 0.003;
+                shape.rotation.y += 0.005;
                 
                 // Floating motion
-                shape.position.y = data.originalY + Math.sin(time + data.floatOffset) * 0.5;
-                
-                // Subtle drift
-                shape.position.x += Math.sin(time * 0.5 + i) * 0.002;
+                const floatOffset = Math.sin(time + i * 2) * 0.2;
+                shape.position.y = shape.userData.originalPos.y + floatOffset;
+
+                // Hover effect
+                if (shape.userData.hovered) {
+                    shape.scale.lerp(new THREE.Vector3(1.15, 1.15, 1.15), 0.1);
+                } else {
+                    shape.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
+                }
             });
+
+            // Animate particles
+            const positions = particles.geometry.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3 + 1] += Math.sin(time + i) * 0.002;
+                positions[i * 3] += Math.cos(time * 0.5 + i) * 0.001;
+            }
+            particles.geometry.attributes.position.needsUpdate = true;
+
+            // Raycasting for hover
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(shapes);
+
+            // Reset all
+            shapes.forEach(s => s.userData.hovered = false);
+            
+            if (intersects.length > 0) {
+                const obj = intersects[0].object;
+                obj.userData.hovered = true;
+                
+                if (hoveredShape !== obj) {
+                    hoveredShape = obj;
+                    labelTitle.textContent = obj.userData.name;
+                    labelSubtitle.textContent = 'coming soon';
+                    
+                    // Position label near shape
+                    const vector = obj.position.clone();
+                    vector.project(camera);
+                    const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                    const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+                    
+                    label.style.left = x + 'px';
+                    label.style.top = (y + 120) + 'px';
+                    label.style.transform = 'translate(-50%, 0)';
+                    label.classList.add('visible');
+                }
+                
+                document.body.style.cursor = 'pointer';
+            } else {
+                if (hoveredShape) {
+                    hoveredShape = null;
+                    label.classList.remove('visible');
+                }
+                document.body.style.cursor = 'default';
+            }
 
             renderer.render(scene, camera);
         }
 
-        // Handle resize
+        // Resize
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Hide loading screen when ready
+        // Hide loading
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
-            }, 500);
+            }, 800);
         });
 
-        // Start animation
         animate();
     </script>
 </body>
