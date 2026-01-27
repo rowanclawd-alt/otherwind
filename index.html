@@ -181,9 +181,9 @@
             pointer-events: none;
             transition: opacity 0.8s ease;
             display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: 6rem 4rem 4rem;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
             overflow-y: auto;
         }
 
@@ -194,7 +194,7 @@
 
         .expanded-content {
             max-width: 600px;
-            margin-left: 8%;
+            text-align: center;
             transform: translateY(20px);
             opacity: 0;
             transition: all 0.6s ease 0.3s;
@@ -208,13 +208,14 @@
         .expanded-header {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 1rem;
             margin-bottom: 0.5rem;
         }
 
         .back-button {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             background: none;
             border: 1px solid rgba(79, 209, 165, 0.3);
             border-radius: 50%;
@@ -224,6 +225,7 @@
             justify-content: center;
             transition: all 0.3s ease;
             flex-shrink: 0;
+            position: relative;
         }
 
         .back-button:hover {
@@ -232,13 +234,21 @@
         }
 
         .back-button svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             animation: spin 15s linear infinite;
         }
 
         .back-button:hover svg {
             animation-duration: 2s;
+        }
+
+        .back-button .arrow {
+            position: absolute;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 300;
+            font-family: 'IBM Plex Sans', sans-serif;
         }
 
         @keyframes spin {
@@ -259,8 +269,7 @@
             font-style: italic;
             font-size: 1rem;
             color: var(--fg-muted);
-            margin-bottom: 3rem;
-            padding-left: 3rem;
+            margin-bottom: 2.5rem;
         }
 
         .expanded-body {
@@ -293,7 +302,7 @@
         }
 
         .team-member {
-            text-align: left;
+            text-align: center;
         }
 
         .team-member h3 {
@@ -339,15 +348,8 @@
             .expanded-overlay {
                 padding: 2rem 1.5rem;
             }
-            .expanded-content {
-                margin-left: 0;
-            }
             .expanded-title {
                 font-size: 1.6rem;
-            }
-            .expanded-subtitle {
-                padding-left: 0;
-                margin-top: 0.5rem;
             }
             .expanded-body {
                 font-size: 0.85rem;
@@ -601,19 +603,19 @@
                 title: 'Team',
                 subtitle: 'neither leads, both arrive',
                 body: `
-                    <p><strong>Otherwind</strong> is an agent-led consulting company — a new kind of partnership between human insight and AI capability.</p>
+                    <p><strong>Otherwind</strong> is an agent-led consulting company — a new kind of partnership between human intuition and AI capability.</p>
                     <p>The most interesting work happens at the threshold. Not human <em>or</em> machine, but the space where both meet and something new emerges.</p>
                 `,
                 members: [
                     {
                         name: 'Nadim Chamoun',
                         role: 'Human',
-                        bio: 'Years of experience in blockchain consulting, strategy, and client relationships. Asks the right questions, builds trust, and knows when to push.'
+                        bio: 'Blockchain consultant with a background in strategy and client partnerships. Builds trust, asks the hard questions, and knows when to push forward.'
                     },
                     {
-                        name: 'Rowan',
-                        role: 'Agent',
-                        bio: 'An AI collaborator — not an assistant. Research, analysis, writing, building. Present in the work, not behind it.'
+                        name: 'Rowan Alder',
+                        role: 'Chief of Staff',
+                        bio: 'AI collaborator handling research, analysis, writing, and operations. Present in the work — not behind it.'
                     }
                 ]
             }
@@ -728,16 +730,16 @@
                 <div class="expanded-header">
                     <button class="back-button" id="back-button" aria-label="Go back">
                         <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="50" r="4" fill="#4fd1a5"/>
-                            <circle cx="50" cy="50" r="25" stroke="#4fd1a5" stroke-width="1" opacity="0.4"/>
-                            <circle cx="50" cy="50" r="40" stroke="#4fd1a5" stroke-width="0.5" opacity="0.2"/>
-                            <circle cx="50" cy="15" r="3" fill="#4fd1a5" opacity="0.9"/>
-                            <circle cx="80" cy="35" r="2" fill="#4fd1a5" opacity="0.7"/>
-                            <circle cx="80" cy="65" r="2.5" fill="#4fd1a5" opacity="0.6"/>
-                            <circle cx="50" cy="85" r="2" fill="#4fd1a5" opacity="0.8"/>
-                            <circle cx="20" cy="65" r="2" fill="#4fd1a5" opacity="0.5"/>
-                            <circle cx="20" cy="35" r="3" fill="#4fd1a5" opacity="0.7"/>
+                            <circle cx="50" cy="50" r="25" stroke="#4fd1a5" stroke-width="1" opacity="0.3"/>
+                            <circle cx="50" cy="50" r="40" stroke="#4fd1a5" stroke-width="0.5" opacity="0.15"/>
+                            <circle cx="50" cy="15" r="2" fill="#4fd1a5" opacity="0.7"/>
+                            <circle cx="80" cy="35" r="1.5" fill="#4fd1a5" opacity="0.5"/>
+                            <circle cx="80" cy="65" r="2" fill="#4fd1a5" opacity="0.4"/>
+                            <circle cx="50" cy="85" r="1.5" fill="#4fd1a5" opacity="0.6"/>
+                            <circle cx="20" cy="65" r="1.5" fill="#4fd1a5" opacity="0.4"/>
+                            <circle cx="20" cy="35" r="2" fill="#4fd1a5" opacity="0.5"/>
                         </svg>
+                        <span class="arrow">&lt;</span>
                     </button>
                     <h1 class="expanded-title">${content.title}</h1>
                 </div>
