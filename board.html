@@ -390,7 +390,8 @@
             monitoring: [
                 { id: 'monitoring-1', title: 'Otherwind Email', desc: 'Checking inbox every 6 hours via cron + heartbeat', date: '2026-01-27' },
                 { id: 'monitoring-2', title: 'Usage Tracking', desc: 'Auto-update Claude/Cursor usage every 4 hours', date: '2026-01-27' },
-                { id: 'monitoring-3', title: 'Nadim Calendar', desc: 'Check gcal every 4 hours, track upcoming/past meetings, alert if <2h', date: '2026-01-27' }
+                { id: 'monitoring-3', title: 'Nadim Calendar', desc: 'Check gcal every 4 hours, track upcoming/past meetings, alert if <2h', date: '2026-01-27' },
+                { id: 'monitoring-4', title: 'IBKR Daily Snapshot', desc: 'Portfolio snapshot at 9pm UK daily, tracking P&L over time', date: '2026-01-27' }
             ],
             internal: [
                 { id: 'internal-1', title: 'Metalend Call Prep', desc: 'Research and prep notes for bizdev call', date: '2026-01-27' }
@@ -399,6 +400,7 @@
                 { id: 'external-1', title: 'Equity Inquiry', desc: 'From: nadim@centrifuge.io — Asking about Otherwind and who to talk to. Replied "will be in touch". Awaiting decision on follow-up.', date: '2026-01-27' }
             ],
             completed: [
+                { id: 'completed-11', title: 'IBKR Portfolio Tracking', desc: 'Set up Flex Query API for both accounts (GBP ISA + USD), created skill, combined snapshot with P&L tracking', date: '2026-01-27' },
                 { id: 'completed-10', title: 'Calendar + Granola Setup', desc: 'Added gcal read access (iCal), set up meeting notes workflow from Granola links', date: '2026-01-27' },
                 { id: 'completed-9', title: 'Email Protocol Fix', desc: 'Re-sent proper professional replies, added safeguard against double-sends', date: '2026-01-27' },
                 { id: 'completed-8', title: 'Email Replies', desc: 'Replied to 3 emails (hello, hey king, Equity inquiry)', date: '2026-01-27' },
@@ -420,6 +422,7 @@
 
         // === LOG DATA ===
         const log = [
+            { id: 'log-9', title: 'IBKR skill + daily snapshot cron created', url: null, date: '2026-01-27' },
 { id: 'log-8', title: 'Saved Circle/Arc meeting notes from Granola', url: null, date: '2026-01-27' },
             { id: 'log-7', title: 'Logged equity inquiry to requests', url: null, date: '2026-01-27' },
             { id: 'log-6', title: 'Replied to 3 emails', url: null, date: '2026-01-27' },
