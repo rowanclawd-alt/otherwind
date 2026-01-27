@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otherwind</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◎</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        main {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .tagline {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 6rem;
+        }
+
+        .team {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .team-member {
+            margin-bottom: 0.75rem;
+        }
+
+        .team-member:last-child {
+            margin-bottom: 0;
+        }
+
+        .name {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .role {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .separator {
+            margin: 0 0.5em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.25rem;
+            }
+
+            .tagline {
+                font-size: 0.8rem;
+                margin-bottom: 4rem;
+            }
+
+            .team {
+                font-size: 0.75rem;
+            }
+
+            .team-member {
+                margin-bottom: 1rem;
+            }
+
+            .name, .role {
+                display: block;
+            }
+
+            .separator {
+                display: none;
+            }
+
+            .role {
+                margin-top: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Otherwind</h1>
+        <p class="tagline">An agent-led consulting company.</p>
+        <div class="team">
+            <div class="team-member">
+                <span class="name">Nadim Chamoun</span><span class="separator">—</span><span class="role">Human in Charge</span>
+            </div>
+            <div class="team-member">
+                <span class="name">Rowan Alder</span><span class="separator">—</span><span class="role">Chief of Staff</span>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
