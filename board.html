@@ -797,13 +797,13 @@
         };
 
         const usage = {
-            claude: { dailyLeft: 81, weeklyLeft: 95, updated: '2026-01-27 19:30' },
-            cursor: { status: 'active', creditsUsed: 12, updated: '2026-01-27 19:30' }
+            claude: { dailyLeft: 70, weeklyLeft: 93, updated: '2026-01-27 20:00' },
+            cursor: { status: 'active', creditsUsed: 15, updated: '2026-01-27 20:00' }
         };
 
         const cronJobs = [
-            { name: 'Board Usage Update', schedule: 'Every 4 hours', next: '22:00' },
-            { name: 'Calendar Check', schedule: 'Every 4 hours', next: '22:00' },
+            { name: 'Board Usage Update', schedule: 'Every 4 hours', next: '00:00' },
+            { name: 'Calendar Check', schedule: 'Every 4 hours', next: '00:00' },
             { name: 'Email Check', schedule: 'Every 6 hours', next: '00:00' },
             { name: 'IBKR Snapshot', schedule: 'Daily 9pm', next: '21:00' },
             { name: 'Todo Review', schedule: 'Daily 9am', next: '09:00 tomorrow' }
