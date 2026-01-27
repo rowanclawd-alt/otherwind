@@ -408,6 +408,7 @@
         let touchStart = { x: 0, y: 0 };
         let isTouching = false;
         let touchedShape = null;
+        let isTouchDevice = false;
 
         function onMouseMove(e) {
             mouseTarget.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -423,11 +424,18 @@
                 mouse.x = (touchStart.x / window.innerWidth) * 2 - 1;
                 mouse.y = -(touchStart.y / window.innerHeight) * 2 + 1;
                 
+                isTouchDevice = true;
                 raycaster.setFromCamera(mouse, camera);
                 const intersects = raycaster.intersectObjects(interactiveShapes);
                 if (intersects.length > 0) {
                     touchedShape = intersects[0].object;
+                    stickyHoveredShape = touchedShape; // Lock selection on tap
                     isTouching = true;
+                } else {
+                    // Tapped empty space - deselect
+                    stickyHoveredShape = null;
+                    hoveredShape = null;
+                    label.classList.remove('visible');
                 }
             }
         }
@@ -561,23 +569,25 @@
 
             interactiveShapes.forEach(s => s.userData.hovered = false);
 
-            // Check if we're hovering a new shape
-            if (intersects.length > 0) {
-                const obj = intersects[0].object;
-                stickyHoveredShape = obj; // Lock onto this shape
-            } else if (stickyHoveredShape) {
-                // Check distance from mouse to sticky shape's screen position
-                const vector = stickyHoveredShape.position.clone();
-                vector.project(camera);
-                const shapeScreenX = (vector.x * 0.5 + 0.5) * window.innerWidth;
-                const shapeScreenY = (-vector.y * 0.5 + 0.5) * window.innerHeight;
-                const mouseScreenX = (mouse.x * 0.5 + 0.5) * window.innerWidth;
-                const mouseScreenY = (-mouse.y * 0.5 + 0.5) * window.innerHeight;
-                const dist = Math.sqrt((shapeScreenX - mouseScreenX) ** 2 + (shapeScreenY - mouseScreenY) ** 2);
-                
-                // Release if mouse is far enough away (200px threshold)
-                if (dist > 200) {
-                    stickyHoveredShape = null;
+            // Check if we're hovering a new shape (desktop only - touch handles its own selection)
+            if (!isTouchDevice) {
+                if (intersects.length > 0) {
+                    const obj = intersects[0].object;
+                    stickyHoveredShape = obj; // Lock onto this shape
+                } else if (stickyHoveredShape) {
+                    // Check distance from mouse to sticky shape's screen position
+                    const vector = stickyHoveredShape.position.clone();
+                    vector.project(camera);
+                    const shapeScreenX = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                    const shapeScreenY = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+                    const mouseScreenX = (mouse.x * 0.5 + 0.5) * window.innerWidth;
+                    const mouseScreenY = (-mouse.y * 0.5 + 0.5) * window.innerHeight;
+                    const dist = Math.sqrt((shapeScreenX - mouseScreenX) ** 2 + (shapeScreenY - mouseScreenY) ** 2);
+                    
+                    // Release if mouse is far enough away (200px threshold)
+                    if (dist > 200) {
+                        stickyHoveredShape = null;
+                    }
                 }
             }
 
