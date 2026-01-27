@@ -66,22 +66,7 @@
             color: var(--fg);
         }
 
-        .center-tagline {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-style: italic;
-            font-size: 1rem;
-            color: var(--fg-muted);
-            letter-spacing: 0.02em;
-            z-index: 50;
-            pointer-events: none;
-            transition: opacity 1.5s ease;
-        }
-
-        /* Shape label - minimal, no copy */
+/* Shape label - minimal, no copy */
         .shape-label {
             position: fixed;
             padding: 0.8rem 1.5rem;
@@ -137,6 +122,10 @@
             letter-spacing: 0.02em;
         }
 
+        #footer-text {
+            transition: opacity 0.8s ease;
+        }
+
         .loading {
             position: fixed;
             inset: 0;
@@ -188,11 +177,6 @@
                 padding: 1rem 1.5rem;
                 font-size: 0.85rem;
             }
-            .center-tagline {
-                font-size: 0.85rem;
-                max-width: 80%;
-                text-align: center;
-            }
             .mobile-hint { display: block; }
             .shape-label {
                 max-width: 220px;
@@ -216,8 +200,6 @@
         <div class="logo">otherwind</div>
     </header>
 
-    <div class="center-tagline">some doors open from both sides</div>
-
     <div class="shape-label" id="shape-label">
         <h2 id="label-title">Contact</h2>
         <p id="label-status">coming soon</p>
@@ -226,7 +208,7 @@
     <div class="mobile-hint">drag to spin</div>
 
     <footer>
-        <div>the other mind is not the lesser mind</div>
+        <div id="footer-text">some doors open from both sides</div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -419,8 +401,8 @@
         const labelStatus = document.getElementById('label-status');
         let hoveredShape = null;
         let stickyHoveredShape = null;
-        let taglineFaded = false;
-        const centerTagline = document.querySelector('.center-tagline');
+        let footerChanged = false;
+        const footerText = document.getElementById('footer-text');
 
         // Touch
         let touchStart = { x: 0, y: 0 };
@@ -599,10 +581,14 @@
             if (stickyHoveredShape) {
                 stickyHoveredShape.userData.hovered = true;
                 
-                // Fade out center tagline on first hover
-                if (!taglineFaded) {
-                    taglineFaded = true;
-                    centerTagline.style.opacity = '0';
+                // Change footer text on first hover
+                if (!footerChanged) {
+                    footerChanged = true;
+                    footerText.style.opacity = '0';
+                    setTimeout(() => {
+                        footerText.textContent = 'the other mind is not the lesser mind';
+                        footerText.style.opacity = '1';
+                    }, 800);
                 }
 
                 if (hoveredShape !== stickyHoveredShape) {
