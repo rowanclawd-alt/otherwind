@@ -21,7 +21,7 @@
     .app { display: flex; height: 100vh; }
     
     .sidebar {
-      width: 340px;
+      width: 380px;
       background: #0a0f0a;
       border-right: 1px solid #1a2f1a;
       padding: 20px;
@@ -37,33 +37,56 @@
       font-style: italic;
       letter-spacing: 0.05em;
       color: #f0f0f0;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
     .logo span { opacity: 0.5; font-style: normal; }
     
-    .section { margin-bottom: 20px; }
-    .section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #555; margin-bottom: 10px; }
-    
-    .shape-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-    .shape-btn {
-      aspect-ratio: 1;
-      background: #111;
-      border: 2px solid transparent;
-      border-radius: 8px;
-      cursor: pointer;
+    .section { margin-bottom: 16px; }
+    .section-title { 
+      font-size: 10px; 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      color: #555; 
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      font-size: 11px;
-      color: #666;
+      gap: 6px;
     }
-    .shape-btn:hover { background: #1a1a1a; color: #888; }
-    .shape-btn.active { border-color: #22c55e; background: #0f1f0f; color: #22c55e; }
+    .section-title .badge {
+      font-size: 9px;
+      background: #22c55e20;
+      color: #22c55e;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
     
-    .palette-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .collapsible { cursor: pointer; user-select: none; }
+    .collapsible::before { content: '▼'; font-size: 8px; transition: transform 0.2s; }
+    .collapsible.collapsed::before { transform: rotate(-90deg); }
+    .collapse-content { overflow: hidden; transition: max-height 0.3s; }
+    .collapse-content.collapsed { max-height: 0 !important; }
+    
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    
+    .option-btn {
+      padding: 8px 6px;
+      background: #111;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 10px;
+      color: #888;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .option-btn:hover { background: #1a1a1a; color: #aaa; border-color: #333; }
+    .option-btn.active { border-color: #22c55e; background: #0f1f0f; color: #22c55e; }
+    
     .palette-btn {
-      height: 40px;
+      height: 32px;
       border: 2px solid transparent;
       border-radius: 6px;
       cursor: pointer;
@@ -74,10 +97,10 @@
     .palette-btn.active { border-color: #22c55e; }
     .palette-btn div { flex: 1; }
     
-    .color-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .color-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
     .color-input {
       flex: 1;
-      height: 32px;
+      height: 28px;
       border: 1px solid #222;
       border-radius: 4px;
       cursor: pointer;
@@ -87,73 +110,32 @@
     .color-input::-webkit-color-swatch-wrapper { padding: 0; }
     .color-input::-webkit-color-swatch { border-radius: 3px; border: none; }
     .color-remove {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       background: #222;
       border: none;
       border-radius: 4px;
       color: #666;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 12px;
     }
     .color-remove:hover { background: #333; color: #fff; }
     .add-color-btn {
       width: 100%;
-      padding: 8px;
+      padding: 6px;
       background: #111;
       border: 1px dashed #333;
       border-radius: 6px;
       color: #555;
       cursor: pointer;
-      font-size: 12px;
-      margin-top: 8px;
+      font-size: 11px;
     }
     .add-color-btn:hover { border-color: #22c55e; color: #22c55e; }
     
-    .meta-input {
-      width: 100%;
-      padding: 10px;
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 6px;
-      color: #fff;
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-    .meta-input:focus { outline: none; border-color: #22c55e; }
-    .meta-input::placeholder { color: #444; }
-    
-    .position-row {
-      display: flex;
-      gap: 8px;
-    }
-    .pos-input-group {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .pos-input-group label {
-      font-size: 10px;
-      color: #555;
-      text-transform: uppercase;
-    }
-    .pos-input {
-      width: 100%;
-      padding: 8px;
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 12px;
-      text-align: center;
-    }
-    .pos-input:focus { outline: none; border-color: #22c55e; }
-    
-    .slider-row { margin-bottom: 12px; }
-    .slider-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
-    .slider-label { font-size: 11px; color: #666; }
-    .slider-value { font-size: 11px; color: #22c55e; }
+    .slider-row { margin-bottom: 10px; }
+    .slider-header { display: flex; justify-content: space-between; margin-bottom: 3px; }
+    .slider-label { font-size: 10px; color: #666; }
+    .slider-value { font-size: 10px; color: #22c55e; font-family: monospace; }
     
     input[type="range"] {
       width: 100%;
@@ -165,22 +147,53 @@
     }
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       background: #22c55e;
       border-radius: 50%;
       cursor: pointer;
     }
+    
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .toggle-label { font-size: 11px; color: #888; }
+    .toggle {
+      width: 36px;
+      height: 20px;
+      background: #222;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .toggle.active { background: #22c55e; }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left 0.2s;
+    }
+    .toggle.active::after { left: 18px; }
     
     .btn {
       width: 100%;
       padding: 10px;
       border: none;
       border-radius: 6px;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
       transition: all 0.2s;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .btn-primary { background: #22c55e; color: #000; font-weight: 500; }
     .btn-primary:hover { background: #4ade80; }
@@ -191,53 +204,50 @@
     .landing-shapes {
       background: #111;
       border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 15px;
+      padding: 8px;
+      margin-bottom: 12px;
     }
-    .landing-shapes-title { font-size: 10px; color: #555; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-    .landing-shape-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .landing-shapes-title { font-size: 9px; color: #555; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+    .landing-shape-list { display: flex; flex-wrap: wrap; gap: 4px; }
     .landing-shape-btn {
-      padding: 6px 10px;
+      padding: 5px 8px;
       background: #1a1a1a;
       border: 1px solid #222;
       border-radius: 4px;
       color: #888;
-      font-size: 11px;
+      font-size: 10px;
       cursor: pointer;
     }
     .landing-shape-btn:hover { border-color: #22c55e; color: #22c55e; }
-    .landing-shape-btn.editing { 
-      border-color: #f59e0b; 
-      color: #f59e0b; 
-      background: rgba(245, 158, 11, 0.1);
-    }
+    .landing-shape-btn.editing { border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
     
-    .presets-list { flex: 1; overflow-y: auto; margin-top: 10px; }
-    .preset-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .meta-input {
+      width: 100%;
       padding: 8px;
       background: #111;
+      border: 1px solid #222;
       border-radius: 6px;
-      margin-bottom: 4px;
-      cursor: pointer;
+      color: #fff;
+      font-size: 12px;
+      margin-bottom: 6px;
     }
-    .preset-item:hover { background: #1a1a1a; }
-    .preset-name { font-size: 12px; color: #ccc; }
-    .preset-actions { display: flex; gap: 4px; }
-    .preset-action {
-      width: 22px;
-      height: 22px;
-      border: none;
-      background: #222;
+    .meta-input:focus { outline: none; border-color: #22c55e; }
+    .meta-input::placeholder { color: #444; }
+    
+    .position-row { display: flex; gap: 6px; }
+    .pos-input-group { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .pos-input-group label { font-size: 9px; color: #555; text-transform: uppercase; }
+    .pos-input {
+      width: 100%;
+      padding: 6px;
+      background: #111;
+      border: 1px solid #222;
       border-radius: 4px;
-      color: #666;
-      cursor: pointer;
+      color: #fff;
       font-size: 11px;
+      text-align: center;
     }
-    .preset-action:hover { background: #333; color: #fff; }
-    .preset-action.delete:hover { background: #7f1d1d; color: #fca5a5; }
+    .pos-input:focus { outline: none; border-color: #22c55e; }
     
     .preview { flex: 1; position: relative; }
     #canvas-container { width: 100%; height: 100%; }
@@ -246,7 +256,7 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       display: none;
       align-items: center;
       justify-content: center;
@@ -257,24 +267,38 @@
       background: #0a0f0a;
       border: 1px solid #1a2f1a;
       border-radius: 12px;
-      padding: 24px;
-      width: 400px;
+      padding: 20px;
+      width: 450px;
       max-width: 90%;
     }
-    .modal-title { font-size: 18px; margin-bottom: 16px; color: #22c55e; }
+    .modal-title { font-size: 16px; margin-bottom: 14px; color: #22c55e; }
     .modal-input {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       background: #111;
       border: 1px solid #222;
       border-radius: 8px;
       color: #fff;
-      font-size: 14px;
-      margin-bottom: 16px;
+      font-size: 13px;
+      margin-bottom: 14px;
     }
     .modal-input:focus { outline: none; border-color: #22c55e; }
-    .modal-buttons { display: flex; gap: 10px; }
+    .modal-buttons { display: flex; gap: 8px; }
     .modal-buttons .btn { flex: 1; margin: 0; }
+    
+    .config-output {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 6px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 10px;
+      color: #888;
+      max-height: 120px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
     
     .toast {
       position: fixed;
@@ -283,29 +307,67 @@
       transform: translateX(-50%) translateY(100px);
       background: #22c55e;
       color: #000;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 8px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       transition: transform 0.3s;
       z-index: 200;
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
     
-    .config-output {
-      background: #111;
-      border: 1px solid #222;
+    .texture-preview {
+      width: 100%;
+      height: 60px;
       border-radius: 6px;
-      padding: 10px;
-      font-family: monospace;
-      font-size: 11px;
-      color: #888;
-      margin-top: 10px;
-      max-height: 150px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      word-break: break-all;
+      margin-bottom: 8px;
+      background: #111;
     }
+    
+    .presets-list { max-height: 120px; overflow-y: auto; margin-top: 8px; }
+    .preset-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      background: #111;
+      border-radius: 4px;
+      margin-bottom: 3px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .preset-item:hover { background: #1a1a1a; }
+    .preset-name { color: #ccc; }
+    .preset-actions { display: flex; gap: 3px; }
+    .preset-action {
+      width: 20px;
+      height: 20px;
+      border: none;
+      background: #222;
+      border-radius: 3px;
+      color: #666;
+      cursor: pointer;
+      font-size: 10px;
+    }
+    .preset-action:hover { background: #333; color: #fff; }
+    .preset-action.delete:hover { background: #7f1d1d; color: #fca5a5; }
+
+    .tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+    .tab {
+      flex: 1;
+      padding: 8px;
+      background: #111;
+      border: none;
+      border-radius: 6px;
+      color: #666;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab:hover { background: #1a1a1a; color: #888; }
+    .tab.active { background: #22c55e20; color: #22c55e; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
 <body>
@@ -314,59 +376,169 @@
       <div class="logo">otherwind <span>/ shapes</span></div>
       
       <div class="landing-shapes">
-        <div class="landing-shapes-title">Load from Landing Page</div>
+        <div class="landing-shapes-title">Edit Landing Page Shapes</div>
         <div class="landing-shape-list" id="landing-shapes"></div>
       </div>
       
-      <div class="section">
-        <div class="section-title">Geometry</div>
-        <div class="shape-grid" id="shape-grid"></div>
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('design')">Design</button>
+        <button class="tab" onclick="switchTab('effects')">Effects</button>
+        <button class="tab" onclick="switchTab('animate')">Animate</button>
       </div>
       
-      <div class="section">
-        <div class="section-title">Preset Palettes</div>
-        <div class="palette-grid" id="palette-grid"></div>
+      <!-- DESIGN TAB -->
+      <div class="tab-content active" id="tab-design">
+        <div class="section">
+          <div class="section-title">Geometry <span class="badge">12 types</span></div>
+          <div class="grid-4" id="geometry-grid"></div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">Texture Style <span class="badge">6 styles</span></div>
+          <div class="grid-3" id="texture-grid"></div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title collapsible" onclick="toggleSection(this)">Brand Palettes <span class="badge">12</span></div>
+          <div class="collapse-content">
+            <div class="grid-4" id="palette-grid" style="margin-top: 8px;"></div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title collapsible" onclick="toggleSection(this)">Custom Colors</div>
+          <div class="collapse-content">
+            <div id="color-list" style="margin-top: 8px;"></div>
+            <button class="add-color-btn" onclick="addColor()">+ Add Color</button>
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">Size & Density</div>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Shape Size</span>
+              <span class="slider-value" id="size-value">1.8</span>
+            </div>
+            <input type="range" id="size-slider" min="0.5" max="3.5" step="0.1" value="1.8">
+          </div>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Cell Density</span>
+              <span class="slider-value" id="cells-value">15</span>
+            </div>
+            <input type="range" id="cell-count" min="5" max="50" value="15">
+          </div>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Opacity</span>
+              <span class="slider-value" id="opacity-value">85%</span>
+            </div>
+            <input type="range" id="opacity-slider" min="30" max="100" value="85">
+          </div>
+        </div>
       </div>
       
-      <div class="section">
-        <div class="section-title">Custom Colors</div>
-        <div id="color-list"></div>
-        <button class="add-color-btn" onclick="addColor()">+ Add Color</button>
+      <!-- EFFECTS TAB -->
+      <div class="tab-content" id="tab-effects">
+        <div class="section">
+          <div class="section-title">Overlay Effects</div>
+          <div class="toggle-row">
+            <span class="toggle-label">Wireframe Overlay</span>
+            <div class="toggle" id="toggle-wireframe" onclick="toggleEffect('wireframe')"></div>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Edge Glow</span>
+            <div class="toggle" id="toggle-edgeglow" onclick="toggleEffect('edgeglow')"></div>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Inner Glow</span>
+            <div class="toggle" id="toggle-innerglow" onclick="toggleEffect('innerglow')"></div>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Depth Fade</span>
+            <div class="toggle" id="toggle-depthfade" onclick="toggleEffect('depthfade')"></div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">Wireframe Settings</div>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Wire Opacity</span>
+              <span class="slider-value" id="wire-opacity-value">30%</span>
+            </div>
+            <input type="range" id="wire-opacity" min="5" max="80" value="30">
+          </div>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Wire Color</span>
+              <span class="slider-value"><input type="color" id="wire-color" value="#4ade80" style="width:40px;height:18px;border:none;cursor:pointer;"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">Glow Intensity</div>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Glow Strength</span>
+              <span class="slider-value" id="glow-value">0.5</span>
+            </div>
+            <input type="range" id="glow-slider" min="0" max="100" value="50">
+          </div>
+        </div>
       </div>
       
-      <div class="section">
-        <div class="section-title">Texture Settings</div>
-        <div class="slider-row">
-          <div class="slider-header">
-            <span class="slider-label">Cell Count</span>
-            <span class="slider-value" id="cells-value">15</span>
+      <!-- ANIMATE TAB -->
+      <div class="tab-content" id="tab-animate">
+        <div class="section">
+          <div class="section-title">Rotation</div>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Spin Speed</span>
+              <span class="slider-value" id="rotation-value">0.008</span>
+            </div>
+            <input type="range" id="rotation-speed" min="0" max="40" value="8">
           </div>
-          <input type="range" id="cell-count" min="5" max="40" value="15">
+          <div class="grid-3" style="margin-top: 8px;">
+            <button class="option-btn active" onclick="setRotationAxis('y')" id="axis-y">Y Axis</button>
+            <button class="option-btn" onclick="setRotationAxis('x')" id="axis-x">X Axis</button>
+            <button class="option-btn" onclick="setRotationAxis('xy')" id="axis-xy">Both</button>
+          </div>
         </div>
-        <div class="slider-row">
-          <div class="slider-header">
-            <span class="slider-label">Size</span>
-            <span class="slider-value" id="size-value">1.8</span>
+        
+        <div class="section">
+          <div class="section-title">Animation Mode</div>
+          <div class="grid-2">
+            <button class="option-btn active" onclick="setAnimMode('spin')" id="anim-spin">Spin</button>
+            <button class="option-btn" onclick="setAnimMode('pulse')" id="anim-pulse">Pulse</button>
+            <button class="option-btn" onclick="setAnimMode('wobble')" id="anim-wobble">Wobble</button>
+            <button class="option-btn" onclick="setAnimMode('float')" id="anim-float">Float</button>
           </div>
-          <input type="range" id="size-slider" min="0.5" max="3" step="0.1" value="1.8">
         </div>
-        <div class="slider-row">
-          <div class="slider-header">
-            <span class="slider-label">Opacity</span>
-            <span class="slider-value" id="opacity-value">85%</span>
+        
+        <div class="section">
+          <div class="section-title">Pulse Settings</div>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Pulse Speed</span>
+              <span class="slider-value" id="pulse-speed-value">1.0</span>
+            </div>
+            <input type="range" id="pulse-speed" min="1" max="30" value="10">
           </div>
-          <input type="range" id="opacity-slider" min="30" max="100" value="85">
-        </div>
-        <div class="slider-row">
-          <div class="slider-header">
-            <span class="slider-label">Rotation Speed</span>
-            <span class="slider-value" id="rotation-value">0.008</span>
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="slider-label">Pulse Amount</span>
+              <span class="slider-value" id="pulse-amount-value">10%</span>
+            </div>
+            <input type="range" id="pulse-amount" min="0" max="30" value="10">
           </div>
-          <input type="range" id="rotation-speed" min="0" max="30" value="8">
         </div>
       </div>
       
-      <div class="section">
+      <!-- METADATA & ACTIONS -->
+      <div class="section" style="margin-top: auto; padding-top: 16px; border-top: 1px solid #1a2f1a;">
         <div class="section-title">Shape Metadata</div>
         <input type="text" class="meta-input" id="shape-name" placeholder="Name (e.g. Services)">
         <input type="text" class="meta-input" id="shape-status" placeholder="Status text (e.g. coming soon)">
@@ -389,14 +561,16 @@
       <div class="section">
         <button class="btn btn-random" onclick="randomize()">🎲 Randomize</button>
         <button class="btn btn-primary" id="add-btn" onclick="addToLandingPage()">🚀 Add to Landing Page</button>
-        <button class="btn btn-secondary" onclick="clearEditMode()" style="font-size: 11px;">+ New Shape</button>
+        <button class="btn btn-secondary" onclick="clearEditMode()">+ New Shape</button>
         <button class="btn btn-secondary" onclick="openSaveModal()">💾 Save Preset</button>
         <button class="btn btn-secondary" onclick="copyConfig()">📋 Copy Config</button>
       </div>
       
-      <div class="section" style="flex: 1; display: flex; flex-direction: column; min-height: 150px;">
-        <div class="section-title">Saved Presets</div>
-        <div class="presets-list" id="presets-list"></div>
+      <div class="section">
+        <div class="section-title collapsible collapsed" onclick="toggleSection(this)">Saved Presets</div>
+        <div class="collapse-content collapsed">
+          <div class="presets-list" id="presets-list"></div>
+        </div>
       </div>
     </div>
     
@@ -420,25 +594,51 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    // Geometries matching landing page
+    // ===== GEOMETRIES =====
     const GEOMETRIES = [
       { id: 'icosahedron', name: 'Icosa', detail: 1 },
       { id: 'dodecahedron', name: 'Dodeca', detail: 0 },
       { id: 'octahedron', name: 'Octa', detail: 0 },
       { id: 'tetrahedron', name: 'Tetra', detail: 0 },
+      { id: 'sphere', name: 'Sphere', detail: 32 },
+      { id: 'torus', name: 'Torus', detail: 0 },
+      { id: 'torusKnot', name: 'Knot', detail: 0 },
+      { id: 'cone', name: 'Cone', detail: 0 },
+      { id: 'cylinder', name: 'Cylinder', detail: 0 },
+      { id: 'box', name: 'Cube', detail: 0 },
+      { id: 'ring', name: 'Ring', detail: 0 },
+      { id: 'capsule', name: 'Capsule', detail: 0 },
     ];
     
-    // Palettes from landing page
+    // ===== TEXTURES =====
+    const TEXTURES = [
+      { id: 'voronoi', name: 'Voronoi' },
+      { id: 'noise', name: 'Noise' },
+      { id: 'gradient', name: 'Gradient' },
+      { id: 'marble', name: 'Marble' },
+      { id: 'stripes', name: 'Stripes' },
+      { id: 'dots', name: 'Dots' },
+    ];
+    
+    // ===== BRAND PALETTES =====
     const PALETTES = [
-      ['#4fd1a5', '#2d8b6f', '#1a5c4a', '#3d9b7f', '#5ae0b4'],
-      ['#c9a962', '#8b6b4a', '#6b8b4a', '#a68b52', '#4a6b3a'],
-      ['#6b9b8a', '#4a7b6a', '#3a6b5a', '#5a8b7a', '#2a5b4a'],
-      ['#8bc9a9', '#6ba989', '#5a9979', '#7ab999', '#4a8969'],
-      ['#a5c97b', '#85a95b', '#75994b', '#95b96b', '#65893b'],
-      ['#7b9bc9', '#5b7ba9', '#4b6b99', '#6b8bb9', '#3b5b89'],
+      // Original otherwind palettes
+      { name: 'Mint', colors: ['#4fd1a5', '#2d8b6f', '#1a5c4a', '#3d9b7f', '#5ae0b4'] },
+      { name: 'Earth', colors: ['#c9a962', '#8b6b4a', '#6b8b4a', '#a68b52', '#4a6b3a'] },
+      { name: 'Sage', colors: ['#6b9b8a', '#4a7b6a', '#3a6b5a', '#5a8b7a', '#2a5b4a'] },
+      { name: 'Spring', colors: ['#8bc9a9', '#6ba989', '#5a9979', '#7ab999', '#4a8969'] },
+      { name: 'Lime', colors: ['#a5c97b', '#85a95b', '#75994b', '#95b96b', '#65893b'] },
+      { name: 'Ocean', colors: ['#7b9bc9', '#5b7ba9', '#4b6b99', '#6b8bb9', '#3b5b89'] },
+      // New brand palettes
+      { name: 'Forest', colors: ['#2d5a3d', '#1a3d2a', '#0f2a1a', '#4a7a5d', '#3d6b4d'] },
+      { name: 'Teal', colors: ['#0d9488', '#14b8a6', '#2dd4bf', '#5eead4', '#99f6e4'] },
+      { name: 'Emerald', colors: ['#059669', '#10b981', '#34d399', '#6ee7b7', '#a7f3d0'] },
+      { name: 'Moss', colors: ['#4a5d4a', '#3d4d3d', '#2d3d2d', '#5a6d5a', '#6a7d6a'] },
+      { name: 'Night', colors: ['#1a2a2a', '#0f1f1f', '#0a1515', '#2a3a3a', '#3a4a4a'] },
+      { name: 'Dawn', colors: ['#fbbf24', '#f59e0b', '#d97706', '#92400e', '#78350f'] },
     ];
     
-    // Landing page shapes (matching shapeConfigs in index.html)
+    // ===== LANDING PAGE SHAPES =====
     const LANDING_SHAPES = [
       { name: 'Services', geo: 'icosahedron', size: 2.2, palette: 0, pos: [-5, 2, -2], rotSpeed: 0.008, status: 'coming soon' },
       { name: 'Contact', geo: 'dodecahedron', size: 1.8, palette: 1, pos: [5, -1, -1], rotSpeed: 0.006, status: 'rowan@otherwind.xyz' },
@@ -449,24 +649,37 @@
       { name: 'News', geo: 'octahedron', size: 0.9, palette: 0, pos: [6.5, 1, 1], rotSpeed: 0.015, status: 'coming soon' },
     ];
     
-    // State
+    // ===== STATE =====
     let state = {
       geometry: 'icosahedron',
+      texture: 'voronoi',
       palette: 0,
       customColors: ['#4fd1a5', '#2d8b6f', '#1a5c4a', '#3d9b7f', '#5ae0b4'],
       cellCount: 15,
       size: 1.8,
       opacity: 85,
       rotationSpeed: 8,
+      rotationAxis: 'y',
+      animMode: 'spin',
+      pulseSpeed: 10,
+      pulseAmount: 10,
       useCustomColors: false,
+      // Effects
+      wireframe: false,
+      wireOpacity: 30,
+      wireColor: '#4ade80',
+      edgeGlow: false,
+      innerGlow: false,
+      depthFade: false,
+      glowStrength: 50,
     };
     
-    let editingShape = null; // Track if editing an existing landing page shape
-    
-    // Three.js
-    let scene, camera, renderer, currentMesh;
+    let editingShape = null;
+    let scene, camera, renderer, currentMesh, wireMesh;
     let mouseX = 0, mouseY = 0;
+    let time = 0;
     
+    // ===== THREE.JS SETUP =====
     function initThree() {
       const container = document.getElementById('canvas-container');
       
@@ -480,7 +693,6 @@
       renderer.setClearColor(0x050505, 1);
       container.appendChild(renderer.domElement);
       
-      // Add some ambient particles like landing page
       addParticles();
       
       document.addEventListener('mousemove', (e) => {
@@ -499,30 +711,41 @@
     }
     
     function addParticles() {
-      const particleCount = 200;
+      const particleCount = 150;
       const particleGeo = new THREE.BufferGeometry();
       const positions = new Float32Array(particleCount * 3);
       
       for (let i = 0; i < particleCount; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 30;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 20 - 5;
+        positions[i * 3] = (Math.random() - 0.5) * 25;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 18;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 18 - 5;
       }
       
       particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
       const particleMat = new THREE.PointsMaterial({
         color: 0x22c55e,
-        size: 0.02,
+        size: 0.015,
         transparent: true,
-        opacity: 0.4,
+        opacity: 0.3,
       });
       
-      const particles = new THREE.Points(particleGeo, particleMat);
-      scene.add(particles);
+      scene.add(new THREE.Points(particleGeo, particleMat));
     }
     
-    // Cell texture - EXACTLY like landing page
-    function createCellTexture(colorPalette, cellCount = 15) {
+    // ===== TEXTURE GENERATORS =====
+    function createTexture(colorPalette, cellCount = 15) {
+      switch(state.texture) {
+        case 'voronoi': return createVoronoiTexture(colorPalette, cellCount);
+        case 'noise': return createNoiseTexture(colorPalette);
+        case 'gradient': return createGradientTexture(colorPalette);
+        case 'marble': return createMarbleTexture(colorPalette);
+        case 'stripes': return createStripesTexture(colorPalette);
+        case 'dots': return createDotsTexture(colorPalette);
+        default: return createVoronoiTexture(colorPalette, cellCount);
+      }
+    }
+    
+    function createVoronoiTexture(colorPalette, cellCount) {
       const canvas = document.createElement('canvas');
       canvas.width = 512;
       canvas.height = 512;
@@ -559,27 +782,176 @@
         }
       }
       
-      ctx.globalAlpha = 0.3;
-      ctx.strokeStyle = '#0a1a12';
-      ctx.lineWidth = 2;
-      cells.forEach(cell => {
-        ctx.beginPath();
-        ctx.arc(cell.x, cell.y, 3, 0, Math.PI * 2);
-        ctx.stroke();
-      });
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
+    
+    function createNoiseTexture(colorPalette) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+      
+      const imageData = ctx.createImageData(512, 512);
+      const data = imageData.data;
+      
+      for (let i = 0; i < data.length; i += 4) {
+        const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        const rgb = hexToRgb(color);
+        const noise = 0.7 + Math.random() * 0.3;
+        data[i] = rgb.r * noise;
+        data[i + 1] = rgb.g * noise;
+        data[i + 2] = rgb.b * noise;
+        data[i + 3] = 255;
+      }
+      
+      ctx.putImageData(imageData, 0, 0);
+      
+      // Blur for smoother noise
+      ctx.filter = 'blur(3px)';
+      ctx.drawImage(canvas, 0, 0);
       
       const texture = new THREE.CanvasTexture(canvas);
       texture.needsUpdate = true;
       return texture;
     }
     
+    function createGradientTexture(colorPalette) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+      
+      const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+      colorPalette.forEach((color, i) => {
+        gradient.addColorStop(i / (colorPalette.length - 1), color);
+      });
+      
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 512, 512);
+      
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
+    
+    function createMarbleTexture(colorPalette) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+      
+      ctx.fillStyle = colorPalette[0];
+      ctx.fillRect(0, 0, 512, 512);
+      
+      for (let i = 1; i < colorPalette.length; i++) {
+        ctx.strokeStyle = colorPalette[i];
+        ctx.lineWidth = 8 + Math.random() * 15;
+        ctx.globalAlpha = 0.4 + Math.random() * 0.3;
+        
+        for (let j = 0; j < 8; j++) {
+          ctx.beginPath();
+          const startX = Math.random() * 512;
+          const startY = Math.random() * 512;
+          ctx.moveTo(startX, startY);
+          
+          for (let k = 0; k < 5; k++) {
+            const cpX = startX + (Math.random() - 0.5) * 400;
+            const cpY = startY + (Math.random() - 0.5) * 400;
+            const endX = Math.random() * 512;
+            const endY = Math.random() * 512;
+            ctx.quadraticCurveTo(cpX, cpY, endX, endY);
+          }
+          ctx.stroke();
+        }
+      }
+      
+      ctx.globalAlpha = 1;
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
+    
+    function createStripesTexture(colorPalette) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+      
+      const stripeWidth = 20 + Math.random() * 30;
+      const angle = Math.random() * Math.PI;
+      
+      ctx.save();
+      ctx.translate(256, 256);
+      ctx.rotate(angle);
+      ctx.translate(-400, -400);
+      
+      for (let i = 0; i < 40; i++) {
+        ctx.fillStyle = colorPalette[i % colorPalette.length];
+        ctx.fillRect(i * stripeWidth, 0, stripeWidth, 800);
+      }
+      
+      ctx.restore();
+      
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
+    
+    function createDotsTexture(colorPalette) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+      
+      ctx.fillStyle = colorPalette[0];
+      ctx.fillRect(0, 0, 512, 512);
+      
+      const dotSize = 8 + Math.random() * 12;
+      const spacing = dotSize * 2.5;
+      
+      for (let x = 0; x < 512; x += spacing) {
+        for (let y = 0; y < 512; y += spacing) {
+          const colorIdx = Math.floor(Math.random() * (colorPalette.length - 1)) + 1;
+          ctx.fillStyle = colorPalette[colorIdx];
+          ctx.globalAlpha = 0.6 + Math.random() * 0.4;
+          ctx.beginPath();
+          ctx.arc(x + Math.random() * 10, y + Math.random() * 10, dotSize * (0.5 + Math.random() * 0.5), 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      
+      ctx.globalAlpha = 1;
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
+    
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : { r: 0, g: 0, b: 0 };
+    }
+    
+    // ===== GEOMETRY CREATION =====
     function createGeometry(geoId, size) {
-      const geo = GEOMETRIES.find(g => g.id === geoId) || GEOMETRIES[0];
       switch(geoId) {
-        case 'icosahedron': return new THREE.IcosahedronGeometry(size, geo.detail);
-        case 'dodecahedron': return new THREE.DodecahedronGeometry(size, geo.detail);
-        case 'octahedron': return new THREE.OctahedronGeometry(size, geo.detail);
-        case 'tetrahedron': return new THREE.TetrahedronGeometry(size, geo.detail);
+        case 'icosahedron': return new THREE.IcosahedronGeometry(size, 1);
+        case 'dodecahedron': return new THREE.DodecahedronGeometry(size, 0);
+        case 'octahedron': return new THREE.OctahedronGeometry(size, 0);
+        case 'tetrahedron': return new THREE.TetrahedronGeometry(size, 0);
+        case 'sphere': return new THREE.SphereGeometry(size, 32, 32);
+        case 'torus': return new THREE.TorusGeometry(size * 0.7, size * 0.3, 16, 48);
+        case 'torusKnot': return new THREE.TorusKnotGeometry(size * 0.6, size * 0.2, 64, 8);
+        case 'cone': return new THREE.ConeGeometry(size * 0.8, size * 1.5, 32);
+        case 'cylinder': return new THREE.CylinderGeometry(size * 0.6, size * 0.6, size * 1.4, 32);
+        case 'box': return new THREE.BoxGeometry(size * 1.2, size * 1.2, size * 1.2);
+        case 'ring': return new THREE.TorusGeometry(size * 0.9, size * 0.15, 8, 48);
+        case 'capsule': return new THREE.CapsuleGeometry(size * 0.5, size * 1, 8, 16);
         default: return new THREE.IcosahedronGeometry(size, 1);
       }
     }
@@ -590,10 +962,16 @@
         currentMesh.geometry.dispose();
         currentMesh.material.dispose();
       }
+      if (wireMesh) {
+        scene.remove(wireMesh);
+        wireMesh.geometry.dispose();
+        wireMesh.material.dispose();
+        wireMesh = null;
+      }
       
-      const colors = state.useCustomColors ? state.customColors : PALETTES[state.palette];
+      const colors = state.useCustomColors ? state.customColors : PALETTES[state.palette].colors;
       const geometry = createGeometry(state.geometry, state.size);
-      const texture = createCellTexture(colors, state.cellCount);
+      const texture = createTexture(colors, state.cellCount);
       
       const material = new THREE.MeshBasicMaterial({
         map: texture,
@@ -603,25 +981,69 @@
       
       currentMesh = new THREE.Mesh(geometry, material);
       scene.add(currentMesh);
+      
+      // Wireframe overlay
+      if (state.wireframe) {
+        const wireGeo = createGeometry(state.geometry, state.size * 1.001);
+        const wireMat = new THREE.MeshBasicMaterial({
+          color: state.wireColor,
+          wireframe: true,
+          transparent: true,
+          opacity: state.wireOpacity / 100,
+        });
+        wireMesh = new THREE.Mesh(wireGeo, wireMat);
+        scene.add(wireMesh);
+      }
     }
     
     function animate() {
       requestAnimationFrame(animate);
+      time += 0.016;
       
       if (currentMesh) {
-        currentMesh.rotation.y += state.rotationSpeed / 1000;
-        currentMesh.rotation.x += mouseY * 0.01;
-        currentMesh.rotation.z += mouseX * 0.005;
+        // Base rotation
+        const speed = state.rotationSpeed / 1000;
+        if (state.rotationAxis === 'y' || state.rotationAxis === 'xy') {
+          currentMesh.rotation.y += speed;
+        }
+        if (state.rotationAxis === 'x' || state.rotationAxis === 'xy') {
+          currentMesh.rotation.x += speed * 0.7;
+        }
+        
+        // Animation modes
+        if (state.animMode === 'pulse') {
+          const pulse = 1 + Math.sin(time * state.pulseSpeed / 10) * (state.pulseAmount / 100);
+          currentMesh.scale.setScalar(pulse);
+        } else if (state.animMode === 'wobble') {
+          currentMesh.rotation.z = Math.sin(time * 2) * 0.1;
+          currentMesh.rotation.x += Math.cos(time * 1.5) * 0.002;
+        } else if (state.animMode === 'float') {
+          currentMesh.position.y = Math.sin(time) * 0.3;
+        } else {
+          currentMesh.scale.setScalar(1);
+          currentMesh.position.y = 0;
+        }
+        
+        // Mouse influence
+        currentMesh.rotation.x += mouseY * 0.008;
+        currentMesh.rotation.z += mouseX * 0.004;
+        
+        // Sync wireframe
+        if (wireMesh) {
+          wireMesh.rotation.copy(currentMesh.rotation);
+          wireMesh.scale.copy(currentMesh.scale);
+          wireMesh.position.copy(currentMesh.position);
+        }
       }
       
-      camera.position.x = mouseX * 0.5;
-      camera.position.y = -mouseY * 0.3;
+      camera.position.x = mouseX * 0.4;
+      camera.position.y = -mouseY * 0.25;
       camera.lookAt(0, 0, 0);
       
       renderer.render(scene, camera);
     }
     
-    // UI Setup
+    // ===== UI SETUP =====
     function setupUI() {
       // Landing page shapes
       const landingList = document.getElementById('landing-shapes');
@@ -634,13 +1056,25 @@
       });
       
       // Geometry grid
-      const shapeGrid = document.getElementById('shape-grid');
+      const geoGrid = document.getElementById('geometry-grid');
       GEOMETRIES.forEach(geo => {
         const btn = document.createElement('button');
-        btn.className = `shape-btn ${state.geometry === geo.id ? 'active' : ''}`;
+        btn.className = `option-btn ${state.geometry === geo.id ? 'active' : ''}`;
         btn.textContent = geo.name;
+        btn.id = `geo-${geo.id}`;
         btn.onclick = () => selectGeometry(geo.id);
-        shapeGrid.appendChild(btn);
+        geoGrid.appendChild(btn);
+      });
+      
+      // Texture grid
+      const texGrid = document.getElementById('texture-grid');
+      TEXTURES.forEach(tex => {
+        const btn = document.createElement('button');
+        btn.className = `option-btn ${state.texture === tex.id ? 'active' : ''}`;
+        btn.textContent = tex.name;
+        btn.id = `tex-${tex.id}`;
+        btn.onclick = () => selectTexture(tex.id);
+        texGrid.appendChild(btn);
       });
       
       // Palette grid
@@ -648,7 +1082,8 @@
       PALETTES.forEach((palette, i) => {
         const btn = document.createElement('button');
         btn.className = `palette-btn ${state.palette === i ? 'active' : ''}`;
-        palette.slice(0, 5).forEach(color => {
+        btn.title = palette.name;
+        palette.colors.slice(0, 5).forEach(color => {
           const div = document.createElement('div');
           div.style.background = color;
           btn.appendChild(div);
@@ -657,34 +1092,69 @@
         paletteGrid.appendChild(btn);
       });
       
-      // Color list
       renderColorList();
-      
-      // Sliders
-      document.getElementById('cell-count').addEventListener('input', (e) => {
-        state.cellCount = parseInt(e.target.value);
-        document.getElementById('cells-value').textContent = state.cellCount;
-        updateShape();
-      });
-      
+      setupSliders();
+      loadPresets();
+    }
+    
+    function setupSliders() {
+      // Size
       document.getElementById('size-slider').addEventListener('input', (e) => {
         state.size = parseFloat(e.target.value);
         document.getElementById('size-value').textContent = state.size.toFixed(1);
         updateShape();
       });
       
+      // Cell count
+      document.getElementById('cell-count').addEventListener('input', (e) => {
+        state.cellCount = parseInt(e.target.value);
+        document.getElementById('cells-value').textContent = state.cellCount;
+        updateShape();
+      });
+      
+      // Opacity
       document.getElementById('opacity-slider').addEventListener('input', (e) => {
         state.opacity = parseInt(e.target.value);
         document.getElementById('opacity-value').textContent = state.opacity + '%';
         updateShape();
       });
       
+      // Rotation speed
       document.getElementById('rotation-speed').addEventListener('input', (e) => {
         state.rotationSpeed = parseInt(e.target.value);
         document.getElementById('rotation-value').textContent = (state.rotationSpeed / 1000).toFixed(3);
       });
       
-      loadPresets();
+      // Wire opacity
+      document.getElementById('wire-opacity').addEventListener('input', (e) => {
+        state.wireOpacity = parseInt(e.target.value);
+        document.getElementById('wire-opacity-value').textContent = state.wireOpacity + '%';
+        updateShape();
+      });
+      
+      // Wire color
+      document.getElementById('wire-color').addEventListener('input', (e) => {
+        state.wireColor = e.target.value;
+        updateShape();
+      });
+      
+      // Glow strength
+      document.getElementById('glow-slider').addEventListener('input', (e) => {
+        state.glowStrength = parseInt(e.target.value);
+        document.getElementById('glow-value').textContent = (state.glowStrength / 100).toFixed(1);
+      });
+      
+      // Pulse speed
+      document.getElementById('pulse-speed').addEventListener('input', (e) => {
+        state.pulseSpeed = parseInt(e.target.value);
+        document.getElementById('pulse-speed-value').textContent = (state.pulseSpeed / 10).toFixed(1);
+      });
+      
+      // Pulse amount
+      document.getElementById('pulse-amount').addEventListener('input', (e) => {
+        state.pulseAmount = parseInt(e.target.value);
+        document.getElementById('pulse-amount-value').textContent = state.pulseAmount + '%';
+      });
     }
     
     function renderColorList() {
@@ -701,6 +1171,55 @@
       });
     }
     
+    // ===== SELECTION FUNCTIONS =====
+    function selectGeometry(id) {
+      state.geometry = id;
+      document.querySelectorAll('#geometry-grid .option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `geo-${id}`);
+      });
+      updateShape();
+    }
+    
+    function selectTexture(id) {
+      state.texture = id;
+      document.querySelectorAll('#texture-grid .option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `tex-${id}`);
+      });
+      updateShape();
+    }
+    
+    function selectPalette(index) {
+      state.palette = index;
+      state.useCustomColors = false;
+      state.customColors = [...PALETTES[index].colors];
+      document.querySelectorAll('.palette-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+      renderColorList();
+      updateShape();
+    }
+    
+    function setRotationAxis(axis) {
+      state.rotationAxis = axis;
+      ['y', 'x', 'xy'].forEach(a => {
+        document.getElementById(`axis-${a}`).classList.toggle('active', a === axis);
+      });
+    }
+    
+    function setAnimMode(mode) {
+      state.animMode = mode;
+      ['spin', 'pulse', 'wobble', 'float'].forEach(m => {
+        document.getElementById(`anim-${m}`).classList.toggle('active', m === mode);
+      });
+    }
+    
+    function toggleEffect(effect) {
+      state[effect] = !state[effect];
+      document.getElementById(`toggle-${effect}`).classList.toggle('active', state[effect]);
+      updateShape();
+    }
+    
+    // ===== COLOR FUNCTIONS =====
     function addColor() {
       const hue = Math.random() * 360;
       state.customColors.push(hslToHex(hue, 60, 50));
@@ -724,27 +1243,32 @@
       updateShape();
     }
     
-    function selectGeometry(id) {
-      state.geometry = id;
-      document.querySelectorAll('.shape-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', GEOMETRIES[i].id === id);
-      });
-      updateShape();
+    function hslToHex(h, s, l) {
+      s /= 100; l /= 100;
+      const a = s * Math.min(l, 1 - l);
+      const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+      };
+      return `#${f(0)}${f(8)}${f(4)}`;
     }
     
-    function selectPalette(index) {
-      state.palette = index;
-      state.useCustomColors = false;
-      state.customColors = [...PALETTES[index]];
-      document.querySelectorAll('.palette-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
-      });
-      renderColorList();
-      updateShape();
+    // ===== UI HELPERS =====
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(`tab-${tabId}`).classList.add('active');
     }
     
+    function toggleSection(el) {
+      el.classList.toggle('collapsed');
+      el.nextElementSibling.classList.toggle('collapsed');
+    }
+    
+    // ===== LANDING PAGE FUNCTIONS =====
     function loadLandingShape(shape) {
-      // Enter edit mode for this shape
       editingShape = shape.name;
       
       state.geometry = shape.geo;
@@ -752,35 +1276,36 @@
       state.palette = shape.palette;
       state.rotationSpeed = Math.round(shape.rotSpeed * 1000);
       state.useCustomColors = false;
-      state.customColors = [...PALETTES[shape.palette]];
+      state.customColors = [...PALETTES[shape.palette].colors];
+      state.texture = 'voronoi'; // Landing page uses voronoi
       
       // Update UI
-      document.querySelectorAll('.shape-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', GEOMETRIES[i].id === shape.geo);
+      document.querySelectorAll('#geometry-grid .option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `geo-${shape.geo}`);
+      });
+      document.querySelectorAll('#texture-grid .option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === 'tex-voronoi');
       });
       document.querySelectorAll('.palette-btn').forEach((btn, i) => {
         btn.classList.toggle('active', i === shape.palette);
       });
+      
       document.getElementById('size-slider').value = shape.size;
       document.getElementById('size-value').textContent = shape.size.toFixed(1);
       document.getElementById('rotation-speed').value = state.rotationSpeed;
       document.getElementById('rotation-value').textContent = shape.rotSpeed.toFixed(3);
       
-      // Populate metadata fields
       document.getElementById('shape-name').value = shape.name;
       document.getElementById('shape-status').value = shape.status || '';
       document.getElementById('pos-x').value = shape.pos[0];
       document.getElementById('pos-y').value = shape.pos[1];
       document.getElementById('pos-z').value = shape.pos[2];
       
-      // Highlight which shape is being edited
       document.querySelectorAll('.landing-shape-btn').forEach(btn => {
         btn.classList.toggle('editing', btn.textContent === shape.name);
       });
       
-      // Update button text
       updateActionButtons();
-      
       renderColorList();
       updateShape();
       showToast(`Editing: ${shape.name}`);
@@ -789,7 +1314,7 @@
     function updateActionButtons() {
       const addBtn = document.getElementById('add-btn');
       if (editingShape) {
-        addBtn.innerHTML = '✏️ Update "' + editingShape + '" on Landing Page';
+        addBtn.innerHTML = `✏️ Update "${editingShape}"`;
         addBtn.onclick = updateOnLandingPage;
       } else {
         addBtn.innerHTML = '🚀 Add to Landing Page';
@@ -799,94 +1324,14 @@
     
     function clearEditMode() {
       editingShape = null;
-      document.querySelectorAll('.landing-shape-btn').forEach(btn => {
-        btn.classList.remove('editing');
-      });
+      document.querySelectorAll('.landing-shape-btn').forEach(btn => btn.classList.remove('editing'));
       document.getElementById('shape-name').value = '';
       document.getElementById('shape-status').value = '';
       document.getElementById('pos-x').value = 0;
       document.getElementById('pos-y').value = 0;
       document.getElementById('pos-z').value = 0;
       updateActionButtons();
-    }
-    
-    async function updateOnLandingPage() {
-      const config = generateConfig();
-      const configLine = formatConfigLine(config);
-      
-      await navigator.clipboard.writeText(configLine);
-      showUpdateModal(configLine, editingShape);
-    }
-    
-    function formatConfigLine(config) {
-      const paletteStr = config.customPalette 
-        ? JSON.stringify(config.customPalette)
-        : config.palette;
-      
-      return `{ geo: '${config.geo}', size: ${config.size}, pos: [${config.pos.join(', ')}], palette: ${typeof paletteStr === 'number' ? paletteStr : "'" + paletteStr + "'"}, rotSpeed: ${config.rotSpeed}, name: '${config.name}', status: '${config.status}' }`;
-    }
-    
-    function showUpdateModal(configLine, shapeName) {
-      const modal = document.createElement('div');
-      modal.className = 'modal-overlay active';
-      modal.id = 'update-modal';
-      modal.innerHTML = `
-        <div class="modal" style="width: 550px;">
-          <div class="modal-title">Update "${shapeName}"</div>
-          <p style="color: #888; font-size: 13px; margin-bottom: 15px;">
-            Config copied! Replace the existing "${shapeName}" line in <code style="color: #22c55e;">shapeConfigs</code>:
-          </p>
-          <div class="config-output" style="margin-bottom: 15px;">${configLine}</div>
-          <p style="color: #666; font-size: 12px; margin-bottom: 15px;">
-            Find the line with <code>name: '${shapeName}'</code> and replace the whole object.
-          </p>
-          <div class="modal-buttons">
-            <button class="btn btn-secondary" onclick="document.getElementById('update-modal').remove()">Close</button>
-            <button class="btn btn-secondary" onclick="clearEditMode(); document.getElementById('update-modal').remove();">New Shape</button>
-            <button class="btn btn-primary" onclick="window.open('https://github.com/rowanclawd-alt/otherwind/edit/main/index.html', '_blank')">Open on GitHub</button>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(modal);
-      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-    }
-    
-    function randomize() {
-      state.geometry = GEOMETRIES[Math.floor(Math.random() * GEOMETRIES.length)].id;
-      state.palette = Math.floor(Math.random() * PALETTES.length);
-      state.useCustomColors = false;
-      state.customColors = [...PALETTES[state.palette]];
-      state.cellCount = 8 + Math.floor(Math.random() * 25);
-      state.size = 1 + Math.random() * 1.5;
-      state.opacity = 70 + Math.floor(Math.random() * 30);
-      state.rotationSpeed = 3 + Math.floor(Math.random() * 15);
-      
-      document.querySelectorAll('.shape-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', GEOMETRIES[i].id === state.geometry);
-      });
-      document.querySelectorAll('.palette-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', i === state.palette);
-      });
-      
-      document.getElementById('cell-count').value = state.cellCount;
-      document.getElementById('cells-value').textContent = state.cellCount;
-      document.getElementById('size-slider').value = state.size;
-      document.getElementById('size-value').textContent = state.size.toFixed(1);
-      document.getElementById('opacity-slider').value = state.opacity;
-      document.getElementById('opacity-value').textContent = state.opacity + '%';
-      document.getElementById('rotation-speed').value = state.rotationSpeed;
-      document.getElementById('rotation-value').textContent = (state.rotationSpeed / 1000).toFixed(3);
-      
-      renderColorList();
-      updateShape();
-      showToast('Randomized! 🎲');
-    }
-    
-    function copyConfig() {
-      const config = generateConfig();
-      const configStr = JSON.stringify(config, null, 2);
-      navigator.clipboard.writeText(configStr);
-      showToast('Config copied! 📋');
+      showToast('New shape mode');
     }
     
     function generateConfig() {
@@ -905,50 +1350,68 @@
         rotSpeed: state.rotationSpeed / 1000,
         name: name,
         status: status,
+        // Extended config for new features (backwards compatible)
+        texture: state.texture !== 'voronoi' ? state.texture : undefined,
+        cellCount: state.cellCount !== 15 ? state.cellCount : undefined,
       };
+    }
+    
+    function formatConfigLine(config) {
+      let parts = [
+        `geo: '${config.geo}'`,
+        `size: ${config.size}`,
+        `pos: [${config.pos.join(', ')}]`,
+        `palette: ${typeof config.palette === 'number' ? config.palette : "'" + config.palette + "'"}`,
+        `rotSpeed: ${config.rotSpeed}`,
+        `name: '${config.name}'`,
+        `status: '${config.status}'`,
+      ];
+      
+      if (config.texture) parts.push(`texture: '${config.texture}'`);
+      if (config.cellCount) parts.push(`cellCount: ${config.cellCount}`);
+      
+      return `{ ${parts.join(', ')} }`;
     }
     
     async function addToLandingPage() {
       const name = document.getElementById('shape-name').value.trim();
       if (!name) {
-        showToast('Please enter a shape name first!');
+        showToast('Enter a shape name first!');
         document.getElementById('shape-name').focus();
         return;
       }
       
       const config = generateConfig();
-      
-      // Format as JS object for shapeConfigs array
-      const paletteStr = config.customPalette 
-        ? JSON.stringify(config.customPalette)
-        : config.palette;
-      
-      const configLine = `{ geo: '${config.geo}', size: ${config.size}, pos: [${config.pos.join(', ')}], palette: ${typeof paletteStr === 'number' ? paletteStr : "'" + paletteStr + "'"}, rotSpeed: ${config.rotSpeed}, name: '${config.name}', status: '${config.status}' }`;
-      
-      // Copy to clipboard
+      const configLine = formatConfigLine(config);
       await navigator.clipboard.writeText(configLine);
       
-      // Show modal with instructions
-      showAddModal(configLine, config.name);
+      showConfigModal('Add Shape', configLine, `Add this to the <code>shapeConfigs</code> array in index.html:`);
     }
     
-    function showAddModal(configLine, shapeName) {
+    async function updateOnLandingPage() {
+      const config = generateConfig();
+      const configLine = formatConfigLine(config);
+      await navigator.clipboard.writeText(configLine);
+      
+      showConfigModal(`Update "${editingShape}"`, configLine, `Replace the existing "${editingShape}" entry in <code>shapeConfigs</code>:`);
+    }
+    
+    function showConfigModal(title, configLine, instruction) {
+      const existing = document.getElementById('config-modal');
+      if (existing) existing.remove();
+      
       const modal = document.createElement('div');
       modal.className = 'modal-overlay active';
-      modal.id = 'add-modal';
+      modal.id = 'config-modal';
       modal.innerHTML = `
-        <div class="modal" style="width: 500px;">
-          <div class="modal-title">Add "${shapeName}" to Landing Page</div>
-          <p style="color: #888; font-size: 13px; margin-bottom: 15px;">
-            Config copied to clipboard! Add this line to <code style="color: #22c55e;">shapeConfigs</code> array in index.html:
-          </p>
-          <div class="config-output" style="margin-bottom: 15px;">${configLine}</div>
-          <p style="color: #666; font-size: 12px; margin-bottom: 15px;">
-            Or tell Rowan: "Add shape ${shapeName} to landing page" and paste the config.
-          </p>
+        <div class="modal" style="width: 520px;">
+          <div class="modal-title">${title}</div>
+          <p style="color: #888; font-size: 12px; margin-bottom: 12px;">${instruction}</p>
+          <div class="config-output" style="margin-bottom: 14px;">${configLine}</div>
+          <p style="color: #555; font-size: 11px; margin-bottom: 14px;">Config copied to clipboard ✓</p>
           <div class="modal-buttons">
-            <button class="btn btn-secondary" onclick="document.getElementById('add-modal').remove()">Close</button>
-            <button class="btn btn-primary" onclick="window.open('https://github.com/rowanclawd-alt/otherwind/edit/main/index.html', '_blank')">Open index.html on GitHub</button>
+            <button class="btn btn-secondary" onclick="document.getElementById('config-modal').remove()">Close</button>
+            <button class="btn btn-primary" onclick="window.open('https://github.com/rowanclawd-alt/otherwind/edit/main/index.html', '_blank')">Edit on GitHub</button>
           </div>
         </div>
       `;
@@ -956,18 +1419,52 @@
       modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
     }
     
-    function hslToHex(h, s, l) {
-      s /= 100; l /= 100;
-      const a = s * Math.min(l, 1 - l);
-      const f = n => {
-        const k = (n + h / 30) % 12;
-        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-        return Math.round(255 * color).toString(16).padStart(2, '0');
-      };
-      return `#${f(0)}${f(8)}${f(4)}`;
+    function copyConfig() {
+      const config = generateConfig();
+      navigator.clipboard.writeText(JSON.stringify(config, null, 2));
+      showToast('Config copied! 📋');
     }
     
-    // Presets
+    // ===== RANDOMIZE =====
+    function randomize() {
+      state.geometry = GEOMETRIES[Math.floor(Math.random() * GEOMETRIES.length)].id;
+      state.texture = TEXTURES[Math.floor(Math.random() * TEXTURES.length)].id;
+      state.palette = Math.floor(Math.random() * PALETTES.length);
+      state.useCustomColors = false;
+      state.customColors = [...PALETTES[state.palette].colors];
+      state.cellCount = 8 + Math.floor(Math.random() * 30);
+      state.size = 1 + Math.random() * 2;
+      state.opacity = 60 + Math.floor(Math.random() * 40);
+      state.rotationSpeed = 3 + Math.floor(Math.random() * 20);
+      state.wireframe = Math.random() > 0.7;
+      
+      // Update all UI
+      document.querySelectorAll('#geometry-grid .option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `geo-${state.geometry}`);
+      });
+      document.querySelectorAll('#texture-grid .option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `tex-${state.texture}`);
+      });
+      document.querySelectorAll('.palette-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === state.palette);
+      });
+      
+      document.getElementById('size-slider').value = state.size;
+      document.getElementById('size-value').textContent = state.size.toFixed(1);
+      document.getElementById('cell-count').value = state.cellCount;
+      document.getElementById('cells-value').textContent = state.cellCount;
+      document.getElementById('opacity-slider').value = state.opacity;
+      document.getElementById('opacity-value').textContent = state.opacity + '%';
+      document.getElementById('rotation-speed').value = state.rotationSpeed;
+      document.getElementById('rotation-value').textContent = (state.rotationSpeed / 1000).toFixed(3);
+      document.getElementById('toggle-wireframe').classList.toggle('active', state.wireframe);
+      
+      renderColorList();
+      updateShape();
+      showToast('Randomized! 🎲');
+    }
+    
+    // ===== PRESETS =====
     function openSaveModal() {
       document.getElementById('save-modal').classList.add('active');
       document.getElementById('preset-name').focus();
@@ -982,9 +1479,9 @@
       const name = document.getElementById('preset-name').value.trim();
       if (!name) { showToast('Enter a name'); return; }
       
-      const presets = JSON.parse(localStorage.getItem('otherwind-shape-presets') || '[]');
+      const presets = JSON.parse(localStorage.getItem('otherwind-shape-presets-v2') || '[]');
       presets.push({ id: Date.now(), name, config: { ...state } });
-      localStorage.setItem('otherwind-shape-presets', JSON.stringify(presets));
+      localStorage.setItem('otherwind-shape-presets-v2', JSON.stringify(presets));
       
       closeSaveModal();
       loadPresets();
@@ -992,10 +1489,10 @@
     }
     
     function loadPresets() {
-      const presets = JSON.parse(localStorage.getItem('otherwind-shape-presets') || '[]');
+      const presets = JSON.parse(localStorage.getItem('otherwind-shape-presets-v2') || '[]');
       const list = document.getElementById('presets-list');
       list.innerHTML = presets.length === 0 
-        ? '<div style="color: #333; font-size: 11px; text-align: center; padding: 20px;">No presets yet</div>'
+        ? '<div style="color: #333; font-size: 10px; text-align: center; padding: 15px;">No presets saved</div>'
         : '';
       
       presets.forEach(preset => {
@@ -1014,27 +1511,32 @@
     }
     
     function loadPreset(id) {
-      const presets = JSON.parse(localStorage.getItem('otherwind-shape-presets') || '[]');
+      const presets = JSON.parse(localStorage.getItem('otherwind-shape-presets-v2') || '[]');
       const preset = presets.find(p => p.id === id);
       if (!preset) return;
       
-      state = { ...preset.config };
+      Object.assign(state, preset.config);
       
-      document.querySelectorAll('.shape-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', GEOMETRIES[i].id === state.geometry);
+      // Update all UI elements
+      document.querySelectorAll('#geometry-grid .option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `geo-${state.geometry}`);
+      });
+      document.querySelectorAll('#texture-grid .option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `tex-${state.texture}`);
       });
       document.querySelectorAll('.palette-btn').forEach((btn, i) => {
         btn.classList.toggle('active', i === state.palette);
       });
       
-      document.getElementById('cell-count').value = state.cellCount;
-      document.getElementById('cells-value').textContent = state.cellCount;
       document.getElementById('size-slider').value = state.size;
       document.getElementById('size-value').textContent = state.size.toFixed(1);
+      document.getElementById('cell-count').value = state.cellCount;
+      document.getElementById('cells-value').textContent = state.cellCount;
       document.getElementById('opacity-slider').value = state.opacity;
       document.getElementById('opacity-value').textContent = state.opacity + '%';
       document.getElementById('rotation-speed').value = state.rotationSpeed;
       document.getElementById('rotation-value').textContent = (state.rotationSpeed / 1000).toFixed(3);
+      document.getElementById('toggle-wireframe').classList.toggle('active', state.wireframe);
       
       renderColorList();
       updateShape();
@@ -1042,8 +1544,8 @@
     }
     
     function deletePreset(id) {
-      const presets = JSON.parse(localStorage.getItem('otherwind-shape-presets') || '[]');
-      localStorage.setItem('otherwind-shape-presets', JSON.stringify(presets.filter(p => p.id !== id)));
+      const presets = JSON.parse(localStorage.getItem('otherwind-shape-presets-v2') || '[]');
+      localStorage.setItem('otherwind-shape-presets-v2', JSON.stringify(presets.filter(p => p.id !== id)));
       loadPresets();
       showToast('Deleted');
     }
@@ -1055,6 +1557,7 @@
       setTimeout(() => toast.classList.remove('show'), 2000);
     }
     
+    // ===== INIT =====
     document.addEventListener('DOMContentLoaded', () => { setupUI(); initThree(); });
     document.getElementById('preset-name').addEventListener('keypress', (e) => { if (e.key === 'Enter') savePreset(); });
   </script>
