@@ -127,15 +127,39 @@
             padding: 0.75rem;
             margin-bottom: 0.5rem;
             transition: border-color 0.2s;
+            position: relative;
         }
 
         .card:hover {
             border-color: #333;
         }
 
+        .card-delete {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: transparent;
+            border: none;
+            color: #444;
+            cursor: pointer;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.4rem;
+            opacity: 0;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        .card:hover .card-delete {
+            opacity: 1;
+        }
+
+        .card-delete:hover {
+            color: #ff4444;
+        }
+
         .card-title {
             font-size: 0.8rem;
             margin-bottom: 0.25rem;
+            padding-right: 1.5rem;
         }
 
         .card-desc {
@@ -219,24 +243,44 @@
         // === TASK DATA ===
         const tasks = {
             active: [
-                { title: 'DNS Propagation', desc: 'Waiting for otherwind.xyz DNS to propagate globally', date: '2026-01-27' },
-                { title: 'Email Setup', desc: 'Monitoring rowan@otherwind.xyz inbox', date: '2026-01-27' },
-                { title: 'Kanban Board', desc: 'Building this task board', date: '2026-01-27' }
+                { id: 'active-1', title: 'DNS Propagation', desc: 'Waiting for otherwind.xyz DNS to propagate globally', date: '2026-01-27' },
+                { id: 'active-2', title: 'Email Setup', desc: 'Monitoring rowan@otherwind.xyz inbox', date: '2026-01-27' },
+                { id: 'active-3', title: 'Kanban Board', desc: 'Building this task board', date: '2026-01-27' }
             ],
             monitoring: [
-                { title: 'Otherwind Email', desc: 'Checking inbox every 6 hours + heartbeat', date: '2026-01-27' },
-                { title: 'Heartbeat Tasks', desc: 'Periodic system checks when active', date: '2026-01-27' }
+                { id: 'monitoring-1', title: 'Otherwind Email', desc: 'Checking inbox every 6 hours + heartbeat', date: '2026-01-27' },
+                { id: 'monitoring-2', title: 'Heartbeat Tasks', desc: 'Periodic system checks when active', date: '2026-01-27' }
             ],
             requests: [
-                { title: 'Metalend Call Prep', desc: 'Research and prep notes for bizdev call', date: '2026-01-27' }
+                { id: 'requests-1', title: 'Metalend Call Prep', desc: 'Research and prep notes for bizdev call', date: '2026-01-27' }
             ],
             completed: [
-                { title: 'GitHub Pages Setup', desc: 'Site deployed to rowanclawd-alt.github.io/otherwind', date: '2026-01-27' },
-                { title: 'Porkbun DNS Config', desc: 'A records + CNAME configured for GitHub Pages', date: '2026-01-27' },
-                { title: 'Email Hosting', desc: 'rowan@otherwind.xyz created via Porkbun', date: '2026-01-27' },
-                { title: 'Email Protocol', desc: 'Security rules + monitoring setup documented', date: '2026-01-27' }
+                { id: 'completed-1', title: 'GitHub Pages Setup', desc: 'Site deployed to rowanclawd-alt.github.io/otherwind', date: '2026-01-27' },
+                { id: 'completed-2', title: 'Porkbun DNS Config', desc: 'A records + CNAME configured for GitHub Pages', date: '2026-01-27' },
+                { id: 'completed-3', title: 'Email Hosting', desc: 'rowan@otherwind.xyz created via Porkbun', date: '2026-01-27' },
+                { id: 'completed-4', title: 'Email Protocol', desc: 'Security rules + monitoring setup documented', date: '2026-01-27' }
             ]
         };
+
+        // === DELETED TASKS (localStorage) ===
+        function getDeletedTasks() {
+            const deleted = localStorage.getItem('board-deleted');
+            return deleted ? JSON.parse(deleted) : [];
+        }
+
+        function deleteTask(taskId) {
+            const deleted = getDeletedTasks();
+            if (!deleted.includes(taskId)) {
+                deleted.push(taskId);
+                localStorage.setItem('board-deleted', JSON.stringify(deleted));
+            }
+            renderBoard();
+        }
+
+        function getVisibleTasks(columnKey) {
+            const deleted = getDeletedTasks();
+            return tasks[columnKey].filter(task => !deleted.includes(task.id));
+        }
 
         // === RENDER ===
         function renderBoard() {
@@ -248,21 +292,24 @@
                 { key: 'completed', label: 'Completed', class: 'completed' }
             ];
 
-            board.innerHTML = columns.map(col => `
+            board.innerHTML = columns.map(col => {
+                const visibleTasks = getVisibleTasks(col.key);
+                return `
                 <div class="column ${col.class}">
                     <div class="column-header">
                         <span>${col.label}</span>
-                        <span class="count">${tasks[col.key].length}</span>
+                        <span class="count">${visibleTasks.length}</span>
                     </div>
-                    ${tasks[col.key].map(task => `
+                    ${visibleTasks.map(task => `
                         <div class="card">
+                            <button class="card-delete" onclick="deleteTask('${task.id}')" title="Remove">×</button>
                             <div class="card-title">${task.title}</div>
                             <div class="card-desc">${task.desc}</div>
                             ${task.date ? `<div class="card-meta">${task.date}</div>` : ''}
                         </div>
                     `).join('')}
                 </div>
-            `).join('');
+            `}).join('');
 
             document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
         }
