@@ -191,7 +191,13 @@
         .column.completed .card { opacity: 0.6; }
 
         /* Collapsed columns */
+        .column.collapsed { min-height: auto; }
         .column.collapsed .cards-container { display: none; }
+        .column.collapsed .column-header { 
+            margin-bottom: 0; 
+            padding-bottom: 0.5rem;
+            border-bottom: none;
+        }
         .column-header { cursor: pointer; }
         .column-header .toggle { 
             margin-left: 0.5rem; 
