@@ -207,10 +207,10 @@
             margin-bottom: 2rem;
         }
         
-        /* Stats - compact */
+        /* Stats - compact 4-col */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
             margin: 1.5rem 0;
         }
@@ -245,10 +245,10 @@
             font-style: italic;
         }
         
-        /* Cards Grid - compact */
+        /* Cards Grid - compact, always fill */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
         }
         
@@ -289,9 +289,9 @@
         
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         
         .dashboard-card {
@@ -423,24 +423,51 @@
             opacity: 0.5;
         }
         
-        /* ROI Comparison - compact */
-        .roi-comparison {
+        /* Agent fleet */
+        .agent-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(79, 209, 165, 0.08);
+        }
+        
+        .agent-item:last-child { border-bottom: none; }
+        
+        .agent-status {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        
+        .agent-status.online { background: #4fd1a5; }
+        .agent-status.idle { background: #fbbf24; }
+        
+        .agent-name {
+            font-size: 0.75rem;
+            color: var(--fg);
+            flex: 1;
+        }
+        
+        .agent-stat {
+            font-size: 0.65rem;
+            color: var(--accent);
+        }
+        
+        /* ROI Comparison - inline compact */
+        .roi-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
         }
         
         .roi-card {
             background: var(--bg-card);
             border: 1px solid rgba(79, 209, 165, 0.15);
             border-radius: 4px;
-            padding: 1.5rem;
-            flex: 1;
-            min-width: 250px;
-            max-width: 320px;
+            padding: 1rem 1.25rem;
             backdrop-filter: blur(10px);
         }
         
@@ -452,15 +479,15 @@
         .roi-card h3 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
         }
         
         .roi-cost {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
         }
         
         .roi-card ul {
@@ -468,11 +495,11 @@
         }
         
         .roi-card li {
-            padding: 0.3rem 0;
-            padding-left: 1rem;
+            padding: 0.15rem 0;
+            padding-left: 0.9rem;
             position: relative;
             color: var(--fg-muted);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
         
         .roi-card li::before {
@@ -481,12 +508,13 @@
             left: 0;
             color: var(--accent);
             opacity: 0.6;
+            font-size: 0.65rem;
         }
         
         .roi-vs {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--fg-muted);
         }
         
@@ -657,48 +685,48 @@
             background: #5ae0b4;
         }
         
-        /* Case Studies - compact grid */
+        /* Case Studies - compact 2x2 grid */
         .case-studies-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
+            gap: 1rem;
         }
         
         .case-study {
             background: var(--bg-card);
             border-left: 2px solid var(--accent);
-            padding: 1.25rem 1.5rem;
+            padding: 1rem 1.25rem;
             border-radius: 0 4px 4px 0;
             backdrop-filter: blur(10px);
         }
         
         .case-study .label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--accent);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
         
         .case-study h3 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.15rem;
+            font-size: 1rem;
             font-weight: 400;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.4rem;
         }
         
         .case-study p {
             color: var(--fg-muted);
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            line-height: 1.5;
+            margin-bottom: 0.3rem;
+            font-size: 0.75rem;
+            line-height: 1.4;
         }
         
         .case-study .result {
             color: var(--accent);
             font-weight: 500;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
         
         /* Process - inline */
@@ -787,21 +815,17 @@
         }
         
         /* Responsive */
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
             .dashboard-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .tiers-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .process-steps {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .case-studies-grid {
-                grid-template-columns: 1fr;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -819,8 +843,21 @@
                 min-height: 80vh;
             }
             
-            .dashboard-grid {
+            .dashboard-grid,
+            .stats-grid,
+            .cards-grid,
+            .case-studies-grid,
+            .tiers-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .roi-comparison {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .roi-vs {
+                text-align: center;
             }
             
             .comparison-header,
@@ -831,7 +868,7 @@
             }
             
             .process-steps {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
             
@@ -1042,11 +1079,40 @@
                 </div>
                 <div class="task-item">
                     <div class="task-check"></div>
-                    <span class="task-text">Schedule Q1 planning session</span>
+                    <span class="task-text">Follow up with leads</span>
                 </div>
-                <div class="task-item">
-                    <div class="task-check"></div>
-                    <span class="task-text">Follow up with leads (batch)</span>
+            </div>
+        </div>
+        
+        <!-- Multi-Agent Orchestration -->
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <div class="dot green"></div>
+                <div class="dot yellow"></div>
+                <div class="dot red"></div>
+                <span>fleet.otherwind.xyz</span>
+            </div>
+            <div class="dashboard-body">
+                <div class="dashboard-title">Agent Fleet</div>
+                <div class="agent-item">
+                    <div class="agent-status online"></div>
+                    <span class="agent-name">Sales Agent</span>
+                    <span class="agent-stat">47 leads today</span>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-status online"></div>
+                    <span class="agent-name">Support Agent</span>
+                    <span class="agent-stat">23 tickets</span>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-status online"></div>
+                    <span class="agent-name">Research Agent</span>
+                    <span class="agent-stat">3 reports</span>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-status idle"></div>
+                    <span class="agent-name">Ops Agent</span>
+                    <span class="agent-stat">standby</span>
                 </div>
             </div>
         </div>
