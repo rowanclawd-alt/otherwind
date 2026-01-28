@@ -628,6 +628,18 @@
             justify-content: space-between;
         }
 
+        .live-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+        .live-dot.green { background: var(--green); }
+        .live-dot.red { background: var(--red); }
+        .live-dot.yellow { background: var(--yellow); }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .kanban { grid-template-columns: repeat(3, 1fr); }
@@ -780,6 +792,7 @@
                 </section>
 
                 <footer>
+                    <span id="live-status"></span>
                     <span>last updated: <span id="last-updated"></span></span>
                     <span>otherwind.xyz</span>
                 </footer>
@@ -1144,6 +1157,43 @@
             updateTime();
         }
 
+        // === LIVE DATA (auto-refresh, no AI needed) ===
+        let liveData = null;
+        
+        async function fetchLiveData() {
+            try {
+                const res = await fetch('board-live.json?t=' + Date.now());
+                if (res.ok) {
+                    liveData = await res.json();
+                    renderLiveStatus();
+                }
+            } catch (e) {
+                console.log('Live data fetch failed:', e);
+            }
+        }
+        
+        function renderLiveStatus() {
+            if (!liveData) return;
+            const el = document.getElementById('live-status');
+            if (!el) return;
+            
+            const n8nClass = liveData.system?.n8n === 'healthy' ? 'green' : 'red';
+            const siteClass = liveData.sites?.otherwind?.status === 'up' ? 'green' : 'red';
+            const syncTime = liveData.updated ? new Date(liveData.updated).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'}) : '--';
+            
+            el.innerHTML = `
+                <span class="live-dot ${n8nClass}"></span> n8n
+                <span class="live-dot ${siteClass}" style="margin-left: 1rem;"></span> site
+                <span style="margin-left: 1rem; opacity: 0.5;">synced ${syncTime}</span>
+            `;
+        }
+        
+        // Auto-refresh live data every 5 minutes
+        function startLiveUpdates() {
+            fetchLiveData();
+            setInterval(fetchLiveData, 5 * 60 * 1000);
+        }
+
         // === INIT ===
         document.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('auth-overlay');
@@ -1155,6 +1205,7 @@
                 overlay.classList.add('hidden');
                 content.style.display = 'block';
                 renderAll();
+                startLiveUpdates();
                 setInterval(updateTime, 60000);
             }
 
@@ -1164,6 +1215,7 @@
                         overlay.classList.add('hidden');
                         content.style.display = 'block';
                         renderAll();
+                        startLiveUpdates();
                         setInterval(updateTime, 60000);
                     } else {
                         error.textContent = 'incorrect';
