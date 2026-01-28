@@ -728,6 +728,10 @@
         function onCanvasClick(e) {
             if (isExpanded) return;
             
+            // Reliable mobile detection - doesn't rely on touch events flag
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                             (window.matchMedia && window.matchMedia('(pointer: coarse)').matches && window.matchMedia('(hover: none)').matches);
+            
             raycaster.setFromCamera(mouse, camera);
             const intersects = raycaster.intersectObjects(interactiveShapes);
             
@@ -737,7 +741,7 @@
                 
                 // Handle Contact shape - copy email
                 if (obj.userData.name === 'Contact') {
-                    if (isTouchDevice) {
+                    if (isMobile) {
                         const timeSinceFirstTap = Date.now() - (obj.userData.firstTapTime || 0);
                         if (stickyHoveredShape === obj && obj.userData.readyToExpand && timeSinceFirstTap >= 250) {
                             copyEmail();
@@ -753,7 +757,7 @@
                 
                 if (content) {
                     // Touch: require shape to already be selected (hovered) before expanding
-                    if (isTouchDevice) {
+                    if (isMobile) {
                         const timeSinceFirstTap = Date.now() - (obj.userData.firstTapTime || 0);
                         if (stickyHoveredShape === obj && obj.userData.readyToExpand && timeSinceFirstTap >= 250) {
                             expandShape(obj, content);
