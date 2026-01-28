@@ -1021,9 +1021,8 @@
         let calendarData = { todos: [], updatedAt: null };
         let gcalEvents = [];
         
-        const GCAL_URL = 'https://calendar.google.com/calendar/ical/nadim%40centrifuge.io/private-e94274283a3b45d850df2187f9cf5b30/basic.ics';
-        
         async function fetchCalendar() {
+            // Fetch Rowan's calendar items
             try {
                 const res = await fetch('calendar-data.json?t=' + Date.now());
                 if (res.ok) {
@@ -1033,56 +1032,18 @@
                 console.log('Calendar fetch failed:', e);
             }
             
-            // Also fetch gcal
+            // Fetch gcal events (pre-synced by Rowan)
             try {
-                const gcalRes = await fetch(GCAL_URL);
+                const gcalRes = await fetch('gcal-events.json?t=' + Date.now());
                 if (gcalRes.ok) {
-                    const icsText = await gcalRes.text();
-                    gcalEvents = parseICS(icsText);
+                    const data = await gcalRes.json();
+                    gcalEvents = data.events || [];
                 }
             } catch (e) {
-                console.log('Gcal fetch failed (CORS expected):', e);
+                console.log('Gcal fetch failed:', e);
             }
             
             return true;
-        }
-        
-        function parseICS(icsText) {
-            const events = [];
-            const lines = icsText.split(/\r?\n/);
-            let event = null;
-            
-            for (let line of lines) {
-                if (line === 'BEGIN:VEVENT') {
-                    event = {};
-                } else if (line === 'END:VEVENT' && event) {
-                    if (event.start && event.summary) {
-                        events.push(event);
-                    }
-                    event = null;
-                } else if (event) {
-                    if (line.startsWith('DTSTART')) {
-                        const val = line.split(':').pop();
-                        event.start = parseICSDate(val);
-                    } else if (line.startsWith('DTEND')) {
-                        const val = line.split(':').pop();
-                        event.end = parseICSDate(val);
-                    } else if (line.startsWith('SUMMARY:')) {
-                        event.summary = line.substring(8);
-                    }
-                }
-            }
-            return events;
-        }
-        
-        function parseICSDate(val) {
-            // Handle both date-only (YYYYMMDD) and datetime (YYYYMMDDTHHmmssZ)
-            if (val.length === 8) {
-                return { date: `${val.slice(0,4)}-${val.slice(4,6)}-${val.slice(6,8)}`, time: null };
-            }
-            const date = `${val.slice(0,4)}-${val.slice(4,6)}-${val.slice(6,8)}`;
-            const time = `${val.slice(9,11)}:${val.slice(11,13)}`;
-            return { date, time };
         }
         
         function getDeletedCalendarItems() {

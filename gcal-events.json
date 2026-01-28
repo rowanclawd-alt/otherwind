@@ -1,0 +1,96 @@
+{
+  "events": [
+    {
+      "start": {
+        "date": "2026-01-28",
+        "time": "09:00"
+      },
+      "summary": "30 Minute Meeting with Bill Lee"
+    },
+    {
+      "start": {
+        "date": "2026-01-28",
+        "time": "16:00"
+      },
+      "summary": "Bhaji / Nadim"
+    },
+    {
+      "start": {
+        "date": "2026-01-28",
+        "time": "20:00"
+      },
+      "summary": "Hard Block"
+    },
+    {
+      "start": {
+        "date": "2026-01-29",
+        "time": "09:00"
+      },
+      "summary": "Mantle / Centrifuge - Whitelabel Tech Demo/Q&A"
+    },
+    {
+      "start": {
+        "date": "2026-01-29",
+        "time": "10:00"
+      },
+      "summary": "Hold for viewing"
+    },
+    {
+      "start": {
+        "date": "2026-01-29",
+        "time": "14:15"
+      },
+      "summary": "Centrifuge x ART"
+    },
+    {
+      "start": {
+        "date": "2026-01-29",
+        "time": "16:00"
+      },
+      "summary": "Centrifuge | Quartlerly Investor Update #1"
+    },
+    {
+      "start": {
+        "date": "2026-01-30",
+        "time": "10:00"
+      },
+      "summary": "Nadim Chamoun and Kanv Gupta"
+    },
+    {
+      "start": {
+        "date": "2026-02-02",
+        "time": "12:00"
+      },
+      "summary": "Centrifuge - SynX"
+    },
+    {
+      "start": {
+        "date": "2026-02-03",
+        "time": "11:00"
+      },
+      "summary": "Embassy Appt."
+    },
+    {
+      "start": {
+        "date": "2026-02-04",
+        "time": "08:00"
+      },
+      "summary": "What's Up Centrifuge?! \ud83c\udf15"
+    },
+    {
+      "start": {
+        "date": "2026-02-04",
+        "time": "17:00"
+      },
+      "summary": "Blockstories Horizon: London Summit"
+    },
+    {
+      "start": {
+        "date": "2026-02-04",
+        "time": "17:00"
+      },
+      "summary": "Blockstories Horizon 2026: London Summit \ud83c\uddec\ud83c\udde7"
+    }
+  ],
+  "updated": "2026-01-28T11:56:33.360935Z"
+}
