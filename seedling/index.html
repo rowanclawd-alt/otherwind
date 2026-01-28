@@ -99,18 +99,20 @@
         }
         
         .nav-cta {
-            background: var(--accent);
+            background: linear-gradient(135deg, #4fd1a5 0%, #2d8b6f 100%);
             color: var(--bg);
-            padding: 0.6rem 1.5rem;
-            border-radius: 4px;
+            padding: 0.55rem 1.25rem;
+            border-radius: 20px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            letter-spacing: 0.03em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(79, 209, 165, 0.25);
         }
         
         .nav-cta:hover {
-            background: #5ae0b4;
+            box-shadow: 0 0 25px rgba(79, 209, 165, 0.4);
             transform: translateY(-1px);
         }
         
@@ -161,33 +163,40 @@
         }
         
         .cta-primary {
-            background: var(--accent);
+            background: linear-gradient(135deg, #4fd1a5 0%, #2d8b6f 100%);
             color: var(--bg);
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
+            padding: 0.85rem 1.75rem;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(79, 209, 165, 0.3);
+            border: none;
         }
         
         .cta-primary:hover {
-            background: #5ae0b4;
-            transform: translateY(-1px);
+            box-shadow: 0 0 30px rgba(79, 209, 165, 0.5);
+            transform: translateY(-2px);
         }
         
         .cta-secondary {
-            border: 1px solid var(--accent);
+            border: 1px solid rgba(79, 209, 165, 0.5);
             color: var(--accent);
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
+            padding: 0.85rem 1.75rem;
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
         }
         
         .cta-secondary:hover {
-            background: var(--accent-dim);
+            background: rgba(79, 209, 165, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(79, 209, 165, 0.2);
         }
         
         /* Section Headers */
@@ -712,28 +721,32 @@
         .tier .tier-cta {
             display: block;
             text-align: center;
-            padding: 0.7rem;
-            border: 1px solid var(--accent);
-            border-radius: 4px;
+            padding: 0.75rem;
+            border: 1px solid rgba(79, 209, 165, 0.5);
+            border-radius: 20px;
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            letter-spacing: 0.03em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             margin-top: auto;
         }
         
         .tier .tier-cta:hover {
-            background: var(--accent);
-            color: var(--bg);
+            background: rgba(79, 209, 165, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(79, 209, 165, 0.2);
         }
         
         .tier.featured .tier-cta {
-            background: var(--accent);
+            background: linear-gradient(135deg, #4fd1a5 0%, #2d8b6f 100%);
             color: var(--bg);
+            border: none;
+            box-shadow: 0 0 15px rgba(79, 209, 165, 0.3);
         }
         
         .tier.featured .tier-cta:hover {
-            background: #5ae0b4;
+            box-shadow: 0 0 25px rgba(79, 209, 165, 0.5);
         }
         
         /* Case Studies - compact 2x2 grid */
