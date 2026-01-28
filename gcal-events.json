@@ -1,96 +1,87 @@
 {
+  "updated": "2026-01-28T16:00:40.277544",
   "events": [
     {
-      "start": {
-        "date": "2026-01-28",
-        "time": "09:00"
-      },
-      "summary": "30 Minute Meeting with Bill Lee"
+      "summary": "Nadim Chamoun and Sudjeev Singh",
+      "start": "2026-01-27T16:30:00",
+      "date": "2026-01-27",
+      "time": "16:30",
+      "location": "Google Meet (instructions in description)"
     },
     {
-      "start": {
-        "date": "2026-01-28",
-        "time": "16:00"
-      },
-      "summary": "Bhaji / Nadim"
+      "summary": "Circle/Arc <> Centrifuge",
+      "start": "2026-01-27T18:00:00",
+      "date": "2026-01-27",
+      "time": "18:00"
     },
     {
-      "start": {
-        "date": "2026-01-28",
-        "time": "20:00"
-      },
-      "summary": "Hard Block"
+      "summary": "30 Minute Meeting with Bill Lee",
+      "start": "2026-01-28T09:00:00",
+      "date": "2026-01-28",
+      "time": "09:00"
     },
     {
-      "start": {
-        "date": "2026-01-29",
-        "time": "09:00"
-      },
-      "summary": "Mantle / Centrifuge - Whitelabel Tech Demo/Q&A"
+      "summary": "Bhaji / Nadim",
+      "start": "2026-01-28T16:00:00",
+      "date": "2026-01-28",
+      "time": "16:00"
     },
     {
-      "start": {
-        "date": "2026-01-29",
-        "time": "10:00"
-      },
-      "summary": "Hold for viewing"
+      "summary": "Hard Block",
+      "start": "2026-01-28T20:00:00",
+      "date": "2026-01-28",
+      "time": "20:00"
     },
     {
-      "start": {
-        "date": "2026-01-29",
-        "time": "14:15"
-      },
-      "summary": "Centrifuge x ART"
+      "summary": "Mantle / Centrifuge - Whitelabel Tech Demo/Q&A",
+      "start": "2026-01-29T09:00:00",
+      "date": "2026-01-29",
+      "time": "09:00"
     },
     {
-      "start": {
-        "date": "2026-01-29",
-        "time": "16:00"
-      },
-      "summary": "Centrifuge | Quartlerly Investor Update #1"
+      "summary": "Hold for viewing",
+      "start": "2026-01-29T10:00:00",
+      "date": "2026-01-29",
+      "time": "10:00"
     },
     {
-      "start": {
-        "date": "2026-01-30",
-        "time": "10:00"
-      },
-      "summary": "Nadim Chamoun and Kanv Gupta"
+      "summary": "Centrifuge x ART",
+      "start": "2026-01-29T14:15:00",
+      "date": "2026-01-29",
+      "time": "14:15",
+      "location": "https://us06web.zoom.us/j/84520453123?pwd=x2R5XpCjOxQJW3Zcns2LiGGQ"
     },
     {
-      "start": {
-        "date": "2026-02-02",
-        "time": "12:00"
-      },
-      "summary": "Centrifuge - SynX"
+      "summary": "Centrifuge | Quartlerly Investor Update #1",
+      "start": "2026-01-29T16:00:00",
+      "date": "2026-01-29",
+      "time": "16:00"
     },
     {
-      "start": {
-        "date": "2026-02-03",
-        "time": "11:00"
-      },
-      "summary": "Embassy Appt."
+      "summary": "Nadim Chamoun and Kanv Gupta",
+      "start": "2026-01-30T10:00:00",
+      "date": "2026-01-30",
+      "time": "10:00",
+      "location": "Google Meet (instructions in description)"
     },
     {
-      "start": {
-        "date": "2026-02-04",
-        "time": "08:00"
-      },
-      "summary": "What's Up Centrifuge?! \ud83c\udf15"
+      "summary": "Centrifuge - SynX",
+      "start": "2026-02-02T12:00:00",
+      "date": "2026-02-02",
+      "time": "12:00"
     },
     {
-      "start": {
-        "date": "2026-02-04",
-        "time": "17:00"
-      },
-      "summary": "Blockstories Horizon: London Summit"
+      "summary": "Embassy Appt.",
+      "start": "2026-02-03T11:00:00",
+      "date": "2026-02-03",
+      "time": "11:00",
+      "location": "Pall Mall Street entrance of Canada House"
     },
     {
-      "start": {
-        "date": "2026-02-04",
-        "time": "17:00"
-      },
-      "summary": "Blockstories Horizon 2026: London Summit \ud83c\uddec\ud83c\udde7"
+      "summary": "What's Up Centrifuge?! \ud83c\udf15",
+      "start": "2026-02-04T08:00:00",
+      "date": "2026-02-04",
+      "time": "08:00"
     }
-  ],
-  "updated": "2026-01-28T12:00:20.104167Z"
+  ]
 }
