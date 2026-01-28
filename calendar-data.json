@@ -17,14 +17,6 @@
       "done": true
     },
     {
-      "id": "keyring-dd-20260128",
-      "title": "Keyring Due Diligence",
-      "shortTitle": "Keyring DD",
-      "date": "2026-01-28",
-      "time": "16:00",
-      "done": false
-    },
-    {
       "id": "mantle-qa-20260129",
       "title": "Mantle QA Prep",
       "shortTitle": "Mantle QA",
@@ -42,7 +34,16 @@
       "time": "10:00",
       "done": true,
       "notes": "Sent early on 2026-01-28"
+    },
+    {
+      "id": "porkbun-review-20260209",
+      "title": "Review Porkbun renewal (15-day trial ending)",
+      "shortTitle": "Porkbun review",
+      "date": "2026-02-09",
+      "time": "09:00",
+      "done": false,
+      "notes": "Check if you want to keep Porkbun domain/email or switch. Trial started ~Jan 28."
     }
   ],
-  "updatedAt": "2026-01-28T14:59:50.778Z"
+  "updatedAt": "2026-01-28T17:32:07.927893Z"
 }
