@@ -24,8 +24,8 @@
         
         :root {
             --bg: #050a07;
-            --bg-card: #0a1210;
-            --bg-card-hover: #0f1a15;
+            --bg-card: rgba(10, 18, 16, 0.8);
+            --bg-card-hover: rgba(15, 26, 21, 0.9);
             --accent: #4fd1a5;
             --accent-dim: rgba(79, 209, 165, 0.15);
             --fg: #e8efe9;
@@ -38,10 +38,28 @@
         
         body {
             font-family: 'IBM Plex Sans', -apple-system, sans-serif;
-            background: var(--bg);
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
             color: var(--fg);
             line-height: 1.7;
             overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Canvas background */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* All content above canvas */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
         }
         
         /* Navigation */
@@ -55,7 +73,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 10, 7, 0.9);
+            background: rgba(5, 10, 7, 0.85);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(79, 209, 165, 0.1);
         }
@@ -189,6 +207,7 @@
             background: var(--bg-card);
             border: 1px solid rgba(79, 209, 165, 0.15);
             border-radius: 4px;
+            backdrop-filter: blur(10px);
         }
         
         .stat-number {
@@ -218,6 +237,7 @@
             padding: 2rem;
             border-radius: 4px;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
         .card:hover {
@@ -238,6 +258,150 @@
             color: var(--fg-muted);
         }
         
+        /* Dashboard Mockup Section */
+        .dashboard-section {
+            padding: 80px 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .dashboard-card {
+            background: rgba(10, 18, 16, 0.95);
+            border: 1px solid rgba(79, 209, 165, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .dashboard-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(79, 209, 165, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .dashboard-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .dashboard-header .dot.green { background: #4fd1a5; }
+        .dashboard-header .dot.yellow { background: #fbbf24; }
+        .dashboard-header .dot.red { background: #ef4444; }
+        
+        .dashboard-header span {
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+            margin-left: auto;
+        }
+        
+        .dashboard-body {
+            padding: 1.5rem;
+        }
+        
+        .dashboard-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Usage bars */
+        .usage-item {
+            margin-bottom: 1.25rem;
+        }
+        
+        .usage-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .usage-label span:first-child { color: var(--fg-muted); }
+        .usage-label span:last-child { color: var(--accent); }
+        
+        .usage-bar {
+            height: 6px;
+            background: rgba(79, 209, 165, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .usage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4fd1a5, #2d8b6f);
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+        
+        /* Activity feed */
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(79, 209, 165, 0.08);
+        }
+        
+        .activity-item:last-child { border-bottom: none; }
+        
+        .activity-time {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            min-width: 50px;
+        }
+        
+        .activity-text {
+            font-size: 0.85rem;
+            color: var(--fg);
+        }
+        
+        .activity-text .highlight { color: var(--accent); }
+        
+        /* Task list */
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+        }
+        
+        .task-check {
+            width: 16px;
+            height: 16px;
+            border: 1px solid var(--accent);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--accent);
+        }
+        
+        .task-check.done {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        
+        .task-text {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+        }
+        
+        .task-text.done {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+        
         /* Comparison Table */
         .comparison {
             background: var(--bg-card);
@@ -245,6 +409,7 @@
             border-radius: 4px;
             overflow: hidden;
             margin: 2rem 0;
+            backdrop-filter: blur(10px);
         }
         
         .comparison-header {
@@ -304,6 +469,7 @@
             border-radius: 4px;
             padding: 2.5rem;
             position: relative;
+            backdrop-filter: blur(10px);
         }
         
         .tier.featured {
@@ -408,6 +574,7 @@
             padding: 2rem 2.5rem;
             margin-bottom: 2rem;
             border-radius: 0 4px 4px 0;
+            backdrop-filter: blur(10px);
         }
         
         .case-study .label {
@@ -471,7 +638,7 @@
         .cta-section {
             text-align: center;
             padding: 120px 3rem;
-            background: linear-gradient(180deg, var(--bg) 0%, rgba(79, 209, 165, 0.05) 100%);
+            background: linear-gradient(180deg, transparent 0%, rgba(79, 209, 165, 0.03) 100%);
         }
         
         .cta-section h2 {
@@ -508,6 +675,8 @@
             border-top: 1px solid rgba(79, 209, 165, 0.1);
             color: var(--fg-muted);
             font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
         }
         
         footer a {
@@ -548,10 +717,18 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+
+<div id="canvas-container"></div>
+
+<div class="content-wrapper">
 
 <header>
     <a href="/" class="logo">otherwind</a>
@@ -619,6 +796,133 @@
     </div>
 </section>
 
+<!-- Dashboard Mockups -->
+<section class="dashboard-section">
+    <h2>Full Lifecycle Control</h2>
+    <p class="section-intro">Monitor, manage, and optimize your agent from a single dashboard. Real-time visibility into everything your AI teammate does.</p>
+    
+    <div class="dashboard-grid">
+        <!-- Usage Dashboard -->
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <div class="dot green"></div>
+                <div class="dot yellow"></div>
+                <div class="dot red"></div>
+                <span>usage.otherwind.xyz</span>
+            </div>
+            <div class="dashboard-body">
+                <div class="dashboard-title">Resource Usage</div>
+                <div class="usage-item">
+                    <div class="usage-label">
+                        <span>Claude API</span>
+                        <span>67% of daily limit</span>
+                    </div>
+                    <div class="usage-bar">
+                        <div class="usage-fill" style="width: 67%"></div>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-label">
+                        <span>Email Actions</span>
+                        <span>23 / 100 today</span>
+                    </div>
+                    <div class="usage-bar">
+                        <div class="usage-fill" style="width: 23%"></div>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-label">
+                        <span>Calendar Syncs</span>
+                        <span>12 / 50 today</span>
+                    </div>
+                    <div class="usage-bar">
+                        <div class="usage-fill" style="width: 24%"></div>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-label">
+                        <span>Storage</span>
+                        <span>2.3 GB / 10 GB</span>
+                    </div>
+                    <div class="usage-bar">
+                        <div class="usage-fill" style="width: 23%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Activity Feed -->
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <div class="dot green"></div>
+                <div class="dot yellow"></div>
+                <div class="dot red"></div>
+                <span>activity.otherwind.xyz</span>
+            </div>
+            <div class="dashboard-body">
+                <div class="dashboard-title">Recent Activity</div>
+                <div class="activity-item">
+                    <span class="activity-time">2m ago</span>
+                    <span class="activity-text">Drafted response to <span class="highlight">investor inquiry</span></span>
+                </div>
+                <div class="activity-item">
+                    <span class="activity-time">15m ago</span>
+                    <span class="activity-text">Scheduled meeting with <span class="highlight">Acme Corp</span></span>
+                </div>
+                <div class="activity-item">
+                    <span class="activity-time">32m ago</span>
+                    <span class="activity-text">Compiled <span class="highlight">market research</span> brief</span>
+                </div>
+                <div class="activity-item">
+                    <span class="activity-time">1h ago</span>
+                    <span class="activity-text">Sent follow-up to <span class="highlight">3 leads</span></span>
+                </div>
+                <div class="activity-item">
+                    <span class="activity-time">2h ago</span>
+                    <span class="activity-text">Updated <span class="highlight">CRM records</span> (12 contacts)</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Task Management -->
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <div class="dot green"></div>
+                <div class="dot yellow"></div>
+                <div class="dot red"></div>
+                <span>tasks.otherwind.xyz</span>
+            </div>
+            <div class="dashboard-body">
+                <div class="dashboard-title">Today's Tasks</div>
+                <div class="task-item">
+                    <div class="task-check done">✓</div>
+                    <span class="task-text done">Morning email triage</span>
+                </div>
+                <div class="task-item">
+                    <div class="task-check done">✓</div>
+                    <span class="task-text done">Prep briefing for 10am call</span>
+                </div>
+                <div class="task-item">
+                    <div class="task-check done">✓</div>
+                    <span class="task-text done">Research competitor pricing</span>
+                </div>
+                <div class="task-item">
+                    <div class="task-check"></div>
+                    <span class="task-text">Draft weekly report</span>
+                </div>
+                <div class="task-item">
+                    <div class="task-check"></div>
+                    <span class="task-text">Schedule Q1 planning session</span>
+                </div>
+                <div class="task-item">
+                    <div class="task-check"></div>
+                    <span class="task-text">Follow up with leads (batch)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Use Cases -->
 <section>
     <h2>Use Cases</h2>
@@ -666,31 +970,31 @@
         <div class="comparison-row">
             <span>Self-serve setup (figure it out yourself)</span>
             <span class="check">✓</span>
-            <span class="cross">-</span>
+            <span class="cross">—</span>
         </div>
         <div class="comparison-row">
             <span>White-glove deployment & configuration</span>
-            <span class="cross">-</span>
+            <span class="cross">—</span>
             <span class="check">✓</span>
         </div>
         <div class="comparison-row">
             <span>Custom integrations for your tools</span>
-            <span class="cross">-</span>
+            <span class="cross">—</span>
             <span class="check">✓</span>
         </div>
         <div class="comparison-row">
             <span>Agent trained on your workflows</span>
-            <span class="cross">-</span>
+            <span class="cross">—</span>
             <span class="check">✓</span>
         </div>
         <div class="comparison-row">
             <span>Ongoing optimization & support</span>
-            <span class="cross">-</span>
+            <span class="cross">—</span>
             <span class="check">✓</span>
         </div>
         <div class="comparison-row">
             <span>Actually understands your business</span>
-            <span class="cross">-</span>
+            <span class="cross">—</span>
             <span class="check">✓</span>
         </div>
     </div>
@@ -857,6 +1161,166 @@
 <footer>
     <a href="/">otherwind</a> · <a href="mailto:rowan@otherwind.xyz">rowan@otherwind.xyz</a>
 </footer>
+
+</div>
+
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script>
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0, 20);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+    container.appendChild(renderer.domElement);
+
+    // Forest palette (same as Services shape)
+    const forestPalette = ['#2d5a3d', '#1a3d2a', '#0f2a1a', '#4a7a5d', '#3d6b4d'];
+
+    function createCellTexture(colorPalette, cellCount = 15) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = '#0a1a12';
+        ctx.fillRect(0, 0, 512, 512);
+
+        const cells = [];
+        for (let i = 0; i < cellCount; i++) {
+            cells.push({
+                x: Math.random() * 512,
+                y: Math.random() * 512,
+                color: colorPalette[Math.floor(Math.random() * colorPalette.length)]
+            });
+        }
+
+        for (let x = 0; x < 512; x += 3) {
+            for (let y = 0; y < 512; y += 3) {
+                let minDist = Infinity;
+                let closestCell = cells[0];
+                
+                cells.forEach(cell => {
+                    const dist = Math.sqrt((x - cell.x) ** 2 + (y - cell.y) ** 2);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        closestCell = cell;
+                    }
+                });
+
+                ctx.fillStyle = closestCell.color;
+                ctx.globalAlpha = 0.6 + Math.random() * 0.4;
+                ctx.fillRect(x, y, 3, 3);
+            }
+        }
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+        return texture;
+    }
+
+    // Floating icosahedrons (Services shape)
+    const shapes = [];
+    const shapeConfigs = [
+        { size: 1.2, pos: [-12, 8, -8], rotSpeed: 0.004 },
+        { size: 0.8, pos: [14, -6, -10], rotSpeed: 0.006 },
+        { size: 0.6, pos: [-10, -12, -6], rotSpeed: 0.008 },
+        { size: 1.0, pos: [10, 10, -12], rotSpeed: 0.005 },
+    ];
+
+    shapeConfigs.forEach(config => {
+        const geometry = new THREE.IcosahedronGeometry(config.size, 1);
+        const texture = createCellTexture(forestPalette, 12);
+        const material = new THREE.MeshBasicMaterial({
+            map: texture,
+            transparent: true,
+            opacity: 0.4,
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(...config.pos);
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+        mesh.userData = {
+            rotSpeed: config.rotSpeed,
+            floatSpeed: 0.2 + Math.random() * 0.3,
+            floatOffset: Math.random() * Math.PI * 2,
+            originalY: config.pos[1],
+        };
+        shapes.push(mesh);
+        scene.add(mesh);
+    });
+
+    // Particles
+    const particleCount = 600;
+    const particleGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 60;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 40 - 10;
+    }
+
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMat = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.03,
+        transparent: true,
+        opacity: 0.4,
+        sizeAttenuation: true,
+    });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    // Mouse tracking for subtle parallax
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
+
+    let time = 0;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.016;
+
+        // Subtle camera movement
+        camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.02;
+        camera.position.y += (-mouseY * 1 - camera.position.y) * 0.02;
+        camera.lookAt(0, 0, 0);
+
+        // Animate shapes
+        shapes.forEach(shape => {
+            const d = shape.userData;
+            shape.rotation.x += d.rotSpeed;
+            shape.rotation.y += d.rotSpeed * 1.2;
+            shape.position.y = d.originalY + Math.sin(time * d.floatSpeed + d.floatOffset) * 0.8;
+        });
+
+        // Animate particles
+        const pos = particles.geometry.attributes.position.array;
+        for (let i = 0; i < particleCount; i++) {
+            pos[i * 3 + 1] += 0.003;
+            if (pos[i * 3 + 1] > 30) pos[i * 3 + 1] = -30;
+        }
+        particles.geometry.attributes.position.needsUpdate = true;
+        particles.rotation.y += 0.0001;
+
+        renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    animate();
+</script>
 
 </body>
 </html>
