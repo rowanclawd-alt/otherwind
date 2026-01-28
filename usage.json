@@ -1,14 +1,11 @@
 {
   "claude": {
-    "dailyLeft": 70,
-    "weeklyLeft": 81,
-    "dailyResetIn": "2h",
-    "weeklyResetIn": "5d 19h",
-    "updated": "2026-01-28T16:00:00Z"
+    "dailyLeft": 84,
+    "weeklyLeft": 78,
+    "updated": "2026-01-28T20:00:00Z"
   },
   "cursor": {
     "status": "active",
-    "plan": "Ultra",
-    "updated": "2026-01-28T16:00:00Z"
+    "updated": "2026-01-28T20:00:00Z"
   }
 }
