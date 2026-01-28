@@ -67,7 +67,7 @@ We write about AI agents, automation, and what it actually looks like to deploy 
 - [AI vs Virtual Assistant: What Actually Makes Sense in 2026](https://otherwind.xyz/insight/ai-vs-virtual-assistant)
 - [5 Admin Tasks You Should Never Do Yourself Again](https://otherwind.xyz/insight/5-admin-tasks-never-do-yourself)
 - [How to Use AI in Your Business (Without Being Technical)](https://otherwind.xyz/insight/how-to-use-ai-in-your-business)
-- [What Happens When a Lead Comes In at 2am](https://otherwind.xyz/insight/what-happens-when-a-lead-comes-in-at-2am)
+- [Artifice vs. Art: The Real Difference Between AI Slop and AI That Works](https://otherwind.xyz/insight/artifice-vs-art)
 
 ---
 
