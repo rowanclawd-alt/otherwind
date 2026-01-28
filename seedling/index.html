@@ -62,13 +62,23 @@
             z-index: 1;
         }
         
-        /* Navigation */
+        /* Page transition */
+        body {
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Navigation - matches landing page exactly */
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            padding: 1.5rem 3rem;
+            padding: 1.5rem 2rem;
             z-index: 100;
             display: flex;
             justify-content: space-between;
@@ -80,9 +90,10 @@
         
         .logo {
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 400;
             font-style: italic;
+            letter-spacing: 0.05em;
             color: var(--fg);
             text-decoration: none;
         }
@@ -103,72 +114,75 @@
             transform: translateY(-1px);
         }
         
-        /* Sections */
+        /* Sections - compact */
         section {
-            padding: 100px 3rem;
-            max-width: 1200px;
+            padding: 60px 2rem;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
-        /* Hero */
+        /* Hero - compact */
         .hero {
-            min-height: 100vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-top: 80px;
+            padding-top: 70px;
         }
         
         .hero h1 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 400;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         
         .hero .tagline {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--fg-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             color: var(--fg-muted);
-            max-width: 600px;
-            margin-bottom: 2.5rem;
+            max-width: 550px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
         
         .cta-group {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
         }
         
         .cta-primary {
             background: var(--accent);
             color: var(--bg);
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
         
         .cta-primary:hover {
             background: #5ae0b4;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
         
         .cta-secondary {
             border: 1px solid var(--accent);
             color: var(--accent);
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 4px;
             text-decoration: none;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
         
@@ -180,30 +194,30 @@
         h2 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--accent);
         }
         
         .section-intro {
-            font-size: 1.15rem;
+            font-size: 1rem;
             color: var(--fg-muted);
-            max-width: 700px;
-            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
         }
         
-        /* Stats */
+        /* Stats - compact */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
         
         .stat {
             text-align: center;
-            padding: 2rem;
+            padding: 1.25rem;
             background: var(--bg-card);
             border: 1px solid rgba(79, 209, 165, 0.15);
             border-radius: 4px;
@@ -211,37 +225,37 @@
         }
         
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 300;
             color: var(--accent);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
         
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--fg-muted);
         }
         
         .stat-source {
-            font-size: 0.7rem;
-            color: rgba(79, 209, 165, 0.6);
-            margin-top: 0.5rem;
+            font-size: 0.65rem;
+            color: rgba(79, 209, 165, 0.5);
+            margin-top: 0.4rem;
             font-style: italic;
         }
         
-        /* Cards Grid */
+        /* Cards Grid - compact */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
         }
         
         .card {
             background: var(--bg-card);
             border: 1px solid rgba(79, 209, 165, 0.15);
-            padding: 2rem;
+            padding: 1.25rem;
             border-radius: 4px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
@@ -255,49 +269,50 @@
         .card h3 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 400;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
         
         .card p {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--fg-muted);
+            line-height: 1.5;
         }
         
-        /* Dashboard Mockup Section */
+        /* Dashboard Mockup Section - compact */
         .dashboard-section {
-            padding: 80px 3rem;
-            max-width: 1200px;
+            padding: 60px 2rem;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
         }
         
         .dashboard-card {
             background: rgba(10, 18, 16, 0.95);
             border: 1px solid rgba(79, 209, 165, 0.2);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             backdrop-filter: blur(10px);
         }
         
         .dashboard-header {
-            padding: 1rem 1.5rem;
+            padding: 0.6rem 1rem;
             border-bottom: 1px solid rgba(79, 209, 165, 0.15);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
         
         .dashboard-header .dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
         }
         
@@ -306,91 +321,90 @@
         .dashboard-header .dot.red { background: #ef4444; }
         
         .dashboard-header span {
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             color: var(--fg-muted);
             margin-left: auto;
         }
         
         .dashboard-body {
-            padding: 1.5rem;
+            padding: 1rem;
         }
         
         .dashboard-title {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
         }
         
-        /* Usage bars */
+        /* Usage bars - compact */
         .usage-item {
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.9rem;
         }
         
         .usage-label {
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            margin-bottom: 0.3rem;
         }
         
         .usage-label span:first-child { color: var(--fg-muted); }
         .usage-label span:last-child { color: var(--accent); }
         
         .usage-bar {
-            height: 6px;
+            height: 4px;
             background: rgba(79, 209, 165, 0.15);
-            border-radius: 3px;
+            border-radius: 2px;
             overflow: hidden;
         }
         
         .usage-fill {
             height: 100%;
             background: linear-gradient(90deg, #4fd1a5, #2d8b6f);
-            border-radius: 3px;
-            transition: width 1s ease;
+            border-radius: 2px;
         }
         
-        /* Activity feed */
+        /* Activity feed - compact */
         .activity-item {
             display: flex;
-            gap: 1rem;
-            padding: 0.75rem 0;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
             border-bottom: 1px solid rgba(79, 209, 165, 0.08);
         }
         
         .activity-item:last-child { border-bottom: none; }
         
         .activity-time {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: var(--fg-muted);
-            min-width: 50px;
+            min-width: 40px;
         }
         
         .activity-text {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--fg);
         }
         
         .activity-text .highlight { color: var(--accent); }
         
-        /* Task list */
+        /* Task list - compact */
         .task-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.6rem 0;
+            gap: 0.5rem;
+            padding: 0.4rem 0;
         }
         
         .task-check {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             border: 1px solid var(--accent);
-            border-radius: 3px;
+            border-radius: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--accent);
         }
         
@@ -400,7 +414,7 @@
         }
         
         .task-text {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--fg-muted);
         }
         
@@ -409,13 +423,13 @@
             opacity: 0.5;
         }
         
-        /* ROI Comparison */
+        /* ROI Comparison - compact */
         .roi-comparison {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
         
@@ -423,10 +437,10 @@
             background: var(--bg-card);
             border: 1px solid rgba(79, 209, 165, 0.15);
             border-radius: 4px;
-            padding: 2rem;
+            padding: 1.5rem;
             flex: 1;
-            min-width: 280px;
-            max-width: 350px;
+            min-width: 250px;
+            max-width: 320px;
             backdrop-filter: blur(10px);
         }
         
@@ -438,15 +452,15 @@
         .roi-card h3 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
         }
         
         .roi-cost {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 300;
             color: var(--accent);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .roi-card ul {
@@ -454,11 +468,11 @@
         }
         
         .roi-card li {
-            padding: 0.4rem 0;
-            padding-left: 1.25rem;
+            padding: 0.3rem 0;
+            padding-left: 1rem;
             position: relative;
             color: var(--fg-muted);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
         
         .roi-card li::before {
@@ -472,29 +486,29 @@
         .roi-vs {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--fg-muted);
         }
         
-        /* Comparison Table */
+        /* Comparison Table - compact */
         .comparison {
             background: var(--bg-card);
             border: 1px solid rgba(79, 209, 165, 0.15);
             border-radius: 4px;
             overflow: hidden;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             backdrop-filter: blur(10px);
         }
         
         .comparison-header {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 1rem;
-            padding: 1.5rem 2rem;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
             background: rgba(79, 209, 165, 0.08);
             border-bottom: 1px solid rgba(79, 209, 165, 0.15);
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -506,10 +520,11 @@
         .comparison-row {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 1rem;
-            padding: 1.25rem 2rem;
+            gap: 0.75rem;
+            padding: 0.9rem 1.5rem;
             border-bottom: 1px solid rgba(79, 209, 165, 0.08);
             align-items: center;
+            font-size: 0.85rem;
         }
         
         .comparison-row:last-child {
@@ -522,26 +537,26 @@
         
         .check {
             color: var(--accent);
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
         
         .cross {
             color: rgba(232, 239, 233, 0.3);
         }
         
-        /* Pricing Tiers */
+        /* Pricing Tiers - compact */
         .tiers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
         }
         
         .tier {
             background: var(--bg-card);
             border: 1px solid rgba(79, 209, 165, 0.2);
             border-radius: 4px;
-            padding: 2.5rem;
+            padding: 1.5rem;
             position: relative;
             backdrop-filter: blur(10px);
         }
@@ -551,16 +566,16 @@
         }
         
         .tier.featured::before {
-            content: 'Most Popular';
+            content: 'Popular';
             position: absolute;
-            top: -12px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--accent);
             color: var(--bg);
-            padding: 0.3rem 1rem;
+            padding: 0.2rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -569,44 +584,44 @@
         .tier h3 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 400;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         
         .tier .tier-tagline {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: var(--fg-muted);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .tier .price {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .tier .price-setup {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: var(--accent);
         }
         
         .tier .price-monthly {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--fg-muted);
             margin-top: 0.25rem;
         }
         
         .tier ul {
             list-style: none;
-            margin-bottom: 2rem;
+            margin-bottom: 1.25rem;
         }
         
         .tier li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.3rem 0;
+            padding-left: 1.25rem;
             position: relative;
             color: var(--fg-muted);
-            font-size: 0.95rem;
+            font-size: 0.8rem;
         }
         
         .tier li::before {
@@ -619,11 +634,12 @@
         .tier .tier-cta {
             display: block;
             text-align: center;
-            padding: 0.9rem;
+            padding: 0.7rem;
             border: 1px solid var(--accent);
             border-radius: 4px;
             color: var(--accent);
             text-decoration: none;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
         }
         
@@ -641,101 +657,109 @@
             background: #5ae0b4;
         }
         
-        /* Case Studies */
+        /* Case Studies - compact grid */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+        
         .case-study {
             background: var(--bg-card);
-            border-left: 3px solid var(--accent);
-            padding: 2rem 2.5rem;
-            margin-bottom: 2rem;
+            border-left: 2px solid var(--accent);
+            padding: 1.25rem 1.5rem;
             border-radius: 0 4px 4px 0;
             backdrop-filter: blur(10px);
         }
         
         .case-study .label {
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--accent);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         
         .case-study h3 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-style: italic;
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
         }
         
         .case-study p {
             color: var(--fg-muted);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
         }
         
         .case-study .result {
             color: var(--accent);
             font-weight: 500;
+            font-size: 0.8rem;
         }
         
-        /* Process */
+        /* Process - inline */
         .process-steps {
             display: grid;
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         
         .step {
-            display: flex;
-            gap: 2rem;
-            align-items: flex-start;
+            text-align: center;
         }
         
         .step-number {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 300;
             color: var(--accent);
-            min-width: 60px;
+            margin-bottom: 0.5rem;
         }
         
         .step-content h3 {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         
         .step-content p {
             color: var(--fg-muted);
-            font-size: 0.95rem;
+            font-size: 0.8rem;
+            line-height: 1.4;
         }
         
-        /* CTA Section */
+        /* CTA Section - compact */
         .cta-section {
             text-align: center;
-            padding: 120px 3rem;
+            padding: 60px 2rem;
             background: linear-gradient(180deg, transparent 0%, rgba(79, 209, 165, 0.03) 100%);
         }
         
         .cta-section h2 {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
         
         .cta-section p {
             color: var(--fg-muted);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 500px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            max-width: 450px;
             margin-left: auto;
             margin-right: auto;
         }
         
         .cta-section .contact {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
         
         .cta-section .contact a {
             color: var(--accent);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
         
         .cta-section .contact a:hover {
@@ -745,10 +769,10 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             border-top: 1px solid rgba(79, 209, 165, 0.1);
             color: var(--fg-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             position: relative;
             z-index: 1;
         }
@@ -763,24 +787,52 @@
         }
         
         /* Responsive */
+        @media (max-width: 900px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         @media (max-width: 768px) {
             header {
                 padding: 1rem 1.5rem;
             }
             
             section {
-                padding: 60px 1.5rem;
+                padding: 40px 1.5rem;
             }
             
             .hero {
-                padding-top: 100px;
+                padding-top: 80px;
+                min-height: 80vh;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
             }
             
             .comparison-header,
             .comparison-row {
                 grid-template-columns: 1.5fr 1fr 1fr;
-                padding: 1rem;
-                font-size: 0.85rem;
+                padding: 0.75rem 1rem;
+                font-size: 0.75rem;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
             
             .tiers-grid {
@@ -1004,31 +1056,31 @@
 <!-- Use Cases -->
 <section>
     <h2>Use Cases</h2>
-    <p class="section-intro">AI agents that actually work, deployed for real business functions.</p>
+    <p class="section-intro">Agents that actually work, deployed for real business functions.</p>
     
     <div class="cards-grid">
         <div class="card">
-            <h3>AI Analyst</h3>
+            <h3>Research Analyst</h3>
             <p>Research synthesis, briefing prep, competitive intelligence for consulting firms.</p>
         </div>
         <div class="card">
-            <h3>AI SDR/BDR</h3>
+            <h3>Sales Development</h3>
             <p>Personalized outreach, lead research, follow-up sequencing for sales teams.</p>
         </div>
         <div class="card">
-            <h3>AI Executive Assistant</h3>
+            <h3>Executive Assistant</h3>
             <p>Calendar, email triage, travel, meeting prep for busy leaders.</p>
         </div>
         <div class="card">
-            <h3>AI Paralegal</h3>
+            <h3>Paralegal</h3>
             <p>Document review, legal research, deadline tracking for law firms.</p>
         </div>
         <div class="card">
-            <h3>AI Financial Analyst</h3>
+            <h3>Financial Analyst</h3>
             <p>Report generation, data compilation, regulatory prep for finance teams.</p>
         </div>
         <div class="card">
-            <h3>AI Operations</h3>
+            <h3>Operations</h3>
             <p>Process automation, vendor coordination, internal comms for ops teams.</p>
         </div>
     </div>
@@ -1096,38 +1148,36 @@
 <!-- Real World Applications -->
 <section>
     <h2>Real World Applications</h2>
-    <p class="section-intro">What AI agents deliver across industries, backed by data.</p>
+    <p class="section-intro">What agents deliver across industries, backed by data.</p>
     
-    <div class="case-study">
-        <div class="label">Sales & Outreach</div>
-        <h3>AI SDR/BDR</h3>
-        <p><strong>The problem:</strong> Human SDRs can only personalize so many messages per day. Generic outreach gets ignored.</p>
-        <p><strong>What an AI agent does:</strong> Researches each prospect across dozens of sources, crafts personalized messages at scale, handles follow-up sequences, and books meetings automatically.</p>
-        <p class="result">Industry benchmarks: 5-10x outreach volume, 70-80% lower cost per meeting, 15-20 hours saved weekly (Lindy/The Sauna Place)</p>
-    </div>
-    
-    <div class="case-study">
-        <div class="label">Legal</div>
-        <h3>AI Paralegal</h3>
-        <p><strong>The problem:</strong> Attorneys drowning in document review, research, and administrative work that doesn't generate billable hours.</p>
-        <p><strong>What an AI agent does:</strong> First-pass document review, case law research, contract analysis, deadline tracking, and client communication drafts.</p>
-        <p class="result">Industry benchmarks: 20+ hours saved per month (Harvey.ai), 6-8 hours saved per day on research tasks (CoCounsel/Bassford Remele)</p>
-    </div>
-    
-    <div class="case-study">
-        <div class="label">Executive Support</div>
-        <h3>AI Chief of Staff</h3>
-        <p><strong>The problem:</strong> Executives buried in scheduling, email triage, meeting prep, and context-switching. No time for strategic work.</p>
-        <p><strong>What an AI agent does:</strong> Calendar management, email prioritization and drafting, meeting briefings, travel coordination, and action item tracking.</p>
-        <p class="result">Industry benchmarks: +7.6 hours focus time per week, 55% improved productivity, 47% less burnout (Reclaim.ai)</p>
-    </div>
-    
-    <div class="case-study">
-        <div class="label">Customer Support</div>
-        <h3>AI Support Agent</h3>
-        <p><strong>The problem:</strong> Support teams overwhelmed with repetitive tickets. Slow response times hurt customer satisfaction.</p>
-        <p><strong>What an AI agent does:</strong> Handles routine inquiries end-to-end, routes complex issues to humans, maintains context across conversations.</p>
-        <p class="result">Industry benchmarks: 67% support cost reduction (Lindy/Truemed), 65% end-to-end resolution rate (Intercom), self-service rates 30% to 75%+ (Zoom/Vensure)</p>
+    <div class="case-studies-grid">
+        <div class="case-study">
+            <div class="label">Sales</div>
+            <h3>SDR/BDR Automation</h3>
+            <p>Prospect research, personalized outreach at scale, follow-up sequences, meeting booking.</p>
+            <p class="result">5-10x outreach volume · 70-80% lower cost per meeting · 15-20 hrs/week saved</p>
+        </div>
+        
+        <div class="case-study">
+            <div class="label">Legal</div>
+            <h3>Paralegal Support</h3>
+            <p>Document review, case law research, contract analysis, deadline tracking, client comms.</p>
+            <p class="result">20+ hrs/month saved (Harvey.ai) · 6-8 hrs/day on research (CoCounsel)</p>
+        </div>
+        
+        <div class="case-study">
+            <div class="label">Executive</div>
+            <h3>Chief of Staff</h3>
+            <p>Calendar management, email triage, meeting briefings, travel, action item tracking.</p>
+            <p class="result">+7.6 hrs focus time/week · 55% productivity boost (Reclaim.ai)</p>
+        </div>
+        
+        <div class="case-study">
+            <div class="label">Support</div>
+            <h3>Customer Service</h3>
+            <p>Routine inquiries end-to-end, smart routing, context across conversations.</p>
+            <p class="result">67% cost reduction · 65% resolution rate · 30%→75% self-service</p>
+        </div>
     </div>
 </section>
 
