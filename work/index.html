@@ -198,7 +198,7 @@
         }
         
         /* Cards */
-        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem; align-items: start; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
         
         .card {
@@ -661,7 +661,7 @@
         <h2>The Brain</h2>
         <p class="section-intro">Rowan's memory isn't a chat log. It's an architected workspace with persistent identity, structured recall, and daily learning.</p>
         <div class="grid-2">
-            <div>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
             <div class="mockup">
                 <div class="mockup-bar">
                     <div class="mockup-dot"></div>
@@ -691,7 +691,7 @@
   <span class="file">master.csv</span> <span class="comment">← 436 companies, 6 segments</span>
                 </div>
             </div>
-            <div class="mockup" style="margin-top: 1rem;">
+            <div class="mockup" style="flex: 1;">
                 <div class="mockup-bar">
                     <div class="mockup-dot"></div>
                     <div class="mockup-dot"></div>
@@ -718,20 +718,20 @@
                 </div>
             </div>
             </div>
-            <div>
-                <div class="card" style="margin-bottom: 1rem;">
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div class="card" style="flex: 1;">
                     <h3>Persistent Identity</h3>
                     <p>SOUL.md defines who Rowan is. Not a prompt template. A living document that evolves with experience. Voice, boundaries, habits, lessons learned.</p>
                 </div>
-                <div class="card" style="margin-bottom: 1rem;">
+                <div class="card" style="flex: 1;">
                     <h3>Structured Memory</h3>
                     <p>Daily logs capture raw context. MEMORY.md distills long-term learnings. Every decision, preference, and lesson persists across sessions.</p>
                 </div>
-                <div class="card" style="margin-bottom: 1rem;">
+                <div class="card" style="flex: 1;">
                     <h3>Self-Improving</h3>
                     <p>When Rowan makes a mistake, it updates its own operating docs. Rules get stricter. Knowledge compounds. The agent gets better every day.</p>
                 </div>
-                <div class="card">
+                <div class="card" style="flex: 1;">
                     <h3>Always On</h3>
                     <p>Heartbeat system checks email, calendar, and monitoring every 30 minutes. Proactive alerts for urgent items. Background work during quiet hours.</p>
                 </div>
