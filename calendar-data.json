@@ -1,0 +1,44 @@
+{
+  "todos": [
+    {
+      "id": "bd-summary-20260128",
+      "title": "Weekly BD Summary (waiting on Adam)",
+      "date": "2026-01-28",
+      "time": "14:00",
+      "done": false
+    },
+    {
+      "id": "binance-earn-20260128",
+      "title": "Binance Earn Campaign",
+      "date": "2026-01-28",
+      "time": "15:00",
+      "done": false
+    },
+    {
+      "id": "keyring-dd-20260128",
+      "title": "Keyring Due Diligence",
+      "date": "2026-01-28",
+      "time": "16:00",
+      "done": false
+    },
+    {
+      "id": "mantle-qa-20260130",
+      "title": "Mantle Q&A Prep",
+      "date": "2026-01-30",
+      "time": "08:00",
+      "done": false,
+      "url": "https://docs.google.com/document/d/16oz98U_a3g59qFpOM3A8vy3V35-fduWgVYXn6n1v0To/edit?usp=sharing",
+      "notes": "Prep before Mantle meeting"
+    }
+  ],
+  "events": [
+    {
+      "id": "mantle-hold-20260129",
+      "title": "Hold for Mantle",
+      "date": "2026-01-29",
+      "startTime": "08:30",
+      "endTime": "09:30"
+    }
+  ],
+  "updatedAt": "2026-01-28T08:14:00Z"
+}
