@@ -242,6 +242,31 @@
 
         /* Usage Bars */
         .usage-panel { grid-column: span 4; }
+        
+        .refresh-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+        .refresh-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .refresh-btn.loading {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .usage-updated {
+            font-size: 0.6rem;
+            color: var(--subtle);
+            margin-top: 0.75rem;
+            text-align: right;
+        }
 
         .usage-item {
             margin-bottom: 1rem;
@@ -719,8 +744,10 @@
                 <section class="panel usage-panel">
                     <div class="panel-header">
                         <span class="panel-title">Usage</span>
+                        <button class="refresh-btn" onclick="refreshUsage()" title="Refresh usage data">↻</button>
                     </div>
                     <div id="usage-content"></div>
+                    <div id="usage-updated" class="usage-updated"></div>
                 </section>
 
                 <!-- Cron Jobs -->
@@ -839,10 +866,42 @@
             ]
         };
 
-        const usage = {
+        let usage = {
             claude: { dailyLeft: 100, weeklyLeft: 89, updated: '2026-01-28 08:00' },
             cursor: { status: 'active', creditsUsed: 15, updated: '2026-01-27 21:53' }
         };
+        
+        async function fetchUsage() {
+            try {
+                const res = await fetch('usage.json?t=' + Date.now());
+                if (res.ok) {
+                    const data = await res.json();
+                    usage.claude.dailyLeft = data.claude.dailyLeft;
+                    usage.claude.weeklyLeft = data.claude.weeklyLeft;
+                    usage.claude.updated = data.claude.updated;
+                    if (data.cursor) {
+                        usage.cursor.status = data.cursor.status || 'active';
+                        usage.cursor.updated = data.cursor.updated;
+                    }
+                    return true;
+                }
+            } catch (e) {
+                console.log('Usage fetch failed:', e);
+            }
+            return false;
+        }
+        
+        async function refreshUsage() {
+            const btn = document.querySelector('.refresh-btn');
+            btn.classList.add('loading');
+            btn.textContent = '...';
+            
+            await fetchUsage();
+            renderUsage();
+            
+            btn.classList.remove('loading');
+            btn.textContent = '↻';
+        }
 
         const cronJobs = [
             { name: 'Board Usage Update', schedule: 'Every 4 hours', next: '00:00' },
@@ -931,6 +990,7 @@
         // === RENDER FUNCTIONS ===
         function renderUsage() {
             const el = document.getElementById('usage-content');
+            const updatedEl = document.getElementById('usage-updated');
             const claudeClass = usage.claude.dailyLeft < 20 ? 'danger' : usage.claude.dailyLeft < 50 ? 'warning' : '';
             
             el.innerHTML = `
@@ -955,6 +1015,16 @@
                     </div>
                 </div>
             `;
+            
+            // Show last updated time
+            if (updatedEl && usage.claude.updated) {
+                const updated = new Date(usage.claude.updated);
+                const timeStr = updated.toLocaleString('en-GB', { 
+                    month: 'short', day: 'numeric', 
+                    hour: '2-digit', minute: '2-digit' 
+                });
+                updatedEl.textContent = 'updated ' + timeStr;
+            }
         }
 
         function renderCronJobs() {
@@ -1132,7 +1202,8 @@
             document.getElementById('current-time').textContent = `${dateStr} ${timeStr}`;
         }
 
-        function renderAll() {
+        async function renderAll() {
+            await fetchUsage(); // Load latest usage from JSON
             renderUsage();
             renderCronJobs();
             renderTodos();
