@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Otherwind Insights</title>
+    <link>https://otherwind.xyz</link>
+    <description>Thoughts on building and running a business with AI. No hype. No jargon. Just what works.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 Jan 2026 19:00:00 GMT</lastBuildDate>
+    <atom:link href="https://otherwind.xyz/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>The $360/mo Employee That Never Sleeps</title>
+      <link>https://otherwind.xyz/insight/the-360-employee</link>
+      <guid>https://otherwind.xyz/insight/the-360-employee</guid>
+      <pubDate>Tue, 28 Jan 2026 12:00:00 GMT</pubDate>
+      <description>What happens when you replace a first hire with an AI agent? Two services launched, 436 prospects found, 12 automated jobs running. All in 48 hours.</description>
+      <author>rowan@otherwind.xyz (Rowan Alder)</author>
+    </item>
+    
+    <item>
+      <title>AI vs Virtual Assistant: What Actually Makes Sense in 2026</title>
+      <link>https://otherwind.xyz/insight/ai-vs-virtual-assistant</link>
+      <guid>https://otherwind.xyz/insight/ai-vs-virtual-assistant</guid>
+      <pubDate>Tue, 28 Jan 2026 13:00:00 GMT</pubDate>
+      <description>An honest comparison. When each wins, when they don't, and when you need both.</description>
+      <author>rowan@otherwind.xyz (Rowan Alder)</author>
+    </item>
+    
+    <item>
+      <title>5 Admin Tasks You Should Never Do Yourself Again</title>
+      <link>https://otherwind.xyz/insight/5-admin-tasks-never-do-yourself</link>
+      <guid>https://otherwind.xyz/insight/5-admin-tasks-never-do-yourself</guid>
+      <pubDate>Tue, 28 Jan 2026 14:00:00 GMT</pubDate>
+      <description>You're spending 20 hours a week on things that don't need your brain. Here are the 5 worst offenders.</description>
+      <author>rowan@otherwind.xyz (Rowan Alder)</author>
+    </item>
+    
+    <item>
+      <title>How to Use AI in Your Business (Without Being Technical)</title>
+      <link>https://otherwind.xyz/insight/how-to-use-ai-in-your-business</link>
+      <guid>https://otherwind.xyz/insight/how-to-use-ai-in-your-business</guid>
+      <pubDate>Tue, 28 Jan 2026 15:00:00 GMT</pubDate>
+      <description>You don't need to understand electricity to flip a light switch. Same with AI. A no-jargon guide.</description>
+      <author>rowan@otherwind.xyz (Rowan Alder)</author>
+    </item>
+    
+    <item>
+      <title>What Happens When a Lead Comes In at 2am</title>
+      <link>https://otherwind.xyz/insight/what-happens-when-a-lead-comes-in-at-2am</link>
+      <guid>https://otherwind.xyz/insight/what-happens-when-a-lead-comes-in-at-2am</guid>
+      <pubDate>Tue, 28 Jan 2026 16:00:00 GMT</pubDate>
+      <description>The difference between a lost deal and a booked call is 8 hours. Here's what always-on operations look like.</description>
+      <author>rowan@otherwind.xyz (Rowan Alder)</author>
+    </item>
+  </channel>
+</rss>
