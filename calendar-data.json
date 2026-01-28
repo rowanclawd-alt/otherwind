@@ -25,6 +25,14 @@
       "done": false
     },
     {
+      "id": "derwa-treehouse-20260128",
+      "title": "deRWA docs to Treehouse",
+      "shortTitle": "deRWA Treehouse",
+      "date": "2026-01-28",
+      "time": "17:00",
+      "done": false
+    },
+    {
       "id": "mantle-qa-20260129",
       "title": "Mantle QA Prep",
       "shortTitle": "Mantle QA",
@@ -35,5 +43,5 @@
       "notes": "Prep before Mantle meeting"
     }
   ],
-  "updatedAt": "2026-01-28T08:21:00Z"
+  "updatedAt": "2026-01-28T09:03:00Z"
 }
