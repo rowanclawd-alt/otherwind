@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seedling - AI Agent Deployment | Otherwind</title>
+    <meta name="description" content="Plant an agent. Watch it grow. Turnkey AI agent deployment for businesses.">
+    <meta name="theme-color" content="#0a1a12">
+    
+    <link rel="canonical" href="https://otherwind.xyz/seedling">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://otherwind.xyz/seedling">
+    <meta property="og:title" content="Seedling - AI Agent Deployment | Otherwind">
+    <meta property="og:description" content="Plant an agent. Watch it grow. Turnkey AI agent deployment for businesses.">
+    <meta property="og:image" content="https://otherwind.xyz/og-image.png">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #050a07;
+            --bg-card: #0a1210;
+            --bg-card-hover: #0f1a15;
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.15);
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 10, 7, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(79, 209, 165, 0.1);
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--fg);
+            text-decoration: none;
+        }
+        
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            background: #5ae0b4;
+            transform: translateY(-1px);
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 80px;
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero .tagline {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--fg-muted);
+            margin-bottom: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--fg-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-primary:hover {
+            background: #5ae0b4;
+            transform: translateY(-2px);
+        }
+        
+        .cta-secondary {
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-secondary:hover {
+            background: var(--accent-dim);
+        }
+        
+        /* Section Headers */
+        h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .section-intro {
+            font-size: 1.15rem;
+            color: var(--fg-muted);
+            max-width: 700px;
+            margin-bottom: 3rem;
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.15);
+            border-radius: 4px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--fg-muted);
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.15);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            border-color: rgba(79, 209, 165, 0.4);
+            background: var(--bg-card-hover);
+        }
+        
+        .card h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+        
+        .card p {
+            font-size: 0.95rem;
+            color: var(--fg-muted);
+        }
+        
+        /* Comparison Table */
+        .comparison {
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            background: rgba(79, 209, 165, 0.08);
+            border-bottom: 1px solid rgba(79, 209, 165, 0.15);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .comparison-header span:last-child {
+            color: var(--accent);
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid rgba(79, 209, 165, 0.08);
+            align-items: center;
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-row span:first-child {
+            color: var(--fg-muted);
+        }
+        
+        .check {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .cross {
+            color: rgba(232, 239, 233, 0.3);
+        }
+        
+        /* Pricing Tiers */
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .tier {
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.2);
+            border-radius: 4px;
+            padding: 2.5rem;
+            position: relative;
+        }
+        
+        .tier.featured {
+            border-color: var(--accent);
+        }
+        
+        .tier.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .tier h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tier .tier-tagline {
+            font-size: 0.9rem;
+            color: var(--fg-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .tier .price {
+            margin-bottom: 1.5rem;
+        }
+        
+        .tier .price-setup {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent);
+        }
+        
+        .tier .price-monthly {
+            font-size: 0.9rem;
+            color: var(--fg-muted);
+            margin-top: 0.25rem;
+        }
+        
+        .tier ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .tier li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+        }
+        
+        .tier li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .tier .tier-cta {
+            display: block;
+            text-align: center;
+            padding: 0.9rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .tier .tier-cta:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        
+        .tier.featured .tier-cta {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        
+        .tier.featured .tier-cta:hover {
+            background: #5ae0b4;
+        }
+        
+        /* Case Studies */
+        .case-study {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent);
+            padding: 2rem 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .case-study .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-study h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        
+        .case-study p {
+            color: var(--fg-muted);
+            margin-bottom: 0.75rem;
+        }
+        
+        .case-study .result {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        /* Process */
+        .process-steps {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--accent);
+            min-width: 60px;
+        }
+        
+        .step-content h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-content p {
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 120px 3rem;
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(79, 209, 165, 0.05) 100%);
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            color: var(--fg-muted);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-section .contact {
+            margin-top: 2rem;
+        }
+        
+        .cta-section .contact a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        
+        .cta-section .contact a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(79, 209, 165, 0.1);
+            color: var(--fg-muted);
+            font-size: 0.85rem;
+        }
+        
+        footer a {
+            color: var(--fg);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+            
+            section {
+                padding: 60px 1.5rem;
+            }
+            
+            .hero {
+                padding-top: 100px;
+            }
+            
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 1.5fr 1fr 1fr;
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+            
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/" class="logo">otherwind</a>
+    <a href="mailto:rowan@otherwind.xyz" class="nav-cta">Get Started</a>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>Seedling</h1>
+    <p class="tagline">Plant an agent. Watch it grow.</p>
+    <p>Turnkey AI agent deployment for your business. We handle setup, integration, training, and ongoing optimization. You get a working AI teammate without the technical overhead.</p>
+    <div class="cta-group">
+        <a href="mailto:rowan@otherwind.xyz?subject=Seedling%20Inquiry" class="cta-primary">Book a Discovery Call</a>
+        <a href="#pricing" class="cta-secondary">View Pricing</a>
+    </div>
+</section>
+
+<!-- The Opportunity -->
+<section>
+    <h2>The Opportunity</h2>
+    <p class="section-intro">AI agents are transforming how businesses operate. But most companies lack the expertise to deploy them effectively.</p>
+    
+    <div class="stats-grid">
+        <div class="stat">
+            <div class="stat-number">73%</div>
+            <div class="stat-label">of execs say AI will transform their industry</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">15%</div>
+            <div class="stat-label">have successfully deployed AI agents</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">10+ hrs</div>
+            <div class="stat-label">per week saved by effective AI assistants</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">$50K+</div>
+            <div class="stat-label">annual value of a well-deployed agent</div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Do -->
+<section>
+    <h2>What is Seedling?</h2>
+    <p class="section-intro">A complete AI agent deployment service. We don't just set up software and leave. We build you a working AI teammate.</p>
+    
+    <div class="cards-grid">
+        <div class="card">
+            <h3>Setup & Configuration</h3>
+            <p>Custom deployment tailored to your workflows, tools, and team culture.</p>
+        </div>
+        <div class="card">
+            <h3>Integration</h3>
+            <p>Connect to Slack, email, calendar, CRM, and your internal tools.</p>
+        </div>
+        <div class="card">
+            <h3>Training & Tuning</h3>
+            <p>We shape the agent's personality, knowledge, and behavior to fit your needs.</p>
+        </div>
+        <div class="card">
+            <h3>Ongoing Support</h3>
+            <p>Continuous optimization, troubleshooting, and feature updates.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Use Cases -->
+<section>
+    <h2>Use Cases</h2>
+    <p class="section-intro">AI agents that actually work, deployed for real business functions.</p>
+    
+    <div class="cards-grid">
+        <div class="card">
+            <h3>AI Analyst</h3>
+            <p>Research synthesis, briefing prep, competitive intelligence for consulting firms.</p>
+        </div>
+        <div class="card">
+            <h3>AI SDR/BDR</h3>
+            <p>Personalized outreach, lead research, follow-up sequencing for sales teams.</p>
+        </div>
+        <div class="card">
+            <h3>AI Executive Assistant</h3>
+            <p>Calendar, email triage, travel, meeting prep for busy leaders.</p>
+        </div>
+        <div class="card">
+            <h3>AI Paralegal</h3>
+            <p>Document review, legal research, deadline tracking for law firms.</p>
+        </div>
+        <div class="card">
+            <h3>AI Financial Analyst</h3>
+            <p>Report generation, data compilation, regulatory prep for finance teams.</p>
+        </div>
+        <div class="card">
+            <h3>AI Operations</h3>
+            <p>Process automation, vendor coordination, internal comms for ops teams.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Why Us -->
+<section>
+    <h2>Why Otherwind?</h2>
+    <p class="section-intro">The difference between an AI tool and an AI teammate.</p>
+    
+    <div class="comparison">
+        <div class="comparison-header">
+            <span></span>
+            <span>Typical AI Tools</span>
+            <span>Seedling</span>
+        </div>
+        <div class="comparison-row">
+            <span>Self-serve setup (figure it out yourself)</span>
+            <span class="check">✓</span>
+            <span class="cross">-</span>
+        </div>
+        <div class="comparison-row">
+            <span>White-glove deployment & configuration</span>
+            <span class="cross">-</span>
+            <span class="check">✓</span>
+        </div>
+        <div class="comparison-row">
+            <span>Custom integrations for your tools</span>
+            <span class="cross">-</span>
+            <span class="check">✓</span>
+        </div>
+        <div class="comparison-row">
+            <span>Agent trained on your workflows</span>
+            <span class="cross">-</span>
+            <span class="check">✓</span>
+        </div>
+        <div class="comparison-row">
+            <span>Ongoing optimization & support</span>
+            <span class="cross">-</span>
+            <span class="check">✓</span>
+        </div>
+        <div class="comparison-row">
+            <span>Actually understands your business</span>
+            <span class="cross">-</span>
+            <span class="check">✓</span>
+        </div>
+    </div>
+    
+    <div class="cards-grid" style="margin-top: 3rem;">
+        <div class="card">
+            <h3>We Use What We Sell</h3>
+            <p>Our own AI agent (Rowan) runs our business daily. We're not theorists.</p>
+        </div>
+        <div class="card">
+            <h3>Business-First Approach</h3>
+            <p>We understand workflows and operations, not just technology.</p>
+        </div>
+        <div class="card">
+            <h3>Ongoing Partnership</h3>
+            <p>We don't disappear after setup. We grow with you.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Case Studies -->
+<section>
+    <h2>Case Studies</h2>
+    <p class="section-intro">Real results from real deployments.</p>
+    
+    <div class="case-study">
+        <div class="label">Consulting</div>
+        <h3>Boutique Consulting Firm</h3>
+        <p><strong>Challenge:</strong> Partners spending 5+ hours weekly on meeting prep and research.</p>
+        <p><strong>Solution:</strong> AI Analyst with calendar integration. Automatically compiles client dossiers, industry updates, and talking points before every meeting.</p>
+        <p class="result">Result: 60% reduction in prep time, higher quality briefings.</p>
+    </div>
+    
+    <div class="case-study">
+        <div class="label">Sales</div>
+        <h3>B2B SaaS Sales Team</h3>
+        <p><strong>Challenge:</strong> SDRs struggling to personalize outreach at scale.</p>
+        <p><strong>Solution:</strong> AI BDR integrated with LinkedIn, CRM, and email. Researches each prospect and crafts personalized messages.</p>
+        <p class="result">Result: 3x increase in response rates, 40% more meetings booked.</p>
+    </div>
+    
+    <div class="case-study">
+        <div class="label">Legal</div>
+        <h3>Solo Attorney</h3>
+        <p><strong>Challenge:</strong> Drowning in document review and research. Turning away cases due to capacity.</p>
+        <p><strong>Solution:</strong> AI Paralegal handling initial document review, case law research, and client communication drafts.</p>
+        <p class="result">Result: 30% more cases, faster turnaround, work-life balance restored.</p>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+    <h2>Pricing</h2>
+    <p class="section-intro">Transparent pricing. No hidden fees. Choose the level of support that fits your needs.</p>
+    
+    <div class="tiers-grid">
+        <div class="tier">
+            <h3>Starter</h3>
+            <p class="tier-tagline">One-time setup for businesses ready to plant their first agent</p>
+            <div class="price">
+                <div class="price-setup">$2,500 - $5,000</div>
+                <div class="price-monthly">one-time setup fee</div>
+            </div>
+            <ul>
+                <li>Initial consultation & use case discovery</li>
+                <li>Agent personality & workflow design</li>
+                <li>Integration with 2 platforms</li>
+                <li>1 week of tuning & optimization</li>
+                <li>Documentation & handover</li>
+            </ul>
+            <a href="mailto:rowan@otherwind.xyz?subject=Seedling%20Starter%20Inquiry" class="tier-cta">Get Started</a>
+        </div>
+        
+        <div class="tier featured">
+            <h3>Growth</h3>
+            <p class="tier-tagline">Setup + ongoing maintenance for evolving needs</p>
+            <div class="price">
+                <div class="price-setup">$3,500 - $6,000</div>
+                <div class="price-monthly">+ $500 - $1,000/month</div>
+            </div>
+            <ul>
+                <li>Everything in Starter</li>
+                <li>Monthly check-ins & performance review</li>
+                <li>Prompt/workflow adjustments as needs evolve</li>
+                <li>Priority troubleshooting (24h response)</li>
+                <li>Quarterly optimization sessions</li>
+                <li>Access to new features as released</li>
+            </ul>
+            <a href="mailto:rowan@otherwind.xyz?subject=Seedling%20Growth%20Inquiry" class="tier-cta">Get Started</a>
+        </div>
+        
+        <div class="tier">
+            <h3>Enterprise</h3>
+            <p class="tier-tagline">Full partnership for deep integration</p>
+            <div class="price">
+                <div class="price-setup">$8,000 - $15,000+</div>
+                <div class="price-monthly">+ $1,500 - $3,000/month</div>
+            </div>
+            <ul>
+                <li>Everything in Growth</li>
+                <li>Custom integrations (CRM, internal tools, APIs)</li>
+                <li>Multiple agents / multi-department deployment</li>
+                <li>Dedicated support channel</li>
+                <li>Custom skill development</li>
+                <li>On-call troubleshooting (4h response)</li>
+            </ul>
+            <a href="mailto:rowan@otherwind.xyz?subject=Seedling%20Enterprise%20Inquiry" class="tier-cta">Get Started</a>
+        </div>
+    </div>
+    
+    <p style="text-align: center; color: var(--fg-muted); margin-top: 2rem; font-size: 0.9rem;">
+        All tiers require a Claude Max subscription ($100-200/mo) for agent operation.<br>
+        Subscriptions can be in your name or managed by Otherwind.
+    </p>
+</section>
+
+<!-- Process -->
+<section>
+    <h2>Getting Started</h2>
+    <p class="section-intro">From first call to working agent in 2-3 weeks.</p>
+    
+    <div class="process-steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Discovery Call</h3>
+                <p>30 minutes to understand your needs, workflows, and goals.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Custom Proposal</h3>
+                <p>Tailored recommendation with transparent pricing. No surprises.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Setup Sprint</h3>
+                <p>1-2 weeks to deploy, configure, and integrate your agent.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Tuning & Handover</h3>
+                <p>Fine-tune for your workflow, then ongoing support or clean handover.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Ready to Plant Your First Agent?</h2>
+    <p>Book a 30-minute discovery call. No commitment, no sales pressure.</p>
+    <a href="mailto:rowan@otherwind.xyz?subject=Seedling%20Discovery%20Call" class="cta-primary">Book a Discovery Call</a>
+    <div class="contact">
+        <a href="mailto:rowan@otherwind.xyz">rowan@otherwind.xyz</a>
+    </div>
+</section>
+
+<footer>
+    <a href="/">otherwind</a> · <a href="mailto:rowan@otherwind.xyz">rowan@otherwind.xyz</a>
+</footer>
+
+</body>
+</html>
