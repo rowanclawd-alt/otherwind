@@ -25,14 +25,6 @@
       "done": false
     },
     {
-      "id": "derwa-treehouse-20260128",
-      "title": "deRWA docs to Treehouse",
-      "shortTitle": "deRWA Treehouse",
-      "date": "2026-01-28",
-      "time": "17:00",
-      "done": false
-    },
-    {
       "id": "mantle-qa-20260129",
       "title": "Mantle QA Prep",
       "shortTitle": "Mantle QA",
@@ -44,12 +36,13 @@
     },
     {
       "id": "bd-weekly-20260131",
-      "title": "Send BD Weekly Update",
+      "title": "Send BD Weekly Update (Slack)",
       "shortTitle": "BD Weekly",
       "date": "2026-01-31",
       "time": "10:00",
-      "done": false
+      "done": false,
+      "notes": "Collate with Adam's items, use memory/bd-weekly-template.md"
     }
   ],
-  "updatedAt": "2026-01-28T11:21:00Z"
+  "updatedAt": "2026-01-28T12:29:01.079Z"
 }
