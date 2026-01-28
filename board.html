@@ -376,7 +376,61 @@
         }
 
         /* Todos Panel */
-        .todos-panel { grid-column: span 4; }
+        .calendar-panel { grid-column: span 4; }
+        
+        .calendar-day {
+            margin-bottom: 1rem;
+        }
+        
+        .calendar-day:last-child { margin-bottom: 0; }
+        
+        .calendar-day-header {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .calendar-day-header.today {
+            color: var(--accent);
+        }
+        
+        .calendar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0;
+            font-size: 0.8rem;
+        }
+        
+        .calendar-time {
+            color: var(--muted);
+            font-size: 0.7rem;
+            min-width: 40px;
+        }
+        
+        .calendar-title {
+            color: var(--text);
+        }
+        
+        .calendar-title.done {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+        
+        .calendar-link {
+            margin-left: auto;
+            color: var(--muted);
+            font-size: 0.7rem;
+        }
+        
+        .calendar-link:hover {
+            color: var(--accent);
+        }
 
         .todo-group {
             margin-bottom: 1rem;
@@ -804,12 +858,12 @@
                 </section>
 
                 <!-- Todos -->
-                <section class="panel todos-panel">
+                <section class="panel calendar-panel">
                     <div class="panel-header">
-                        <span class="panel-title">Todos</span>
-                        <span class="panel-badge" id="todo-count">0</span>
+                        <span class="panel-title">📅 Calendar</span>
+                        <button class="refresh-btn" onclick="refreshCalendar()" title="Refresh calendar">↻</button>
                     </div>
-                    <div id="todos-content"></div>
+                    <div id="calendar-content"></div>
                 </section>
 
                 <!-- Portfolio -->
@@ -965,17 +1019,37 @@
             { name: 'Todo Review', schedule: 'Daily 9am', next: '09:00 tomorrow' }
         ];
 
-        const todos = {
-            tomorrow: [
-                { task: 'Ping team', deadline: '2026-01-28' }
-            ],
-            thisWeek: [
-                { task: 'Get back to Resolv on DDQ', deadline: '2026-01-30' }
-            ],
-            noDeadline: [
-                { task: 'Chat with Adam re: Keyring DD', context: 'Tagged in gdoc' }
-            ]
-        };
+        let calendarData = { todos: [], updatedAt: null };
+        
+        async function fetchCalendar() {
+            try {
+                const res = await fetch('calendar-data.json?t=' + Date.now());
+                if (res.ok) {
+                    calendarData = await res.json();
+                    return true;
+                }
+            } catch (e) {
+                console.log('Calendar fetch failed:', e);
+            }
+            return false;
+        }
+        
+        async function refreshCalendar() {
+            const btn = document.querySelector('.calendar-panel .refresh-btn');
+            if (btn) {
+                btn.classList.add('loading');
+                btn.textContent = '...';
+            }
+            
+            await fetchCalendar();
+            renderCalendar();
+            renderFocus();
+            
+            if (btn) {
+                btn.classList.remove('loading');
+                btn.textContent = '↻';
+            }
+        }
 
         const portfolio = {
             combined: { gbp: 27273.93, usd: 37310.75 },
@@ -1083,23 +1157,23 @@
 
         function renderFocus() {
             const el = document.getElementById('focus-content');
-            const deleted = getDeletedItems();
+            const today = new Date().toISOString().split('T')[0];
             
-            // Get top 3 active tasks as today's focus
-            const focusTasks = tasks.active
-                .filter(t => !deleted.includes(t.id))
-                .slice(0, 3);
+            // Get today's todos from calendar data
+            const todayTodos = (calendarData.todos || [])
+                .filter(t => t.date === today && !t.done)
+                .slice(0, 4);
             
-            if (focusTasks.length === 0) {
-                el.innerHTML = '<p style="color: var(--muted); font-size: 0.85rem;">No active tasks. Add some to your board!</p>';
+            if (todayTodos.length === 0) {
+                el.innerHTML = '<p style="color: var(--muted); font-size: 0.85rem;">Nothing scheduled for today 🎉</p>';
                 return;
             }
             
-            el.innerHTML = focusTasks.map((task, i) => `
+            el.innerHTML = todayTodos.map((todo, i) => `
                 <div class="focus-item">
-                    <span class="focus-priority">${i + 1}</span>
-                    <span class="focus-title">${task.title}</span>
-                    <span class="focus-desc">${task.desc || ''}</span>
+                    <span class="focus-priority">${todo.time || (i + 1)}</span>
+                    <span class="focus-title">${todo.title}</span>
+                    ${todo.url ? `<a href="${todo.url}" target="_blank" class="focus-desc">↗</a>` : ''}
                 </div>
             `).join('');
         }
@@ -1117,59 +1191,48 @@
             `).join('');
         }
 
-        function renderTodos() {
-            const el = document.getElementById('todos-content');
-            const total = todos.tomorrow.length + todos.thisWeek.length + todos.noDeadline.length;
-            document.getElementById('todo-count').textContent = total;
-
-            let html = '';
+        function renderCalendar() {
+            const el = document.getElementById('calendar-content');
+            const todos = calendarData.todos || [];
             
-            if (todos.tomorrow.length > 0) {
-                html += `<div class="todo-group">
-                    <div class="todo-group-title">Tomorrow</div>
-                    ${todos.tomorrow.map(t => `
-                        <div class="todo-item">
-                            <div class="todo-checkbox"></div>
-                            <div>
-                                <div class="todo-text">${t.task}</div>
-                                <div class="todo-deadline">${t.deadline}</div>
-                            </div>
+            if (todos.length === 0) {
+                el.innerHTML = '<div style="color: var(--muted); font-size: 0.8rem;">No scheduled items</div>';
+                return;
+            }
+            
+            // Group by date
+            const today = new Date().toISOString().split('T')[0];
+            const grouped = {};
+            
+            todos.forEach(todo => {
+                const date = todo.date;
+                if (!grouped[date]) grouped[date] = [];
+                grouped[date].push(todo);
+            });
+            
+            // Sort dates
+            const sortedDates = Object.keys(grouped).sort();
+            
+            let html = '';
+            sortedDates.forEach(date => {
+                const isToday = date === today;
+                const dateObj = new Date(date + 'T00:00:00');
+                const dayName = dateObj.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+                const label = isToday ? `Today · ${dayName}` : dayName;
+                
+                html += `<div class="calendar-day">
+                    <div class="calendar-day-header ${isToday ? 'today' : ''}">${label}</div>
+                    ${grouped[date].map(todo => `
+                        <div class="calendar-item">
+                            <span class="calendar-time">${todo.time || ''}</span>
+                            <span class="calendar-title ${todo.done ? 'done' : ''}">${todo.shortTitle || todo.title}</span>
+                            ${todo.url ? `<a href="${todo.url}" target="_blank" class="calendar-link">↗</a>` : ''}
                         </div>
                     `).join('')}
                 </div>`;
-            }
-
-            if (todos.thisWeek.length > 0) {
-                html += `<div class="todo-group">
-                    <div class="todo-group-title">This Week</div>
-                    ${todos.thisWeek.map(t => `
-                        <div class="todo-item">
-                            <div class="todo-checkbox"></div>
-                            <div>
-                                <div class="todo-text">${t.task}</div>
-                                <div class="todo-deadline">${t.deadline}</div>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>`;
-            }
-
-            if (todos.noDeadline.length > 0) {
-                html += `<div class="todo-group">
-                    <div class="todo-group-title">No Deadline</div>
-                    ${todos.noDeadline.map(t => `
-                        <div class="todo-item">
-                            <div class="todo-checkbox"></div>
-                            <div>
-                                <div class="todo-text">${t.task}</div>
-                                ${t.context ? `<div class="todo-deadline">${t.context}</div>` : ''}
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>`;
-            }
-
-            el.innerHTML = html || '<div style="color: var(--muted); font-size: 0.8rem;">No todos 👍</div>';
+            });
+            
+            el.innerHTML = html;
         }
 
         let portfolioVisible = false; // Hidden by default
@@ -1280,11 +1343,11 @@
         }
 
         async function renderAll() {
-            await fetchUsage(); // Load latest usage from JSON
+            await Promise.all([fetchUsage(), fetchCalendar()]);
             renderFocus();
             renderUsage();
             renderCronJobs();
-            renderTodos();
+            renderCalendar();
             renderPortfolio();
             renderSkills();
             renderKanban();
