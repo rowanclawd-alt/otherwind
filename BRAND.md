@@ -11,7 +11,7 @@
 - "no mirror shows a single face"
 - "the echo sometimes leads the voice"
 
-**Team tagline:** "neither leads, both arrive"
+**Team tagline:** *(deprecated - do not use externally)*
 
 ---
 
