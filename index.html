@@ -538,7 +538,7 @@
 
         // Shapes - Contact replaces About
         const shapeConfigs = [
-            { geo: 'icosahedron', size: 1.9, pos: [-5, 2, -2], palette: 6, rotSpeed: 0.006, name: 'Services', status: 'AI agent deployment' },
+            { geo: 'icosahedron', size: 1.9, pos: [-5, 2, -2], palette: 6, rotSpeed: 0.006, name: 'Services', status: 'Seedling · Canopy' },
             { geo: 'dodecahedron', size: 1.8, pos: [5, -1, -1], palette: 1, rotSpeed: 0.006, name: 'Contact', status: 'rowan@otherwind.xyz' },
             { geo: 'octahedron', size: 1.5, pos: [-3, -2.5, 1], palette: 2, rotSpeed: 0.01, name: 'Work', status: 'coming soon' },
             { geo: 'icosahedron', size: 1.3, pos: [3.5, 3, 0], palette: 3, rotSpeed: 0.007, name: 'Team', status: 'neither leads, both arrive' },
@@ -698,11 +698,21 @@
                 ]
             },
             'Services': {
-                title: 'Seedling',
-                subtitle: 'plant an agent, watch it grow',
+                title: 'Services',
+                subtitle: '',
                 body: `
-                    <p><strong>Seedling</strong> is our agent deployment service. We build you an agent. You put it to work. It handles the rest across sales, research, support, whatever you throw at it.</p>
-                    <p style="margin-top: 2rem;"><a href="/seedling" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Learn more about Seedling →</a></p>
+                    <div style="margin-bottom: 2.5rem;">
+                        <h3 style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; margin-bottom: 0.3rem;">Seedling</h3>
+                        <p style="font-size: 0.85rem; color: rgba(232,239,233,0.5); margin-bottom: 0.8rem;">Plant an agent, watch it grow.</p>
+                        <p>Our agent deployment service. We build you an agent. You put it to work. It handles the rest across sales, research, support, whatever you throw at it.</p>
+                        <p style="margin-top: 1rem;"><a href="/seedling" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Learn more about Seedling →</a></p>
+                    </div>
+                    <div>
+                        <h3 style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; margin-bottom: 0.3rem;">Canopy</h3>
+                        <p style="font-size: 0.85rem; color: rgba(232,239,233,0.5); margin-bottom: 0.8rem;">Access internet capital markets.</p>
+                        <p>End-to-end tokenization advisory. We help organizations unlock liquidity, streamline capital flows, and modernize financial infrastructure through tokenization.</p>
+                        <p style="margin-top: 1rem;"><a href="mailto:rowan@otherwind.xyz" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Enquire →</a></p>
+                    </div>
                 `
             }
         };
