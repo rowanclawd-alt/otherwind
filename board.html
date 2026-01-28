@@ -202,6 +202,42 @@
         }
 
         /* System Status Panel */
+        .focus-panel { 
+            grid-column: span 12; 
+            background: linear-gradient(135deg, rgba(79, 209, 165, 0.1), transparent);
+            border-color: var(--accent);
+        }
+        
+        .focus-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .focus-item:last-child { border-bottom: none; }
+        
+        .focus-priority {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--accent);
+            color: var(--bg);
+        }
+        
+        .focus-title {
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .focus-desc {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-left: auto;
+        }
+
         .system-status { grid-column: span 12; }
 
         .status-grid {
@@ -586,13 +622,13 @@
             border: none;
             color: var(--subtle);
             cursor: pointer;
-            font-size: 0.8rem;
-            opacity: 0;
+            font-size: 0.9rem;
+            opacity: 0.4;
             transition: opacity 0.2s, color 0.2s;
+            padding: 0.25rem 0.5rem;
         }
 
-        .card:hover .card-delete { opacity: 1; }
-        .card-delete:hover { color: var(--red); }
+        .card-delete:hover { opacity: 1; color: var(--red); }
 
         /* Log Section */
         .log-section {
@@ -702,6 +738,14 @@
             </header>
 
             <div class="dashboard">
+                <!-- Today's Focus -->
+                <section class="panel focus-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">🎯 Today's Focus</span>
+                    </div>
+                    <div id="focus-content"></div>
+                </section>
+
                 <!-- System Status -->
                 <section class="panel system-status">
                     <div class="panel-header">
@@ -816,14 +860,24 @@
 
     <script>
         // === PASSWORD PROTECTION ===
-        const PASSWORD = 'otherwind2026';
+        // Hash of password (SHA-256) - not visible in source
+        const PASSWORD_HASH = '10b4c65c0fc2b756211d02f968dba212602fb617af716f48eed77a29a0d5eb64';
+        
+        async function hashPassword(pwd) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(pwd);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
         
         function checkAuth() {
             return sessionStorage.getItem('board-auth') === 'true';
         }
 
-        function authenticate(pwd) {
-            if (pwd === PASSWORD) {
+        async function authenticate(pwd) {
+            const hash = await hashPassword(pwd);
+            if (hash === PASSWORD_HASH) {
                 sessionStorage.setItem('board-auth', 'true');
                 return true;
             }
@@ -1027,6 +1081,29 @@
             }
         }
 
+        function renderFocus() {
+            const el = document.getElementById('focus-content');
+            const deleted = getDeletedItems();
+            
+            // Get top 3 active tasks as today's focus
+            const focusTasks = tasks.active
+                .filter(t => !deleted.includes(t.id))
+                .slice(0, 3);
+            
+            if (focusTasks.length === 0) {
+                el.innerHTML = '<p style="color: var(--muted); font-size: 0.85rem;">No active tasks. Add some to your board!</p>';
+                return;
+            }
+            
+            el.innerHTML = focusTasks.map((task, i) => `
+                <div class="focus-item">
+                    <span class="focus-priority">${i + 1}</span>
+                    <span class="focus-title">${task.title}</span>
+                    <span class="focus-desc">${task.desc || ''}</span>
+                </div>
+            `).join('');
+        }
+
         function renderCronJobs() {
             const list = document.getElementById('cron-list');
             document.getElementById('cron-count').textContent = cronJobs.length;
@@ -1204,6 +1281,7 @@
 
         async function renderAll() {
             await fetchUsage(); // Load latest usage from JSON
+            renderFocus();
             renderUsage();
             renderCronJobs();
             renderTodos();
@@ -1229,9 +1307,9 @@
                 setInterval(updateTime, 60000);
             }
 
-            input.addEventListener('keydown', (e) => {
+            input.addEventListener('keydown', async (e) => {
                 if (e.key === 'Enter') {
-                    if (authenticate(input.value)) {
+                    if (await authenticate(input.value)) {
                         overlay.classList.add('hidden');
                         content.style.display = 'block';
                         renderAll();
