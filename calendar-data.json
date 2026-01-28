@@ -6,7 +6,7 @@
       "shortTitle": "BD Summary",
       "date": "2026-01-28",
       "time": "14:00",
-      "done": false
+      "done": true
     },
     {
       "id": "binance-earn-20260128",
@@ -40,9 +40,9 @@
       "shortTitle": "BD Weekly",
       "date": "2026-01-30",
       "time": "10:00",
-      "done": false,
-      "notes": "Collate with Adam's items, use memory/bd-weekly-template.md"
+      "done": true,
+      "notes": "Sent early on 2026-01-28"
     }
   ],
-  "updatedAt": "2026-01-28T12:29:01.079Z"
+  "updatedAt": "2026-01-28T13:34:00.000Z"
 }
