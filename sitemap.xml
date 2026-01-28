@@ -7,9 +7,45 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://otherwind.xyz/board.html</loc>
+    <loc>https://otherwind.xyz/seedling</loc>
     <lastmod>2026-01-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://otherwind.xyz/work</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otherwind.xyz/insight/the-360-employee</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://otherwind.xyz/insight/ai-vs-virtual-assistant</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://otherwind.xyz/insight/5-admin-tasks-never-do-yourself</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://otherwind.xyz/insight/how-to-use-ai-in-your-business</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://otherwind.xyz/insight/what-happens-when-a-lead-comes-in-at-2am</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
