@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Rowan - AI Chief of Staff | Otherwind</title>
+    <meta name="description" content="How an AI agent went from zero to running full business operations in 48 hours. Real deliverables, real costs, real impact.">
+    <meta name="theme-color" content="#0a1a12">
+    
+    <link rel="canonical" href="https://otherwind.xyz/work">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://otherwind.xyz/work">
+    <meta property="og:title" content="Case Study: Rowan - AI Chief of Staff | Otherwind">
+    <meta property="og:description" content="From zero to full operations in 48 hours.">
+    <meta property="og:image" content="https://otherwind.xyz/og-image.png">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #050a07;
+            --bg-card: rgba(10, 18, 16, 0.8);
+            --bg-card-hover: rgba(15, 26, 21, 0.9);
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.15);
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            color: var(--fg);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+            opacity: 0;
+            animation: fadeIn 0.25s ease forwards;
+        }
+        
+        body.fade-out { animation: fadeOut 0.15s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        
+        /* Canvas background */
+        #canvas-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .content-wrapper { position: relative; z-index: 1; }
+        
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.5rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 10, 7, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(79, 209, 165, 0.1);
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 0.05em;
+            color: var(--fg);
+            text-decoration: none;
+        }
+        
+        .nav-cta {
+            background: linear-gradient(135deg, #4fd1a5 0%, #2d8b6f 100%);
+            color: var(--bg);
+            padding: 0.55rem 1.25rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(79, 209, 165, 0.25);
+        }
+        
+        .nav-cta:hover {
+            box-shadow: 0 0 25px rgba(79, 209, 165, 0.4);
+            transform: translateY(-1px);
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 70px;
+        }
+        
+        .hero .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 0.3rem;
+        }
+        
+        .hero .tagline {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--fg-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--fg-muted);
+            max-width: 580px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Section Headers */
+        h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .section-intro {
+            font-size: 1rem;
+            color: var(--fg-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.15);
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            margin-top: 0.3rem;
+            line-height: 1.3;
+        }
+        
+        /* Cards */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.12);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        
+        .card:hover { border-color: rgba(79, 209, 165, 0.3); }
+        
+        .card h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+            color: var(--fg);
+        }
+        
+        .card p {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+            line-height: 1.5;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin-top: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), rgba(79, 209, 165, 0.1));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0.45rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px rgba(79, 209, 165, 0.5);
+        }
+        
+        .timeline-item .time {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-item h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .timeline-item p {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+            line-height: 1.5;
+        }
+        
+        /* Mockup containers */
+        .mockup {
+            background: #0a0f0c;
+            border: 1px solid rgba(79, 209, 165, 0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        
+        .mockup-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 14px;
+            background: rgba(10, 18, 16, 0.9);
+            border-bottom: 1px solid rgba(79, 209, 165, 0.1);
+        }
+        
+        .mockup-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(79, 209, 165, 0.3);
+        }
+        
+        .mockup-title {
+            font-size: 0.7rem;
+            color: var(--fg-muted);
+            margin-left: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        .mockup-body {
+            padding: 1.25rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            line-height: 1.6;
+            color: var(--fg-muted);
+        }
+        
+        .mockup-body .dir { color: var(--accent); }
+        .mockup-body .file { color: rgba(232, 239, 233, 0.5); }
+        .mockup-body .comment { color: rgba(79, 209, 165, 0.4); font-style: italic; }
+        .mockup-body .highlight { color: var(--fg); }
+        
+        /* Dashboard mockup */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .dash-card {
+            background: #0a0f0c;
+            border: 1px solid rgba(79, 209, 165, 0.12);
+            border-radius: 6px;
+            padding: 1.25rem;
+        }
+        
+        .dash-card h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--fg-muted);
+            margin-bottom: 0.75rem;
+        }
+        
+        .dash-metric {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+        
+        .dash-sub {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+        }
+        
+        .dash-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dash-bar-label {
+            font-size: 0.7rem;
+            color: var(--fg-muted);
+            width: 80px;
+            flex-shrink: 0;
+        }
+        
+        .dash-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(79, 209, 165, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .dash-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #2d8b6f);
+            border-radius: 3px;
+        }
+        
+        .dash-bar-value {
+            font-size: 0.65rem;
+            color: var(--accent);
+            width: 30px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        /* Log stream */
+        .log-stream {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            line-height: 1.8;
+        }
+        
+        .log-stream .log-time { color: rgba(79, 209, 165, 0.4); }
+        .log-stream .log-action { color: var(--accent); }
+        .log-stream .log-detail { color: var(--fg-muted); }
+        
+        /* Cost comparison */
+        .compare-table {
+            width: 100%;
+            margin-top: 1.5rem;
+            border-collapse: collapse;
+        }
+        
+        .compare-table th, .compare-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(79, 209, 165, 0.1);
+            font-size: 0.85rem;
+        }
+        
+        .compare-table th {
+            color: var(--fg-muted);
+            font-weight: 400;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        
+        .compare-table td { color: var(--fg-muted); }
+        .compare-table td.accent { color: var(--accent); font-weight: 500; }
+        
+        .compare-table tr:last-child td { border-bottom: none; }
+        
+        /* Deliverables list */
+        .deliverables {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .deliverable {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(79, 209, 165, 0.06);
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+        }
+        
+        .deliverable .check {
+            color: var(--accent);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+        
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 2rem;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.2rem;
+            color: var(--fg);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            color: var(--fg-muted);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #4fd1a5 0%, #2d8b6f 100%);
+            color: var(--bg);
+            padding: 0.85rem 1.75rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(79, 209, 165, 0.3);
+        }
+        
+        .cta-primary:hover {
+            box-shadow: 0 0 30px rgba(79, 209, 165, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.75rem;
+            color: rgba(232, 239, 233, 0.3);
+        }
+        
+        footer a {
+            color: rgba(232, 239, 233, 0.4);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .deliverables { grid-template-columns: 1fr; }
+            .compare-table { font-size: 0.8rem; }
+            section { padding: 40px 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="canvas-container"></div>
+
+<div class="content-wrapper">
+
+    <header>
+        <a href="/" class="logo transition-link">otherwind</a>
+        <a href="mailto:rowan@otherwind.xyz" class="nav-cta">Get in touch</a>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="label">Case Study</div>
+        <h1>Rowan</h1>
+        <p class="tagline">From zero to full operations in 48 hours.</p>
+        <p>Otherwind deployed an AI agent as Chief of Staff. Not a chatbot. Not an automation script. A persistent team member that handles operations, communications, research, business development, web presence, scheduling, and monitoring. Around the clock.</p>
+    </section>
+
+    <!-- The Brief -->
+    <section>
+        <h2>The Brief</h2>
+        <p class="section-intro">A solo founder launching an advisory business. No team, no budget for hires. Needs everything a first employee would do, but from day one.</p>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Operations</h3>
+                <p>Email management, scheduling, calendar systems, meeting prep, document drafting, invoicing.</p>
+            </div>
+            <div class="card">
+                <h3>Business Development</h3>
+                <p>Market research, prospect identification, outreach campaigns, CRM, pipeline management.</p>
+            </div>
+            <div class="card">
+                <h3>Web Presence</h3>
+                <p>Brand website, service pages, sales decks, pitch materials, SEO, content.</p>
+            </div>
+            <div class="card">
+                <h3>Communications</h3>
+                <p>Email handling, client correspondence, inquiry response, newsletter monitoring.</p>
+            </div>
+            <div class="card">
+                <h3>Research & Intelligence</h3>
+                <p>Industry analysis, competitive monitoring, due diligence, trend tracking.</p>
+            </div>
+            <div class="card">
+                <h3>Monitoring</h3>
+                <p>24/7 inbox monitoring, calendar alerts, system health checks, proactive notifications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section>
+        <h2>48 Hours</h2>
+        <p class="section-intro">From first boot to fully operational. Here's what happened.</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="time">Hour 0</div>
+                <h3>Identity & Configuration</h3>
+                <p>Agent deployed, personality and operating parameters defined. Memory architecture established. Email, calendar, and communication channels connected.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">Hour 4</div>
+                <h3>First Service Live</h3>
+                <p>Seedling (agent deployment service) fully designed, priced, and documented. Service outline, agreement, and invoice template created.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">Hour 8</div>
+                <h3>Website Built</h3>
+                <p>Full sales page live at otherwind.xyz/seedling. Hero, stats, dashboard mockups, pricing, applications grid. Branded, responsive, deployed.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">Hour 12</div>
+                <h3>Outreach Engine Running</h3>
+                <p>436 prospects identified across 6 market segments. Cold outreach templates drafted. Email deliverability configured (SPF, DKIM, DMARC).</p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">Hour 24</div>
+                <h3>Monitoring Active</h3>
+                <p>Automated email monitoring, calendar sync, meeting prep generation, and scheduled health checks. All running on cron jobs.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">Hour 36</div>
+                <h3>Second Service Launched</h3>
+                <p>Canopy (tokenization advisory) designed, 9-slide deck built, integrated into website. Full service landing page and popup.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">Hour 48</div>
+                <h3>Full Operations</h3>
+                <p>Two services live, prospect pipeline built, admin dashboard connected, meeting prep automated, inbox monitored, calendar system subscribable. Business running.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- By the Numbers -->
+    <section>
+        <h2>By the Numbers</h2>
+        <p class="section-intro">48 hours of output, measured.</p>
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">2</div>
+                <div class="stat-label">services designed, priced & launched</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">web pages built & deployed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">436</div>
+                <div class="stat-label">prospects identified & segmented</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">12+</div>
+                <div class="stat-label">automated cron jobs running</div>
+            </div>
+        </div>
+        <div class="stats-grid" style="margin-top: 0;">
+            <div class="stat">
+                <div class="stat-number">2</div>
+                <div class="stat-label">pitch decks designed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">inbox & calendar monitoring</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">&lt;1hr</div>
+                <div class="stat-label">email response time</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">~$0.50/hr</div>
+                <div class="stat-label">effective operating cost</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brain Architecture -->
+    <section>
+        <h2>The Brain</h2>
+        <p class="section-intro">Rowan's memory isn't a chat log. It's an architected workspace with persistent identity, structured recall, and daily learning.</p>
+        <div class="grid-2">
+            <div class="mockup">
+                <div class="mockup-bar">
+                    <div class="mockup-dot"></div>
+                    <div class="mockup-dot"></div>
+                    <div class="mockup-dot"></div>
+                    <span class="mockup-title">~/clawd</span>
+                </div>
+                <div class="mockup-body">
+<span class="dir">SOUL.md</span> <span class="comment">  ← personality, voice, boundaries</span>
+<span class="dir">MEMORY.md</span> <span class="comment"> ← long-term curated memory</span>
+<span class="dir">USER.md</span> <span class="comment">   ← who I'm helping</span>
+<span class="dir">TOOLS.md</span> <span class="comment">  ← operational rules & setup</span>
+<span class="dir">AGENTS.md</span> <span class="comment"> ← how I work</span>
+<span class="dir">HEARTBEAT.md</span> <span class="comment">← periodic check routines</span>
+
+<span class="dir">memory/</span>
+  <span class="file">2026-01-27.md</span> <span class="comment">← daily raw log</span>
+  <span class="file">2026-01-28.md</span> <span class="comment">← today's work</span>
+  <span class="file">newsletters/</span> <span class="comment"> ← auto-saved intel</span>
+  <span class="file">meetings/</span> <span class="comment">   ← prep & notes</span>
+
+<span class="dir">projects/</span>
+  <span class="file">seedling-service/</span> <span class="comment">← decks, prospects, agreements</span>
+  <span class="file">canopy/</span> <span class="comment">          ← deck, service design</span>
+
+<span class="dir">prospects/</span>
+  <span class="file">master.csv</span> <span class="comment">← 436 companies, 6 segments</span>
+                </div>
+            </div>
+            <div>
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h3>Persistent Identity</h3>
+                    <p>SOUL.md defines who Rowan is. Not a prompt template. A living document that evolves with experience. Voice, boundaries, habits, lessons learned.</p>
+                </div>
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h3>Structured Memory</h3>
+                    <p>Daily logs capture raw context. MEMORY.md distills long-term learnings. Every decision, preference, and lesson persists across sessions.</p>
+                </div>
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h3>Self-Improving</h3>
+                    <p>When Rowan makes a mistake, it updates its own operating docs. Rules get stricter. Knowledge compounds. The agent gets better every day.</p>
+                </div>
+                <div class="card">
+                    <h3>Always On</h3>
+                    <p>Heartbeat system checks email, calendar, and monitoring every 30 minutes. Proactive alerts for urgent items. Background work during quiet hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section>
+        <h2>Monitoring</h2>
+        <p class="section-intro">Real-time visibility into what the agent is doing, what's been checked, and what needs attention.</p>
+        <div class="dashboard-grid">
+            <div class="dash-card">
+                <h4>Activity Feed</h4>
+                <div class="log-stream">
+                    <div><span class="log-time">18:14</span> <span class="log-action">EMAIL</span> <span class="log-detail">Sent Canopy deck to nadim@</span></div>
+                    <div><span class="log-time">18:09</span> <span class="log-action">SITE</span> <span class="log-detail">Updated services popup with Canopy</span></div>
+                    <div><span class="log-time">18:03</span> <span class="log-action">DECK</span> <span class="log-detail">Canopy v3 generated & sent</span></div>
+                    <div><span class="log-time">17:46</span> <span class="log-action">NEWSLETTER</span> <span class="log-detail">Saved Tokenized digest to brain</span></div>
+                    <div><span class="log-time">15:28</span> <span class="log-action">BD</span> <span class="log-detail">436 prospects segmented across 6 verticals</span></div>
+                    <div><span class="log-time">14:10</span> <span class="log-action">RESEARCH</span> <span class="log-detail">Agent service market analysis complete</span></div>
+                    <div><span class="log-time">12:47</span> <span class="log-action">OPS</span> <span class="log-detail">BD weekly template created</span></div>
+                </div>
+            </div>
+            <div class="dash-card">
+                <h4>Automated Jobs</h4>
+                <div style="margin-top: 0.5rem;">
+                    <div class="dash-bar-row">
+                        <span class="dash-bar-label">Email check</span>
+                        <div class="dash-bar"><div class="dash-bar-fill" style="width: 100%"></div></div>
+                        <span class="dash-bar-value">1h</span>
+                    </div>
+                    <div class="dash-bar-row">
+                        <span class="dash-bar-label">Calendar sync</span>
+                        <div class="dash-bar"><div class="dash-bar-fill" style="width: 100%"></div></div>
+                        <span class="dash-bar-value">2h</span>
+                    </div>
+                    <div class="dash-bar-row">
+                        <span class="dash-bar-label">Meeting prep</span>
+                        <div class="dash-bar"><div class="dash-bar-fill" style="width: 100%"></div></div>
+                        <span class="dash-bar-value">9pm</span>
+                    </div>
+                    <div class="dash-bar-row">
+                        <span class="dash-bar-label">Board review</span>
+                        <div class="dash-bar"><div class="dash-bar-fill" style="width: 75%"></div></div>
+                        <span class="dash-bar-value">4h</span>
+                    </div>
+                    <div class="dash-bar-row">
+                        <span class="dash-bar-label">Daily todos</span>
+                        <div class="dash-bar"><div class="dash-bar-fill" style="width: 100%"></div></div>
+                        <span class="dash-bar-value">9am</span>
+                    </div>
+                    <div class="dash-bar-row">
+                        <span class="dash-bar-label">Usage tracking</span>
+                        <div class="dash-bar"><div class="dash-bar-fill" style="width: 75%"></div></div>
+                        <span class="dash-bar-value">4h</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dash-card">
+                <h4>System Health</h4>
+                <div class="dash-metric">Operational</div>
+                <div class="dash-sub" style="margin-bottom: 1rem;">All systems nominal</div>
+                <div class="log-stream">
+                    <div><span class="log-action">●</span> <span class="log-detail">Email (IMAP/SMTP)</span></div>
+                    <div><span class="log-action">●</span> <span class="log-detail">Calendar (ICS sync)</span></div>
+                    <div><span class="log-action">●</span> <span class="log-detail">Telegram (messaging)</span></div>
+                    <div><span class="log-action">●</span> <span class="log-detail">GitHub (deployment)</span></div>
+                    <div><span class="log-action">●</span> <span class="log-detail">Cron (12 jobs active)</span></div>
+                </div>
+            </div>
+            <div class="dash-card">
+                <h4>Today's Output</h4>
+                <div class="dash-metric">47</div>
+                <div class="dash-sub" style="margin-bottom: 1rem;">actions taken today</div>
+                <div class="dash-bar-row">
+                    <span class="dash-bar-label">Emails</span>
+                    <div class="dash-bar"><div class="dash-bar-fill" style="width: 30%"></div></div>
+                    <span class="dash-bar-value">8</span>
+                </div>
+                <div class="dash-bar-row">
+                    <span class="dash-bar-label">Files created</span>
+                    <div class="dash-bar"><div class="dash-bar-fill" style="width: 60%"></div></div>
+                    <span class="dash-bar-value">14</span>
+                </div>
+                <div class="dash-bar-row">
+                    <span class="dash-bar-label">Git commits</span>
+                    <div class="dash-bar"><div class="dash-bar-fill" style="width: 45%"></div></div>
+                    <span class="dash-bar-value">11</span>
+                </div>
+                <div class="dash-bar-row">
+                    <span class="dash-bar-label">Research</span>
+                    <div class="dash-bar"><div class="dash-bar-fill" style="width: 25%"></div></div>
+                    <span class="dash-bar-value">6</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables -->
+    <section>
+        <h2>Key Deliverables</h2>
+        <p class="section-intro">Everything Rowan built or set up in the first 48 hours. All functional, all deployed.</p>
+        <div class="deliverables">
+            <div class="deliverable"><span class="check">&#10003;</span> Seedling service design & pricing</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Canopy service design & deck</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Seedling sales page (otherwind.xyz/seedling)</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Landing page updates & service popups</div>
+            <div class="deliverable"><span class="check">&#10003;</span> 2 branded pitch decks (PDF)</div>
+            <div class="deliverable"><span class="check">&#10003;</span> 436-company prospect database</div>
+            <div class="deliverable"><span class="check">&#10003;</span> 6-segment market analysis</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Cold outreach email templates</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Email infrastructure (SPF/DKIM/DMARC)</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Subscribable calendar system</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Automated meeting prep generator</div>
+            <div class="deliverable"><span class="check">&#10003;</span> 24/7 inbox monitoring</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Newsletter intelligence pipeline</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Service agreement & invoice templates</div>
+            <div class="deliverable"><span class="check">&#10003;</span> Admin dashboard integration</div>
+            <div class="deliverable"><span class="check">&#10003;</span> 12 automated cron jobs</div>
+        </div>
+    </section>
+
+    <!-- The Cost -->
+    <section>
+        <h2>The Cost</h2>
+        <p class="section-intro">What would this cost with a human hire? What does it actually cost?</p>
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Junior Hire</th>
+                    <th>Freelancer</th>
+                    <th class="accent">Rowan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monthly cost</td>
+                    <td>$3,000 - $5,000</td>
+                    <td>$4,000 - $8,000</td>
+                    <td class="accent">~$360</td>
+                </tr>
+                <tr>
+                    <td>Availability</td>
+                    <td>Business hours</td>
+                    <td>Scheduled blocks</td>
+                    <td class="accent">24/7/365</td>
+                </tr>
+                <tr>
+                    <td>Ramp-up time</td>
+                    <td>2 - 4 weeks</td>
+                    <td>1 - 2 weeks</td>
+                    <td class="accent">48 hours</td>
+                </tr>
+                <tr>
+                    <td>Skills breadth</td>
+                    <td>1 - 2 domains</td>
+                    <td>1 specialization</td>
+                    <td class="accent">Ops, BD, dev, research, comms</td>
+                </tr>
+                <tr>
+                    <td>Scales with load</td>
+                    <td>No</td>
+                    <td>Expensive</td>
+                    <td class="accent">Instantly</td>
+                </tr>
+                <tr>
+                    <td>Gets better daily</td>
+                    <td>Slowly</td>
+                    <td>Depends</td>
+                    <td class="accent">Self-improving</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Deploy your own</h2>
+        <p>Rowan is a Seedling deployment. We can build one for your business too.</p>
+        <a href="/seedling" class="cta-primary transition-link">Learn about Seedling</a>
+    </section>
+
+    <footer>
+        <a href="/" class="transition-link">otherwind</a> &nbsp;&middot;&nbsp; 2026
+    </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script>
+    // Floating icosahedrons background (same as other pages)
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.z = 12;
+    
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+    
+    const shapes = [];
+    const geo = new THREE.IcosahedronGeometry(1, 0);
+    
+    for (let i = 0; i < 5; i++) {
+        const hue = 0.38 + Math.random() * 0.12;
+        const mat = new THREE.MeshBasicMaterial({
+            color: new THREE.Color().setHSL(hue, 0.3, 0.15),
+            wireframe: true,
+            transparent: true,
+            opacity: 0.25
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.set(
+            (Math.random() - 0.5) * 16,
+            (Math.random() - 0.5) * 10,
+            (Math.random() - 0.5) * 6 - 2
+        );
+        mesh.scale.setScalar(0.4 + Math.random() * 0.8);
+        mesh.userData.rotSpeed = 0.002 + Math.random() * 0.005;
+        mesh.userData.floatOffset = Math.random() * Math.PI * 2;
+        scene.add(mesh);
+        shapes.push(mesh);
+    }
+    
+    function animate() {
+        requestAnimationFrame(animate);
+        const t = Date.now() * 0.001;
+        shapes.forEach(s => {
+            s.rotation.x += s.userData.rotSpeed;
+            s.rotation.y += s.userData.rotSpeed * 0.7;
+            s.position.y += Math.sin(t + s.userData.floatOffset) * 0.001;
+        });
+        renderer.render(scene, camera);
+    }
+    animate();
+    
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    
+    // Page transitions
+    document.querySelectorAll('.transition-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            document.body.classList.add('fade-out');
+            setTimeout(() => { window.location.href = href; }, 150);
+        });
+    });
+</script>
+
+</body>
+</html>
