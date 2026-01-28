@@ -55,11 +55,11 @@
         /* Page transitions */
         body {
             opacity: 0;
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.25s ease forwards;
         }
         
         body.fade-out {
-            animation: fadeOut 0.3s ease forwards;
+            animation: fadeOut 0.15s ease forwards;
         }
         
         @keyframes fadeIn {
@@ -1149,7 +1149,7 @@
                 document.body.classList.add('fade-out');
                 setTimeout(() => {
                     window.location.href = link.getAttribute('href');
-                }, 300);
+                }, 150);
             }
         });
     </script>
