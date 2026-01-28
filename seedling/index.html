@@ -224,6 +224,13 @@
             color: var(--fg-muted);
         }
         
+        .stat-source {
+            font-size: 0.7rem;
+            color: rgba(79, 209, 165, 0.6);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
         /* Cards Grid */
         .cards-grid {
             display: grid;
@@ -400,6 +407,73 @@
         .task-text.done {
             text-decoration: line-through;
             opacity: 0.5;
+        }
+        
+        /* ROI Comparison */
+        .roi-comparison {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .roi-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.15);
+            border-radius: 4px;
+            padding: 2rem;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .roi-card.highlight {
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.08);
+        }
+        
+        .roi-card h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .roi-cost {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .roi-card ul {
+            list-style: none;
+        }
+        
+        .roi-card li {
+            padding: 0.4rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--fg-muted);
+            font-size: 0.9rem;
+        }
+        
+        .roi-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            opacity: 0.6;
+        }
+        
+        .roi-vs {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--fg-muted);
         }
         
         /* Comparison Table */
@@ -749,24 +823,28 @@
 <!-- The Opportunity -->
 <section>
     <h2>The Opportunity</h2>
-    <p class="section-intro">AI agents are transforming how businesses operate. But most companies lack the expertise to deploy them effectively.</p>
+    <p class="section-intro">AI agents are transforming how businesses operate. The data speaks for itself.</p>
     
     <div class="stats-grid">
         <div class="stat">
-            <div class="stat-number">73%</div>
-            <div class="stat-label">of execs say AI will transform their industry</div>
+            <div class="stat-number">20+ hrs</div>
+            <div class="stat-label">saved per month with AI legal assistants</div>
+            <div class="stat-source">Harvey.ai</div>
         </div>
         <div class="stat">
-            <div class="stat-number">15%</div>
-            <div class="stat-label">have successfully deployed AI agents</div>
+            <div class="stat-number">5x</div>
+            <div class="stat-label">more meetings booked with AI SDRs</div>
+            <div class="stat-source">Copy.ai / Juniper Networks</div>
         </div>
         <div class="stat">
-            <div class="stat-number">10+ hrs</div>
-            <div class="stat-label">per week saved by effective AI assistants</div>
+            <div class="stat-number">67%</div>
+            <div class="stat-label">reduction in support costs</div>
+            <div class="stat-source">Lindy / Truemed</div>
         </div>
         <div class="stat">
-            <div class="stat-number">$50K+</div>
-            <div class="stat-label">annual value of a well-deployed agent</div>
+            <div class="stat-number">398%</div>
+            <div class="stat-label">ROI on AI revenue tools</div>
+            <div class="stat-source">Forrester TEI Study / Clari</div>
         </div>
     </div>
 </section>
@@ -1015,33 +1093,94 @@
     </div>
 </section>
 
-<!-- Case Studies -->
+<!-- Real World Applications -->
 <section>
-    <h2>Case Studies</h2>
-    <p class="section-intro">Real results from real deployments.</p>
+    <h2>Real World Applications</h2>
+    <p class="section-intro">What AI agents deliver across industries, backed by data.</p>
     
     <div class="case-study">
-        <div class="label">Consulting</div>
-        <h3>Boutique Consulting Firm</h3>
-        <p><strong>Challenge:</strong> Partners spending 5+ hours weekly on meeting prep and research.</p>
-        <p><strong>Solution:</strong> AI Analyst with calendar integration. Automatically compiles client dossiers, industry updates, and talking points before every meeting.</p>
-        <p class="result">Result: 60% reduction in prep time, higher quality briefings.</p>
-    </div>
-    
-    <div class="case-study">
-        <div class="label">Sales</div>
-        <h3>B2B SaaS Sales Team</h3>
-        <p><strong>Challenge:</strong> SDRs struggling to personalize outreach at scale.</p>
-        <p><strong>Solution:</strong> AI BDR integrated with LinkedIn, CRM, and email. Researches each prospect and crafts personalized messages.</p>
-        <p class="result">Result: 3x increase in response rates, 40% more meetings booked.</p>
+        <div class="label">Sales & Outreach</div>
+        <h3>AI SDR/BDR</h3>
+        <p><strong>The problem:</strong> Human SDRs can only personalize so many messages per day. Generic outreach gets ignored.</p>
+        <p><strong>What an AI agent does:</strong> Researches each prospect across dozens of sources, crafts personalized messages at scale, handles follow-up sequences, and books meetings automatically.</p>
+        <p class="result">Industry benchmarks: 5-10x outreach volume, 70-80% lower cost per meeting, 15-20 hours saved weekly (Lindy/The Sauna Place)</p>
     </div>
     
     <div class="case-study">
         <div class="label">Legal</div>
-        <h3>Solo Attorney</h3>
-        <p><strong>Challenge:</strong> Drowning in document review and research. Turning away cases due to capacity.</p>
-        <p><strong>Solution:</strong> AI Paralegal handling initial document review, case law research, and client communication drafts.</p>
-        <p class="result">Result: 30% more cases, faster turnaround, work-life balance restored.</p>
+        <h3>AI Paralegal</h3>
+        <p><strong>The problem:</strong> Attorneys drowning in document review, research, and administrative work that doesn't generate billable hours.</p>
+        <p><strong>What an AI agent does:</strong> First-pass document review, case law research, contract analysis, deadline tracking, and client communication drafts.</p>
+        <p class="result">Industry benchmarks: 20+ hours saved per month (Harvey.ai), 6-8 hours saved per day on research tasks (CoCounsel/Bassford Remele)</p>
+    </div>
+    
+    <div class="case-study">
+        <div class="label">Executive Support</div>
+        <h3>AI Chief of Staff</h3>
+        <p><strong>The problem:</strong> Executives buried in scheduling, email triage, meeting prep, and context-switching. No time for strategic work.</p>
+        <p><strong>What an AI agent does:</strong> Calendar management, email prioritization and drafting, meeting briefings, travel coordination, and action item tracking.</p>
+        <p class="result">Industry benchmarks: +7.6 hours focus time per week, 55% improved productivity, 47% less burnout (Reclaim.ai)</p>
+    </div>
+    
+    <div class="case-study">
+        <div class="label">Customer Support</div>
+        <h3>AI Support Agent</h3>
+        <p><strong>The problem:</strong> Support teams overwhelmed with repetitive tickets. Slow response times hurt customer satisfaction.</p>
+        <p><strong>What an AI agent does:</strong> Handles routine inquiries end-to-end, routes complex issues to humans, maintains context across conversations.</p>
+        <p class="result">Industry benchmarks: 67% support cost reduction (Lindy/Truemed), 65% end-to-end resolution rate (Intercom), self-service rates 30% to 75%+ (Zoom/Vensure)</p>
+    </div>
+</section>
+
+<!-- ROI -->
+<section>
+    <h2>The Math</h2>
+    <p class="section-intro">AI agents aren't an expense. They're a multiplier.</p>
+    
+    <div class="roi-comparison">
+        <div class="roi-card">
+            <h3>Human SDR</h3>
+            <div class="roi-cost">$60-80K/year</div>
+            <ul>
+                <li>50-100 personalized emails/day</li>
+                <li>Limited research depth</li>
+                <li>8 hours/day availability</li>
+                <li>Ramp time: 3-6 months</li>
+            </ul>
+        </div>
+        <div class="roi-vs">vs</div>
+        <div class="roi-card highlight">
+            <h3>AI SDR Agent</h3>
+            <div class="roi-cost">$6-15K/year</div>
+            <ul>
+                <li>500-1000+ personalized emails/day</li>
+                <li>Deep prospect research on every lead</li>
+                <li>24/7 availability</li>
+                <li>Ramp time: 1-2 weeks</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="stats-grid" style="margin-top: 3rem;">
+        <div class="stat">
+            <div class="stat-number">$16M</div>
+            <div class="stat-label">saved annually</div>
+            <div class="stat-source">Lenovo via Copy.ai</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">$500K</div>
+            <div class="stat-label">hiring costs avoided</div>
+            <div class="stat-source">Gupshup via 11x.ai</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">4,000+</div>
+            <div class="stat-label">operator hours saved per quarter</div>
+            <div class="stat-source">Procore via Moveworks</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">20x</div>
+            <div class="stat-label">ROI in revenue</div>
+            <div class="stat-source">Artisan / RAISE Summit</div>
+        </div>
     </div>
 </section>
 
