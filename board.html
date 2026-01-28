@@ -202,42 +202,6 @@
         }
 
         /* System Status Panel */
-        .focus-panel { 
-            grid-column: span 12; 
-            background: linear-gradient(135deg, rgba(79, 209, 165, 0.1), transparent);
-            border-color: var(--accent);
-        }
-        
-        .focus-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .focus-item:last-child { border-bottom: none; }
-        
-        .focus-priority {
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            background: var(--accent);
-            color: var(--bg);
-        }
-        
-        .focus-title {
-            font-weight: 500;
-            color: var(--text);
-        }
-        
-        .focus-desc {
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-left: auto;
-        }
-
         .system-status { grid-column: span 12; }
 
         .status-grid {
@@ -405,6 +369,7 @@
             gap: 0.5rem;
             padding: 0.4rem 0;
             font-size: 0.8rem;
+            position: relative;
         }
         
         .calendar-time {
@@ -415,6 +380,7 @@
         
         .calendar-title {
             color: var(--text);
+            flex: 1;
         }
         
         .calendar-title.done {
@@ -422,8 +388,15 @@
             opacity: 0.5;
         }
         
+        /* Gcal items - blue accent */
+        .calendar-item.gcal .calendar-time {
+            color: #6b9fff;
+        }
+        .calendar-item.gcal .calendar-title {
+            color: #a0c4ff;
+        }
+        
         .calendar-link {
-            margin-left: auto;
             color: var(--muted);
             font-size: 0.7rem;
         }
@@ -431,6 +404,40 @@
         .calendar-link:hover {
             color: var(--accent);
         }
+        
+        .calendar-delete {
+            background: none;
+            border: none;
+            color: var(--subtle);
+            cursor: pointer;
+            font-size: 0.75rem;
+            opacity: 0.4;
+            padding: 0.1rem 0.3rem;
+            margin-left: 0.25rem;
+        }
+        
+        .calendar-delete:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+        
+        .calendar-legend {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.65rem;
+            color: var(--muted);
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .calendar-legend span::before {
+            content: '●';
+            margin-right: 0.3rem;
+        }
+        
+        .calendar-legend .rowan::before { color: var(--accent); }
+        .calendar-legend .gcal::before { color: #6b9fff; }
 
         .todo-group {
             margin-bottom: 1rem;
@@ -792,14 +799,6 @@
             </header>
 
             <div class="dashboard">
-                <!-- Today's Focus -->
-                <section class="panel focus-panel">
-                    <div class="panel-header">
-                        <span class="panel-title">🎯 Today's Focus</span>
-                    </div>
-                    <div id="focus-content"></div>
-                </section>
-
                 <!-- System Status -->
                 <section class="panel system-status">
                     <div class="panel-header">
@@ -1020,18 +1019,86 @@
         ];
 
         let calendarData = { todos: [], updatedAt: null };
+        let gcalEvents = [];
+        
+        const GCAL_URL = 'https://calendar.google.com/calendar/ical/nadim%40centrifuge.io/private-e94274283a3b45d850df2187f9cf5b30/basic.ics';
         
         async function fetchCalendar() {
             try {
                 const res = await fetch('calendar-data.json?t=' + Date.now());
                 if (res.ok) {
                     calendarData = await res.json();
-                    return true;
                 }
             } catch (e) {
                 console.log('Calendar fetch failed:', e);
             }
-            return false;
+            
+            // Also fetch gcal
+            try {
+                const gcalRes = await fetch(GCAL_URL);
+                if (gcalRes.ok) {
+                    const icsText = await gcalRes.text();
+                    gcalEvents = parseICS(icsText);
+                }
+            } catch (e) {
+                console.log('Gcal fetch failed (CORS expected):', e);
+            }
+            
+            return true;
+        }
+        
+        function parseICS(icsText) {
+            const events = [];
+            const lines = icsText.split(/\r?\n/);
+            let event = null;
+            
+            for (let line of lines) {
+                if (line === 'BEGIN:VEVENT') {
+                    event = {};
+                } else if (line === 'END:VEVENT' && event) {
+                    if (event.start && event.summary) {
+                        events.push(event);
+                    }
+                    event = null;
+                } else if (event) {
+                    if (line.startsWith('DTSTART')) {
+                        const val = line.split(':').pop();
+                        event.start = parseICSDate(val);
+                    } else if (line.startsWith('DTEND')) {
+                        const val = line.split(':').pop();
+                        event.end = parseICSDate(val);
+                    } else if (line.startsWith('SUMMARY:')) {
+                        event.summary = line.substring(8);
+                    }
+                }
+            }
+            return events;
+        }
+        
+        function parseICSDate(val) {
+            // Handle both date-only (YYYYMMDD) and datetime (YYYYMMDDTHHmmssZ)
+            if (val.length === 8) {
+                return { date: `${val.slice(0,4)}-${val.slice(4,6)}-${val.slice(6,8)}`, time: null };
+            }
+            const date = `${val.slice(0,4)}-${val.slice(4,6)}-${val.slice(6,8)}`;
+            const time = `${val.slice(9,11)}:${val.slice(11,13)}`;
+            return { date, time };
+        }
+        
+        function getDeletedCalendarItems() {
+            const deleted = localStorage.getItem('calendar-deleted');
+            return deleted ? JSON.parse(deleted) : [];
+        }
+        
+        function deleteCalendarItem(itemId) {
+            const deleted = getDeletedCalendarItems();
+            if (!deleted.includes(itemId)) {
+                deleted.push(itemId);
+                localStorage.setItem('calendar-deleted', JSON.stringify(deleted));
+                renderCalendar();
+                // Show notification
+                alert('Item hidden. Tell Rowan to remove "' + itemId + '" permanently.');
+            }
         }
         
         async function refreshCalendar() {
@@ -1043,7 +1110,6 @@
             
             await fetchCalendar();
             renderCalendar();
-            renderFocus();
             
             if (btn) {
                 btn.classList.remove('loading');
@@ -1155,29 +1221,6 @@
             }
         }
 
-        function renderFocus() {
-            const el = document.getElementById('focus-content');
-            const today = new Date().toISOString().split('T')[0];
-            
-            // Get today's todos from calendar data
-            const todayTodos = (calendarData.todos || [])
-                .filter(t => t.date === today && !t.done)
-                .slice(0, 4);
-            
-            if (todayTodos.length === 0) {
-                el.innerHTML = '<p style="color: var(--muted); font-size: 0.85rem;">Nothing scheduled for today 🎉</p>';
-                return;
-            }
-            
-            el.innerHTML = todayTodos.map((todo, i) => `
-                <div class="focus-item">
-                    <span class="focus-priority">${todo.time || (i + 1)}</span>
-                    <span class="focus-title">${todo.title}</span>
-                    ${todo.url ? `<a href="${todo.url}" target="_blank" class="focus-desc">↗</a>` : ''}
-                </div>
-            `).join('');
-        }
-
         function renderCronJobs() {
             const list = document.getElementById('cron-list');
             document.getElementById('cron-count').textContent = cronJobs.length;
@@ -1194,43 +1237,78 @@
         function renderCalendar() {
             const el = document.getElementById('calendar-content');
             const todos = calendarData.todos || [];
+            const deleted = getDeletedCalendarItems();
             
-            if (todos.length === 0) {
+            // Filter out deleted rowan items
+            const rowanItems = todos.filter(t => !deleted.includes(t.id));
+            
+            // Get gcal events for next 7 days
+            const today = new Date();
+            const weekFromNow = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+            const todayStr = today.toISOString().split('T')[0];
+            
+            const gcalFiltered = gcalEvents.filter(e => {
+                if (!e.start) return false;
+                const eventDate = e.start.date;
+                return eventDate >= todayStr && eventDate <= weekFromNow.toISOString().split('T')[0];
+            });
+            
+            // Group all items by date
+            const grouped = {};
+            
+            rowanItems.forEach(todo => {
+                const date = todo.date;
+                if (!grouped[date]) grouped[date] = [];
+                grouped[date].push({ ...todo, source: 'rowan' });
+            });
+            
+            gcalFiltered.forEach(event => {
+                const date = event.start.date;
+                if (!grouped[date]) grouped[date] = [];
+                grouped[date].push({
+                    id: 'gcal-' + event.summary + '-' + date,
+                    title: event.summary,
+                    time: event.start.time,
+                    source: 'gcal'
+                });
+            });
+            
+            // Sort dates and items within each date
+            const sortedDates = Object.keys(grouped).sort();
+            
+            if (sortedDates.length === 0) {
                 el.innerHTML = '<div style="color: var(--muted); font-size: 0.8rem;">No scheduled items</div>';
                 return;
             }
             
-            // Group by date
-            const today = new Date().toISOString().split('T')[0];
-            const grouped = {};
-            
-            todos.forEach(todo => {
-                const date = todo.date;
-                if (!grouped[date]) grouped[date] = [];
-                grouped[date].push(todo);
-            });
-            
-            // Sort dates
-            const sortedDates = Object.keys(grouped).sort();
-            
             let html = '';
             sortedDates.forEach(date => {
-                const isToday = date === today;
+                const isToday = date === todayStr;
                 const dateObj = new Date(date + 'T00:00:00');
                 const dayName = dateObj.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
                 const label = isToday ? `Today · ${dayName}` : dayName;
                 
+                // Sort items by time
+                grouped[date].sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+                
                 html += `<div class="calendar-day">
                     <div class="calendar-day-header ${isToday ? 'today' : ''}">${label}</div>
-                    ${grouped[date].map(todo => `
-                        <div class="calendar-item">
-                            <span class="calendar-time">${todo.time || ''}</span>
-                            <span class="calendar-title ${todo.done ? 'done' : ''}">${todo.shortTitle || todo.title}</span>
-                            ${todo.url ? `<a href="${todo.url}" target="_blank" class="calendar-link">↗</a>` : ''}
+                    ${grouped[date].map(item => `
+                        <div class="calendar-item ${item.source === 'gcal' ? 'gcal' : ''}">
+                            <span class="calendar-time">${item.time || ''}</span>
+                            <span class="calendar-title ${item.done ? 'done' : ''}">${item.shortTitle || item.title}</span>
+                            ${item.url ? `<a href="${item.url}" target="_blank" class="calendar-link">↗</a>` : ''}
+                            ${item.source === 'rowan' ? `<button class="calendar-delete" onclick="event.stopPropagation(); deleteCalendarItem('${item.id}')" title="Remove">×</button>` : ''}
                         </div>
                     `).join('')}
                 </div>`;
             });
+            
+            // Add legend
+            html += `<div class="calendar-legend">
+                <span class="rowan">Rowan</span>
+                <span class="gcal">Meetings</span>
+            </div>`;
             
             el.innerHTML = html;
         }
@@ -1344,7 +1422,6 @@
 
         async function renderAll() {
             await Promise.all([fetchUsage(), fetchCalendar()]);
-            renderFocus();
             renderUsage();
             renderCronJobs();
             renderCalendar();
