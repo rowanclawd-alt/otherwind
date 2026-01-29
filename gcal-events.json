@@ -1,55 +1,24 @@
 {
-  "updatedAt": "2026-01-29T08:00:00.000Z",
-  "nextSevenDays": [
+  "source": "nadim@centrifuge.io",
+  "fetchedAt": "2026-01-29T20:00:00.000Z",
+  "events": [
     {
       "date": "2026-01-29",
-      "events": [
-        {"time": "08:00", "title": "Electrician"},
-        {"time": "09:00", "title": "Mantle / Centrifuge - Whitelabel Tech Demo/Q&A"},
-        {"time": "10:00", "title": "Hold for viewing"},
-        {"time": "14:15", "title": "Centrifuge x ART"},
-        {"time": "15:30", "title": "Hold for Dune"},
-        {"time": "16:00", "title": "Centrifuge | Quarterly Investor Update #1"}
-      ]
+      "time": "08:00",
+      "summary": "Electrician",
+      "status": "past"
     },
     {
       "date": "2026-01-30",
-      "events": [
-        {"time": "10:00", "title": "Nadim Chamoun and Kanv Gupta"}
-      ]
-    },
-    {
-      "date": "2026-01-31",
-      "events": []
-    },
-    {
-      "date": "2026-02-01",
-      "events": []
-    },
-    {
-      "date": "2026-02-02",
-      "events": [
-        {"time": "12:00", "title": "Centrifuge - SynX"}
-      ]
-    },
-    {
-      "date": "2026-02-03",
-      "events": [
-        {"time": "11:00", "title": "Embassy Appt."}
-      ]
+      "time": "09:00",
+      "summary": "Kanv Gupta call",
+      "notes": "From daily brief"
     },
     {
       "date": "2026-02-04",
-      "events": [
-        {"time": "16:00", "title": "What's Up Centrifuge?! 🌕"},
-        {"time": "17:00", "title": "Blockstories Horizon 2026: London Summit 🇬🇧"}
-      ]
-    },
-    {
-      "date": "2026-02-05",
-      "events": [
-        {"time": "17:00", "title": "Invite-Only: House of Sol Launch"}
-      ]
+      "time": "15:00",
+      "summary": "Daniel Killeen meeting"
     }
-  ]
+  ],
+  "notes": "Core BD Sync is weekly on Tuesdays 09:30 CET"
 }
