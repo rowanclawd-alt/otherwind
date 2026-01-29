@@ -45,11 +45,22 @@
       "done": false,
       "notes": "Check if you want to keep Porkbun domain/email or switch. Trial started ~Jan 28.",
       "gcalEventId": "a703of5fjeqirhelcobqb0ores"
+    },
+    {
+      "id": "mantle-legal-20260130",
+      "title": "Send Mantle legal counsel context",
+      "shortTitle": "Mantle legal context",
+      "date": "2026-01-30",
+      "time": "09:00",
+      "done": false,
+      "url": "https://notes.granola.ai/t/efa49056-3cb4-4d2c-af85-4326e648cf10-009c2hma",
+      "notes": "Send legal counsel context to Mantle team",
+      "gcalEventId": "tlpuhahlkb2q69kkafvvsuq764"
     }
   ],
   "dailyBriefs": {
     "2026-01-29": "glueciaksbcbco5gb29mj8s14o",
     "2026-01-30": "gsptcq04kptsidjdd1sb7idgik"
   },
-  "updatedAt": "2026-01-29T10:12:00.000Z"
+  "updatedAt": "2026-01-29T10:31:40.840652Z"
 }
