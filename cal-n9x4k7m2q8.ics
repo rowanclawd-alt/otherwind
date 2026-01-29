@@ -1,39 +1,25 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Otherwind//Rowan Calendar//EN
+PRODID:-//Rowan//Tasks//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:Rowan's Tasks
+X-WR-CALNAME:Rowan Tasks
 X-WR-TIMEZONE:Europe/London
 BEGIN:VEVENT
-UID:daily-block-20260129@otherwind.xyz
-DTSTART:20260129T070000Z
-DTEND:20260129T080000Z
-SUMMARY:Todos: Mantle QA
-DESCRIPTION:- Mantle QA Prep (08:00)\n  Prep before Mantle meeting\n  https://docs.google.com/document/d/16oz98U_a3g59qFpOM3A8vy3V35-fduWgVYXn6n1v0To/edit
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
 UID:mantle-qa-20260129@otherwind.xyz
+DTSTAMP:20260129T100100Z
 DTSTART:20260129T080000Z
-DTEND:20260129T083000Z
+DTEND:20260129T090000Z
 SUMMARY:Mantle QA Prep
 DESCRIPTION:Prep before Mantle meeting\nhttps://docs.google.com/document/d/16oz98U_a3g59qFpOM3A8vy3V35-fduWgVYXn6n1v0To/edit
 URL:https://docs.google.com/document/d/16oz98U_a3g59qFpOM3A8vy3V35-fduWgVYXn6n1v0To/edit
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
-UID:daily-block-20260209@otherwind.xyz
-DTSTART:20260209T070000Z
-DTEND:20260209T080000Z
-SUMMARY:Todos: Porkbun review
-DESCRIPTION:- Review Porkbun renewal (09:00)\n  Check if you want to keep Porkbun domain/email or switch. Trial started ~Jan 28.
-STATUS:CONFIRMED
-END:VEVENT
-BEGIN:VEVENT
 UID:porkbun-review-20260209@otherwind.xyz
+DTSTAMP:20260129T100100Z
 DTSTART:20260209T090000Z
-DTEND:20260209T093000Z
+DTEND:20260209T100000Z
 SUMMARY:Review Porkbun renewal (15-day trial ending)
 DESCRIPTION:Check if you want to keep Porkbun domain/email or switch. Trial started ~Jan 28.
 STATUS:CONFIRMED
