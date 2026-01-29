@@ -1,85 +1,67 @@
 {
   "events": [
     {
-      "summary": "Hard Block",
-      "start": "2026-01-28T20:00:00Z",
-      "date": "2026-01-28",
-      "time": "20:00"
-    },
-    {
+      "date": "2026-01-29",
+      "time": "08:00",
+      "endTime": "09:00",
       "summary": "Electrician",
-      "start": "2026-01-29T08:00:00Z",
-      "date": "2026-01-29",
-      "time": "08:00"
+      "attendees": []
     },
     {
-      "summary": "Mantle / Centrifuge - Whitelabel Tech Demo/Q&A",
-      "start": "2026-01-29T09:00:00Z",
       "date": "2026-01-29",
-      "time": "09:00"
+      "time": "09:00",
+      "endTime": "09:30",
+      "summary": "Mantle Meeting",
+      "attendees": ["sean.lee@mantle.xyz", "jeroen@centrifuge.io", "joshua.cheong@mantle.xyz", "jimmy.zhao@mantle.xyz"],
+      "meet": "https://meet.google.com/vtq-uega-bdz"
     },
     {
+      "date": "2026-01-29",
+      "time": "10:00",
+      "endTime": "11:00",
       "summary": "Hold for viewing",
-      "start": "2026-01-29T10:00:00Z",
-      "date": "2026-01-29",
-      "time": "10:00"
+      "attendees": []
     },
     {
+      "date": "2026-01-29",
+      "time": "14:15",
+      "endTime": "14:45",
       "summary": "Centrifuge x ART",
-      "start": "2026-01-29T14:15:00Z",
-      "date": "2026-01-29",
-      "time": "14:15"
+      "attendees": ["anil@anemoy.io", "atomarchio@atomexpeditions.com", "azarikos@lympha.earth", "bhaji@centrifuge.io", "mskrychevsky@atomexpeditions.com"],
+      "organizer": "atomarchio@atomexpeditions.com"
     },
     {
-      "summary": "Hold for Dune",
-      "start": "2026-01-29T15:30:00Z",
       "date": "2026-01-29",
-      "time": "15:30"
+      "time": "16:00",
+      "endTime": "17:00",
+      "summary": "Centrifuge Quarterly Investor Update #1",
+      "attendees": [],
+      "description": "YouTube live: https://www.youtube.com/watch?v=8y4nIiwmDR4"
     },
     {
-      "summary": "Centrifuge | Quartlerly Investor Update #1",
-      "start": "2026-01-29T16:00:00Z",
-      "date": "2026-01-29",
-      "time": "16:00"
-    },
-    {
-      "summary": "Nadim Chamoun and Kanv Gupta",
-      "start": "2026-01-30T10:00:00Z",
       "date": "2026-01-30",
-      "time": "10:00"
+      "time": "10:00",
+      "endTime": "10:30",
+      "summary": "Nadim Chamoun and Kanv Gupta",
+      "attendees": ["kanv@euler.xyz"],
+      "meet": "https://meet.google.com/owx-kewz-mbw"
     },
     {
-      "summary": "Centrifuge - SynX",
-      "start": "2026-02-02T12:00:00Z",
-      "date": "2026-02-02",
-      "time": "12:00"
-    },
-    {
-      "summary": "Embassy Appt.",
-      "start": "2026-02-03T11:00:00Z",
       "date": "2026-02-03",
-      "time": "11:00"
+      "time": "11:00",
+      "endTime": "12:45",
+      "summary": "Embassy Appt.",
+      "location": "Pall Mall Street entrance of Canada House"
     },
     {
-      "summary": "What's Up Centrifuge?! \ud83c\udf15",
-      "start": "2026-02-04T08:00:00Z",
       "date": "2026-02-04",
-      "time": "08:00"
-    },
-    {
+      "time": "17:00",
+      "endTime": "22:30",
       "summary": "Blockstories Horizon 2026: London Summit",
-      "start": "2026-02-04T17:00:00Z",
-      "date": "2026-02-04",
-      "time": "17:00"
-    },
-    {
-      "summary": "Blockstories Horizon 2026: London Summit \ud83c\uddec\ud83c\udde7",
-      "start": "2026-02-04T17:00:00Z",
-      "date": "2026-02-04",
-      "time": "17:00"
+      "location": "One Moorgate Place",
+      "description": "120 senior participants, keynotes only, 7-min talks. Arrive 5pm, sessions 5:30pm."
     }
   ],
-  "fetchedAt": "2026-01-28T20:00:00Z",
-  "windowStart": "2026-01-28",
-  "windowEnd": "2026-02-04"
+  "updatedAt": "2026-01-29T00:00:00Z",
+  "range": "2026-01-29 to 2026-02-04"
 }
