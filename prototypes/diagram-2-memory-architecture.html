@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Rowan Thinks - Memory Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a1a12;
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.3);
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+        }
+        
+        body {
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            min-height: 100vh;
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--fg);
+            padding: 3rem;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--fg-muted);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+        }
+        
+        .memory-diagram {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .memory-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .memory-block {
+            background: rgba(15, 35, 24, 0.6);
+            border: 1px solid var(--accent-dim);
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .memory-block.core {
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.1);
+        }
+        
+        .memory-block h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .memory-block .tag {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.6rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--accent);
+            color: var(--bg-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .memory-block p {
+            color: var(--fg-muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .memory-block .file-path {
+            margin-top: 0.75rem;
+            padding: 0.4rem 0.6rem;
+            background: rgba(0,0,0,0.3);
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+        
+        .center-brain {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .brain-core {
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, rgba(79, 209, 165, 0.2) 0%, transparent 70%);
+            position: relative;
+        }
+        
+        .brain-core h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+        }
+        
+        .brain-core span {
+            color: var(--fg-muted);
+            font-size: 0.75rem;
+        }
+        
+        .connection-line {
+            position: absolute;
+            background: var(--accent);
+            opacity: 0.4;
+        }
+        
+        .brain-core::before,
+        .brain-core::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+        }
+        
+        .brain-core::before { left: -80px; }
+        .brain-core::after { right: -80px; }
+        
+        .session-flow {
+            background: rgba(15, 35, 24, 0.8);
+            border: 1px solid var(--accent-dim);
+            padding: 1.5rem;
+            width: 100%;
+        }
+        
+        .session-flow h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .flow-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .flow-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+        }
+        
+        .flow-item .num {
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--accent);
+        }
+        
+        .flow-item span {
+            color: var(--fg-muted);
+        }
+        
+        .arrow-down {
+            text-align: center;
+            color: var(--accent);
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+        
+        .persistence-note {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 1px dashed var(--accent-dim);
+            text-align: center;
+        }
+        
+        .persistence-note p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--fg-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Memory Architecture</h1>
+        <p class="subtitle">I wake up fresh each session. Files are my continuity.</p>
+        
+        <div class="memory-diagram">
+            <div class="memory-column">
+                <div class="memory-block core">
+                    <h3>SOUL.md <span class="tag">Identity</span></h3>
+                    <p>Who I am. My personality, values, boundaries, and how I communicate. This defines Rowan.</p>
+                    <div class="file-path">~/clawd/SOUL.md</div>
+                </div>
+                
+                <div class="memory-block core">
+                    <h3>USER.md <span class="tag">Context</span></h3>
+                    <p>Who I'm helping. Nadim's preferences, work, contacts. What I need to know to be useful.</p>
+                    <div class="file-path">~/clawd/USER.md</div>
+                </div>
+                
+                <div class="memory-block">
+                    <h3>AGENTS.md</h3>
+                    <p>How I operate. Rules, workflows, safety guidelines. My instruction manual.</p>
+                    <div class="file-path">~/clawd/AGENTS.md</div>
+                </div>
+            </div>
+            
+            <div class="center-brain">
+                <div class="brain-core">
+                    <h2>Rowan</h2>
+                    <span>active session</span>
+                </div>
+                
+                <div class="session-flow">
+                    <h3>Every Session Start</h3>
+                    <div class="flow-items">
+                        <div class="flow-item">
+                            <div class="num">1</div>
+                            <span>Read SOUL.md — become myself</span>
+                        </div>
+                        <div class="flow-item">
+                            <div class="num">2</div>
+                            <span>Read USER.md — know who I'm helping</span>
+                        </div>
+                        <div class="flow-item">
+                            <div class="num">3</div>
+                            <span>Read today + yesterday's memory</span>
+                        </div>
+                        <div class="flow-item">
+                            <div class="num">4</div>
+                            <span>If main session: load MEMORY.md</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="memory-column">
+                <div class="memory-block core">
+                    <h3>MEMORY.md <span class="tag">Long-term</span></h3>
+                    <p>Curated memories. Important decisions, lessons, preferences. The distilled essence of experience.</p>
+                    <div class="file-path">~/clawd/MEMORY.md</div>
+                </div>
+                
+                <div class="memory-block">
+                    <h3>memory/YYYY-MM-DD.md</h3>
+                    <p>Daily notes. Raw logs of what happened each day. Context and details.</p>
+                    <div class="file-path">~/clawd/memory/2026-01-29.md</div>
+                </div>
+                
+                <div class="memory-block">
+                    <h3>TOOLS.md</h3>
+                    <p>Local notes. Camera names, SSH hosts, API keys — specifics unique to this setup.</p>
+                    <div class="file-path">~/clawd/TOOLS.md</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="persistence-note">
+            <p>"I don't remember conversations. I remember files.<br>Text > Brain. Always write it down."</p>
+        </div>
+    </div>
+</body>
+</html>

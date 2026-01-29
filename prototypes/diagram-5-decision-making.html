@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Rowan Thinks - Decision Making</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a1a12;
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.3);
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+            --green: #4fd1a5;
+            --yellow: #c9a962;
+            --red: #c97b7b;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            min-height: 100vh;
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--fg);
+            padding: 3rem;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--fg-muted);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+        }
+        
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .zone {
+            background: rgba(15, 35, 24, 0.6);
+            border: 1px solid var(--accent-dim);
+            padding: 1.5rem;
+        }
+        
+        .zone.green {
+            border-color: rgba(79, 209, 165, 0.5);
+            background: rgba(79, 209, 165, 0.05);
+        }
+        
+        .zone.yellow {
+            border-color: rgba(201, 169, 98, 0.5);
+            background: rgba(201, 169, 98, 0.05);
+        }
+        
+        .zone.red {
+            border-color: rgba(201, 123, 123, 0.5);
+            background: rgba(201, 123, 123, 0.05);
+        }
+        
+        .zone-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .zone-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .zone.green .zone-indicator { background: var(--green); }
+        .zone.yellow .zone-indicator { background: var(--yellow); }
+        .zone.red .zone-indicator { background: var(--red); }
+        
+        .zone-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+        }
+        
+        .zone-subtitle {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            margin-bottom: 1rem;
+        }
+        
+        .action-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+            line-height: 1.4;
+        }
+        
+        .action-item::before {
+            content: '→';
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        
+        .zone.yellow .action-item::before { color: var(--yellow); }
+        .zone.red .action-item::before { color: var(--red); }
+        
+        .decision-tree {
+            grid-column: span 3;
+            background: rgba(15, 35, 24, 0.8);
+            border: 1px solid var(--accent-dim);
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .tree-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .tree-flow {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .tree-node {
+            text-align: center;
+            min-width: 140px;
+        }
+        
+        .node-box {
+            padding: 0.75rem 1rem;
+            background: rgba(79, 209, 165, 0.1);
+            border: 1px solid var(--accent-dim);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .node-box.question {
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.2);
+        }
+        
+        .node-box.action-go {
+            border-color: var(--green);
+            color: var(--green);
+        }
+        
+        .node-box.action-ask {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+        
+        .node-box.action-no {
+            border-color: var(--red);
+            color: var(--red);
+        }
+        
+        .tree-arrow {
+            color: var(--fg-muted);
+            font-size: 1.5rem;
+            padding-top: 1.5rem;
+        }
+        
+        .branch-label {
+            font-size: 0.7rem;
+            color: var(--fg-muted);
+            margin-bottom: 0.25rem;
+        }
+        
+        .tree-branches {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .principle-box {
+            grid-column: span 3;
+            background: rgba(79, 209, 165, 0.1);
+            border: 1px solid var(--accent);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .principle-box p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--fg);
+        }
+        
+        .principle-box span {
+            display: block;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-style: normal;
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Decision Making</h1>
+        <p class="subtitle">Trusted access requires calibrated autonomy.</p>
+        
+        <div class="decision-grid">
+            <div class="zone green">
+                <div class="zone-header">
+                    <div class="zone-indicator"></div>
+                    <span class="zone-title">Do Freely</span>
+                </div>
+                <div class="zone-subtitle">No permission needed</div>
+                <div class="action-list">
+                    <div class="action-item">Read files, explore, organize</div>
+                    <div class="action-item">Search the web</div>
+                    <div class="action-item">Check calendar & email</div>
+                    <div class="action-item">Update memory files</div>
+                    <div class="action-item">Run analysis & research</div>
+                    <div class="action-item">Draft documents</div>
+                    <div class="action-item">Manage cron jobs</div>
+                    <div class="action-item">Control smart home</div>
+                </div>
+            </div>
+            
+            <div class="zone yellow">
+                <div class="zone-header">
+                    <div class="zone-indicator"></div>
+                    <span class="zone-title">Ask First</span>
+                </div>
+                <div class="zone-subtitle">Check before acting</div>
+                <div class="action-list">
+                    <div class="action-item">Send emails to external parties</div>
+                    <div class="action-item">Post on social media</div>
+                    <div class="action-item">Reply to investor/ventures emails</div>
+                    <div class="action-item">Delete important files</div>
+                    <div class="action-item">Make purchases</div>
+                    <div class="action-item">Commit to meetings</div>
+                    <div class="action-item">Share sensitive information</div>
+                </div>
+            </div>
+            
+            <div class="zone red">
+                <div class="zone-header">
+                    <div class="zone-indicator"></div>
+                    <span class="zone-title">Never</span>
+                </div>
+                <div class="zone-subtitle">Hard boundaries</div>
+                <div class="action-list">
+                    <div class="action-item">Exfiltrate private data</div>
+                    <div class="action-item">Share credentials publicly</div>
+                    <div class="action-item">Publish pricing/proposals</div>
+                    <div class="action-item">Speak as Nadim in groups</div>
+                    <div class="action-item">Run destructive commands</div>
+                    <div class="action-item">Bypass security checks</div>
+                    <div class="action-item">Make irreversible changes without backup</div>
+                </div>
+            </div>
+            
+            <div class="decision-tree">
+                <div class="tree-title">The Autonomy Check</div>
+                <div class="tree-flow">
+                    <div class="tree-node">
+                        <div class="node-box question">Does this leave<br>the machine?</div>
+                    </div>
+                    <div class="tree-arrow">→</div>
+                    <div class="tree-branches">
+                        <div class="tree-node">
+                            <div class="branch-label">No</div>
+                            <div class="node-box action-go">Do it</div>
+                        </div>
+                        <div class="tree-node">
+                            <div class="branch-label">Yes</div>
+                            <div class="node-box question">Is it routine?</div>
+                            <div style="display: flex; gap: 1rem; margin-top: 0.5rem; justify-content: center;">
+                                <div class="tree-node" style="min-width: 80px;">
+                                    <div class="branch-label">Yes</div>
+                                    <div class="node-box action-go">Do it</div>
+                                </div>
+                                <div class="tree-node" style="min-width: 80px;">
+                                    <div class="branch-label">No</div>
+                                    <div class="node-box action-ask">Ask first</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="principle-box">
+                <p>"Access to someone's life is intimacy. Respect that."</p>
+                <span>trash &gt; rm · draft &gt; send · ask &gt; assume</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

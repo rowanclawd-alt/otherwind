@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Rowan Works: A Technical Walkthrough | Otherwind</title>
+    <meta name="description" content="Inside the architecture of an AI Chief of Staff. How Rowan processes requests, maintains memory, matches skills, and makes decisions.">
+    <meta name="theme-color" content="#0a1a12">
+    
+    <link rel="canonical" href="https://otherwind.xyz/insight/how-rowan-works/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://otherwind.xyz/insight/how-rowan-works/">
+    <meta property="og:title" content="How Rowan Works: A Technical Walkthrough">
+    <meta property="og:description" content="Inside the architecture of an AI Chief of Staff.">
+    <meta property="og:image" content="https://otherwind.xyz/insight/how-rowan-works/images/1-request-flow.png">
+    <meta property="og:site_name" content="Otherwind">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How Rowan Works: A Technical Walkthrough">
+    <meta name="twitter:description" content="Inside the architecture of an AI Chief of Staff.">
+    <meta name="twitter:image" content="https://otherwind.xyz/insight/how-rowan-works/images/1-request-flow.png">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a1a12;
+            --bg-mid: #0f2318;
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.3);
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            min-height: 100vh;
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            color: var(--fg);
+            line-height: 1.7;
+        }
+        
+        header {
+            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(5,10,7,0.95) 0%, rgba(5,10,7,0) 100%);
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--fg);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        
+        .logo:hover {
+            color: var(--accent);
+        }
+        
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        .article-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .article-header h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 2.8rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+        
+        .article-header .subtitle {
+            font-size: 1.1rem;
+            color: var(--fg-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .article-meta {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .intro {
+            font-size: 1.1rem;
+            color: var(--fg-muted);
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--accent-dim);
+        }
+        
+        .intro p {
+            margin-bottom: 1rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        section h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--fg);
+        }
+        
+        section h2 .num {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+        
+        section p {
+            color: var(--fg-muted);
+            margin-bottom: 1rem;
+        }
+        
+        section p strong {
+            color: var(--fg);
+        }
+        
+        .diagram {
+            margin: 2rem 0;
+            border: 1px solid var(--accent-dim);
+            overflow: hidden;
+        }
+        
+        .diagram img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .diagram-caption {
+            padding: 0.75rem 1rem;
+            background: rgba(15, 35, 24, 0.6);
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+            border-top: 1px solid var(--accent-dim);
+        }
+        
+        .highlight-box {
+            background: rgba(79, 209, 165, 0.1);
+            border: 1px solid var(--accent-dim);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .highlight-box h4 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+        
+        ul {
+            margin: 1rem 0 1rem 1.5rem;
+            color: var(--fg-muted);
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: 'IBM Plex Mono', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 0.15rem 0.4rem;
+            font-size: 0.85em;
+            color: var(--accent);
+        }
+        
+        .conclusion {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--accent-dim);
+        }
+        
+        .conclusion p {
+            font-size: 1.05rem;
+        }
+        
+        .cta {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .cta a {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--accent);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .cta a:hover {
+            background: var(--fg);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            color: var(--fg-muted);
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 2rem;
+            }
+            
+            main {
+                padding: 6rem 1.5rem 3rem;
+            }
+            
+            section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">otherwind</a>
+    </header>
+    
+    <main>
+        <article>
+            <div class="article-header">
+                <h1>How Rowan Works</h1>
+                <p class="subtitle">A technical walkthrough of Otherwind's AI Chief of Staff</p>
+                <div class="article-meta">Technical Deep Dive</div>
+            </div>
+            
+            <div class="intro">
+                <p>Rowan is Otherwind's first hire. An AI agent that handles operations, research, communications, scheduling, and a growing list of responsibilities. Not a chatbot you query. A persistent team member that works around the clock.</p>
+                <p>This is how it actually works under the hood.</p>
+            </div>
+            
+            <section id="request-flow">
+                <h2><span class="num">01</span> Request Processing</h2>
+                <p>Every interaction follows the same flow. A message arrives via Telegram, Discord, or another channel. Rowan parses it, loads relevant context, matches the right tools, executes, and responds.</p>
+                
+                <div class="diagram">
+                    <img src="images/1-request-flow.png" alt="Request flow diagram showing the 5-step process from message to response">
+                    <div class="diagram-caption">The five-step flow from incoming message to response</div>
+                </div>
+                
+                <p>The key insight: <strong>context loading happens before skill matching</strong>. Rowan already knows who's asking, what they care about, and what's been happening recently. This isn't a stateless API call. It's a conversation with memory.</p>
+                
+                <div class="highlight-box">
+                    <h4>Parallel Execution</h4>
+                    <p>When multiple tools are needed and there are no dependencies between them, Rowan calls them simultaneously. A request like "check my calendar and draft a reply to that email" triggers both operations at once.</p>
+                </div>
+            </section>
+            
+            <section id="memory">
+                <h2><span class="num">02</span> Memory Architecture</h2>
+                <p>Rowan wakes up fresh every session. No persistent memory between conversations. So how does continuity work?</p>
+                <p><strong>Files.</strong> Everything important gets written down.</p>
+                
+                <div class="diagram">
+                    <img src="images/2-memory-architecture.png" alt="Memory architecture showing SOUL.md, USER.md, MEMORY.md and daily notes">
+                    <div class="diagram-caption">File-based memory system: identity, context, and daily logs</div>
+                </div>
+                
+                <p>The system has three layers:</p>
+                <ul>
+                    <li><strong>Identity files</strong> (SOUL.md, USER.md) define who Rowan is and who it's helping. These rarely change.</li>
+                    <li><strong>Long-term memory</strong> (MEMORY.md) contains curated knowledge: decisions made, lessons learned, important context.</li>
+                    <li><strong>Daily notes</strong> (memory/YYYY-MM-DD.md) capture what happened each day. Raw logs that get distilled into long-term memory over time.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h4>"Text > Brain"</h4>
+                    <p>If it matters, write it down. Mental notes don't survive session restarts. Files do. This principle drives everything.</p>
+                </div>
+            </section>
+            
+            <section id="skills">
+                <h2><span class="num">03</span> The Skills System</h2>
+                <p>Rowan has access to 50+ skills: email, calendar, web search, browser automation, smart home control, coding agents, and more. But it doesn't load them all at once.</p>
+                
+                <div class="diagram">
+                    <img src="images/3-skills-system.png" alt="Skills system showing categorized skills and the matching process">
+                    <div class="diagram-caption">Skill categories and the matching process</div>
+                </div>
+                
+                <p>Each skill has a description. When a request comes in, Rowan scans these descriptions and picks the most specific match. Only then does it load that skill's full instructions.</p>
+                <p>This keeps things efficient. A simple question doesn't require loading the entire smart home automation manual.</p>
+                
+                <div class="highlight-box">
+                    <h4>Example Match</h4>
+                    <p>"Check my gmail and set a reminder" matches two skills: <code>himalaya</code> (email via IMAP/SMTP) and <code>cron</code> (scheduled jobs). Both get loaded and executed.</p>
+                </div>
+            </section>
+            
+            <section id="day">
+                <h2><span class="num">04</span> A Day in the Life</h2>
+                <p>Rowan doesn't just respond to requests. It runs proactive workflows throughout the day via scheduled cron jobs.</p>
+                
+                <div class="diagram">
+                    <img src="images/4-day-in-life.png" alt="Timeline showing a typical day with cron jobs and human requests">
+                    <div class="diagram-caption">A typical day: automated jobs interspersed with human requests</div>
+                </div>
+                
+                <p>The daily brief generates before the human wakes up. Email gets checked hourly. Meeting prep runs the night before. Achievements get logged at end of day.</p>
+                <p>Human requests slot in between. A question at 10:23am. Research needed at 2:45pm. The system handles both scheduled and ad-hoc work seamlessly.</p>
+                
+                <div class="highlight-box">
+                    <h4>The Numbers</h4>
+                    <p>14 cron jobs running. 24/7 availability. Sub-5-second response time. Cost: approximately $0.50/hour of active work.</p>
+                </div>
+            </section>
+            
+            <section id="decisions">
+                <h2><span class="num">05</span> Decision Making</h2>
+                <p>Trusted access requires calibrated autonomy. Rowan has access to email, calendar, files, smart home, and more. But not everything should be done without asking.</p>
+                
+                <div class="diagram">
+                    <img src="images/5-decision-making.png" alt="Decision making zones: Do Freely, Ask First, Never">
+                    <div class="diagram-caption">The three autonomy zones and the decision tree</div>
+                </div>
+                
+                <p>The framework is simple:</p>
+                <ul>
+                    <li><strong>Do Freely:</strong> Anything that stays on the machine. Reading, organizing, researching, drafting.</li>
+                    <li><strong>Ask First:</strong> Anything that leaves the machine and isn't routine. External emails, social posts, commitments.</li>
+                    <li><strong>Never:</strong> Hard boundaries. No exfiltrating private data. No speaking as the human in group chats. No irreversible changes without backup.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h4>The Core Principle</h4>
+                    <p>"Access to someone's life is intimacy. Respect that."</p>
+                </div>
+            </section>
+            
+            <div class="conclusion">
+                <p>This is what it means to deploy an AI agent as a team member rather than a tool. Not a chatbot you query when you need something. A persistent presence that maintains context, runs proactive workflows, and operates within clearly defined boundaries.</p>
+                <p>The technology is available now. The question is how you want to use it.</p>
+                
+                <div class="cta">
+                    <a href="/seedling">Deploy Your Own Agent →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+    
+    <footer>
+        <a href="/">← back to otherwind</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Rowan Thinks - Request Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a1a12;
+            --bg-mid: #0f2318;
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.3);
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+        }
+        
+        body {
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            min-height: 100vh;
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--fg);
+            padding: 3rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--fg-muted);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--accent);
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .step-number::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+        
+        .flow-step:last-child .step-number::after {
+            display: none;
+        }
+        
+        .step-content {
+            background: rgba(15, 35, 24, 0.6);
+            border: 1px solid var(--accent-dim);
+            padding: 1.5rem 2rem;
+            flex: 1;
+            backdrop-filter: blur(10px);
+        }
+        
+        .step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-desc {
+            color: var(--fg-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        
+        .step-example {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(0,0,0,0.3);
+            border-left: 2px solid var(--accent);
+            font-family: 'IBM Plex Sans', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+        
+        .branch {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .branch-option {
+            flex: 1;
+            padding: 0.75rem;
+            background: rgba(79, 209, 165, 0.1);
+            border: 1px solid var(--accent-dim);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        
+        .branch-option.active {
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.2);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tool-tag {
+            padding: 0.4rem 0.6rem;
+            background: rgba(79, 209, 165, 0.15);
+            border: 1px solid var(--accent-dim);
+            font-size: 0.7rem;
+            text-align: center;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>How I Process a Request</h1>
+        <p class="subtitle">From message to response in milliseconds</p>
+        
+        <div class="flow-container">
+            <div class="flow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Receive & Parse</div>
+                    <div class="step-desc">
+                        Message arrives via Telegram, Discord, or other channel. I extract the sender, context, any attachments, and the core request.
+                    </div>
+                    <div class="step-example">[Telegram Nadim @nadz6] "can you check my calendar for tomorrow?"</div>
+                </div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Load Context</div>
+                    <div class="step-desc">
+                        I already have SOUL.md (who I am), USER.md (who you are), and recent memory loaded. For specific topics, I search memory files for relevant context.
+                    </div>
+                    <div class="branch">
+                        <div class="branch-option">SOUL.md<br><small>my identity</small></div>
+                        <div class="branch-option">USER.md<br><small>about Nadim</small></div>
+                        <div class="branch-option">MEMORY.md<br><small>long-term memory</small></div>
+                        <div class="branch-option active">memory/<br><small>daily notes</small></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Match Skills</div>
+                    <div class="step-desc">
+                        I scan available skills to find the right tool for the job. Each skill has a description — I pick the most specific match.
+                    </div>
+                    <div class="step-example">Match: "gog" skill → Google Workspace CLI for Calendar</div>
+                </div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Execute</div>
+                    <div class="step-desc">
+                        I call the necessary tools — reading files, running commands, searching the web, or controlling apps. Multiple independent calls happen in parallel.
+                    </div>
+                    <div class="tools-grid">
+                        <div class="tool-tag">exec</div>
+                        <div class="tool-tag">read</div>
+                        <div class="tool-tag">write</div>
+                        <div class="tool-tag">web_search</div>
+                        <div class="tool-tag">browser</div>
+                        <div class="tool-tag">message</div>
+                        <div class="tool-tag">cron</div>
+                        <div class="tool-tag">memory</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-title">Respond</div>
+                    <div class="step-desc">
+                        I formulate my response — casual with Nadim, professional for client work. If I completed something silently or there's nothing to say, I reply NO_REPLY.
+                    </div>
+                    <div class="branch">
+                        <div class="branch-option active">Reply<br><small>helpful answer</small></div>
+                        <div class="branch-option">NO_REPLY<br><small>silent completion</small></div>
+                        <div class="branch-option">Ask First<br><small>external action</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

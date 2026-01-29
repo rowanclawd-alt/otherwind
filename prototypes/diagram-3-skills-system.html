@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Rowan Thinks - Skills System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a1a12;
+            --accent: #4fd1a5;
+            --accent-dim: rgba(79, 209, 165, 0.3);
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+            --yellow: #c9a962;
+            --blue: #7b9bc9;
+            --pink: #c97b9b;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            min-height: 100vh;
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--fg);
+            padding: 3rem;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--fg-muted);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+        }
+        
+        .skills-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+        
+        .request-panel {
+            background: rgba(15, 35, 24, 0.6);
+            border: 1px solid var(--accent-dim);
+            padding: 1.5rem;
+        }
+        
+        .request-panel h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .request-example {
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            border-left: 2px solid var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .match-process {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .match-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+        }
+        
+        .match-step .icon {
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--accent-dim);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .match-step.active {
+            color: var(--fg);
+        }
+        
+        .match-step.active .icon {
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.2);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        
+        .skill-category {
+            background: rgba(15, 35, 24, 0.4);
+            border: 1px solid var(--accent-dim);
+            padding: 1.25rem;
+        }
+        
+        .skill-category h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-category h4 .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .skill-category.comms h4 .dot { background: var(--accent); }
+        .skill-category.productivity h4 .dot { background: var(--yellow); }
+        .skill-category.research h4 .dot { background: var(--blue); }
+        .skill-category.automation h4 .dot { background: var(--pink); }
+        .skill-category.media h4 .dot { background: #a5c97b; }
+        .skill-category.home h4 .dot { background: #c9a962; }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        
+        .skill-tag {
+            padding: 0.3rem 0.6rem;
+            background: rgba(255,255,255,0.05);
+            font-size: 0.7rem;
+            color: var(--fg-muted);
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .skill-tag.matched {
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.15);
+            color: var(--accent);
+        }
+        
+        .skill-detail {
+            grid-column: span 3;
+            background: rgba(79, 209, 165, 0.1);
+            border: 1px solid var(--accent);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .skill-detail h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-detail p {
+            color: var(--fg-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        
+        .skill-commands {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+        }
+        
+        .skill-commands code {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-commands code:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Skills System</h1>
+        <p class="subtitle">50+ skills. I match the right tool to your request.</p>
+        
+        <div class="skills-layout">
+            <div class="request-panel">
+                <h3>Example Request</h3>
+                <div class="request-example">
+                    "check my gmail for anything important and add a reminder for tomorrow at 9am to call the accountant"
+                </div>
+                
+                <h3>Skill Matching</h3>
+                <div class="match-process">
+                    <div class="match-step">
+                        <div class="icon">1</div>
+                        <span>Parse request intent</span>
+                    </div>
+                    <div class="match-step active">
+                        <div class="icon">2</div>
+                        <span>Scan skill descriptions</span>
+                    </div>
+                    <div class="match-step active">
+                        <div class="icon">3</div>
+                        <span>Match: himalaya (email)</span>
+                    </div>
+                    <div class="match-step active">
+                        <div class="icon">4</div>
+                        <span>Match: cron (reminder)</span>
+                    </div>
+                    <div class="match-step">
+                        <div class="icon">5</div>
+                        <span>Load SKILL.md, execute</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category comms">
+                    <h4><span class="dot"></span>Communications</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag matched">himalaya</span>
+                        <span class="skill-tag">imsg</span>
+                        <span class="skill-tag">wacli</span>
+                        <span class="skill-tag">slack</span>
+                        <span class="skill-tag">bird</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category productivity">
+                    <h4><span class="dot"></span>Productivity</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">gog</span>
+                        <span class="skill-tag">notion</span>
+                        <span class="skill-tag">obsidian</span>
+                        <span class="skill-tag">things-mac</span>
+                        <span class="skill-tag">apple-notes</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category research">
+                    <h4><span class="dot"></span>Research</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">web_search</span>
+                        <span class="skill-tag">web_fetch</span>
+                        <span class="skill-tag">summarize</span>
+                        <span class="skill-tag">qmd</span>
+                        <span class="skill-tag">browser</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category automation">
+                    <h4><span class="dot"></span>Automation</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag matched">cron</span>
+                        <span class="skill-tag">peekaboo</span>
+                        <span class="skill-tag">cursor-agent</span>
+                        <span class="skill-tag">coding-agent</span>
+                        <span class="skill-tag">github</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category media">
+                    <h4><span class="dot"></span>Media</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">video-frames</span>
+                        <span class="skill-tag">openai-image</span>
+                        <span class="skill-tag">whisper</span>
+                        <span class="skill-tag">gifgrep</span>
+                        <span class="skill-tag">songsee</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category home">
+                    <h4><span class="dot"></span>Smart Home</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">lgtv</span>
+                        <span class="skill-tag">openhue</span>
+                        <span class="skill-tag">sonoscli</span>
+                        <span class="skill-tag">blucli</span>
+                        <span class="skill-tag">camsnap</span>
+                    </div>
+                </div>
+                
+                <div class="skill-detail">
+                    <div>
+                        <h3>himalaya</h3>
+                        <p>CLI for email via IMAP/SMTP. List, read, search, compose, reply, forward. Supports multiple accounts and attachments via MML format.</p>
+                    </div>
+                    <div class="skill-commands">
+                        <code>himalaya envelope list --folder INBOX</code>
+                        <code>himalaya message read 42</code>
+                        <code>himalaya template send < reply.mml</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
