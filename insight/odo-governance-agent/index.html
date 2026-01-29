@@ -23,6 +23,16 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
         :root {
             --bg-dark: #0a1a12;
             --bg-mid: #0f2318;
@@ -51,6 +61,11 @@
             right: 0;
             z-index: 100;
             background: linear-gradient(to bottom, rgba(5,10,7,0.95) 0%, rgba(5,10,7,0) 100%);
+        }
+        
+        main, footer {
+            position: relative;
+            z-index: 1;
         }
         
         .header-inner {
@@ -703,6 +718,7 @@
     </style>
 </head>
 <body>
+    <div id="canvas-container"></div>
     <header>
         <div class="header-inner">
             <a href="/" class="logo">otherwind</a>
@@ -1094,5 +1110,156 @@
     <footer>
         <a href="/">← back to otherwind</a>
     </footer>
+    
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+    <script>
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 0, 20);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x000000, 0);
+        container.appendChild(renderer.domElement);
+
+        // Dawn palette (palette 11 from landing page)
+        const dawnPalette = ['#fbbf24', '#f59e0b', '#d97706', '#92400e', '#78350f'];
+
+        function createCellTexture(colorPalette, cellCount = 15) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#0a1a12';
+            ctx.fillRect(0, 0, 512, 512);
+
+            const cells = [];
+            for (let i = 0; i < cellCount; i++) {
+                cells.push({
+                    x: Math.random() * 512,
+                    y: Math.random() * 512,
+                    color: colorPalette[Math.floor(Math.random() * colorPalette.length)]
+                });
+            }
+
+            for (let x = 0; x < 512; x += 3) {
+                for (let y = 0; y < 512; y += 3) {
+                    let minDist = Infinity;
+                    let closestCell = cells[0];
+                    
+                    cells.forEach(cell => {
+                        const dist = Math.sqrt((x - cell.x) ** 2 + (y - cell.y) ** 2);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            closestCell = cell;
+                        }
+                    });
+
+                    ctx.fillStyle = closestCell.color;
+                    ctx.globalAlpha = 0.6 + Math.random() * 0.4;
+                    ctx.fillRect(x, y, 3, 3);
+                }
+            }
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
+
+        // The floating torus knot shape
+        const shapeConfig = { geo: 'torusKnot', size: 1.8, pos: [6, -2, -3], palette: 11, rotSpeed: 0.008, name: 'New Shape', status: 'coming soon' };
+        
+        const geometry = new THREE.TorusKnotGeometry(shapeConfig.size * 0.6, shapeConfig.size * 0.2, 64, 8);
+        const texture = createCellTexture(dawnPalette, 15);
+        const material = new THREE.MeshBasicMaterial({ 
+            map: texture,
+            transparent: true,
+            opacity: 0.75,
+        });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        torusKnot.position.set(...shapeConfig.pos);
+        torusKnot.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+        torusKnot.userData = {
+            rotSpeed: shapeConfig.rotSpeed,
+            floatSpeed: 0.35,
+            floatOffset: Math.random() * Math.PI * 2,
+            originalY: shapeConfig.pos[1]
+        };
+        scene.add(torusKnot);
+
+        // Particles
+        const particleCount = 150;
+        const particleGeo = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const depths = [];
+
+        for (let i = 0; i < particleCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 40;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 20 - 5;
+            depths.push(positions[i * 3 + 2]);
+        }
+
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particleMat = new THREE.PointsMaterial({
+            color: new THREE.Color().setHSL(0.42, 0.5, 0.4),
+            size: 0.08,
+            transparent: true,
+            opacity: 0.5,
+            sizeAttenuation: true,
+        });
+
+        const particles = new THREE.Points(particleGeo, particleMat);
+        scene.add(particles);
+
+        // Handle scroll for parallax
+        let scrollY = 0;
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        });
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            const t = performance.now() * 0.001;
+
+            // Rotate and float the torus knot
+            torusKnot.rotation.x += torusKnot.userData.rotSpeed;
+            torusKnot.rotation.y += torusKnot.userData.rotSpeed * 0.7;
+            torusKnot.position.y = torusKnot.userData.originalY + Math.sin(t * torusKnot.userData.floatSpeed + torusKnot.userData.floatOffset) * 0.5;
+
+            // Animate particles
+            const pos = particles.geometry.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                pos[i * 3 + 1] += 0.003; // slow upward drift
+                if (pos[i * 3 + 1] > 30) {
+                    pos[i * 3 + 1] = -30;
+                }
+            }
+            particles.geometry.attributes.position.needsUpdate = true;
+
+            // Parallax with scroll
+            camera.position.y = -scrollY * 0.003;
+            particles.position.y = scrollY * 0.01;
+
+            // Subtle particle opacity pulse
+            particleMat.opacity = 0.4 + Math.sin(t * 0.3) * 0.15;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
