@@ -24,7 +24,8 @@
       "time": "08:00",
       "done": false,
       "url": "https://docs.google.com/document/d/16oz98U_a3g59qFpOM3A8vy3V35-fduWgVYXn6n1v0To/edit",
-      "notes": "Prep before Mantle meeting"
+      "notes": "Prep before Mantle meeting",
+      "gcalEventId": "us6cti8unnc01r1jsj4g0rlnt0"
     },
     {
       "id": "bd-weekly-20260130",
@@ -42,8 +43,13 @@
       "date": "2026-02-09",
       "time": "09:00",
       "done": false,
-      "notes": "Check if you want to keep Porkbun domain/email or switch. Trial started ~Jan 28."
+      "notes": "Check if you want to keep Porkbun domain/email or switch. Trial started ~Jan 28.",
+      "gcalEventId": "a703of5fjeqirhelcobqb0ores"
     }
   ],
-  "updatedAt": "2026-01-28T17:32:07.927893Z"
+  "dailyBriefs": {
+    "2026-01-29": "2dpbmbia7m0bau3ojvsmf2p6m4",
+    "2026-01-30": "uqmdb77godpv42dtfgj99jacr4"
+  },
+  "updatedAt": "2026-01-29T10:12:00.000Z"
 }
