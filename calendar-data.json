@@ -52,15 +52,50 @@
       "shortTitle": "Mantle legal context",
       "date": "2026-01-30",
       "time": "09:00",
-      "done": false,
+      "done": true,
       "url": "https://notes.granola.ai/t/efa49056-3cb4-4d2c-af85-4326e648cf10-009c2hma",
-      "notes": "Send legal counsel context to Mantle team",
-      "gcalEventId": "tlpuhahlkb2q69kkafvvsuq764"
+      "notes": "Gcal event deleted - marked done via sync"
+    },
+    {
+      "id": "art-meeting-prep-20260129",
+      "title": "ART Meeting Prep",
+      "shortTitle": "ART Prep",
+      "date": "2026-01-29",
+      "time": "14:00",
+      "done": false,
+      "gcalEventId": "qcm3f7kfl72kc6bohq6kbet504"
+    },
+    {
+      "id": "resolv-dd-20260130",
+      "title": "Check Resolv DD status",
+      "shortTitle": "Resolv DD",
+      "date": "2026-01-30",
+      "time": "09:00",
+      "done": false,
+      "gcalEventId": "bju8qrorrv55aisuo7c09km7ak"
+    },
+    {
+      "id": "keyring-dd-20260130",
+      "title": "Check Keyring DD status",
+      "shortTitle": "Keyring DD",
+      "date": "2026-01-30",
+      "time": "09:15",
+      "done": false,
+      "gcalEventId": "uu4ek2uc8oqh2rr95si4a6ujk4"
+    },
+    {
+      "id": "mantle-legal-check-20260130",
+      "title": "Check Mantle legal context",
+      "shortTitle": "Mantle legal",
+      "date": "2026-01-30",
+      "time": "09:30",
+      "done": false,
+      "gcalEventId": "rb2d0i4kjribipv71ek6oj2u5k"
     }
   ],
   "dailyBriefs": {
     "2026-01-29": "glueciaksbcbco5gb29mj8s14o",
     "2026-01-30": "gsptcq04kptsidjdd1sb7idgik"
   },
-  "updatedAt": "2026-01-29T10:31:40.840652Z"
+  "updatedAt": "2026-01-29T16:00:00.000Z"
 }
