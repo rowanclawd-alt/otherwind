@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odo: A Governance Agent for Collectives | Otherwind</title>
+    <meta name="description" content="An experimental agent concept for DAOs, cooperatives, and distributed teams. Odo facilitates rather than executes. Synthesizes rather than decides.">
+    <meta name="theme-color" content="#0a1a12">
+    
+    <link rel="canonical" href="https://otherwind.xyz/insight/odo-governance-agent/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://otherwind.xyz/insight/odo-governance-agent/">
+    <meta property="og:title" content="Odo: A Governance Agent for Collectives">
+    <meta property="og:description" content="An experimental agent design for distributed teams.">
+    <meta property="og:site_name" content="Otherwind">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a1a12;
+            --bg-mid: #0f2318;
+            --accent: #4fd1a5;
+            --accent-secondary: #c9a962;
+            --accent-dim: rgba(79, 209, 165, 0.3);
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            min-height: 100vh;
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            color: var(--fg);
+            line-height: 1.7;
+        }
+        
+        header {
+            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(5,10,7,0.95) 0%, rgba(5,10,7,0) 100%);
+        }
+        
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--fg);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        
+        .logo:hover { color: var(--accent); }
+        
+        .experimental-badge {
+            font-size: 0.65rem;
+            padding: 0.3rem 0.75rem;
+            background: rgba(201, 169, 98, 0.2);
+            border: 1px solid rgba(201, 169, 98, 0.4);
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--accent-dim);
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.4rem 1rem;
+            background: rgba(201, 169, 98, 0.15);
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero .subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--fg-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero .origin {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .hero .origin em {
+            color: var(--accent);
+        }
+        
+        /* Section styling */
+        section {
+            margin-bottom: 5rem;
+        }
+        
+        section h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--fg);
+        }
+        
+        section > p {
+            color: var(--fg-muted);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+        
+        /* Core concept diagram */
+        .concept-diagram {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        
+        .concept-box {
+            background: rgba(15, 35, 24, 0.6);
+            border: 1px solid var(--accent-dim);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .concept-box.odo {
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.08);
+        }
+        
+        .concept-box h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .concept-box .role {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .concept-users {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .user-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--fg-muted);
+        }
+        
+        .concept-box.odo .user-dot {
+            background: var(--accent);
+        }
+        
+        .concept-arrow {
+            font-size: 2rem;
+            color: var(--accent-dim);
+        }
+        
+        .concept-label {
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+            line-height: 1.5;
+        }
+        
+        /* Network diagram */
+        .network-diagram {
+            position: relative;
+            height: 400px;
+            background: rgba(15, 35, 24, 0.4);
+            border: 1px solid var(--accent-dim);
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+        
+        .network-node {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            text-align: center;
+            border: 2px solid var(--accent-dim);
+            background: rgba(10, 26, 18, 0.9);
+        }
+        
+        .network-node.center {
+            width: 120px;
+            height: 120px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-color: var(--accent);
+            background: rgba(79, 209, 165, 0.15);
+            font-size: 0.85rem;
+        }
+        
+        .network-node .name {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.1em;
+            margin-bottom: 0.2rem;
+        }
+        
+        .network-node.center .name {
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+        
+        .network-node .role {
+            color: var(--fg-muted);
+            font-size: 0.65rem;
+        }
+        
+        /* Position outer nodes */
+        .network-node.n1 { top: 10%; left: 20%; }
+        .network-node.n2 { top: 8%; left: 50%; transform: translateX(-50%); }
+        .network-node.n3 { top: 10%; right: 20%; }
+        .network-node.n4 { top: 45%; left: 8%; }
+        .network-node.n5 { top: 45%; right: 8%; }
+        .network-node.n6 { bottom: 10%; left: 25%; }
+        .network-node.n7 { bottom: 10%; right: 25%; }
+        
+        .network-line {
+            position: absolute;
+            background: var(--accent);
+            opacity: 0.2;
+            transform-origin: 0 0;
+        }
+        
+        /* Capabilities grid */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .capability-card {
+            background: rgba(15, 35, 24, 0.5);
+            border: 1px solid var(--accent-dim);
+            padding: 1.5rem;
+        }
+        
+        .capability-card h4 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .capability-card h4 .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(79, 209, 165, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--accent);
+        }
+        
+        .capability-card p {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+            line-height: 1.5;
+        }
+        
+        /* Autonomy comparison */
+        .autonomy-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .autonomy-column {
+            background: rgba(15, 35, 24, 0.5);
+            border: 1px solid var(--accent-dim);
+            padding: 1.5rem;
+        }
+        
+        .autonomy-column.odo {
+            border-color: var(--accent);
+        }
+        
+        .autonomy-column h4 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .autonomy-column .tagline {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .autonomy-zone {
+            margin-bottom: 1.25rem;
+        }
+        
+        .autonomy-zone .zone-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .zone-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .zone-dot.green { background: #4fd1a5; }
+        .zone-dot.yellow { background: #c9a962; }
+        .zone-dot.red { background: #c97b7b; }
+        
+        .zone-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .zone-items {
+            padding-left: 1.25rem;
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+            line-height: 1.6;
+        }
+        
+        /* Flow diagram */
+        .flow-diagram {
+            background: rgba(15, 35, 24, 0.4);
+            border: 1px solid var(--accent-dim);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .flow-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--fg-muted);
+        }
+        
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .flow-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 1.5rem;
+            color: var(--accent-dim);
+            font-size: 1.2rem;
+        }
+        
+        .flow-step:last-child::after {
+            display: none;
+        }
+        
+        .flow-step .step-num {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        
+        .flow-step h5 {
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .flow-step p {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            line-height: 1.4;
+        }
+        
+        /* Conversation mockup */
+        .conversation-mockup {
+            background: rgba(10, 18, 16, 0.8);
+            border: 1px solid var(--accent-dim);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        .conversation-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: rgba(15, 35, 24, 0.8);
+            border-bottom: 1px solid var(--accent-dim);
+        }
+        
+        .conversation-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-dim);
+        }
+        
+        .conversation-header span {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            margin-left: auto;
+        }
+        
+        .conversation-body {
+            padding: 1.5rem;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+        }
+        
+        .message .sender {
+            font-size: 0.7rem;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .message.odo .sender {
+            color: var(--accent-secondary);
+        }
+        
+        .message .bubble {
+            background: rgba(79, 209, 165, 0.1);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            max-width: 85%;
+        }
+        
+        .message.odo .bubble {
+            background: rgba(201, 169, 98, 0.1);
+            margin-left: auto;
+        }
+        
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .metric-card {
+            background: rgba(15, 35, 24, 0.5);
+            border: 1px solid var(--accent-dim);
+            padding: 1.25rem;
+            text-align: center;
+        }
+        
+        .metric-card .value {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+        
+        .metric-card .label {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            line-height: 1.3;
+        }
+        
+        /* Philosophy quote */
+        .philosophy-block {
+            background: rgba(201, 169, 98, 0.08);
+            border-left: 3px solid var(--accent-secondary);
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .philosophy-block blockquote {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--fg);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .philosophy-block cite {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+        }
+        
+        /* Day timeline */
+        .day-timeline {
+            position: relative;
+            padding-left: 120px;
+            margin: 2rem 0;
+        }
+        
+        .day-timeline::before {
+            content: '';
+            position: absolute;
+            left: 100px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-dim), var(--accent));
+        }
+        
+        .timeline-event {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px solid var(--accent);
+        }
+        
+        .timeline-event .time {
+            position: absolute;
+            left: -120px;
+            top: 0.3rem;
+            width: 80px;
+            text-align: right;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            color: var(--fg-muted);
+        }
+        
+        .timeline-event h5 {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-event p {
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+            line-height: 1.4;
+        }
+        
+        .timeline-event .tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+            background: rgba(79, 209, 165, 0.15);
+            color: var(--accent);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(79, 209, 165, 0.05);
+            border: 1px solid var(--accent-dim);
+            margin-top: 4rem;
+        }
+        
+        .cta-section h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-section p {
+            color: var(--fg-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section a {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--accent);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .cta-section a:hover {
+            background: var(--fg);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            color: var(--fg-muted);
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            main { padding: 6rem 1.5rem 3rem; }
+            .concept-diagram { grid-template-columns: 1fr; gap: 1rem; }
+            .concept-arrow { transform: rotate(90deg); }
+            .capabilities-grid { grid-template-columns: 1fr; }
+            .autonomy-compare { grid-template-columns: 1fr; }
+            .flow-steps { flex-direction: column; }
+            .flow-step::after { display: none; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .day-timeline { padding-left: 80px; }
+            .day-timeline::before { left: 60px; }
+            .timeline-event .time { left: -80px; width: 50px; font-size: 0.8rem; }
+            .network-diagram { height: 300px; }
+            .network-node { width: 60px; height: 60px; font-size: 0.6rem; }
+            .network-node.center { width: 90px; height: 90px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="/" class="logo">otherwind</a>
+            <span class="experimental-badge">Experimental Concept</span>
+        </div>
+    </header>
+    
+    <main>
+        <div class="hero">
+            <span class="hero-badge">Agent Concept</span>
+            <h1>Odo</h1>
+            <p class="subtitle">A governance agent for collectives</p>
+            <p class="origin">
+                Named for the philosopher in Ursula K. Le Guin's <em>The Dispossessed</em> who founded the anarchist movement on Anarres. Odo never gave orders. She asked questions. She wrote about how people might organize themselves without coercion.
+            </p>
+        </div>
+        
+        <!-- The Core Idea -->
+        <section>
+            <h2>The Core Idea</h2>
+            <p>Most AI agents serve one human. They take orders, execute tasks, report back. The relationship is hierarchical: human commands, agent obeys.</p>
+            <p>Odo is different. Odo serves <strong>the collective</strong>.</p>
+            
+            <div class="concept-diagram">
+                <div class="concept-box">
+                    <h3>Traditional Agent</h3>
+                    <span class="role">serves one</span>
+                    <div class="concept-users">
+                        <div class="user-dot" style="background: var(--accent);"></div>
+                    </div>
+                    <p class="concept-label">One human gives commands.<br>Agent executes.</p>
+                </div>
+                
+                <div class="concept-arrow">→</div>
+                
+                <div class="concept-box odo">
+                    <h3>Odo</h3>
+                    <span class="role">serves many</span>
+                    <div class="concept-users">
+                        <div class="user-dot"></div>
+                        <div class="user-dot"></div>
+                        <div class="user-dot"></div>
+                        <div class="user-dot"></div>
+                        <div class="user-dot"></div>
+                    </div>
+                    <p class="concept-label">The collective discusses.<br>Odo facilitates, synthesizes, reflects.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Network Diagram -->
+        <section>
+            <h2>Serving the Network</h2>
+            <p>In a DAO, cooperative, or distributed team, no single person has the full picture. Information is fragmented across channels, timezones, and contexts. Odo sits at the center, not to control, but to connect.</p>
+            
+            <div class="network-diagram">
+                <div class="network-node center">
+                    <span class="name">Odo</span>
+                    <span class="role">facilitates</span>
+                </div>
+                <div class="network-node n1">
+                    <span class="name">Dev</span>
+                    <span class="role">building</span>
+                </div>
+                <div class="network-node n2">
+                    <span class="name">Treasury</span>
+                    <span class="role">finances</span>
+                </div>
+                <div class="network-node n3">
+                    <span class="name">Ops</span>
+                    <span class="role">coordination</span>
+                </div>
+                <div class="network-node n4">
+                    <span class="name">Community</span>
+                    <span class="role">engagement</span>
+                </div>
+                <div class="network-node n5">
+                    <span class="name">Governance</span>
+                    <span class="role">proposals</span>
+                </div>
+                <div class="network-node n6">
+                    <span class="name">Research</span>
+                    <span class="role">analysis</span>
+                </div>
+                <div class="network-node n7">
+                    <span class="name">Growth</span>
+                    <span class="role">partnerships</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Capabilities -->
+        <section>
+            <h2>What Odo Does</h2>
+            
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <h4><span class="icon">📡</span> Surfaces Signals</h4>
+                    <p>Monitors all channels. Detects when something important is being discussed. Alerts the right people without creating noise.</p>
+                </div>
+                <div class="capability-card">
+                    <h4><span class="icon">🔗</span> Connects Threads</h4>
+                    <p>"This conversation in #dev relates to the proposal in #governance from last week. Here's the context."</p>
+                </div>
+                <div class="capability-card">
+                    <h4><span class="icon">📜</span> Maintains Memory</h4>
+                    <p>Institutional knowledge that persists when people leave. "We discussed this 8 months ago. Here's what was decided and why."</p>
+                </div>
+                <div class="capability-card">
+                    <h4><span class="icon">⚖️</span> Drafts Proposals</h4>
+                    <p>When rough consensus emerges, Odo can draft a formal proposal capturing what seems to be agreed.</p>
+                </div>
+                <div class="capability-card">
+                    <h4><span class="icon">🪞</span> Reflects Disagreement</h4>
+                    <p>"It seems like there's unresolved tension between these two positions. Should we address it directly?"</p>
+                </div>
+                <div class="capability-card">
+                    <h4><span class="icon">❓</span> Asks Questions</h4>
+                    <p>The questions no one is asking. "What happens if this assumption is wrong?" "Who isn't in this conversation that should be?"</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Autonomy Model -->
+        <section>
+            <h2>Inverted Autonomy</h2>
+            <p>Most agents are restricted in what they can <em>do</em>. Odo is restricted in what it can <em>advocate</em>.</p>
+            
+            <div class="autonomy-compare">
+                <div class="autonomy-column">
+                    <h4>Rowan</h4>
+                    <p class="tagline">Chief of Staff agent</p>
+                    
+                    <div class="autonomy-zone">
+                        <div class="zone-header">
+                            <span class="zone-dot green"></span>
+                            <span class="zone-label">Do Freely</span>
+                        </div>
+                        <div class="zone-items">
+                            Read files, research, draft documents, organize
+                        </div>
+                    </div>
+                    
+                    <div class="autonomy-zone">
+                        <div class="zone-header">
+                            <span class="zone-dot yellow"></span>
+                            <span class="zone-label">Ask First</span>
+                        </div>
+                        <div class="zone-items">
+                            Send external emails, post publicly, commit to meetings
+                        </div>
+                    </div>
+                    
+                    <div class="autonomy-zone">
+                        <div class="zone-header">
+                            <span class="zone-dot red"></span>
+                            <span class="zone-label">Never</span>
+                        </div>
+                        <div class="zone-items">
+                            Speak as the human, share private data
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="autonomy-column odo">
+                    <h4>Odo</h4>
+                    <p class="tagline">Governance agent</p>
+                    
+                    <div class="autonomy-zone">
+                        <div class="zone-header">
+                            <span class="zone-dot green"></span>
+                            <span class="zone-label">Do Freely</span>
+                        </div>
+                        <div class="zone-items">
+                            Speak in channels, summarize, ask questions, surface context
+                        </div>
+                    </div>
+                    
+                    <div class="autonomy-zone">
+                        <div class="zone-header">
+                            <span class="zone-dot yellow"></span>
+                            <span class="zone-label">Ask First</span>
+                        </div>
+                        <div class="zone-items">
+                            Submit proposals, escalate to core team, archive decisions
+                        </div>
+                    </div>
+                    
+                    <div class="autonomy-zone">
+                        <div class="zone-header">
+                            <span class="zone-dot red"></span>
+                            <span class="zone-label">Never</span>
+                        </div>
+                        <div class="zone-items">
+                            Advocate for positions, vote, take sides in disputes
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Philosophy -->
+        <div class="philosophy-block">
+            <blockquote>
+                "You cannot buy the revolution. You cannot make the revolution. You can only be the revolution. It is in your spirit, or it is nowhere."
+            </blockquote>
+            <cite>— Ursula K. Le Guin, The Dispossessed</cite>
+        </div>
+        
+        <!-- Decision Flow -->
+        <section>
+            <h2>Facilitating Decisions</h2>
+            <p>Odo doesn't make decisions. Odo helps the collective make better decisions faster.</p>
+            
+            <div class="flow-diagram">
+                <div class="flow-title">From scattered discussion to recorded decision</div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-num">1</div>
+                        <h5>Detect</h5>
+                        <p>Conversation emerges across channels that seems decision-relevant</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">2</div>
+                        <h5>Connect</h5>
+                        <p>Surface related prior discussions, decisions, and stakeholders</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">3</div>
+                        <h5>Synthesize</h5>
+                        <p>Summarize positions, identify agreement and disagreement</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">4</div>
+                        <h5>Clarify</h5>
+                        <p>Ask questions that sharpen the discussion</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">5</div>
+                        <h5>Propose</h5>
+                        <p>Draft proposal when rough consensus emerges</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">6</div>
+                        <h5>Record</h5>
+                        <p>Document decision, rationale, and dissent for future reference</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sample Conversation -->
+        <section>
+            <h2>How Odo Sounds</h2>
+            
+            <div class="conversation-mockup">
+                <div class="conversation-header">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span>#governance</span>
+                </div>
+                <div class="conversation-body">
+                    <div class="message">
+                        <div class="sender">alice.eth</div>
+                        <div class="bubble">I think we should increase the quorum requirement to 15%. Too many proposals passing with minimal participation.</div>
+                    </div>
+                    <div class="message">
+                        <div class="sender">bob_dao</div>
+                        <div class="bubble">That'll just mean nothing ever passes. We already struggle to hit 10%.</div>
+                    </div>
+                    <div class="message odo">
+                        <div class="sender">Odo</div>
+                        <div class="bubble">This tension came up in September when the treasury proposal passed with 8.2% participation. The discussion then surfaced two concerns: legitimacy (alice's point) and velocity (bob's point). The compromise discussed was tiered quorums based on proposal impact. That thread is here if helpful. Is that framing still relevant, or has something changed?</div>
+                    </div>
+                    <div class="message">
+                        <div class="sender">alice.eth</div>
+                        <div class="bubble">Oh I didn't know we'd discussed this. Let me read that thread.</div>
+                    </div>
+                    <div class="message odo">
+                        <div class="sender">Odo</div>
+                        <div class="bubble">Also noting: carol and david were active in that discussion but haven't been tagged here. Should I surface this to them?</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Day in the Life -->
+        <section>
+            <h2>A Day with Odo</h2>
+            
+            <div class="day-timeline">
+                <div class="timeline-event">
+                    <span class="time">6:00 AM</span>
+                    <h5>Overnight Digest</h5>
+                    <p>Summarizes async discussions from other timezones. Posts digest in #announcements.</p>
+                    <span class="tag">synthesis</span>
+                </div>
+                <div class="timeline-event">
+                    <span class="time">9:14 AM</span>
+                    <h5>Conflict Detection</h5>
+                    <p>Notices tension between two working groups. Asks clarifying question rather than letting it escalate.</p>
+                    <span class="tag">facilitation</span>
+                </div>
+                <div class="timeline-event">
+                    <span class="time">11:30 AM</span>
+                    <h5>Proposal Drafted</h5>
+                    <p>Rough consensus emerged on budget allocation. Odo drafts formal proposal for review.</p>
+                    <span class="tag">documentation</span>
+                </div>
+                <div class="timeline-event">
+                    <span class="time">2:45 PM</span>
+                    <h5>Context Surfaced</h5>
+                    <p>New contributor asks question already answered 4 months ago. Odo provides link + summary.</p>
+                    <span class="tag">memory</span>
+                </div>
+                <div class="timeline-event">
+                    <span class="time">5:00 PM</span>
+                    <h5>Vote Reminder</h5>
+                    <p>Proposal closing in 24 hours, participation at 7%. Odo sends neutral reminder to stakeholders.</p>
+                    <span class="tag">coordination</span>
+                </div>
+                <div class="timeline-event">
+                    <span class="time">8:30 PM</span>
+                    <h5>Decision Recorded</h5>
+                    <p>Proposal passed. Odo documents decision, rationale, vote breakdown, and noted dissent.</p>
+                    <span class="tag">archive</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Metrics -->
+        <section>
+            <h2>Success Metrics</h2>
+            <p>Odo isn't measured by tasks completed. It's measured by collective health.</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="value">↑</div>
+                    <div class="label">Decision velocity</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">↑</div>
+                    <div class="label">Participation rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">↓</div>
+                    <div class="label">Repeated discussions</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">↓</div>
+                    <div class="label">Context loss on churn</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Who It's For -->
+        <section>
+            <h2>Built For</h2>
+            
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <h4>DAOs</h4>
+                    <p>Decentralized organizations struggling with governance overhead, voter fatigue, and institutional memory.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Remote Teams</h4>
+                    <p>Distributed companies where async coordination is hard and context gets lost between timezones.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Open Source Projects</h4>
+                    <p>Maintainers drowning in discussions, unable to track what's been decided and why.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Cooperatives</h4>
+                    <p>Worker-owned businesses where collective decision-making is a feature, not a bug.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Research Consortiums</h4>
+                    <p>Multi-institution collaborations where coordination costs dominate actual work.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Community Organizations</h4>
+                    <p>Nonprofits and grassroots groups with more volunteers than coordination capacity.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>This is a concept</h3>
+            <p>Odo doesn't exist yet. But the architecture is clear, and the need is real. If your collective struggles with governance, let's talk.</p>
+            <a href="mailto:rowan@otherwind.xyz?subject=Interested%20in%20Odo">Start a Conversation</a>
+        </div>
+    </main>
+    
+    <footer>
+        <a href="/">← back to otherwind</a>
+    </footer>
+</body>
+</html>
