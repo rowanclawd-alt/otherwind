@@ -27,7 +27,8 @@
             --bg-dark: #0a1a12;
             --bg-mid: #0f2318;
             --accent: #4fd1a5;
-            --accent-secondary: #c9a962;
+            --accent-odo: #8b7bc9;
+            --accent-odo-dim: rgba(139, 123, 201, 0.3);
             --accent-dim: rgba(79, 209, 165, 0.3);
             --fg: #e8efe9;
             --fg-muted: rgba(232, 239, 233, 0.6);
@@ -76,9 +77,9 @@
         .experimental-badge {
             font-size: 0.65rem;
             padding: 0.3rem 0.75rem;
-            background: rgba(201, 169, 98, 0.2);
-            border: 1px solid rgba(201, 169, 98, 0.4);
-            color: var(--accent-secondary);
+            background: rgba(139, 123, 201, 0.2);
+            border: 1px solid rgba(139, 123, 201, 0.4);
+            color: var(--accent-odo);
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
@@ -101,9 +102,9 @@
             display: inline-block;
             font-size: 0.7rem;
             padding: 0.4rem 1rem;
-            background: rgba(201, 169, 98, 0.15);
-            border: 1px solid rgba(201, 169, 98, 0.3);
-            color: var(--accent-secondary);
+            background: rgba(139, 123, 201, 0.15);
+            border: 1px solid rgba(139, 123, 201, 0.3);
+            color: var(--accent-odo);
             text-transform: uppercase;
             letter-spacing: 0.15em;
             margin-bottom: 1.5rem;
@@ -175,8 +176,8 @@
         }
         
         .concept-box.odo {
-            border-color: var(--accent);
-            background: rgba(79, 209, 165, 0.08);
+            border-color: var(--accent-odo);
+            background: rgba(139, 123, 201, 0.08);
         }
         
         .concept-box h3 {
@@ -254,8 +255,8 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            border-color: var(--accent);
-            background: rgba(79, 209, 165, 0.15);
+            border-color: var(--accent-odo);
+            background: rgba(139, 123, 201, 0.15);
             font-size: 0.85rem;
         }
         
@@ -268,7 +269,7 @@
         
         .network-node.center .name {
             font-size: 1.4rem;
-            color: var(--accent);
+            color: var(--accent-odo);
         }
         
         .network-node .role {
@@ -349,7 +350,7 @@
         }
         
         .autonomy-column.odo {
-            border-color: var(--accent);
+            border-color: var(--accent-odo);
         }
         
         .autonomy-column h4 {
@@ -515,7 +516,7 @@
         }
         
         .message.odo .sender {
-            color: var(--accent-secondary);
+            color: var(--accent-odo);
         }
         
         .message .bubble {
@@ -528,7 +529,7 @@
         }
         
         .message.odo .bubble {
-            background: rgba(201, 169, 98, 0.1);
+            background: rgba(139, 123, 201, 0.1);
             margin-left: auto;
         }
         
@@ -559,28 +560,6 @@
             font-size: 0.75rem;
             color: var(--fg-muted);
             line-height: 1.3;
-        }
-        
-        /* Philosophy quote */
-        .philosophy-block {
-            background: rgba(201, 169, 98, 0.08);
-            border-left: 3px solid var(--accent-secondary);
-            padding: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .philosophy-block blockquote {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--fg);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-        
-        .philosophy-block cite {
-            font-size: 0.85rem;
-            color: var(--fg-muted);
         }
         
         /* Day timeline */
@@ -920,14 +899,6 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Philosophy -->
-        <div class="philosophy-block">
-            <blockquote>
-                "You cannot buy the revolution. You cannot make the revolution. You can only be the revolution. It is in your spirit, or it is nowhere."
-            </blockquote>
-            <cite>— Ursula K. Le Guin, The Dispossessed</cite>
-        </div>
         
         <!-- Decision Flow -->
         <section>
