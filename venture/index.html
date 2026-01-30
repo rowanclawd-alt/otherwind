@@ -611,7 +611,8 @@
 
     // Ocean blue palette
     const oceanPalette = ['#7b9bc9', '#5b7ba9', '#4b6b99', '#6b8bb9', '#3b5b89'];
-    const tealPalette = ['#0d9488', '#14b8a6', '#2dd4bf', '#5eead4', '#99f6e4'];
+    // Soft violet/lavender - complementary to ocean blue
+    const accentPalette = ['#8b7bc9', '#9b8bd9', '#7b6ba9', '#a898d4', '#6b5b99'];
 
     function createCellTexture(colorPalette, cellCount = 15) {
         const canvas = document.createElement('canvas');
@@ -658,11 +659,11 @@
     const shapes = [];
     const shapeConfigs = [
         { geo: 'dodecahedron', size: 1.4, pos: [-10, 5, -5], palette: oceanPalette, rotSpeed: 0.004 },
-        { geo: 'tetrahedron', size: 1.0, pos: [11, -3, -7], palette: tealPalette, rotSpeed: 0.007 },
+        { geo: 'tetrahedron', size: 1.0, pos: [11, -3, -7], palette: accentPalette, rotSpeed: 0.007 },
         { geo: 'torus', size: 0.9, pos: [-7, -9, -4], palette: oceanPalette, rotSpeed: 0.005 },
-        { geo: 'cylinder', size: 0.8, pos: [9, 7, -9], palette: tealPalette, rotSpeed: 0.006 },
+        { geo: 'cylinder', size: 0.8, pos: [9, 7, -9], palette: accentPalette, rotSpeed: 0.006 },
         { geo: 'dodecahedron', size: 0.7, pos: [13, -7, -11], palette: oceanPalette, rotSpeed: 0.008 },
-        { geo: 'tetrahedron', size: 1.1, pos: [-11, -1, -8], palette: tealPalette, rotSpeed: 0.005 },
+        { geo: 'tetrahedron', size: 1.1, pos: [-11, -1, -8], palette: accentPalette, rotSpeed: 0.005 },
         { geo: 'torus', size: 0.6, pos: [-4, 10, -6], palette: oceanPalette, rotSpeed: 0.009 },
     ];
 
@@ -748,7 +749,7 @@
         particles.geometry.attributes.position.needsUpdate = true;
         particles.rotation.y += 0.00015;
 
-        camera.position.y -= scrollY * 0.002;
+        camera.position.y -= scrollY * 0.0007;
         
         renderer.render(scene, camera);
     }
