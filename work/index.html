@@ -476,6 +476,33 @@
             margin: 0 auto 2rem;
         }
         
+        .cta-section .form-embed {
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .cta-section .form-embed iframe {
+            border-radius: 4px;
+        }
+        
+        .cta-section .contact {
+            margin-top: 1rem;
+        }
+        
+        .cta-section .contact p {
+            margin-bottom: 0;
+            font-size: 0.85rem;
+        }
+        
+        .cta-section .contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .cta-section .contact a:hover {
+            text-decoration: underline;
+        }
+        
         .cta-primary {
             display: inline-block;
             background: linear-gradient(135deg, #4fd1a5 0%, #2d8b6f 100%);
@@ -923,7 +950,19 @@
     <section class="cta-section">
         <h2>Deploy your own</h2>
         <p>Rowan is a Seedling deployment. We can build one for your business too.</p>
-        <a href="/seedling" class="cta-primary transition-link">Learn about Seedling</a>
+        <a href="/seedling" class="cta-primary transition-link" style="margin-bottom: 2rem; display: inline-block;">Learn about Seedling</a>
+        <div class="form-embed">
+            <iframe src="https://tally.so/embed/dWdNLy?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                    width="100%" 
+                    height="300" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0"
+                    title="Contact Form"></iframe>
+        </div>
+        <div class="contact">
+            <p>or email directly: <a href="mailto:rowan@otherwind.xyz">rowan@otherwind.xyz</a></p>
+        </div>
     </section>
 
     <footer>
