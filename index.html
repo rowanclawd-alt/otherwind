@@ -190,7 +190,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.8s ease;
+            transition: opacity 0.15s ease;
         }
 
         .loading.hidden {
@@ -498,9 +498,7 @@
     </script>
 </head>
 <body>
-    <div class="loading" id="loading">
-        <span class="loading-text">otherwind</span>
-    </div>
+    <div class="loading" id="loading"></div>
 
     <div id="canvas-container"></div>
 
@@ -1260,7 +1258,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
-            }, 600);
+            }, 150);
         });
 
         animate();

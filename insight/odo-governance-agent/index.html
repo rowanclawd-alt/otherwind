@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>html,body{background:#050a07}.page-cover{position:fixed;inset:0;background:#050a07;z-index:9999}.nav-overlay{position:fixed;inset:0;background:#050a07;z-index:9999;opacity:0;pointer-events:none;transition:opacity 50ms}.nav-overlay.active{opacity:1}</style>
+    <style>html,body{background:#050a07}.loading{position:fixed;inset:0;background:#050a07;z-index:9999;transition:opacity .15s ease}.loading.hidden{opacity:0;pointer-events:none}.nav-overlay{position:fixed;inset:0;background:#050a07;z-index:9999;opacity:0;pointer-events:none;transition:opacity 50ms}.nav-overlay.active{opacity:1}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odo: A Governance Agent for Collectives | Otherwind</title>
@@ -720,8 +720,8 @@
     </style>
 </head>
 <body>
-<div id="page-cover" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#050a07;z-index:9999"></div>
-<script>window.onload=function(){document.getElementById('page-cover').style.display='none'}</script>
+<div class="loading" id="loading"></div>
+<script>window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loading').classList.add('hidden')},150)})</script>
     <div id="canvas-container"></div>
     <header>
         <div class="header-inner">

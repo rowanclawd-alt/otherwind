@@ -93,7 +93,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.15s ease;
         }
 
         .loading.hidden {
@@ -1164,14 +1164,12 @@
     </script>
 </head>
 <body>
-<div class="loading" id="loading">
-    <span class="loading-text">otherwind</span>
-</div>
+<div class="loading" id="loading"></div>
 <script>
     window.addEventListener('load', function() {
         setTimeout(function() {
             document.getElementById('loading').classList.add('hidden');
-        }, 300);
+        }, 150);
     });
 </script>
 
