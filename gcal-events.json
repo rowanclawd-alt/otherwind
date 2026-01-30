@@ -1,40 +1,7 @@
 {
-  "events": [
-    {
-      "date": "2026-01-30",
-      "time": "10:00",
-      "title": "30 Minute Meeting",
-      "organizer": "kanv@euler.xyz",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-02",
-      "time": "17:30",
-      "title": "deRWA Weekly Sync",
-      "organizer": "graham@centrifuge.io",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-04",
-      "time": "17:00",
-      "title": "Blockstories Horizon",
-      "organizer": "lu.ma",
-      "location": "One Moorgate Place, London"
-    },
-    {
-      "date": "2026-02-04",
-      "time": "16:00",
-      "title": "Centrifuge Team Meeting",
-      "organizer": "christie@centrifuge.io",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-05",
-      "time": "17:00",
-      "title": "Luma House of Sol",
-      "organizer": "juergen@anemoy.io",
-      "location": "Google Meet"
-    }
-  ],
-  "updatedAt": "2026-01-30T16:00:00.000Z"
+  "source": "nadim@centrifuge.io",
+  "fetchedAt": "2026-01-30T20:00:00.000Z",
+  "range": "2026-01-30 to 2026-02-06",
+  "events": [],
+  "note": "No meetings visible in next 7 days from ICS feed"
 }
