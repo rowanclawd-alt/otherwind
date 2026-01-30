@@ -1,17 +1,24 @@
 {
-  "source": "nadim@centrifuge.io",
-  "fetchedAt": "2026-01-30T00:00:00.000Z",
-  "upcoming": [
+  "fetchedAt": "2026-01-30T04:00:00.000Z",
+  "events": [
     {
       "date": "2026-01-30",
       "time": "10:00",
-      "summary": "Kanv Gupta (Euler) - meeting"
+      "summary": "Nadim Chamoun and Kanv Gupta",
+      "location": "Google Meet",
+      "attendees": ["kanv@euler.xyz"]
     },
     {
-      "date": "2026-02-04",
-      "time": "16:00",
-      "summary": "What's Up Centrifuge?! 🌕"
+      "date": "2026-02-05",
+      "time": "17:00",
+      "summary": "Invite-Only: House of Sol Launch",
+      "location": "lu.ma event"
     }
   ],
-  "notes": "Nadim's Centrifuge calendar - weekly sync"
+  "nextEvent": {
+    "summary": "Nadim Chamoun and Kanv Gupta",
+    "date": "2026-01-30",
+    "time": "10:00 UK",
+    "hoursAway": 6
+  }
 }
