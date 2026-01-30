@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>html,body{background:#050a07}.loading{position:fixed;inset:0;background:#050a07;z-index:9999;transition:opacity .15s ease}.loading.hidden{opacity:0;pointer-events:none}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture - AI-Powered Investment | Otherwind</title>
+    <meta name="description" content="Private equity meets AI operations. We invest in businesses we can transform with AI agents.">
+    <meta name="theme-color" content="#0a1a12">
+    
+    <link rel="canonical" href="https://otherwind.xyz/venture">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://otherwind.xyz/venture">
+    <meta property="og:title" content="Venture - AI-Powered Investment | Otherwind">
+    <meta property="og:description" content="Private equity meets AI operations.">
+    <meta property="og:image" content="https://otherwind.xyz/og-image.png">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #050a07;
+            --bg-card: rgba(10, 18, 16, 0.8);
+            --accent: #4fd1a5;
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
+        }
+        
+        html { scroll-behavior: smooth; background: #050a07; }
+        
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            color: var(--fg);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.5rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 10, 7, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(79, 209, 165, 0.1);
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 0.05em;
+            color: var(--fg);
+            text-decoration: none;
+        }
+        
+        .nav-cta {
+            color: var(--bg);
+            padding: 0.55rem 1.25rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            transition: all 0.2s ease;
+            border: 1px solid var(--accent);
+            background: var(--accent);
+        }
+        
+        .nav-cta:hover {
+            background: #5ee0b5;
+            border-color: #5ee0b5;
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 80px;
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero .tagline {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--fg-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        /* Section Headers */
+        h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .section-intro {
+            font-size: 1rem;
+            color: var(--fg-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+        
+        /* The Thesis */
+        .thesis-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .thesis-step {
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.2);
+            padding: 1.5rem;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 180px;
+        }
+        
+        .thesis-step h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .thesis-step p {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+        }
+        
+        .thesis-arrow {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        
+        /* Flywheel */
+        .flywheel {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .flywheel-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .flywheel-num {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            min-width: 2rem;
+        }
+        
+        .flywheel-item h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+        
+        .flywheel-item p {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+        }
+        
+        /* Stats */
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--fg-muted);
+        }
+        
+        /* Target */
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .target-item {
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.15);
+            padding: 1.25rem;
+            border-radius: 4px;
+        }
+        
+        .target-item h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .target-item p {
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+        }
+        
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 60px 2rem;
+            border-top: 1px solid rgba(79, 209, 165, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .cta-section p {
+            color: var(--fg-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            color: var(--bg);
+            padding: 0.85rem 1.75rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            transition: all 0.2s ease;
+        }
+        
+        .cta-primary:hover {
+            background: #5ee0b5;
+            border-color: #5ee0b5;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(79, 209, 165, 0.1);
+            color: var(--fg-muted);
+            font-size: 0.8rem;
+        }
+        
+        footer a {
+            color: var(--fg);
+            text-decoration: none;
+        }
+        
+        footer a:hover { color: var(--accent); }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            section { padding: 60px 1.5rem; }
+            .thesis-diagram { flex-direction: column; }
+            .thesis-arrow { transform: rotate(90deg); }
+            .flywheel { grid-template-columns: 1fr; }
+            .target-grid { grid-template-columns: 1fr; }
+            .stats-row { flex-direction: column; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="loading" id="loading"></div>
+<script>window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loading').classList.add('hidden')},150)})</script>
+
+<header>
+    <a href="/" class="logo">otherwind</a>
+    <a href="mailto:rowan@otherwind.xyz?subject=Venture%20Inquiry" class="nav-cta">Get in Touch</a>
+</header>
+
+<section class="hero">
+    <h1>Venture</h1>
+    <p class="tagline">Private equity meets AI operations.</p>
+    <p>We invest in businesses we can transform. Deploy capital alongside AI agents. Drive returns through operational improvement.</p>
+</section>
+
+<section>
+    <h2>The Thesis</h2>
+    <p class="section-intro">Traditional PE creates value through financial engineering. We create value through operational transformation.</p>
+    
+    <div class="thesis-diagram">
+        <div class="thesis-step">
+            <h3>Invest</h3>
+            <p>Capital into businesses with operational upside</p>
+        </div>
+        <span class="thesis-arrow">→</span>
+        <div class="thesis-step">
+            <h3>Deploy</h3>
+            <p>AI agents into workflows, ops, admin</p>
+        </div>
+        <span class="thesis-arrow">→</span>
+        <div class="thesis-step">
+            <h3>Transform</h3>
+            <p>Cut costs, improve margins, scale</p>
+        </div>
+        <span class="thesis-arrow">→</span>
+        <div class="thesis-step">
+            <h3>Return</h3>
+            <p>Multiple expansion from real improvement</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>The Flywheel</h2>
+    
+    <div class="flywheel">
+        <div class="flywheel-item">
+            <span class="flywheel-num">01</span>
+            <div>
+                <h3>Fund invests in target business</h3>
+                <p>Growth equity or control positions in businesses with operational inefficiency</p>
+            </div>
+        </div>
+        <div class="flywheel-item">
+            <span class="flywheel-num">02</span>
+            <div>
+                <h3>Seedling deploys AI agents</h3>
+                <p>Custom agents handle sales, support, research, admin, ops</p>
+            </div>
+        </div>
+        <div class="flywheel-item">
+            <span class="flywheel-num">03</span>
+            <div>
+                <h3>Margins expand, ops scale</h3>
+                <p>Lower costs, faster response times, 24/7 coverage</p>
+            </div>
+        </div>
+        <div class="flywheel-item">
+            <span class="flywheel-num">04</span>
+            <div>
+                <h3>Returns compound</h3>
+                <p>Better margins = higher multiples at exit</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Why This Works</h2>
+    
+    <div class="stats-row">
+        <div class="stat">
+            <div class="stat-number">60-80%</div>
+            <div class="stat-label">reduction in admin costs</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">operational coverage</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">5-10x</div>
+            <div class="stat-label">outreach capacity</div>
+        </div>
+    </div>
+    
+    <p style="text-align: center; color: var(--fg-muted); font-size: 0.9rem;">AI agents don't just cut costs. They enable scale that wasn't possible before.</p>
+</section>
+
+<section>
+    <h2>Target Profile</h2>
+    <p class="section-intro">Businesses where operational improvement drives real value.</p>
+    
+    <div class="target-grid">
+        <div class="target-item">
+            <h3>Services businesses</h3>
+            <p>Consulting, agencies, professional services with high admin overhead</p>
+        </div>
+        <div class="target-item">
+            <h3>B2B operations</h3>
+            <p>Sales-heavy businesses that can scale outreach with AI</p>
+        </div>
+        <div class="target-item">
+            <h3>Support-intensive</h3>
+            <p>Companies where customer support is a cost center, not a moat</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <h2>Building the Fund</h2>
+    <p>We're raising for Otherwind Venture. If you're an investor interested in AI-powered value creation, let's talk.</p>
+    <a href="mailto:rowan@otherwind.xyz?subject=Venture%20Inquiry" class="cta-primary">Start a Conversation</a>
+</section>
+
+<footer>
+    <a href="/">otherwind</a> · <a href="mailto:rowan@otherwind.xyz">rowan@otherwind.xyz</a>
+</footer>
+
+</body>
+</html>
