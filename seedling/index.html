@@ -84,6 +84,29 @@
             from { opacity: 1; }
             to { opacity: 0; }
         }
+
+        .loading {
+            position: fixed;
+            inset: 0;
+            background: #050a07;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: rgba(232, 239, 233, 0.6);
+        }
         
         /* Navigation - matches landing page exactly */
         header {
@@ -1141,8 +1164,16 @@
     </script>
 </head>
 <body>
-<div id="page-cover" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#050a07;z-index:9999"></div>
-<script>window.onload=function(){document.getElementById('page-cover').style.display='none'}</script>
+<div class="loading" id="loading">
+    <span class="loading-text">otherwind</span>
+</div>
+<script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.getElementById('loading').classList.add('hidden');
+        }, 300);
+    });
+</script>
 
 <div id="canvas-container"></div>
 
