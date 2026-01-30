@@ -22,10 +22,9 @@
       "shortTitle": "Mantle QA",
       "date": "2026-01-29",
       "time": "08:00",
-      "done": false,
+      "done": true,
       "url": "https://docs.google.com/document/d/16oz98U_a3g59qFpOM3A8vy3V35-fduWgVYXn6n1v0To/edit",
-      "notes": "Prep before Mantle meeting",
-      "gcalEventId": "us6cti8unnc01r1jsj4g0rlnt0"
+      "notes": "Gcal event deleted - marked done via sync"
     },
     {
       "id": "bd-weekly-20260130",
@@ -62,8 +61,8 @@
       "shortTitle": "ART Prep",
       "date": "2026-01-29",
       "time": "14:00",
-      "done": false,
-      "gcalEventId": "qcm3f7kfl72kc6bohq6kbet504"
+      "done": true,
+      "notes": "Gcal event deleted - marked done via sync"
     },
     {
       "id": "resolv-dd-20260130",
@@ -97,5 +96,5 @@
     "2026-01-29": "glueciaksbcbco5gb29mj8s14o",
     "2026-01-30": "gsptcq04kptsidjdd1sb7idgik"
   },
-  "updatedAt": "2026-01-30T00:00:00.000Z"
+  "updatedAt": "2026-01-30T12:00:00.000Z"
 }

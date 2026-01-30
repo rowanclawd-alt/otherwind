@@ -1,24 +1,71 @@
 {
-  "fetchedAt": "2026-01-30T08:00:00.000Z",
   "events": [
     {
-      "date": "2026-01-30",
-      "time": "10:00",
       "summary": "Nadim Chamoun and Kanv Gupta",
-      "location": "Google Meet",
-      "attendees": ["kanv@euler.xyz"]
+      "start": "2026-01-30T10:00:00Z",
+      "date": "2026-01-30",
+      "time": "10:00"
     },
     {
-      "date": "2026-02-05",
-      "time": "17:00",
+      "summary": "Centrifuge - SynX",
+      "start": "2026-02-02T12:00:00Z",
+      "date": "2026-02-02",
+      "time": "12:00"
+    },
+    {
+      "summary": "Centrifuge & Nadim Chamoun <> Coinshift",
+      "start": "2026-02-02T14:00:00Z",
+      "date": "2026-02-02",
+      "time": "14:00"
+    },
+    {
+      "summary": "deSPXA GTM Weekly",
+      "start": "2026-02-02T17:30:00Z",
+      "date": "2026-02-02",
+      "time": "17:30"
+    },
+    {
+      "summary": "Embassy Appt.",
+      "start": "2026-02-03T11:00:00Z",
+      "date": "2026-02-03",
+      "time": "11:00"
+    },
+    {
+      "summary": "ACDRX GTM Weekly: Morpho etc",
+      "start": "2026-02-03T16:00:00Z",
+      "date": "2026-02-03",
+      "time": "16:00"
+    },
+    {
+      "summary": "Tempo and Nadim Chamoun",
+      "start": "2026-02-03T16:00:00Z",
+      "date": "2026-02-03",
+      "time": "16:00"
+    },
+    {
+      "summary": "What's Up Centrifuge?! 🌕",
+      "start": "2026-02-04T08:00:00Z",
+      "date": "2026-02-04",
+      "time": "08:00"
+    },
+    {
+      "summary": "Nadim Chamoun and Daniel Killeen",
+      "start": "2026-02-04T15:00:00Z",
+      "date": "2026-02-04",
+      "time": "15:00"
+    },
+    {
+      "summary": "Blockstories Horizon 2026: London Summit",
+      "start": "2026-02-04T17:00:00Z",
+      "date": "2026-02-04",
+      "time": "17:00"
+    },
+    {
       "summary": "Invite-Only: House of Sol Launch",
-      "location": "lu.ma event"
+      "start": "2026-02-05T17:00:00Z",
+      "date": "2026-02-05",
+      "time": "17:00"
     }
   ],
-  "nextEvent": {
-    "summary": "Nadim Chamoun and Kanv Gupta",
-    "date": "2026-01-30",
-    "time": "10:00 UK",
-    "hoursAway": 2
-  }
+  "updatedAt": "2026-01-30T12:00:00.000Z"
 }
