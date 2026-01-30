@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-01-30T04:00:00.000Z",
+  "fetchedAt": "2026-01-30T08:00:00.000Z",
   "events": [
     {
       "date": "2026-01-30",
@@ -19,6 +19,6 @@
     "summary": "Nadim Chamoun and Kanv Gupta",
     "date": "2026-01-30",
     "time": "10:00 UK",
-    "hoursAway": 6
+    "hoursAway": 2
   }
 }
