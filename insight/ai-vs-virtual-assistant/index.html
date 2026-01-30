@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>html,body{background:#050a07}</style>
+    <style>html,body{background:#050a07}.nav-overlay{position:fixed;inset:0;background:#050a07;z-index:9999;opacity:0;pointer-events:none;transition:opacity 50ms}.nav-overlay.active{opacity:1}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Up Time for the Things You Actually Want to Do | Otherwind</title>
@@ -526,5 +526,16 @@
     });
 </script>
 
+<div class="nav-overlay" id="nav-overlay"></div>
+<script>
+document.addEventListener("click",function(e){
+    var link=e.target.closest('a[href^="/"]');
+    if(link&&!link.href.includes("mailto:")){
+        e.preventDefault();
+        document.getElementById("nav-overlay").classList.add("active");
+        setTimeout(function(){window.location.href=link.href},50);
+    }
+});
+</script>
 </body>
 </html>
