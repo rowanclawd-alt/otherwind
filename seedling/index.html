@@ -761,6 +761,81 @@
             box-shadow: 0 0 25px rgba(79, 209, 165, 0.5);
         }
         
+        /* Personas Grid */
+        .personas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        
+        .persona-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(79, 209, 165, 0.15);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .persona-card:hover {
+            border-color: rgba(79, 209, 165, 0.4);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+        
+        .persona-card.featured {
+            border-color: rgba(79, 209, 165, 0.3);
+            background: rgba(79, 209, 165, 0.05);
+        }
+        
+        .persona-card.featured:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(79, 209, 165, 0.15);
+        }
+        
+        .persona-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .persona-card h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+        
+        .persona-role {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        
+        .persona-card p {
+            font-size: 0.85rem;
+            color: var(--fg-muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+        
+        .persona-link {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .persona-card:hover .persona-link {
+            transform: translateX(3px);
+        }
+        
         /* Case Studies - compact 2x2 grid */
         .case-studies-grid {
             display: grid;
@@ -907,6 +982,10 @@
             .applications-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .personas-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
@@ -927,7 +1006,8 @@
             .stats-grid,
             .cards-grid,
             .applications-grid,
-            .tiers-grid {
+            .tiers-grid,
+            .personas-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1305,6 +1385,62 @@
         <div class="result-item"><strong>67%</strong> lower support costs</div>
         <div class="result-item"><strong>70%</strong> faster response times</div>
     </div>
+</section>
+
+<!-- Agent Personas -->
+<section>
+    <h2>Make it Yours</h2>
+    <p class="section-intro">Every Seedling agent gets a name, a personality, and a purpose. Here's what that looks like in practice.</p>
+    
+    <div class="personas-grid">
+        <a href="/work" class="persona-card featured">
+            <div class="persona-emoji">🌿</div>
+            <h3>Rowan</h3>
+            <div class="persona-role">Chief of Staff</div>
+            <p>Runs Otherwind's day-to-day operations. Email, calendar, research, client prep, project coordination. The agent we built first and still use every day.</p>
+            <span class="persona-link">See case study →</span>
+        </a>
+        
+        <a href="/insight/odo-governance-agent" class="persona-card featured">
+            <div class="persona-emoji">🏛️</div>
+            <h3>Odo</h3>
+            <div class="persona-role">Governance Agent</div>
+            <p>Monitors DAO proposals, summarizes governance activity, tracks voting patterns, and alerts stakeholders to important decisions across protocols.</p>
+            <span class="persona-link">Read the deep dive →</span>
+        </a>
+        
+        <div class="persona-card">
+            <div class="persona-emoji">🌱</div>
+            <h3>Ivy</h3>
+            <div class="persona-role">Sales Development</div>
+            <p>Researches prospects, crafts personalized outreach, handles follow-ups, and books meetings. Works 24/7 so your pipeline never sleeps.</p>
+        </div>
+        
+        <div class="persona-card">
+            <div class="persona-emoji">🌾</div>
+            <h3>Reed</h3>
+            <div class="persona-role">Research Analyst</div>
+            <p>Monitors competitors, synthesizes market data, compiles briefings, and surfaces insights. Turns information overload into actionable intelligence.</p>
+        </div>
+        
+        <div class="persona-card">
+            <div class="persona-emoji">🍃</div>
+            <h3>Fern</h3>
+            <div class="persona-role">Customer Success</div>
+            <p>Handles onboarding sequences, answers support questions, flags at-risk accounts, and nurtures relationships at scale.</p>
+        </div>
+        
+        <div class="persona-card">
+            <div class="persona-emoji">🌿</div>
+            <h3>Sage</h3>
+            <div class="persona-role">Executive Assistant</div>
+            <p>Manages calendar chaos, triages email, preps meeting briefings, coordinates travel, and keeps executives focused on what matters.</p>
+        </div>
+    </div>
+    
+    <p style="text-align: center; color: var(--fg-muted); margin-top: 2rem; font-size: 0.9rem;">
+        These are starting points. Your agent's name, personality, and capabilities are entirely up to you.
+    </p>
 </section>
 
 <!-- Why Us -->
