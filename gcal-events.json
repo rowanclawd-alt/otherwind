@@ -1,24 +1,17 @@
 {
   "source": "nadim@centrifuge.io",
-  "fetchedAt": "2026-01-29T20:00:00.000Z",
-  "events": [
-    {
-      "date": "2026-01-29",
-      "time": "08:00",
-      "summary": "Electrician",
-      "status": "past"
-    },
+  "fetchedAt": "2026-01-30T00:00:00.000Z",
+  "upcoming": [
     {
       "date": "2026-01-30",
-      "time": "09:00",
-      "summary": "Kanv Gupta call",
-      "notes": "From daily brief"
+      "time": "10:00",
+      "summary": "Kanv Gupta (Euler) - meeting"
     },
     {
       "date": "2026-02-04",
-      "time": "15:00",
-      "summary": "Daniel Killeen meeting"
+      "time": "16:00",
+      "summary": "What's Up Centrifuge?! 🌕"
     }
   ],
-  "notes": "Core BD Sync is weekly on Tuesdays 09:30 CET"
+  "notes": "Nadim's Centrifuge calendar - weekly sync"
 }
