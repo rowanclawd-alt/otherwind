@@ -1296,6 +1296,10 @@ document.addEventListener('click',function(e){
         setTimeout(function(){window.location.href=link.href},50);
     }
 });
+window.addEventListener('pageshow',function(){
+    document.getElementById('nav-overlay').classList.remove('active');
+    document.body.classList.remove('fade-out');
+});
 </script>
 </body>
 </html>
