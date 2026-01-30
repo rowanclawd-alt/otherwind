@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>html,body{background:#050a07}.nav-overlay{position:fixed;inset:0;background:#050a07;z-index:9999;opacity:0;pointer-events:none;transition:opacity 50ms}.nav-overlay.active{opacity:1}</style>
+    <style>html,body{background:#050a07}.page-cover{position:fixed;inset:0;background:#050a07;z-index:9999}.nav-overlay{position:fixed;inset:0;background:#050a07;z-index:9999;opacity:0;pointer-events:none;transition:opacity 50ms}.nav-overlay.active{opacity:1}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Use AI in Your Business (Without Being Technical) | Otherwind</title>
@@ -386,6 +386,8 @@
     </script>
 </head>
 <body>
+<div class="page-cover" id="page-cover"></div>
+<script>window.onload=function(){document.getElementById('page-cover').style.display='none'}</script>
 
 <header>
     <a href="/" class="logo transition-link">otherwind</a>
