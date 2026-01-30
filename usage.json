@@ -1,11 +1,11 @@
 {
   "claude": {
     "dailyLeft": 95,
-    "weeklyLeft": 63,
-    "updated": "2026-01-30T12:00:00.000Z"
+    "weeklyLeft": 61,
+    "updated": "2026-01-30T16:00:00.000Z"
   },
   "cursor": {
     "status": "active",
-    "updated": "2026-01-30T12:00:00.000Z"
+    "updated": "2026-01-30T16:00:00.000Z"
   }
 }
