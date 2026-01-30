@@ -90,6 +90,16 @@
       "time": "09:30",
       "done": false,
       "gcalEventId": "rb2d0i4kjribipv71ek6oj2u5k"
+    },
+    {
+      "id": "sunday-otherwind-review",
+      "title": "Sunday Otherwind Business Review (weekly)",
+      "shortTitle": "Otherwind Review",
+      "date": "2026-02-02",
+      "time": "10:00",
+      "done": false,
+      "notes": "Weekly accountability - track goals, pilot clients, case studies, revenue, fundraising. Recurring every Sunday.",
+      "gcalEventId": "g8qdf6j0qv2k823ie98pj14e9s"
     }
   ],
   "dailyBriefs": {
