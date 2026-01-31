@@ -1,6 +1,6 @@
 {
   "source": "nadim@centrifuge.io",
-  "fetchedAt": "2026-01-31T08:00:00.000Z",
+  "fetchedAt": "2026-01-31T12:00:00.000Z",
   "events": [
     {
       "date": "2026-02-02",
@@ -16,11 +16,6 @@
       "date": "2026-02-02",
       "time": "17:30",
       "summary": "deSPXA GTM Weekly"
-    },
-    {
-      "date": "2026-02-03",
-      "time": "11:00",
-      "summary": "Embassy Appt."
     },
     {
       "date": "2026-02-03",
