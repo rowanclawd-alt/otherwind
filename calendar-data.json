@@ -70,8 +70,8 @@
       "shortTitle": "Resolv DD",
       "date": "2026-01-30",
       "time": "09:00",
-      "done": false,
-      "gcalEventId": "bju8qrorrv55aisuo7c09km7ak"
+      "done": true,
+      "notes": "Gcal event deleted - marked done via sync"
     },
     {
       "id": "keyring-dd-20260130",
@@ -79,8 +79,8 @@
       "shortTitle": "Keyring DD",
       "date": "2026-01-30",
       "time": "09:15",
-      "done": false,
-      "gcalEventId": "uu4ek2uc8oqh2rr95si4a6ujk4"
+      "done": true,
+      "notes": "Gcal event deleted - marked done via sync"
     },
     {
       "id": "mantle-legal-check-20260130",
@@ -88,8 +88,8 @@
       "shortTitle": "Mantle legal",
       "date": "2026-01-30",
       "time": "09:30",
-      "done": false,
-      "gcalEventId": "rb2d0i4kjribipv71ek6oj2u5k"
+      "done": true,
+      "notes": "Gcal event deleted - marked done via sync"
     },
     {
       "id": "sunday-otherwind-review",
@@ -106,5 +106,5 @@
     "2026-01-29": "glueciaksbcbco5gb29mj8s14o",
     "2026-01-30": "gsptcq04kptsidjdd1sb7idgik"
   },
-  "updatedAt": "2026-01-31T00:00:00.000Z"
+  "updatedAt": "2026-01-31T04:00:00.000Z"
 }
