@@ -1,13 +1,12 @@
 {
   "claude": {
-    "dailyLeft": 90,
-    "dailyTimeLeft": "59m",
-    "weeklyLeft": 56,
-    "weeklyTimeLeft": "2d 15h",
-    "updated": "2026-01-31T20:00:00.000Z"
+    "hourlyLeft": 95,
+    "weeklyLeft": 55,
+    "model": "claude-opus-4-5",
+    "updated": "2026-02-01T00:00:00.000Z"
   },
   "cursor": {
     "status": "active",
-    "updated": "2026-01-31T20:00:00.000Z"
+    "updated": "2026-02-01T00:00:00.000Z"
   }
 }
