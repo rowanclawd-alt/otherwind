@@ -119,6 +119,16 @@
       "done": false,
       "notes": "Follow up with Pancake about market makers",
       "gcalEventId": "m5tq04ql3cgr5g4bsc7ea83glo"
+    },
+    {
+      "id": "grove-outreach-20260207",
+      "title": "Outreach: Zero Hash, Bridge, M0 (once Grove info ready)",
+      "shortTitle": "Zero Hash/Bridge/M0",
+      "date": "2026-02-07",
+      "time": "09:00",
+      "done": false,
+      "notes": "Reach out to Zero Hash, Bridge, M0 - should have Grove info by Friday",
+      "gcalEventId": "gl22j9k81ra2up70dl9r7hbhto"
     }
   ],
   "dailyBriefs": {
@@ -128,5 +138,5 @@
     "2026-02-01": "scgse1cfceg4agh7qqqhdvqpck",
     "2026-02-02": "unvvmjcpkrlfukk2rq47ik3sf0"
   },
-  "updatedAt": "2026-02-02T11:12:00.000Z"
+  "updatedAt": "2026-02-02T11:13:00.000Z"
 }
