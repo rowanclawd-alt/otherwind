@@ -97,9 +97,8 @@
       "shortTitle": "Otherwind Review",
       "date": "2026-02-01",
       "time": "10:00",
-      "done": false,
-      "notes": "Weekly accountability - track goals, pilot clients, case studies, revenue, fundraising. Recurring every Sunday.",
-      "gcalEventId": "u9um7hi0bov1hfs04mlsv0cf04"
+      "done": true,
+      "notes": "Gcal event deleted - marked done via sync (2026-02-02)"
     }
   ],
   "dailyBriefs": {
@@ -109,5 +108,5 @@
     "2026-02-01": "scgse1cfceg4agh7qqqhdvqpck",
     "2026-02-02": "unvvmjcpkrlfukk2rq47ik3sf0"
   },
-  "updatedAt": "2026-02-01T21:00:00.000Z"
+  "updatedAt": "2026-02-02T04:00:00.000Z"
 }

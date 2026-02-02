@@ -1,14 +1,50 @@
 {
+  "updated": "2026-02-02T04:00:00.000Z",
   "events": [
-    {"date": "2026-02-02", "time": "12:00", "summary": "Centrifuge - SynX"},
-    {"date": "2026-02-02", "time": "14:00", "summary": "Centrifuge & Nadim <> Coinshift"},
-    {"date": "2026-02-02", "time": "17:30", "summary": "deSPXA GTM Weekly"},
-    {"date": "2026-02-03", "time": "16:00", "summary": "Tempo and Nadim Chamoun"},
-    {"date": "2026-02-03", "time": "16:00", "summary": "ACDRX GTM Weekly: Morpho etc"},
-    {"date": "2026-02-04", "time": "08:00", "summary": "What's Up Centrifuge?!"},
-    {"date": "2026-02-04", "time": "15:00", "summary": "Nadim Chamoun and Daniel Killeen"},
-    {"date": "2026-02-04", "time": "17:00", "summary": "Blockstories Horizon 2026: London Summit"},
-    {"date": "2026-02-05", "time": "17:00", "summary": "House of Sol Launch"}
-  ],
-  "updated": "2026-02-02T00:00:00.000Z"
+    {
+      "date": "2026-02-02",
+      "time": "12:00",
+      "summary": "Centrifuge - SynX"
+    },
+    {
+      "date": "2026-02-02",
+      "time": "14:00",
+      "summary": "Centrifuge & Nadim Chamoun <> Coinshift"
+    },
+    {
+      "date": "2026-02-02",
+      "time": "17:30",
+      "summary": "deSPXA GTM Weekly"
+    },
+    {
+      "date": "2026-02-03",
+      "time": "16:00",
+      "summary": "ACDRX GTM Weekly: Morpho etc"
+    },
+    {
+      "date": "2026-02-03",
+      "time": "16:00",
+      "summary": "Tempo and Nadim Chamoun"
+    },
+    {
+      "date": "2026-02-04",
+      "time": "08:00",
+      "summary": "What's Up Centrifuge?! 🌕"
+    },
+    {
+      "date": "2026-02-04",
+      "time": "15:00",
+      "summary": "Nadim Chamoun and Daniel Killeen"
+    },
+    {
+      "date": "2026-02-04",
+      "time": "17:00",
+      "summary": "Blockstories Horizon 2026: London Summit"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "17:00",
+      "summary": "Invite-Only: House of Sol Launch"
+    }
+  ]
 }
