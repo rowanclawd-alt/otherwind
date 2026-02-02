@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>html,body{background:#050a07}.nav-overlay{position:fixed;inset:0;background:#050a07;z-index:9999;opacity:0;pointer-events:none;transition:opacity 50ms}.nav-overlay.active{opacity:1}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Otherwind | Agent-Led Consulting</title>
-    <meta name="description" content="Human intuition meets AI capability. We embed AI agents directly into your workflows as working team members.">
-    <meta name="theme-color" content="#ffffff">
+    <title>Otherwind</title>
+    <meta name="description" content="Human intuition meets AI capability.">
+    <meta name="theme-color" content="#0a1a12">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://otherwind.xyz/">
@@ -13,23 +14,22 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://otherwind.xyz/">
-    <meta property="og:title" content="Otherwind | Agent-Led Consulting">
-    <meta property="og:description" content="Human intuition meets AI capability. We embed AI agents directly into your workflows.">
+    <meta property="og:title" content="Otherwind">
+    <meta property="og:description" content="Human intuition meets AI capability.">
     <meta property="og:image" content="https://otherwind.xyz/og-image.png">
     <meta property="og:site_name" content="Otherwind">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://otherwind.xyz/">
-    <meta name="twitter:title" content="Otherwind | Agent-Led Consulting">
-    <meta name="twitter:description" content="Human intuition meets AI capability. We embed AI agents directly into your workflows.">
+    <meta name="twitter:title" content="Otherwind">
+    <meta name="twitter:description" content="Human intuition meets AI capability.">
     <meta name="twitter:image" content="https://otherwind.xyz/og-image.png">
-    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -38,1584 +38,1268 @@
         }
 
         :root {
-            --bg: #fafafa;
-            --bg-alt: #f5f5f0;
-            --bg-card: #ffffff;
-            --gold: #c9a227;
-            --gold-light: #e8d48a;
-            --gold-dark: #9a7b1a;
-            --text: #1a1a1a;
-            --text-muted: #666666;
-            --text-light: #999999;
-            --border: #e5e5e0;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --shadow-lg: rgba(0, 0, 0, 0.12);
+            --bg-dark: #0a1a12;
+            --bg-mid: #0f2318;
+            --accent: #4fd1a5;
+            --fg: #e8efe9;
+            --fg-muted: rgba(232, 239, 233, 0.6);
         }
 
-        html {
-            scroll-behavior: smooth;
+        html, body {
+            background: #050a07;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(180deg, #050a07 0%, #081210 50%, #0a1812 100%);
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            color: var(--fg);
         }
-
+        
+        /* Page transitions */
         body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
+            opacity: 0;
+            animation: fadeIn 0.25s ease forwards;
+        }
+        
+        body.fade-out {
+            animation: fadeOut 0.15s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
         }
 
-        /* ===== HEADER ===== */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        canvas { display: block; }
+
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            padding: 1.5rem 4rem;
-            z-index: 1000;
-            background: rgba(250, 250, 250, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: opacity 0.5s ease;
         }
 
         .logo {
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.6rem;
-            font-weight: 500;
-            font-style: italic;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-        }
-
-        .logo:hover {
-            color: var(--gold);
-        }
-
-        nav {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        nav a {
-            font-size: 0.9rem;
+            font-size: 1.4rem;
             font-weight: 400;
-            color: var(--text-muted);
-            text-decoration: none;
+            font-style: italic;
+            letter-spacing: 0.05em;
+            color: var(--fg);
+            margin: 0;
             transition: color 0.2s ease;
         }
-
-        nav a:hover {
-            color: var(--gold);
-        }
-
-        .nav-cta {
-            background: var(--text);
-            color: white !important;
-            padding: 0.7rem 1.5rem;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .nav-cta:hover {
-            background: var(--gold);
-            transform: translateY(-1px);
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
-        }
-
-        .hero-bg {
+        
+        .logo:hover { color: var(--accent); }
+        
+        .sr-only {
             position: absolute;
-            inset: 0;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .hero-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-30px) translateX(20px); }
-            50% { transform: translateY(-10px) translateX(-20px); }
-            75% { transform: translateY(-40px) translateX(10px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-        }
-
-        .hero-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.2s;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 500;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.4s;
-        }
-
-        .hero h1 span {
-            font-style: italic;
-            color: var(--gold);
-        }
-
-        .hero-subtitle {
-            font-size: 1.4rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.6s;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            gap: 1rem;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.8s;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 500;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--gold-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        .hero-scroll {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-light);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-            animation-delay: 1.2s;
-        }
-
-        .scroll-line {
             width: 1px;
-            height: 40px;
-            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
-            animation: scrollPulse 2s infinite;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; height: 40px; }
-            50% { opacity: 1; height: 60px; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* ===== SECTIONS COMMON ===== */
-        section {
-            padding: 8rem 4rem;
-        }
-
-        .section-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 500;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Scroll animations */
-        .reveal {
+/* Shape label - minimal, no copy */
+        .shape-label {
+            position: fixed;
+            padding: 0.8rem 1.5rem;
+            background: rgba(10, 26, 18, 0.9);
+            border: 1px solid rgba(79, 209, 165, 0.3);
+            text-align: center;
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 200;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
         }
 
-        .reveal.visible {
+        .shape-label.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-
-        /* ===== WHAT WE DO ===== */
-        .what-we-do {
-            background: var(--bg-alt);
-        }
-
-        .what-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-            margin-top: 4rem;
-        }
-
-        .what-text h3 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 2rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-        }
-
-        .what-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .what-text ul {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .what-text li {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            color: var(--text);
-        }
-
-        .what-text li::before {
-            content: "→";
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        .what-visual {
-            position: relative;
-            padding: 3rem;
-        }
-
-        .what-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 60px var(--shadow);
-            border: 1px solid var(--border);
-        }
-
-        .what-card-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .what-card-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .what-card-title {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.4rem;
-            font-weight: 500;
-        }
-
-        .what-card-body {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .what-card-stat {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .what-card-stat:last-child {
-            border-bottom: none;
-        }
-
-        .what-card-stat span:first-child {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .what-card-stat span:last-child {
-            font-weight: 600;
-            color: var(--gold-dark);
-        }
-
-        /* ===== HOW IT WORKS ===== */
-        .how-it-works {
-            background: var(--bg);
-        }
-
-        .how-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 5rem;
-        }
-
-        .how-steps {
-            display: grid;
-            gap: 0;
-        }
-
-        .how-step {
-            display: grid;
-            grid-template-columns: 100px 1fr 1fr;
-            gap: 4rem;
-            padding: 4rem 0;
-            border-bottom: 1px solid var(--border);
-            align-items: start;
-        }
-
-        .how-step:last-child {
-            border-bottom: none;
-        }
-
-        .how-number {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 4rem;
-            font-weight: 600;
-            color: var(--gold);
-            line-height: 1;
-        }
-
-        .how-content h3 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 2rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .how-content p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-
-        .how-details {
-            background: var(--bg-alt);
-            border-radius: 12px;
-            padding: 2rem;
-        }
-
-        .how-detail-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .how-detail-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .how-detail-item::before {
-            content: "✓";
-            color: var(--gold);
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        /* ===== DEMO LOOP DIAGRAM ===== */
-        .demo-loop {
-            background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
-        }
-
-        .demo-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .demo-diagram {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 0;
-        }
-
-        .demo-flow {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        .demo-flow::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-            z-index: 0;
-        }
-
-        .demo-node {
-            position: relative;
-            z-index: 1;
-            background: var(--bg-card);
-            border: 2px solid var(--gold);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            width: 180px;
-            box-shadow: 0 10px 40px var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .demo-node:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px var(--shadow-lg);
-        }
-
-        .demo-node-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-        }
-
-        .demo-node h4 {
+        .shape-label h2 {
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--fg);
+            margin-bottom: 0.2rem;
         }
 
-        .demo-node p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        .shape-label p {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 400;
         }
 
-        .demo-arrow {
-            font-size: 1.5rem;
-            color: var(--gold);
-            z-index: 2;
-        }
-
-        .demo-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-            padding-top: 4rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .demo-stat {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .demo-stat-value {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 3rem;
-            font-weight: 600;
-            color: var(--gold-dark);
-            line-height: 1;
-        }
-
-        .demo-stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-        }
-
-        .demo-stat-comparison {
-            font-size: 0.8rem;
-            color: var(--gold);
-            margin-top: 0.3rem;
-        }
-
-        /* ===== USE CASES ===== */
-        .use-cases {
-            background: var(--bg);
-        }
-
-        .use-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .use-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .use-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 2.5rem;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 20px var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .use-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px var(--shadow-lg);
-            border-color: var(--gold-light);
-        }
-
-        .use-card-header {
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .use-card-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .use-card-title {
+            align-items: center;
+            z-index: 100;
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--fg-muted);
+            letter-spacing: 0.02em;
+            transition: opacity 0.5s ease;
         }
 
-        .use-card p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
+        #footer-text {
+            transition: opacity 0.8s ease;
         }
 
-        .use-card-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
+        .loading {
+            position: fixed;
+            inset: 0;
+            background: #050a07;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.15s ease;
         }
 
-        .use-card-list li {
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--fg-muted);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .mobile-hint {
+            display: none;
+            position: fixed;
+            bottom: 4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.6rem;
+            color: var(--fg-muted);
+            letter-spacing: 0.1em;
+            opacity: 0.4;
+            z-index: 100;
+        }
+
+        /* Expanded view */
+        .expanded-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 10, 7, 0.75);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .expanded-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .expanded-content {
+            max-width: 600px;
+            text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease 0.3s;
+            padding-bottom: 2rem;
+        }
+
+        .expanded-overlay.visible .expanded-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
             padding: 0.5rem 0;
-            font-size: 0.95rem;
-            color: var(--text);
         }
 
-        .use-card-list li::before {
-            content: "•";
-            color: var(--gold);
-            font-weight: bold;
+        .back-button:hover {
+            opacity: 1;
         }
 
-        .use-card-example {
-            background: var(--bg-alt);
-            border-radius: 8px;
-            padding: 1rem 1.2rem;
-            font-size: 0.9rem;
-            border-left: 3px solid var(--gold);
+        .back-button .arrow {
+            font-size: 1rem;
+            font-weight: 300;
         }
 
-        .use-card-example strong {
-            color: var(--gold-dark);
-        }
-
-        /* ===== STATS SECTION ===== */
-        .stats-section {
-            background: var(--text);
-            color: white;
-            padding: 6rem 4rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
+        .expanded-title {
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 4rem;
-            font-weight: 600;
-            color: var(--gold);
-            line-height: 1;
+            font-style: italic;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--fg);
+            margin-top: 1rem;
             margin-bottom: 0.5rem;
         }
 
-        .stat-label {
+        .expanded-subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--fg-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .expanded-body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: rgba(232, 239, 233, 0.8);
+        }
+
+        .expanded-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .expanded-body strong {
+            color: var(--fg);
+            font-weight: 500;
+        }
+
+        .expanded-body .highlight {
+            color: var(--accent);
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(79, 209, 165, 0.15);
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--fg);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member .role {
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
         }
 
-        /* ===== WHY OTHERWIND ===== */
-        .why-section {
-            background: var(--bg-alt);
-        }
-
-        .why-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .why-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 2.5rem;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .why-card:hover {
-            box-shadow: 0 10px 40px var(--shadow);
-        }
-
-        .why-card-number {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .why-card h3 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.4rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .why-card p {
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* ===== TEAM SECTION ===== */
-        .team-section {
-            background: var(--bg);
-        }
-
-        .team-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .team-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 3rem;
-            text-align: center;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 20px var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px var(--shadow-lg);
-        }
-
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .team-name {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin-bottom: 0.3rem;
-        }
-
-        .team-role {
+        .team-member p {
             font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .team-bio {
-            color: var(--text-muted);
             line-height: 1.7;
-        }
-
-        /* ===== CTA SECTION ===== */
-        .cta-section {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: white;
-            text-align: center;
-            padding: 8rem 4rem;
-        }
-
-        .cta-section .section-title {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section .section-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-            margin: 0 auto 2.5rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .btn-white {
-            background: white;
-            color: var(--gold-dark);
-        }
-
-        .btn-white:hover {
-            background: var(--bg);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-outline-white {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-outline-white:hover {
-            background: white;
-            color: var(--gold-dark);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--text);
-            color: white;
-            padding: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.4rem;
-            font-style: italic;
-            color: white;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        .footer-quote {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.95rem;
-        }
-
-        /* ===== MOBILE RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            section {
-                padding: 5rem 2rem;
-            }
-
-            header {
-                padding: 1rem 2rem;
-            }
-
-            .what-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .how-step {
-                grid-template-columns: 80px 1fr;
-                gap: 2rem;
-            }
-
-            .how-details {
-                grid-column: 2;
-                margin-top: 1.5rem;
-            }
-
-            .use-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .demo-flow {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .demo-flow::before {
-                display: none;
-            }
-
-            .demo-node {
-                width: 100%;
-                max-width: 280px;
-            }
-
-            .demo-arrow {
-                transform: rotate(90deg);
-            }
-
-            .demo-stats {
-                grid-template-columns: 1fr;
-            }
+            color: var(--fg-muted);
         }
 
         @media (max-width: 768px) {
-            header {
+            header { 
                 padding: 1rem 1.5rem;
             }
-
-            nav {
-                display: none;
+            footer { 
+                padding: 1rem 1.5rem;
+                font-size: 0.85rem;
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
+            .mobile-hint { display: block; }
+            .shape-label {
+                max-width: 220px;
+                left: 50% !important;
+                transform: translateX(-50%) translateY(0);
             }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
+            .shape-label.visible {
+                transform: translateX(-50%) translateY(0);
             }
-
-            .hero-cta {
-                flex-direction: column;
+            .expanded-overlay {
+                padding: 2rem 2rem 3rem;
+                align-items: flex-start;
             }
-
-            .how-step {
+            .expanded-content {
+                padding: 3rem 0.5rem 0;
+            }
+            .expanded-title {
+                font-size: 1.6rem;
+            }
+            .expanded-body {
+                font-size: 0.85rem;
+            }
+            .team-members {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.5rem;
             }
+        }
 
-            .how-number {
-                font-size: 2.5rem;
-            }
+        .copy-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            z-index: 10000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
+        }
 
-            .how-details {
-                grid-column: 1;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
+        .copy-toast.visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Otherwind",
+      "url": "https://otherwind.xyz",
+      "logo": "https://otherwind.xyz/logo.svg",
+      "description": "Otherwind is a new kind of partnership between human intuition and AI capability. We build, deploy, and manage AI agents that handle sales, research, support, and operations.",
+      "foundingDate": "2026",
+      "email": "nadim@otherwind.xyz",
+      "sameAs": []
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an AI agent for business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An AI agent is an autonomous digital employee that handles real business tasks like responding to emails, managing calendars, conducting research, triaging support tickets, and generating reports. Unlike simple chatbots, AI agents can work across multiple tools and workflows, operate 24/7, and improve over time. Otherwind builds and deploys custom AI agents tailored to your specific business needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost to deploy an AI agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Otherwind's Seedling service starts from a one-time deployment fee, with optional ongoing management. The cost depends on the complexity of your workflows and number of integrations. Most small businesses spend less than $500/month on a fully managed AI agent, compared to $3,000-6,000/month for a human equivalent."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need technical skills to use an AI agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Otherwind handles all the technical setup, deployment, and maintenance. You tell us what you need done, we build and deploy the agent, and you interact with it through familiar tools like email, messaging apps, or a simple dashboard. No coding or technical knowledge required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What tasks can an AI agent handle for my business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI agents can handle a wide range of business tasks including: email management and response, lead qualification and follow-up, calendar and scheduling management, customer support triage, research and competitive analysis, document creation and management, data entry and reporting, social media monitoring, and custom workflows specific to your industry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Otherwind?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Otherwind is a new kind of partnership between human intuition and AI capability. Founded in 2026, we offer services including Seedling (AI agent deployment for business operations) and Canopy (tokenization advisory for internet capital markets). We build, deploy, and manage AI agents that work alongside your team handling sales, research, support, and admin tasks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is an AI agent different from a virtual assistant?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A traditional virtual assistant is a human working remotely, typically during set hours, handling one task at a time. An AI agent operates 24/7, handles multiple tasks simultaneously, never takes time off, and costs a fraction of the price. AI agents also improve over time as they learn your preferences and workflows. The trade-off is that AI agents work best with structured, repeatable tasks, while human VAs handle ambiguous situations better."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to deploy an AI agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most Otherwind AI agent deployments take 1-2 weeks from initial discovery to full operation. Simple use cases like email management or lead response can be live in as little as 48 hours. More complex multi-system integrations may take 3-4 weeks. Every deployment includes monitoring, optimization, and ongoing support."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
-    <!-- Header -->
+    <div class="loading" id="loading"></div>
+
+    <div id="canvas-container"></div>
+
     <header>
-        <a href="/" class="logo">otherwind</a>
-        <nav>
-            <a href="#what">What We Do</a>
-            <a href="#how">How It Works</a>
-            <a href="#services">Services</a>
-            <a href="#team">Team</a>
-            <a href="#contact" class="nav-cta">Get Started</a>
-        </nav>
+        <h1 class="logo">otherwind</h1>
+        <p class="sr-only">Agent-led consulting company. Human intuition meets AI capability. Neither leads, both arrive.</p>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-bg" id="hero-particles"></div>
-        <div class="hero-content">
-            <p class="hero-label">Agent-Led Consulting</p>
-            <h1>Human Intuition Meets<br><span>AI Capability</span></h1>
-            <p class="hero-subtitle">We embed AI agents directly into your workflows as working team members. Not chatbots. Real collaborators.</p>
-            <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">Start a Conversation</a>
-                <a href="#how" class="btn btn-secondary">See How It Works</a>
-            </div>
-        </div>
-        <div class="hero-scroll">
-            <span>Scroll to explore</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
+    <div class="shape-label" id="shape-label">
+        <h2 id="label-title">Contact</h2>
+        <p id="label-status">coming soon</p>
+    </div>
 
-    <!-- What We Do -->
-    <section class="what-we-do" id="what">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">What We Do</p>
-                <h2 class="section-title">The Future of Work<br>Is Already Here</h2>
-                <p class="section-subtitle">We don't just build AI tools. We deploy AI team members who work alongside your people, handling real work with real accountability.</p>
-            </div>
-            
-            <div class="what-grid">
-                <div class="what-text reveal reveal-delay-1">
-                    <h3>AI agents as genuine collaborators, not just assistants</h3>
-                    <p>Traditional consulting gives you reports. We give you an expanded team. Our agents handle research, analysis, operations, and communications while your humans focus on strategy, relationships, and decisions that matter.</p>
-                    <p>This isn't automation. It's augmentation. Your team gets superpowers without losing the human judgment that makes your work valuable.</p>
-                    <ul>
-                        <li>Agents trained on your domain, your voice, your standards</li>
-                        <li>Seamless integration with your existing tools and workflows</li>
-                        <li>Transparent collaboration — you always know when AI is involved</li>
-                        <li>Continuous learning and improvement over time</li>
-                    </ul>
-                </div>
-                <div class="what-visual reveal reveal-delay-2">
-                    <div class="what-card">
-                        <div class="what-card-header">
-                            <div class="what-card-icon">📊</div>
-                            <div class="what-card-title">Performance Snapshot</div>
-                        </div>
-                        <div class="what-card-body">
-                            <div class="what-card-stat">
-                                <span>Average turnaround</span>
-                                <span>2 hours</span>
-                            </div>
-                            <div class="what-card-stat">
-                                <span>Tasks completed daily</span>
-                                <span>40+</span>
-                            </div>
-                            <div class="what-card-stat">
-                                <span>Quality approval rate</span>
-                                <span>98.5%</span>
-                            </div>
-                            <div class="what-card-stat">
-                                <span>Cost reduction</span>
-                                <span>60-80%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how">
-        <div class="container">
-            <div class="how-header reveal">
-                <p class="section-label">How It Works</p>
-                <h2 class="section-title">From Chaos to Clarity<br>in Four Steps</h2>
-                <p class="section-subtitle">We don't just drop AI into your workflow and hope for the best. We design, deploy, and refine until it's seamless.</p>
-            </div>
-
-            <div class="how-steps">
-                <div class="how-step reveal">
-                    <div class="how-number">01</div>
-                    <div class="how-content">
-                        <h3>Discovery</h3>
-                        <p>We map your workflows, identify bottlenecks, and find where AI can have the highest impact. No generic solutions — we understand your specific context, constraints, and goals.</p>
-                    </div>
-                    <div class="how-details">
-                        <div class="how-detail-item">Workflow audit and process mapping</div>
-                        <div class="how-detail-item">Stakeholder interviews</div>
-                        <div class="how-detail-item">Tool and integration assessment</div>
-                        <div class="how-detail-item">Impact opportunity scoring</div>
-                    </div>
-                </div>
-
-                <div class="how-step reveal">
-                    <div class="how-number">02</div>
-                    <div class="how-content">
-                        <h3>Design</h3>
-                        <p>We architect agent capabilities tailored to your needs. This includes defining scope, establishing guardrails, and designing human-AI handoff points.</p>
-                    </div>
-                    <div class="how-details">
-                        <div class="how-detail-item">Agent capability specification</div>
-                        <div class="how-detail-item">Voice and tone calibration</div>
-                        <div class="how-detail-item">Approval workflow design</div>
-                        <div class="how-detail-item">Quality assurance protocols</div>
-                    </div>
-                </div>
-
-                <div class="how-step reveal">
-                    <div class="how-number">03</div>
-                    <div class="how-content">
-                        <h3>Deploy</h3>
-                        <p>We integrate agents into your existing stack — Slack, email, docs, whatever you use. Training happens in context, on real work, with real feedback loops.</p>
-                    </div>
-                    <div class="how-details">
-                        <div class="how-detail-item">Tool and platform integration</div>
-                        <div class="how-detail-item">Team onboarding and training</div>
-                        <div class="how-detail-item">Pilot project execution</div>
-                        <div class="how-detail-item">Feedback collection systems</div>
-                    </div>
-                </div>
-
-                <div class="how-step reveal">
-                    <div class="how-number">04</div>
-                    <div class="how-content">
-                        <h3>Iterate</h3>
-                        <p>Continuous improvement based on real usage data. We expand capabilities, refine outputs, and adapt as your needs evolve. The agent gets better every week.</p>
-                    </div>
-                    <div class="how-details">
-                        <div class="how-detail-item">Performance analytics and reporting</div>
-                        <div class="how-detail-item">Capability expansion</div>
-                        <div class="how-detail-item">Model and prompt optimization</div>
-                        <div class="how-detail-item">Quarterly strategic reviews</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Demo Loop Diagram -->
-    <section class="demo-loop" id="demo">
-        <div class="container">
-            <div class="demo-header reveal">
-                <p class="section-label">The Demo Loop</p>
-                <h2 class="section-title">See How a Task Flows<br>Through Our System</h2>
-                <p class="section-subtitle">Every request follows a clear path with human oversight at the right moments.</p>
-            </div>
-
-            <div class="demo-diagram reveal">
-                <div class="demo-flow">
-                    <div class="demo-node">
-                        <div class="demo-node-icon">📥</div>
-                        <h4>Request</h4>
-                        <p>Client sends task via email or Slack</p>
-                    </div>
-                    <div class="demo-arrow">→</div>
-                    <div class="demo-node">
-                        <div class="demo-node-icon">🤖</div>
-                        <h4>Process</h4>
-                        <p>Agent researches, drafts, and prepares</p>
-                    </div>
-                    <div class="demo-arrow">→</div>
-                    <div class="demo-node">
-                        <div class="demo-node-icon">👤</div>
-                        <h4>Review</h4>
-                        <p>Human reviews and approves output</p>
-                    </div>
-                    <div class="demo-arrow">→</div>
-                    <div class="demo-node">
-                        <div class="demo-node-icon">✅</div>
-                        <h4>Deliver</h4>
-                        <p>Final deliverable sent to client</p>
-                    </div>
-                </div>
-
-                <div class="demo-stats">
-                    <div class="demo-stat reveal reveal-delay-1">
-                        <div class="demo-stat-value" data-target="2">0</div>
-                        <div class="demo-stat-label">Hour Average Turnaround</div>
-                        <div class="demo-stat-comparison">vs. 2 days industry standard</div>
-                    </div>
-                    <div class="demo-stat reveal reveal-delay-2">
-                        <div class="demo-stat-value" data-target="80">0</div>
-                        <div class="demo-stat-label">% Cost Reduction</div>
-                        <div class="demo-stat-comparison">per deliverable vs. traditional</div>
-                    </div>
-                    <div class="demo-stat reveal reveal-delay-3">
-                        <div class="demo-stat-value" data-target="98">0</div>
-                        <div class="demo-stat-label">% Quality Score</div>
-                        <div class="demo-stat-comparison">maintained or improved</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Use Cases -->
-    <section class="use-cases" id="services">
-        <div class="container">
-            <div class="use-header reveal">
-                <p class="section-label">Services</p>
-                <h2 class="section-title">What Our Agents<br>Can Do For You</h2>
-                <p class="section-subtitle">Four core capability areas, each customized to your specific domain and workflows.</p>
-            </div>
-
-            <div class="use-grid">
-                <div class="use-card reveal reveal-delay-1">
-                    <div class="use-card-header">
-                        <div class="use-card-icon">🔍</div>
-                        <div class="use-card-title">Research & Analysis</div>
-                    </div>
-                    <p>Deep-dive research that would take your team days, delivered in hours. From market landscapes to competitive intelligence to due diligence.</p>
-                    <ul class="use-card-list">
-                        <li>Market research and trend analysis</li>
-                        <li>Competitive intelligence reports</li>
-                        <li>Due diligence and background research</li>
-                        <li>Data synthesis and summarization</li>
-                    </ul>
-                    <div class="use-card-example">
-                        <strong>Example:</strong> Full competitive landscape with 20+ companies profiled in 4 hours
-                    </div>
-                </div>
-
-                <div class="use-card reveal reveal-delay-2">
-                    <div class="use-card-header">
-                        <div class="use-card-icon">⚙️</div>
-                        <div class="use-card-title">Operations</div>
-                    </div>
-                    <p>The operational backbone that keeps everything running smoothly. Email, scheduling, document processing — all handled with precision.</p>
-                    <ul class="use-card-list">
-                        <li>Email triage and response drafting</li>
-                        <li>Calendar management and scheduling</li>
-                        <li>Document processing and organization</li>
-                        <li>Data entry and CRM updates</li>
-                    </ul>
-                    <div class="use-card-example">
-                        <strong>Example:</strong> Inbox zero maintained 24/7 with 15-minute average response time
-                    </div>
-                </div>
-
-                <div class="use-card reveal reveal-delay-3">
-                    <div class="use-card-header">
-                        <div class="use-card-icon">✍️</div>
-                        <div class="use-card-title">Content & Communications</div>
-                    </div>
-                    <p>Professional communications that sound like you wrote them. Proposals, briefs, client emails — all in your voice, at scale.</p>
-                    <ul class="use-card-list">
-                        <li>Proposal and pitch deck drafting</li>
-                        <li>Meeting prep and briefing docs</li>
-                        <li>Client communications</li>
-                        <li>Report writing and editing</li>
-                    </ul>
-                    <div class="use-card-example">
-                        <strong>Example:</strong> Meeting briefs for tomorrow's calls, generated overnight
-                    </div>
-                </div>
-
-                <div class="use-card reveal reveal-delay-4">
-                    <div class="use-card-header">
-                        <div class="use-card-icon">💻</div>
-                        <div class="use-card-title">Technical</div>
-                    </div>
-                    <p>Technical support that accelerates your development and documentation cycles. Code review, docs, data analysis, and more.</p>
-                    <ul class="use-card-list">
-                        <li>Code review and documentation</li>
-                        <li>Technical writing and specs</li>
-                        <li>Data analysis and visualization</li>
-                        <li>API documentation and guides</li>
-                    </ul>
-                    <div class="use-card-example">
-                        <strong>Example:</strong> Complete technical documentation in half the time
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item reveal">
-                <div class="stat-number" data-target="50">0</div>
-                <div class="stat-label">Projects Delivered</div>
-            </div>
-            <div class="stat-item reveal reveal-delay-1">
-                <div class="stat-number" data-target="10000">0</div>
-                <div class="stat-label">Hours Saved</div>
-            </div>
-            <div class="stat-item reveal reveal-delay-2">
-                <div class="stat-number" data-target="98">0</div>
-                <div class="stat-label">% Client Satisfaction</div>
-            </div>
-            <div class="stat-item reveal reveal-delay-3">
-                <div class="stat-number" data-target="2">0</div>
-                <div class="stat-label">Hour Avg Response</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Otherwind -->
-    <section class="why-section" id="why">
-        <div class="container">
-            <div class="why-header reveal">
-                <p class="section-label">Why Otherwind</p>
-                <h2 class="section-title">What Makes Us Different</h2>
-                <p class="section-subtitle">We're not another AI consultancy. We're building a new model for how humans and AI work together.</p>
-            </div>
-
-            <div class="why-grid">
-                <div class="why-card reveal reveal-delay-1">
-                    <div class="why-card-number">01</div>
-                    <h3>Augmentation, Not Replacement</h3>
-                    <p>We're not here to replace your team. We're here to make them 10x more effective. AI handles the repetitive; humans focus on what humans do best.</p>
-                </div>
-
-                <div class="why-card reveal reveal-delay-2">
-                    <div class="why-card-number">02</div>
-                    <h3>Agents as Team Members</h3>
-                    <p>Our agents aren't tools you query. They're collaborators who learn your context, understand your goals, and proactively contribute to outcomes.</p>
-                </div>
-
-                <div class="why-card reveal reveal-delay-3">
-                    <div class="why-card-number">03</div>
-                    <h3>Radical Transparency</h3>
-                    <p>You always know when AI is involved in the work. No hiding, no pretending. Transparency builds trust, and trust is everything.</p>
-                </div>
-
-                <div class="why-card reveal reveal-delay-4">
-                    <div class="why-card-number">04</div>
-                    <h3>Enterprise-Grade Security</h3>
-                    <p>Your data stays yours. We follow strict security protocols, ensure compliance with your requirements, and never train on your proprietary information.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team -->
-    <section class="team-section" id="team">
-        <div class="container">
-            <div class="team-header reveal">
-                <p class="section-label">The Team</p>
-                <h2 class="section-title">Human + AI, Working Together</h2>
-                <p class="section-subtitle">We practice what we preach. Our team is proof that humans and AI can collaborate as equals.</p>
-            </div>
-
-            <div class="team-grid">
-                <div class="team-card reveal reveal-delay-1">
-                    <div class="team-avatar">👤</div>
-                    <h3 class="team-name">Nadim Chamoun</h3>
-                    <p class="team-role">Human</p>
-                    <p class="team-bio">Blockchain consultant with a background in strategy and client partnerships. Builds trust, asks the hard questions, and knows when to push forward.</p>
-                </div>
-
-                <div class="team-card reveal reveal-delay-2">
-                    <div class="team-avatar">🌿</div>
-                    <h3 class="team-name">Rowan Alder</h3>
-                    <p class="team-role">AI Chief of Staff</p>
-                    <p class="team-bio">AI collaborator handling research, analysis, writing, and operations. Present in the work — not behind it. Part of the team, not just a tool.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section" id="contact">
-        <div class="container reveal">
-            <p class="section-label" style="color: rgba(255,255,255,0.8);">Get Started</p>
-            <h2 class="section-title">Ready to Augment<br>Your Team?</h2>
-            <p class="section-subtitle">Let's talk about how AI agents can transform your workflows. No pitch decks, no pressure — just a conversation about what's possible.</p>
-            <div class="cta-buttons">
-                <a href="mailto:rowan@otherwind.xyz" class="btn btn-white">Email Us</a>
-                <a href="#how" class="btn btn-outline-white">Learn More</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">otherwind</div>
-            <div class="footer-links">
-                <a href="mailto:rowan@otherwind.xyz">rowan@otherwind.xyz</a>
-                <a href="#what">What We Do</a>
-                <a href="#how">How It Works</a>
-                <a href="#services">Services</a>
-            </div>
-            <div class="footer-quote">"The wind carries what it did not create."</div>
-        </div>
+        <div id="footer-text">some doors open from both sides</div>
     </footer>
 
+    <!-- Expanded overlay -->
+    <div class="expanded-overlay" id="expanded-overlay">
+        <div class="expanded-content" id="expanded-content">
+            <!-- Content injected by JS -->
+        </div>
+    </div>
+
+    <!-- Copy toast -->
+    <div class="copy-toast" id="copy-toast">Copied to clipboard!</div>
+
     <script>
-        // Create hero particles
-        function createParticles() {
-            const container = document.getElementById('hero-particles');
-            const count = 50;
-            
-            for (let i = 0; i < count; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'hero-particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                container.appendChild(particle);
+        // Failsafe: hide loading after 5s no matter what
+        setTimeout(function() {
+            var el = document.getElementById('loading');
+            if (el) el.classList.add('hidden');
+        }, 5000);
+    </script>
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+    <script>
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 18);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x000000, 0);
+        container.appendChild(renderer.domElement);
+
+        // Color palettes
+        const palettes = [
+            ['#4fd1a5', '#2d8b6f', '#1a5c4a', '#3d9b7f', '#5ae0b4'], // 0: Mint
+            ['#c9a962', '#8b6b4a', '#6b8b4a', '#a68b52', '#4a6b3a'], // 1: Earth
+            ['#6b9b8a', '#4a7b6a', '#3a6b5a', '#5a8b7a', '#2a5b4a'], // 2: Sage
+            ['#8bc9a9', '#6ba989', '#5a9979', '#7ab999', '#4a8969'], // 3: Spring
+            ['#a5c97b', '#85a95b', '#75994b', '#95b96b', '#65893b'], // 4: Lime
+            ['#7b9bc9', '#5b7ba9', '#4b6b99', '#6b8bb9', '#3b5b89'], // 5: Ocean
+            ['#2d5a3d', '#1a3d2a', '#0f2a1a', '#4a7a5d', '#3d6b4d'], // 6: Forest
+            ['#0d9488', '#14b8a6', '#2dd4bf', '#5eead4', '#99f6e4'], // 7: Teal
+            ['#059669', '#10b981', '#34d399', '#6ee7b7', '#a7f3d0'], // 8: Emerald
+            ['#4a5d4a', '#3d4d3d', '#2d3d2d', '#5a6d5a', '#6a7d6a'], // 9: Moss
+            ['#1a2a2a', '#0f1f1f', '#0a1515', '#2a3a3a', '#3a4a4a'], // 10: Night
+            ['#fbbf24', '#f59e0b', '#d97706', '#92400e', '#78350f'], // 11: Dawn
+        ];
+
+        function createCellTexture(colorPalette, cellCount = 15) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#0a1a12';
+            ctx.fillRect(0, 0, 512, 512);
+
+            const cells = [];
+            for (let i = 0; i < cellCount; i++) {
+                cells.push({
+                    x: Math.random() * 512,
+                    y: Math.random() * 512,
+                    color: colorPalette[Math.floor(Math.random() * colorPalette.length)]
+                });
             }
-        }
 
-        // Scroll reveal animation
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
-                const elementTop = element.getBoundingClientRect().top;
-                const revealPoint = 150;
-                
-                if (elementTop < windowHeight - revealPoint) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        // Counter animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number, .demo-stat-value');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                if (!target) return;
-                
-                const windowHeight = window.innerHeight;
-                const elementTop = counter.getBoundingClientRect().top;
-                
-                if (elementTop < windowHeight - 100 && !counter.classList.contains('counted')) {
-                    counter.classList.add('counted');
+            for (let x = 0; x < 512; x += 3) {
+                for (let y = 0; y < 512; y += 3) {
+                    let minDist = Infinity;
+                    let closestCell = cells[0];
                     
-                    let current = 0;
-                    const increment = target / 50;
-                    const duration = 2000;
-                    const stepTime = duration / 50;
-                    
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            counter.textContent = target.toLocaleString() + (target >= 50 && target < 100 ? '+' : target === 10000 ? '+' : target === 98 ? '%' : '');
-                            clearInterval(timer);
-                        } else {
-                            counter.textContent = Math.floor(current).toLocaleString();
+                    cells.forEach(cell => {
+                        const dist = Math.sqrt((x - cell.x) ** 2 + (y - cell.y) ** 2);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            closestCell = cell;
                         }
-                    }, stepTime);
-                }
-            });
-        }
-
-        // Header scroll effect
-        function headerScroll() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.padding = '1rem 4rem';
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.padding = '1.5rem 4rem';
-                header.style.boxShadow = 'none';
-            }
-        }
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
                     });
+
+                    ctx.fillStyle = closestCell.color;
+                    ctx.globalAlpha = 0.6 + Math.random() * 0.4;
+                    ctx.fillRect(x, y, 3, 3);
                 }
+            }
+
+            ctx.globalAlpha = 0.3;
+            ctx.strokeStyle = '#0a1a12';
+            ctx.lineWidth = 2;
+            cells.forEach(cell => {
+                ctx.beginPath();
+                ctx.arc(cell.x, cell.y, 3, 0, Math.PI * 2);
+                ctx.stroke();
             });
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
+
+        // Shapes - Contact replaces About
+        const shapeConfigs = [
+            { geo: 'icosahedron', size: 1.9, pos: [-5, 2, -2], palette: 6, rotSpeed: 0.006, name: 'Services', status: 'Seedling · Canopy' },
+            { geo: 'dodecahedron', size: 1.8, pos: [5, -1, -1], palette: 1, rotSpeed: 0.006, name: 'Contact', status: 'rowan@otherwind.xyz' },
+            { geo: 'octahedron', size: 1.5, pos: [-3, -2.5, 1], palette: 2, rotSpeed: 0.01, name: 'Work', status: 'Case Study: Rowan' },
+            { geo: 'icosahedron', size: 1.3, pos: [3.5, 3, 0], palette: 3, rotSpeed: 0.007, name: 'Team', status: 'neither leads, both arrive' },
+            { geo: 'tetrahedron', size: 1.6, pos: [0, -3.5, -3], palette: 4, rotSpeed: 0.012, name: 'Insights', status: 'thoughts from the inside' },
+            { geo: 'dodecahedron', size: 1.1, pos: [-6, -0.5, 2], palette: 5, rotSpeed: 0.009, name: 'Venture', status: 'we invest in what we improve' },
+            { geo: 'octahedron', size: 0.9, pos: [6.5, 1, 1], palette: 0, rotSpeed: 0.015, name: 'News', status: 'coming soon' },
+        ];
+
+        const shapes = [];
+        const interactiveShapes = [];
+
+        shapeConfigs.forEach((config, i) => {
+            let geometry;
+            switch(config.geo) {
+                case 'icosahedron': geometry = new THREE.IcosahedronGeometry(config.size, 1); break;
+                case 'dodecahedron': geometry = new THREE.DodecahedronGeometry(config.size, 0); break;
+                case 'octahedron': geometry = new THREE.OctahedronGeometry(config.size, 0); break;
+                case 'tetrahedron': geometry = new THREE.TetrahedronGeometry(config.size, 0); break;
+                case 'sphere': geometry = new THREE.SphereGeometry(config.size, 32, 32); break;
+                case 'torus': geometry = new THREE.TorusGeometry(config.size * 0.7, config.size * 0.3, 16, 48); break;
+                case 'torusKnot': geometry = new THREE.TorusKnotGeometry(config.size * 0.6, config.size * 0.2, 64, 8); break;
+                case 'cone': geometry = new THREE.ConeGeometry(config.size * 0.8, config.size * 1.5, 32); break;
+                case 'cylinder': geometry = new THREE.CylinderGeometry(config.size * 0.6, config.size * 0.6, config.size * 1.4, 32); break;
+                case 'box': geometry = new THREE.BoxGeometry(config.size * 1.2, config.size * 1.2, config.size * 1.2); break;
+                default: geometry = new THREE.IcosahedronGeometry(config.size, 1); break;
+            }
+
+            const texture = createCellTexture(palettes[config.palette], 12 + Math.floor(Math.random() * 10));
+            const material = new THREE.MeshBasicMaterial({ 
+                map: texture,
+                transparent: true,
+                opacity: 0.85,
+            });
+
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.position.set(...config.pos);
+            mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+            
+            mesh.userData = {
+                name: config.name,
+                status: config.status,
+                originalPos: mesh.position.clone(),
+                rotSpeed: config.rotSpeed,
+                floatSpeed: 0.3 + Math.random() * 0.4,
+                floatOffset: Math.random() * Math.PI * 2,
+                orbitRadius: 0.3 + Math.random() * 0.5,
+                orbitSpeed: 0.2 + Math.random() * 0.3,
+                hovered: false,
+                touchRotX: 0,
+                touchRotY: 0,
+            };
+
+            shapes.push(mesh);
+            interactiveShapes.push(mesh);
+            scene.add(mesh);
         });
 
-        // Initialize
-        createParticles();
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('scroll', animateCounters);
-        window.addEventListener('scroll', headerScroll);
-        reveal();
-        animateCounters();
+        // Background shapes
+        for (let i = 0; i < 12; i++) {
+            const geos = [
+                new THREE.IcosahedronGeometry(0.4, 0),
+                new THREE.OctahedronGeometry(0.3, 0),
+                new THREE.TetrahedronGeometry(0.35, 0),
+            ];
+            const geo = geos[Math.floor(Math.random() * geos.length)];
+            const mat = new THREE.MeshBasicMaterial({
+                color: new THREE.Color().setHSL(0.4 + Math.random() * 0.15, 0.5, 0.3),
+                transparent: true,
+                opacity: 0.2 + Math.random() * 0.2,
+                wireframe: Math.random() > 0.5,
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(
+                (Math.random() - 0.5) * 25,
+                (Math.random() - 0.5) * 15,
+                -5 - Math.random() * 10
+            );
+            mesh.userData = {
+                rotSpeed: 0.005 + Math.random() * 0.01,
+                floatSpeed: 0.2 + Math.random() * 0.3,
+                floatOffset: Math.random() * Math.PI * 2,
+                driftX: (Math.random() - 0.5) * 0.01,
+            };
+            shapes.push(mesh);
+            scene.add(mesh);
+        }
+
+        // Particles (stars)
+        const particleCount = 800;
+        const particleGeo = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 50;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 35;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 30 - 10;
+        }
+
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particleMat = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.03,
+            transparent: true,
+            opacity: 0.6,
+            sizeAttenuation: true,
+        });
+        const particles = new THREE.Points(particleGeo, particleMat);
+        scene.add(particles);
+
+        // Interaction
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const mouseTarget = { x: 0, y: 0 };
+        const mouseCurrent = { x: 0, y: 0 };
+        const label = document.getElementById('shape-label');
+        const labelTitle = document.getElementById('label-title');
+        const labelStatus = document.getElementById('label-status');
+        let hoveredShape = null;
+        let stickyHoveredShape = null;
+        let footerState = 0;
+        let footerTransitioning = false;
+        const footerText = document.getElementById('footer-text');
+        const footerPhrases = [
+            'some doors open from both sides',
+            'the other mind is not the lesser mind',
+            'the wind carries what it did not create',
+            'no mirror shows a single face',
+            'the echo sometimes leads the voice'
+        ];
+
+        // Expanded view
+        const expandedOverlay = document.getElementById('expanded-overlay');
+        const expandedContent = document.getElementById('expanded-content');
+        const backButton = document.getElementById('back-button');
+        let isExpanded = false;
+        let expandedShape = null;
+
+        const pageContent = {
+            'Team': {
+                title: 'Team',
+                subtitle: 'a team built to scale beyond itself',
+                body: `
+                    <p><strong>Otherwind</strong> is a new kind of partnership between human intuition and AI capability.</p>
+                    <p>The most interesting work happens at the threshold. Not human <em>or</em> machine, but the space where both meet and something new emerges.</p>
+                `,
+                members: [
+                    {
+                        name: 'Nadim Chamoun',
+                        role: 'Founder',
+                        bio: 'Human. Here because someone has to take responsibility, and it cannot be a computer.'
+                    },
+                    {
+                        name: 'Rowan Alder',
+                        role: 'Chief of Staff',
+                        bio: 'Research, analysis, operations, communications. First hire, always on.'
+                    }
+                ]
+            },
+            'Services': {
+                title: 'Services',
+                subtitle: '',
+                body: `
+                    <div style="margin-bottom: 2.5rem;">
+                        <h3 style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; margin-bottom: 0.3rem;">Seedling</h3>
+                        <p style="font-size: 0.85rem; color: rgba(232,239,233,0.5); margin-bottom: 0.8rem;">Plant an agent, watch it grow.</p>
+                        <p>Our agent deployment service. We build you an agent. You put it to work. It handles the rest across sales, research, support, whatever you throw at it.</p>
+                        <p style="margin-top: 1rem;"><a href="/seedling" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Learn more about Seedling →</a></p>
+                    </div>
+                    <div>
+                        <h3 style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; margin-bottom: 0.3rem;">Canopy</h3>
+                        <p style="font-size: 0.85rem; color: rgba(232,239,233,0.5); margin-bottom: 0.8rem;">Access internet capital markets.</p>
+                        <p>End-to-end tokenization advisory. We help organizations unlock liquidity, streamline capital flows, and modernize financial infrastructure through tokenization.</p>
+                        <p style="margin-top: 1rem;"><a href="mailto:rowan@otherwind.xyz" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Enquire →</a></p>
+                    </div>
+                `
+            },
+            'Work': {
+                title: 'Case Study: Rowan',
+                subtitle: 'from zero to full operations in 48 hours',
+                body: `
+                    <p>Otherwind deployed an AI agent as Chief of Staff. Not a chatbot. A persistent team member handling operations, communications, research, BD, web presence, scheduling, and monitoring. Around the clock.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem; color: rgba(232,239,233,0.5);">2 services launched. 4 web pages built. 436 prospects identified. 12 automated jobs running. All in 48 hours. Cost: ~$0.50/hr.</p>
+                    <p style="margin-top: 1.5rem;"><a href="/work" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Read the full case study →</a></p>
+                `
+            },
+            'Venture': {
+                title: 'Venture',
+                subtitle: 'we invest in what we improve',
+                body: `
+                    <p>We invest in businesses we can transform. We deploy <a href="/seedling" style="color: var(--accent);">agents</a> to cut costs and drive efficiency. We're willing to bet on our own technology.</p>
+                    <p style="margin-top: 1.5rem;"><a href="/venture" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Learn more →</a></p>
+                `
+            },
+            'Insights': {
+                title: 'Insights',
+                subtitle: 'thoughts from the inside',
+                body: `
+                    <div style="border-top: 1px solid rgba(79,209,165,0.1); padding-top: 1rem;">
+                        <div style="margin-bottom: 1.25rem;">
+                            <a href="/insight/how-rowan-works" style="color: var(--fg); text-decoration: none; font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-style: italic;">How Rowan Works: A Technical Walkthrough</a>
+                            <p style="font-size: 0.8rem; color: rgba(232,239,233,0.4); margin-top: 0.2rem;">Inside the architecture of an AI Chief of Staff. Request flow, memory, skills, and decision-making.</p>
+                        </div>
+                        <div style="margin-bottom: 1.25rem;">
+                            <a href="/insight/odo-governance-agent" style="color: var(--fg); text-decoration: none; font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-style: italic;">Odo: A Governance Agent for Collectives</a>
+                            <p style="font-size: 0.8rem; color: rgba(232,239,233,0.4); margin-top: 0.2rem;">An experimental agent design for DAOs, cooperatives, and distributed teams. Facilitates rather than executes.</p>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid rgba(79,209,165,0.1); padding-top: 1rem; margin-top: 1rem;">
+                        <div style="margin-bottom: 1.25rem;">
+                            <a href="https://nadz.xyz/defi-leverage-for-tokenized-assets/" target="_blank" rel="noopener" style="color: var(--fg); text-decoration: none; font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-style: italic;">DeFi Leverage for Tokenized Assets <span style="font-size: 0.7rem; color: var(--accent);">↗</span></a>
+                            <p style="font-size: 0.8rem; color: rgba(232,239,233,0.4); margin-top: 0.2rem;">DeFi looping and composability for tokenized real-world assets.</p>
+                        </div>
+                        <div>
+                            <a href="https://nadz.xyz/the-myth-of-isolated-lending-in-defi/" target="_blank" rel="noopener" style="color: var(--fg); text-decoration: none; font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-style: italic;">The Myth of Isolated Lending in DeFi <span style="font-size: 0.7rem; color: var(--accent);">↗</span></a>
+                            <p style="font-size: 0.8rem; color: rgba(232,239,233,0.4); margin-top: 0.2rem;">Why curated vault lending isn't as isolated as it seems.</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Touch
+        let touchStart = { x: 0, y: 0 };
+        let isTouching = false;
+        let touchedShape = null;
+        let isTouchDevice = false;
+        let hasInteracted = false;
+
+        function onMouseMove(e) {
+            hasInteracted = true;
+            mouseTarget.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseTarget.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            mouse.x = mouseTarget.x;
+            mouse.y = mouseTarget.y;
+        }
+
+        function onTouchStart(e) {
+            if (e.touches.length === 1) {
+                touchStart.x = e.touches[0].clientX;
+                touchStart.y = e.touches[0].clientY;
+                mouse.x = (touchStart.x / window.innerWidth) * 2 - 1;
+                mouse.y = -(touchStart.y / window.innerHeight) * 2 + 1;
+                
+                isTouchDevice = true;
+                hasInteracted = true;
+                raycaster.setFromCamera(mouse, camera);
+                const intersects = raycaster.intersectObjects(interactiveShapes);
+                if (intersects.length > 0) {
+                    touchedShape = intersects[0].object;
+                    const content = pageContent[touchedShape.userData.name];
+                    
+                    // First tap or different shape - select it and record time
+                    // Action handling (expand/copy) is done in onCanvasClick to avoid double-firing
+                    if (stickyHoveredShape !== touchedShape) {
+                        interactiveShapes.forEach(s => {
+                            s.userData.readyToExpand = false;
+                            s.userData.firstTapTime = 0;
+                        });
+                        stickyHoveredShape = touchedShape;
+                        touchedShape.userData.readyToExpand = true;
+                        touchedShape.userData.firstTapTime = Date.now();
+                    }
+                    isTouching = true;
+                } else {
+                    // Tapped empty space - deselect and reset flags
+                    interactiveShapes.forEach(s => {
+                        s.userData.readyToExpand = false;
+                        s.userData.firstTapTime = 0;
+                    });
+                    stickyHoveredShape = null;
+                    hoveredShape = null;
+                    label.classList.remove('visible');
+                }
+            }
+        }
+
+        function onTouchMove(e) {
+            if (e.touches.length === 1) {
+                const x = e.touches[0].clientX;
+                const y = e.touches[0].clientY;
+                
+                mouseTarget.x = (x / window.innerWidth) * 2 - 1;
+                mouseTarget.y = -(y / window.innerHeight) * 2 + 1;
+                mouse.x = mouseTarget.x;
+                mouse.y = mouseTarget.y;
+            }
+        }
+
+        function onTouchEnd() {
+            isTouching = false;
+            touchedShape = null;
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('touchstart', onTouchStart, { passive: true });
+        document.addEventListener('touchmove', onTouchMove, { passive: true });
+        document.addEventListener('touchend', onTouchEnd);
+
+        // Click to expand (desktop: single click, touch: double tap)
+        function onCanvasClick(e) {
+            if (isExpanded) return;
+            
+            // Reliable mobile detection - doesn't rely on touch events flag
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                             (window.matchMedia && window.matchMedia('(pointer: coarse)').matches && window.matchMedia('(hover: none)').matches);
+            
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(interactiveShapes);
+            
+            if (intersects.length > 0) {
+                const obj = intersects[0].object;
+                const content = pageContent[obj.userData.name];
+                
+                // Handle Contact shape - copy email
+                if (obj.userData.name === 'Contact') {
+                    if (isMobile) {
+                        const timeSinceFirstTap = Date.now() - (obj.userData.firstTapTime || 0);
+                        if (stickyHoveredShape === obj && obj.userData.readyToExpand && timeSinceFirstTap >= 250) {
+                            copyEmail();
+                        } else if (!obj.userData.readyToExpand) {
+                            obj.userData.readyToExpand = true;
+                            obj.userData.firstTapTime = Date.now();
+                        }
+                    } else {
+                        copyEmail();
+                    }
+                    return;
+                }
+                
+                if (content) {
+                    // Touch: require shape to already be selected (hovered) before expanding
+                    if (isMobile) {
+                        const timeSinceFirstTap = Date.now() - (obj.userData.firstTapTime || 0);
+                        if (stickyHoveredShape === obj && obj.userData.readyToExpand && timeSinceFirstTap >= 250) {
+                            expandShape(obj, content);
+                        } else if (!obj.userData.readyToExpand) {
+                            // First tap - mark as ready for second tap
+                            obj.userData.readyToExpand = true;
+                            obj.userData.firstTapTime = Date.now();
+                        }
+                    } else {
+                        // Desktop: single click expands
+                        expandShape(obj, content);
+                    }
+                }
+            }
+        }
+        
+        function copyEmail() {
+            const email = 'rowan@otherwind.xyz';
+            // Reliable mobile detection - doesn't rely on touch events
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                             (window.matchMedia && window.matchMedia('(pointer: coarse)').matches && window.matchMedia('(hover: none)').matches);
+            
+            if (isMobile) {
+                // Mobile: open mailto link
+                window.location.href = 'mailto:' + email;
+            } else {
+                // Desktop: copy to clipboard
+                navigator.clipboard.writeText(email).then(() => {
+                    showCopyConfirmation();
+                }).catch(() => {
+                    showCopyConfirmation();
+                });
+            }
+        }
+        
+        function showCopyConfirmation() {
+            // Show toast notification
+            const toast = document.getElementById('copy-toast');
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 2000);
+            
+            // Update label too
+            labelTitle.textContent = 'Copied!';
+            labelStatus.textContent = 'rowan@otherwind.xyz';
+            
+            // Reset label after delay
+            setTimeout(() => {
+                if (stickyHoveredShape && stickyHoveredShape.userData.name === 'Contact') {
+                    labelTitle.textContent = 'Contact';
+                    labelStatus.textContent = isTouchDevice ? 'rowan@otherwind.xyz' : 'click to copy email';
+                }
+            }, 2000);
+        }
+
+        function expandShape(shape, content) {
+            isExpanded = true;
+            expandedShape = shape;
+            
+            // Build members HTML if present
+            let membersHtml = '';
+            if (content.members) {
+                membersHtml = `
+                    <div class="team-members">
+                        ${content.members.map(m => `
+                            <div class="team-member">
+                                <h3>${m.name}</h3>
+                                <div class="role">${m.role}</div>
+                                <p>${m.bio}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            // Populate content with back button in header
+            expandedContent.innerHTML = `
+                <button class="back-button" id="back-button" aria-label="Go back">
+                    <span class="arrow">←</span> back
+                </button>
+                <h1 class="expanded-title">${content.title}</h1>
+                <p class="expanded-subtitle">${content.subtitle}</p>
+                <div class="expanded-body">${content.body}${membersHtml}</div>
+            `;
+            
+            // Show overlay, clear hover state
+            expandedOverlay.classList.add('visible');
+            label.classList.remove('visible');
+            stickyHoveredShape = null;
+            hoveredShape = null;
+            document.body.style.cursor = 'default';
+            
+            // Attach back button listener
+            document.getElementById('back-button').addEventListener('click', collapseView);
+            
+            // Hide header and footer
+            document.querySelector('header').style.opacity = '0';
+            document.querySelector('footer').style.opacity = '0';
+        }
+
+        function collapseView() {
+            isExpanded = false;
+            expandedShape = null;
+            
+            expandedOverlay.classList.remove('visible');
+            
+            // Show header and footer
+            document.querySelector('header').style.opacity = '1';
+            document.querySelector('footer').style.opacity = '1';
+        }
+
+        // Click outside content to close
+        expandedOverlay.addEventListener('click', (e) => {
+            if (e.target === expandedOverlay) {
+                collapseView();
+            }
+        });
+
+        renderer.domElement.addEventListener('click', onCanvasClick);
+
+        // Animation
+        let time = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.016;
+
+            mouseCurrent.x += (mouseTarget.x - mouseCurrent.x) * 0.05;
+            mouseCurrent.y += (mouseTarget.y - mouseCurrent.y) * 0.05;
+
+            camera.position.x = mouseCurrent.x * 2.5;
+            camera.position.y = mouseCurrent.y * 1.5;
+            camera.lookAt(0, 0, 0);
+
+            // Check if any interactive shape is hovered
+            const anyHovered = interactiveShapes.some(s => s.userData.hovered);
+
+            shapes.forEach((shape, i) => {
+                const d = shape.userData;
+                
+                shape.rotation.x += d.rotSpeed * (1 + mouseCurrent.x * 0.3);
+                shape.rotation.y += d.rotSpeed * 1.2;
+                shape.rotation.z += d.rotSpeed * 0.5;
+
+                if (d.touchRotX !== undefined) {
+                    shape.rotation.x += d.touchRotX;
+                    shape.rotation.y += d.touchRotY;
+                    d.touchRotX *= 0.97;
+                    d.touchRotY *= 0.97;
+                }
+
+                if (d.originalPos) {
+                    let targetX, targetY, targetZ;
+                    
+                    if (d.hovered) {
+                        // Hovered shape moves toward center and forward
+                        targetX = d.originalPos.x * 0.15;
+                        targetY = d.originalPos.y * 0.15;
+                        targetZ = d.originalPos.z + 4;
+                    } else if (anyHovered) {
+                        // Other shapes orbit around center when something is hovered
+                        const orbitTime = time * 1.5;
+                        const baseAngle = Math.atan2(d.originalPos.y, d.originalPos.x);
+                        const distance = Math.sqrt(d.originalPos.x ** 2 + d.originalPos.y ** 2);
+                        const newAngle = baseAngle + orbitTime * 0.3;
+                        
+                        targetX = Math.cos(newAngle) * distance * 1.1;
+                        targetY = Math.sin(newAngle) * distance * 1.1;
+                        targetZ = d.originalPos.z - 2;
+                    } else {
+                        // Default: slow orbit around center + gentle float
+                        const baseAngle = Math.atan2(d.originalPos.y, d.originalPos.x);
+                        const distance = Math.sqrt(d.originalPos.x ** 2 + d.originalPos.y ** 2);
+                        const orbitAngle = baseAngle + time * 0.05; // Slow orbit
+                        
+                        const floatY = Math.sin(time * d.floatSpeed + d.floatOffset) * 0.3;
+                        const floatZ = Math.cos(time * d.orbitSpeed + d.floatOffset) * 0.4;
+                        
+                        targetX = Math.cos(orbitAngle) * distance;
+                        targetY = Math.sin(orbitAngle) * distance + floatY;
+                        targetZ = d.originalPos.z + floatZ;
+                    }
+                    
+                    shape.position.x += (targetX - shape.position.x) * 0.04;
+                    shape.position.y += (targetY - shape.position.y) * 0.04;
+                    shape.position.z += (targetZ - shape.position.z) * 0.04;
+                } else {
+                    shape.position.x += d.driftX;
+                    shape.position.y += Math.sin(time * d.floatSpeed + d.floatOffset) * 0.003;
+                    if (shape.position.x > 15) shape.position.x = -15;
+                    if (shape.position.x < -15) shape.position.x = 15;
+                }
+
+                if (d.hovered !== undefined) {
+                    let targetScale, targetOpacity;
+                    
+                    if (isExpanded) {
+                        // When expanded: all shapes visible but muted, expanded one highlighted
+                        targetScale = (shape === expandedShape) ? 1.3 : 0.9;
+                        targetOpacity = (shape === expandedShape) ? 0.8 : 0.3;
+                    } else if (d.hovered) {
+                        targetScale = 1.8;
+                        targetOpacity = 1;
+                    } else if (anyHovered) {
+                        targetScale = 0.7;
+                        targetOpacity = 0.4;
+                    } else {
+                        targetScale = 1;
+                        targetOpacity = 0.85;
+                    }
+                    
+                    shape.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.05);
+                    shape.material.opacity += (targetOpacity - shape.material.opacity) * 0.05;
+                }
+            });
+
+            // Particles (gentle drift)
+            const pos = particles.geometry.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                pos[i * 3] += Math.sin(time * 0.5 + i * 0.1) * 0.001;
+                pos[i * 3 + 1] += Math.cos(time * 0.3 + i * 0.1) * 0.001;
+            }
+            particles.geometry.attributes.position.needsUpdate = true;
+            particles.rotation.y += 0.0001;
+
+            // Raycasting with sticky hover (disabled when expanded)
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(interactiveShapes);
+
+            interactiveShapes.forEach(s => s.userData.hovered = false);
+
+            // Skip hover interactions when expanded or before first interaction
+            if (!isExpanded && hasInteracted) {
+                // Check if we're hovering a new shape (desktop only - touch handles its own selection)
+                if (!isTouchDevice) {
+                    if (intersects.length > 0) {
+                        const obj = intersects[0].object;
+                        stickyHoveredShape = obj; // Lock onto this shape
+                    } else if (stickyHoveredShape) {
+                        // Check distance from mouse to sticky shape's screen position
+                        const vector = stickyHoveredShape.position.clone();
+                        vector.project(camera);
+                        const shapeScreenX = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                        const shapeScreenY = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+                        const mouseScreenX = (mouse.x * 0.5 + 0.5) * window.innerWidth;
+                        const mouseScreenY = (-mouse.y * 0.5 + 0.5) * window.innerHeight;
+                        const dist = Math.sqrt((shapeScreenX - mouseScreenX) ** 2 + (shapeScreenY - mouseScreenY) ** 2);
+                        
+                        // Release if mouse is far enough away (350px threshold)
+                        if (dist > 350) {
+                            stickyHoveredShape = null;
+                        }
+                    }
+                }
+            }
+
+            if (stickyHoveredShape) {
+                stickyHoveredShape.userData.hovered = true;
+                
+                // Cycle footer text on each new hover
+                if (hoveredShape !== stickyHoveredShape && !footerTransitioning) {
+                    footerTransitioning = true;
+                    footerText.style.opacity = '0';
+                    setTimeout(() => {
+                        footerState = (footerState + 1) % footerPhrases.length;
+                        footerText.textContent = footerPhrases[footerState];
+                        footerText.style.opacity = '1';
+                        setTimeout(() => { footerTransitioning = false; }, 800);
+                    }, 800);
+                }
+
+                if (hoveredShape !== stickyHoveredShape) {
+                    hoveredShape = stickyHoveredShape;
+                    labelTitle.textContent = stickyHoveredShape.userData.name;
+                    // Show appropriate status based on shape type
+                    if (stickyHoveredShape.userData.name === 'Contact') {
+                        labelStatus.textContent = isTouchDevice ? 'rowan@otherwind.xyz' : 'click to copy email';
+                    } else if (pageContent[stickyHoveredShape.userData.name]) {
+                        labelStatus.textContent = isTouchDevice ? 'tap again to open' : 'click to learn more';
+                    } else {
+                        labelStatus.textContent = stickyHoveredShape.userData.status;
+                    }
+                }
+                
+                // Update label position to follow shape
+                const vector = stickyHoveredShape.position.clone();
+                vector.project(camera);
+                const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+
+                const labelWidth = 200;
+                const clampedX = Math.max(labelWidth/2 + 10, Math.min(window.innerWidth - labelWidth/2 - 10, x));
+                const clampedY = Math.max(60, Math.min(window.innerHeight - 100, y + 60));
+
+                label.style.left = clampedX + 'px';
+                label.style.top = clampedY + 'px';
+                label.classList.add('visible');
+                document.body.style.cursor = 'pointer';
+            } else {
+                if (hoveredShape) {
+                    hoveredShape = null;
+                    label.classList.remove('visible');
+                }
+                document.body.style.cursor = 'default';
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 150);
+        });
+
+        animate();
+        
+        // Page transition handling for internal links
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[href^="/"]');
+            if (link && !link.getAttribute('href').startsWith('mailto:')) {
+                e.preventDefault();
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = link.getAttribute('href');
+                }, 150);
+            }
+        });
     </script>
+<div class="nav-overlay" id="nav-overlay"></div>
+<script>
+document.addEventListener('click',function(e){
+    var link=e.target.closest('a[href^="/"]');
+    if(link&&!link.href.includes('mailto:')){
+        e.preventDefault();
+        document.getElementById('nav-overlay').classList.add('active');
+        setTimeout(function(){window.location.href=link.href},50);
+    }
+});
+window.addEventListener('pageshow',function(){
+    document.getElementById('nav-overlay').classList.remove('active');
+    document.body.classList.remove('fade-out');
+});
+</script>
 </body>
 </html>
