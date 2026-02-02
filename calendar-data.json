@@ -99,6 +99,16 @@
       "time": "10:00",
       "done": true,
       "notes": "Gcal event deleted - marked done via sync (2026-02-02)"
+    },
+    {
+      "id": "bd-weekly-prep-20260202",
+      "title": "BD Weekly Prep - collect items for Friday update",
+      "shortTitle": "BD Weekly Prep",
+      "date": "2026-02-02",
+      "time": "10:00",
+      "done": false,
+      "notes": "Start collecting BD items for Friday's update. Ping Adam for his items.",
+      "gcalEventId": "sj6k90lnuimbq4jvqhibv92r1o"
     }
   ],
   "dailyBriefs": {
@@ -108,5 +118,5 @@
     "2026-02-01": "scgse1cfceg4agh7qqqhdvqpck",
     "2026-02-02": "unvvmjcpkrlfukk2rq47ik3sf0"
   },
-  "updatedAt": "2026-02-02T04:00:00.000Z"
+  "updatedAt": "2026-02-02T09:00:00.000Z"
 }
