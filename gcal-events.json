@@ -9,6 +9,7 @@
     {"date": "2026-02-05", "time": "14:00", "summary": "Nadim Chamoun and Jacob Chudnovsky"},
     {"date": "2026-02-05", "time": "15:00", "summary": "Hold"},
     {"date": "2026-02-05", "time": "17:00", "summary": "Invite-Only: House of Sol Launch"},
+    {"date": "2026-02-06", "time": "10:00", "summary": "Graham / Nadim"},
     {"date": "2026-02-09", "time": "10:30", "summary": "BDxMarketing"},
     {"date": "2026-02-10", "time": "17:00", "summary": "Bhaji/ Nadim rebook"}
   ],
@@ -17,5 +18,5 @@
     {"date": "2026-02-07", "time": "09:00", "title": "Outreach: Zero Hash, Bridge, M0 (once Grove info ready)", "gcalEventId": "gl22j9k81ra2up70dl9r7hbhto"},
     {"date": "2026-02-09", "time": "09:00", "title": "Review Porkbun renewal (15-day trial ending)", "gcalEventId": "a703of5fjeqirhelcobqb0ores"}
   ],
-  "updatedAt": "2026-02-03T08:00:00.000Z"
+  "updatedAt": "2026-02-03T12:00:00.000Z"
 }
