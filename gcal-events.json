@@ -2,41 +2,34 @@
   "events": [
     {
       "date": "2026-02-03",
-      "time": "15:00",
-      "summary": "ACDRX GTM Weekly: Morpho etc",
-      "timezone": "Europe/Zurich"
-    },
-    {
-      "date": "2026-02-03",
       "time": "16:00",
-      "summary": "Tempo and Nadim Chamoun"
-    },
-    {
-      "date": "2026-02-04",
-      "time": "16:00",
-      "summary": "What's Up Centrifuge?! 🌕",
-      "timezone": "America/Vancouver"
-    },
-    {
-      "date": "2026-02-04",
-      "time": "15:00",
-      "summary": "Nadim Chamoun and Daniel Killeen"
+      "summary": "Meeting with Tempo (Ninad, Eric)",
+      "type": "external"
     },
     {
       "date": "2026-02-04",
       "time": "17:00",
-      "summary": "Blockstories Horizon 2026: London Summit"
+      "summary": "Blockstories Horizon - One Moorgate Place",
+      "type": "event"
     },
     {
       "date": "2026-02-05",
       "time": "14:00",
-      "summary": "Hold"
+      "summary": "3Jane meeting (Jacob, Josh, Uh)",
+      "type": "external"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "15:00",
+      "summary": "Hold",
+      "type": "hold"
     },
     {
       "date": "2026-02-05",
       "time": "17:00",
-      "summary": "Luma: House of Sol"
+      "summary": "Luma: House of Sol (Juergen)",
+      "type": "event"
     }
   ],
-  "updated": "2026-02-02T16:00:00.000Z"
+  "updatedAt": "2026-02-03T00:00:00.000Z"
 }
