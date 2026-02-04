@@ -1,58 +1,30 @@
 {
-  "source": "nadim@centrifuge.io",
-  "updated": "2026-02-04T00:00:00.000Z",
   "events": [
     {
-      "date": "2026-02-04T08:00:00",
+      "date": "2026-02-04",
+      "time": "08:00",
       "summary": "What's Up Centrifuge?! 🌕"
     },
     {
-      "date": "2026-02-04T09:00:00",
-      "summary": "hit up reminder"
-    },
-    {
-      "date": "2026-02-04T10:00:00",
-      "summary": "Final checks on Resolv DD / send back deadline"
-    },
-    {
-      "date": "2026-02-04T15:00:00",
-      "summary": "Nadim Chamoun and Daniel Killeen"
-    },
-    {
-      "date": "2026-02-04T17:00:00",
-      "summary": "Blockstories Horizon 2026: London Summit 🇬🇧"
-    },
-    {
-      "date": "2026-02-05T12:00:00",
-      "summary": "Coffee"
-    },
-    {
-      "date": "2026-02-05T14:00:00",
-      "summary": "Nadim Chamoun and Jacob Chudnovsky"
-    },
-    {
-      "date": "2026-02-05T15:00:00",
-      "summary": "Hold"
-    },
-    {
-      "date": "2026-02-05T17:00:00",
-      "summary": "Invite-Only: House of Sol Launch"
-    },
-    {
-      "date": "2026-02-06T10:00:00",
-      "summary": "Graham / Nadim"
-    },
-    {
-      "date": "2026-02-09T10:30:00",
+      "date": "2026-02-09",
+      "time": "10:30",
       "summary": "BDxMarketing"
     },
     {
-      "date": "2026-02-09T17:30:00",
-      "summary": "Centrifuge / Circle -- Next Phase"
+      "date": "2026-02-09",
+      "time": "17:30",
+      "summary": "deSPXA GTM Weekly"
     },
     {
-      "date": "2026-02-09T17:30:00",
-      "summary": "deSPXA GTM Weekly"
+      "date": "2026-02-10",
+      "time": "04:30",
+      "summary": "NEW: BD Pipeline Meeting (Weekly)"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "09:30",
+      "summary": "Core BD Sync"
     }
-  ]
+  ],
+  "updatedAt": "2026-02-04T04:00:00.000Z"
 }
