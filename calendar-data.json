@@ -115,9 +115,8 @@
       "shortTitle": "Pancake MMs",
       "date": "2026-02-03",
       "time": "09:00",
-      "done": false,
-      "notes": "Follow up with Pancake about market makers",
-      "gcalEventId": "m5tq04ql3cgr5g4bsc7ea83glo"
+      "done": true,
+      "notes": "Gcal event deleted - marked done via sync (2026-02-04)"
     },
     {
       "id": "grove-outreach-20260207",
@@ -139,5 +138,5 @@
     "2026-02-03": "73ta5j6e6ubaimnvcfb9vpb0jk",
     "2026-02-04": "33o0srdq5nh52b0a9t8bbjlqn0"
   },
-  "updatedAt": "2026-02-04T00:00:00.000Z"
+  "updatedAt": "2026-02-04T20:00:00.000Z"
 }

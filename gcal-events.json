@@ -1,30 +1,106 @@
 {
+  "calendar": "nadim@centrifuge.io",
   "events": [
     {
       "date": "2026-02-04",
-      "time": "08:00",
-      "summary": "What's Up Centrifuge?! 🌕"
+      "time": "09:00",
+      "endTime": "09:15",
+      "summary": "Invesco <> Centrifuge - Keel RFP",
+      "type": "meeting"
+    },
+    {
+      "date": "2026-02-04",
+      "time": "10:00",
+      "endTime": "11:00",
+      "summary": "Cian (Keel/Sky) and Graham Nelson",
+      "type": "meeting"
+    },
+    {
+      "date": "2026-02-04",
+      "time": "14:30",
+      "endTime": "17:30",
+      "summary": "Anil / Nadim - weekly",
+      "type": "meeting"
+    },
+    {
+      "date": "2026-02-04",
+      "time": "17:00",
+      "endTime": "22:30",
+      "summary": "Blockstories Horizon 2026: London Summit",
+      "type": "event"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "02:30",
+      "endTime": "03:30",
+      "summary": "Bill Lee and Nadim Chamoun",
+      "type": "meeting"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "12:00",
+      "endTime": "13:00",
+      "summary": "Coffee",
+      "type": "personal"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "14:00",
+      "endTime": "14:30",
+      "summary": "Nadim Chamoun and Jacob Chudnovsky",
+      "note": "3jane meeting",
+      "type": "meeting"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "15:00",
+      "endTime": "15:45",
+      "summary": "Adam / Nadim Weekly",
+      "type": "meeting"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "16:00",
+      "endTime": "16:30",
+      "summary": "Adam / Nadim Weekly",
+      "type": "meeting"
+    },
+    {
+      "date": "2026-02-05",
+      "time": "17:00",
+      "endTime": "20:00",
+      "summary": "Invite-Only: House of Sol Launch",
+      "note": "Solana Foundation & Superteam UK - The Old Sessions House",
+      "type": "event"
+    },
+    {
+      "date": "2026-02-06",
+      "time": "10:00",
+      "endTime": "10:30",
+      "summary": "Jeroen - BD - SYNC",
+      "type": "meeting"
+    },
+    {
+      "date": "2026-02-06",
+      "time": "11:00",
+      "endTime": "11:15",
+      "summary": "Adam / Nadim Weekly",
+      "type": "meeting"
     },
     {
       "date": "2026-02-09",
-      "time": "10:30",
-      "summary": "BDxMarketing"
+      "time": "15:30",
+      "endTime": "16:00",
+      "summary": "Matthew Fisher and Nadim Chamoun",
+      "type": "meeting"
     },
     {
       "date": "2026-02-09",
       "time": "17:30",
-      "summary": "deSPXA GTM Weekly"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "04:30",
-      "summary": "NEW: BD Pipeline Meeting (Weekly)"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "09:30",
-      "summary": "Core BD Sync"
+      "endTime": "18:00",
+      "summary": "Centrifuge / Circle -- Next Phase",
+      "type": "meeting"
     }
   ],
-  "updatedAt": "2026-02-04T16:00:00.000Z"
+  "updatedAt": "2026-02-04T20:00:00.000Z"
 }
