@@ -2,16 +2,6 @@
   "events": [
     {
       "date": "2026-02-05",
-      "time": "12:00",
-      "summary": "Coffee"
-    },
-    {
-      "date": "2026-02-05",
-      "time": "13:00",
-      "summary": "Graham / Nadim"
-    },
-    {
-      "date": "2026-02-05",
       "time": "14:00",
       "summary": "Nadim Chamoun and Jacob Chudnovsky"
     },
@@ -21,14 +11,14 @@
       "summary": "Andy / Nadim - OCL/Centrifuge"
     },
     {
-      "date": "2026-02-09",
-      "time": "15:30",
-      "summary": "AI corner"
+      "date": "2026-02-08",
+      "time": "18:00",
+      "summary": "Circus Show"
     },
     {
       "date": "2026-02-09",
-      "time": "15:30",
-      "summary": "Nadim Chamoun and Daniel Killeen"
+      "time": "10:30",
+      "summary": "BDxMarketing"
     },
     {
       "date": "2026-02-09",
@@ -37,18 +27,8 @@
     },
     {
       "date": "2026-02-10",
-      "time": "04:30",
-      "summary": "NEW: BD Pipeline Meeting (Weekly)"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "08:30",
-      "summary": "Adam / Nadim Weekly"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "10:30",
-      "summary": "V3 vaults"
+      "time": "09:30",
+      "summary": "Core BD Sync"
     },
     {
       "date": "2026-02-11",
@@ -56,5 +36,5 @@
       "summary": "Bhaji / Nadim"
     }
   ],
-  "updatedAt": "2026-02-05T16:00:00.000Z"
+  "updatedAt": "2026-02-05T20:00:00.000Z"
 }
