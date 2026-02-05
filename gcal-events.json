@@ -1,90 +1,41 @@
 {
-  "calendar": "nadim@centrifuge.io",
   "events": [
     {
       "date": "2026-02-05",
-      "time": "02:30",
-      "endTime": "03:30",
-      "summary": "Hubspot reminder",
-      "type": "reminder"
-    },
-    {
-      "date": "2026-02-05",
       "time": "12:00",
-      "endTime": "13:00",
-      "summary": "Coffee",
-      "type": "personal"
-    },
-    {
-      "date": "2026-02-05",
-      "time": "14:00",
-      "endTime": "14:30",
-      "summary": "Rootstock & Midas Institutional Skyhigh Brunch",
-      "type": "event"
-    },
-    {
-      "date": "2026-02-05",
-      "time": "15:00",
-      "endTime": "15:45",
-      "summary": "Hold",
-      "type": "hold"
-    },
-    {
-      "date": "2026-02-05",
-      "time": "16:00",
-      "endTime": "16:30",
-      "summary": "Arbitrum in-person",
-      "type": "meeting"
+      "summary": "Coffee"
     },
     {
       "date": "2026-02-05",
       "time": "17:00",
-      "endTime": "20:00",
-      "summary": "Invite-Only: House of Sol Launch",
-      "type": "event"
-    },
-    {
-      "date": "2026-02-05",
-      "time": "17:00",
-      "endTime": "21:00",
-      "summary": "Dillon Liang and Nadim Chamoun",
-      "type": "meeting"
-    },
-    {
-      "date": "2026-02-06",
-      "time": "10:00",
-      "endTime": "10:30",
-      "summary": "Daylight <> Centrifuge",
-      "type": "meeting"
+      "summary": "House of Sol Launch (Invite-Only)",
+      "url": "https://luma.com/HouseOfSol"
     },
     {
       "date": "2026-02-06",
       "time": "11:00",
-      "endTime": "11:15",
-      "summary": "Arkis (Serhii)",
-      "type": "meeting"
+      "summary": "viewing"
+    },
+    {
+      "date": "2026-02-09",
+      "time": "10:30",
+      "summary": "BDxMarketing"
     },
     {
       "date": "2026-02-09",
       "time": "15:30",
-      "endTime": "16:00",
-      "summary": "AI corner",
-      "type": "meeting"
+      "summary": "AI corner"
     },
     {
       "date": "2026-02-09",
       "time": "15:30",
-      "endTime": "16:00",
-      "summary": "Call - Nadim Chamoun + Jorge Schnura",
-      "type": "meeting"
+      "summary": "Nadim Chamoun and Daniel Killeen"
     },
     {
       "date": "2026-02-09",
       "time": "17:30",
-      "endTime": "18:00",
-      "summary": "Centrifuge / Circle -- Next Phase",
-      "type": "meeting"
+      "summary": "Centrifuge / Circle -- Next Phase"
     }
   ],
-  "updatedAt": "2026-02-05T00:00:00.000Z"
+  "updatedAt": "2026-02-05T04:00:00.000Z"
 }
