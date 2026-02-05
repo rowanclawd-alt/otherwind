@@ -7,34 +7,18 @@
     },
     {
       "date": "2026-02-05",
+      "time": "13:00",
+      "summary": "Graham / Nadim"
+    },
+    {
+      "date": "2026-02-05",
       "time": "14:00",
       "summary": "Nadim Chamoun and Jacob Chudnovsky"
     },
     {
       "date": "2026-02-05",
-      "time": "15:00",
-      "summary": "Hold"
-    },
-    {
-      "date": "2026-02-05",
       "time": "16:00",
-      "summary": "Arbitrum in-person"
-    },
-    {
-      "date": "2026-02-05",
-      "time": "17:00",
-      "summary": "House of Sol Launch",
-      "url": "https://luma.com/HouseOfSol"
-    },
-    {
-      "date": "2026-02-06",
-      "time": "10:00",
-      "summary": "Graham / Nadim"
-    },
-    {
-      "date": "2026-02-09",
-      "time": "10:30",
-      "summary": "BDxMarketing"
+      "summary": "Andy / Nadim - OCL/Centrifuge"
     },
     {
       "date": "2026-02-09",
@@ -52,14 +36,9 @@
       "summary": "deSPXA GTM Weekly"
     },
     {
-      "date": "2026-02-09",
-      "time": "17:30",
-      "summary": "Centrifuge / Circle -- Next Phase"
-    },
-    {
       "date": "2026-02-10",
-      "time": "09:30",
-      "summary": "Core BD Sync"
+      "time": "04:30",
+      "summary": "NEW: BD Pipeline Meeting (Weekly)"
     },
     {
       "date": "2026-02-11",
@@ -70,7 +49,12 @@
       "date": "2026-02-11",
       "time": "10:30",
       "summary": "V3 vaults"
+    },
+    {
+      "date": "2026-02-11",
+      "time": "16:00",
+      "summary": "Bhaji / Nadim"
     }
   ],
-  "updatedAt": "2026-02-05T08:00:00.000Z"
+  "updatedAt": "2026-02-05T16:00:00.000Z"
 }
