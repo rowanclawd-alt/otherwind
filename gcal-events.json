@@ -1,10 +1,11 @@
 {
   "source": "nadim@centrifuge.io",
-  "fetchedAt": "2026-02-06T08:00:00.000Z",
+  "fetchedAt": "2026-02-06T12:00:00.000Z",
   "range": "2026-02-06 to 2026-02-13",
   "events": [
     {"date": "2026-02-06T09:00:00Z", "summary": "Prepare V1 Legal Scope"},
     {"date": "2026-02-06T09:15:00Z", "summary": "Financials & Revised Ask"},
+    {"date": "2026-02-06T10:00:00Z", "summary": "Graham / Nadim"},
     {"date": "2026-02-06T11:00:00Z", "summary": "viewing"},
     {"date": "2026-02-08T18:00:00Z", "summary": "Circus Show"},
     {"date": "2026-02-09T10:30:00", "summary": "BDxMarketing"},
@@ -14,8 +15,11 @@
     {"date": "2026-02-09T17:30:00", "summary": "deSPXA GTM Weekly"},
     {"date": "2026-02-10T04:30:00", "summary": "NEW: BD Pipeline Meeting (Weekly)"},
     {"date": "2026-02-10T09:30:00", "summary": "Core BD Sync"},
+    {"date": "2026-02-10T10:30:00Z", "summary": "Gami and Graham Nelson"},
+    {"date": "2026-02-10T12:00:00Z", "summary": "Vino 3.0"},
     {"date": "2026-02-11T08:30:00", "summary": "Adam / Nadim Weekly"},
     {"date": "2026-02-11T10:30:00", "summary": "V3 vaults"},
-    {"date": "2026-02-11T16:00:00", "summary": "Bhaji / Nadim"}
+    {"date": "2026-02-11T16:00:00", "summary": "Bhaji / Nadim"},
+    {"date": "2026-02-12T11:00:00Z", "summary": "Call - Nadim Chamoun + Jorge Schnura"}
   ]
 }
