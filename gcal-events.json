@@ -1,6 +1,6 @@
 {
   "source": "nadim@centrifuge.io",
-  "fetchedAt": "2026-02-06T12:00:00.000Z",
+  "fetchedAt": "2026-02-06T16:00:00.000Z",
   "range": "2026-02-06 to 2026-02-13",
   "events": [
     {"date": "2026-02-06T09:00:00Z", "summary": "Prepare V1 Legal Scope"},
@@ -20,6 +20,7 @@
     {"date": "2026-02-11T08:30:00", "summary": "Adam / Nadim Weekly"},
     {"date": "2026-02-11T10:30:00", "summary": "V3 vaults"},
     {"date": "2026-02-11T16:00:00", "summary": "Bhaji / Nadim"},
-    {"date": "2026-02-12T11:00:00Z", "summary": "Call - Nadim Chamoun + Jorge Schnura"}
+    {"date": "2026-02-12T09:00:00Z", "summary": "Call - Nadim Chamoun + Jorge Schnura"},
+    {"date": "2026-02-12T14:00:00Z", "summary": "Ava Labs 30-Minute Meeting with Olivia Vande Woude"}
   ]
 }
