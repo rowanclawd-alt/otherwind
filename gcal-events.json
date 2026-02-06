@@ -1,19 +1,14 @@
 {
   "events": [
     {
-      "date": "2026-02-05",
-      "time": "14:00",
-      "summary": "Nadim Chamoun and Jacob Chudnovsky"
+      "date": "2026-02-06",
+      "time": "09:00",
+      "summary": "Prepare V1 Legal Scope"
     },
     {
-      "date": "2026-02-05",
-      "time": "16:00",
-      "summary": "Andy / Nadim - OCL/Centrifuge"
-    },
-    {
-      "date": "2026-02-08",
-      "time": "18:00",
-      "summary": "Circus Show"
+      "date": "2026-02-06",
+      "time": "09:15",
+      "summary": "Financials & Revised Ask"
     },
     {
       "date": "2026-02-09",
@@ -22,19 +17,19 @@
     },
     {
       "date": "2026-02-09",
+      "time": "15:30",
+      "summary": "Nadim Chamoun and Daniel Killeen"
+    },
+    {
+      "date": "2026-02-09",
       "time": "17:30",
-      "summary": "deSPXA GTM Weekly"
+      "summary": "Centrifuge / Circle -- Next Phase"
     },
     {
       "date": "2026-02-10",
       "time": "09:30",
       "summary": "Core BD Sync"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "16:00",
-      "summary": "Bhaji / Nadim"
     }
   ],
-  "updatedAt": "2026-02-05T20:00:00.000Z"
+  "updatedAt": "2026-02-06T00:00:00.000Z"
 }
