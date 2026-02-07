@@ -1,6 +1,6 @@
 {
   "source": "nadim@centrifuge.io",
-  "fetchedAt": "2026-02-07T04:00:00.000Z",
+  "fetchedAt": "2026-02-07T08:00:00.000Z",
   "events": [
     {"date": "2026-02-08", "time": "18:00", "summary": "Circus Show"},
     {"date": "2026-02-09", "time": "10:30", "summary": "BDxMarketing"},
@@ -17,6 +17,6 @@
     {"date": "2026-02-11", "time": "10:30", "summary": "V3 vaults"},
     {"date": "2026-02-11", "time": "16:00", "summary": "Bhaji / Nadim"},
     {"date": "2026-02-12", "time": "09:00", "summary": "Call - Nadim Chamoun + Jorge Schnura"},
-    {"date": "2026-02-12", "time": "14:00", "summary": "Ava Labs 30-Minute Meeting (clone) with Olivia Vande Woude"}
+    {"date": "2026-02-12", "time": "14:00", "summary": "Ava Labs 30-Minute Meeting with Olivia Vande Woude"}
   ]
 }
