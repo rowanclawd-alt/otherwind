@@ -1,108 +1,61 @@
 {
   "source": "nadim@centrifuge.io",
-  "fetchedAt": "2026-02-09T00:00:00.000Z",
+  "updated": "2026-02-09T04:00:00.000Z",
   "events": [
     {
       "date": "2026-02-09",
-      "time": "09:30",
-      "title": "BDxMarketing",
-      "location": "Google Meet"
+      "time": "15:30",
+      "summary": "AI corner"
     },
     {
       "date": "2026-02-09",
       "time": "15:30",
-      "title": "AI corner",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-09",
-      "time": "15:30",
-      "title": "Nadim Chamoun and Daniel Killeen",
-      "location": "Calendly"
+      "summary": "Nadim Chamoun and Daniel Killeen"
     },
     {
       "date": "2026-02-09",
       "time": "17:30",
-      "title": "deSPXA GTM Weekly / Circle Next Phase",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "04:30",
-      "title": "BD Pipeline Meeting (Weekly)",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "09:30",
-      "title": "Core BD Sync",
-      "location": "Google Meet"
+      "summary": "Centrifuge / Circle -- Next Phase"
     },
     {
       "date": "2026-02-10",
       "time": "10:30",
-      "title": "Gami / Graham Nelson",
-      "location": "Google Meet"
+      "summary": "Gami and Graham Nelson"
     },
     {
       "date": "2026-02-10",
       "time": "12:00",
-      "title": "Vino 3.0",
-      "location": "Google Meet"
+      "summary": "Vino 3.0"
     },
     {
       "date": "2026-02-10",
       "time": "16:00",
-      "title": "Meeting with PYMT / Zoran Dukic",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "08:30",
-      "title": "Adam / Nadim Weekly",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "10:30",
-      "title": "V3 vaults",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "16:00",
-      "title": "Bhaji / Nadim",
-      "location": "Google Meet"
+      "summary": "Zoran Dukic and Nadim Chamoun"
     },
     {
       "date": "2026-02-12",
       "time": "09:00",
-      "title": "Jorge Schnura call",
-      "location": "Google Meet"
+      "summary": "Call - Nadim Chamoun + Jorge Schnura"
     },
     {
       "date": "2026-02-12",
       "time": "14:00",
-      "title": "Ava Labs / Olivia Vande Woude",
-      "location": "Calendly"
+      "summary": "Ava Labs 30-Minute Meeting with Olivia Vande Woude"
     },
     {
       "date": "2026-02-12",
       "time": "19:15",
-      "title": "Rochelle",
-      "location": null
+      "summary": "Rochelle"
     },
     {
       "date": "2026-02-13",
       "time": "20:00",
-      "title": "Okko",
-      "location": null
+      "summary": "Okko"
     },
     {
       "date": "2026-02-14",
       "time": "14:00",
-      "title": "Brat 7 people",
-      "location": null
+      "summary": "Brat 7 people"
     }
   ]
 }
