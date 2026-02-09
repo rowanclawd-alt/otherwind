@@ -1,7 +1,12 @@
 {
   "source": "nadim@centrifuge.io",
-  "updated": "2026-02-09T08:00:00.000Z",
+  "updated": "2026-02-09T16:00:00.000Z",
   "events": [
+    {
+      "date": "2026-02-09",
+      "time": "11:00",
+      "summary": "Reach Outs"
+    },
     {
       "date": "2026-02-09",
       "time": "15:30",
@@ -11,11 +16,6 @@
       "date": "2026-02-09",
       "time": "15:30",
       "summary": "Nadim Chamoun and Daniel Killeen"
-    },
-    {
-      "date": "2026-02-09",
-      "time": "17:30",
-      "summary": "Centrifuge / Circle -- Next Phase"
     },
     {
       "date": "2026-02-10",
@@ -30,7 +30,17 @@
     {
       "date": "2026-02-10",
       "time": "16:00",
+      "summary": "Adam / Nadim Weekly"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "16:00",
       "summary": "Zoran Dukic and Nadim Chamoun"
+    },
+    {
+      "date": "2026-02-10",
+      "time": "17:15",
+      "summary": "Block for Ambassadors"
     },
     {
       "date": "2026-02-12",
@@ -44,18 +54,8 @@
     },
     {
       "date": "2026-02-12",
-      "time": "19:15",
-      "summary": "Rochelle"
-    },
-    {
-      "date": "2026-02-13",
-      "time": "20:00",
-      "summary": "Okko"
-    },
-    {
-      "date": "2026-02-14",
-      "time": "14:00",
-      "summary": "Brat 7 people"
+      "time": "17:30",
+      "summary": "Centrifuge / Circle -- Next Phase"
     }
   ]
 }
