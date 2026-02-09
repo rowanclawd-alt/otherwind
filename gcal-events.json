@@ -1,61 +1,129 @@
 {
   "source": "nadim@centrifuge.io",
-  "updated": "2026-02-09T16:00:00.000Z",
+  "fetchedAt": "2026-02-09T20:00:00.000Z",
   "events": [
     {
       "date": "2026-02-09",
+      "time": "08:30",
+      "title": "BDxMarketing",
+      "attendees": ["nadim", "mariia", "adam", "anil", "tomas"]
+    },
+    {
+      "date": "2026-02-09",
       "time": "11:00",
-      "summary": "Reach Outs"
+      "title": "Reach Outs",
+      "attendees": ["nadim"]
     },
     {
       "date": "2026-02-09",
       "time": "15:30",
-      "summary": "AI corner"
+      "title": "Nadim Chamoun and Daniel Killeen",
+      "attendees": ["nadim", "daniel@rowship.com", "jt@rowship.com"],
+      "note": "Rowship meeting"
     },
     {
-      "date": "2026-02-09",
-      "time": "15:30",
-      "summary": "Nadim Chamoun and Daniel Killeen"
+      "date": "2026-02-10",
+      "time": "10:00",
+      "title": "Anil / Nadim - weekly",
+      "attendees": ["nadim", "anil"]
     },
     {
       "date": "2026-02-10",
       "time": "10:30",
-      "summary": "Gami and Graham Nelson"
+      "title": "Gamilabs Meeting",
+      "attendees": ["graham", "nadim", "marien", "augustin", "leo", "dd"]
     },
     {
       "date": "2026-02-10",
       "time": "12:00",
-      "summary": "Vino 3.0"
+      "title": "Vino 3.0",
+      "attendees": ["nadim", "graham"]
     },
     {
       "date": "2026-02-10",
       "time": "16:00",
-      "summary": "Adam / Nadim Weekly"
-    },
-    {
-      "date": "2026-02-10",
-      "time": "16:00",
-      "summary": "Zoran Dukic and Nadim Chamoun"
+      "title": "Zoran Dukic (PymtFi) and Nadim Chamoun",
+      "attendees": ["nadim", "hakan", "peter", "zoran"]
     },
     {
       "date": "2026-02-10",
       "time": "17:15",
-      "summary": "Block for Ambassadors"
+      "title": "Block for Ambassadors",
+      "attendees": ["nadim"]
+    },
+    {
+      "date": "2026-02-11",
+      "time": "08:30",
+      "title": "Adam / Nadim Weekly",
+      "attendees": ["nadim", "adam"],
+      "note": "Adam declined"
+    },
+    {
+      "date": "2026-02-11",
+      "time": "09:30",
+      "title": "V3 vaults",
+      "attendees": ["nadim", "jeroen", "graham", "anil", "adam"]
+    },
+    {
+      "date": "2026-02-11",
+      "time": "16:00",
+      "title": "Bhaji / Nadim",
+      "attendees": ["nadim", "bhaji"]
+    },
+    {
+      "date": "2026-02-11",
+      "time": "16:30",
+      "title": "deSPXA GTM Weekly",
+      "attendees": ["nadim", "graham", "bhaji", "anant", "anil", "jeroen"]
     },
     {
       "date": "2026-02-12",
       "time": "09:00",
-      "summary": "Call - Nadim Chamoun + Jorge Schnura"
+      "title": "Call - Nadim Chamoun + Jorge Schnura (Keyrock/Agora)",
+      "attendees": ["nadim", "jorge", "nick@agora", "anil"]
     },
     {
       "date": "2026-02-12",
       "time": "14:00",
-      "summary": "Ava Labs 30-Minute Meeting with Olivia Vande Woude"
+      "title": "Ava Labs 30-Minute Meeting with Olivia Vande Woude",
+      "attendees": ["nadim"]
     },
     {
       "date": "2026-02-12",
       "time": "17:30",
-      "summary": "Centrifuge / Circle -- Next Phase"
+      "title": "Centrifuge / Circle -- Next Phase",
+      "attendees": ["nadim", "anil", "bhaji", "matt.stafford@circle", "drake@circle"]
+    },
+    {
+      "date": "2026-02-12",
+      "time": "19:15",
+      "title": "Rochelle",
+      "attendees": ["nadim"]
+    },
+    {
+      "date": "2026-02-13",
+      "time": "07:45",
+      "title": "DAS booking deadline",
+      "attendees": ["nadim"]
+    },
+    {
+      "date": "2026-02-13",
+      "time": "20:00",
+      "title": "Okko",
+      "attendees": ["nadim"]
+    },
+    {
+      "date": "2026-02-14",
+      "time": "14:00",
+      "title": "Brat 7 people",
+      "attendees": ["nadim"],
+      "duration": "2h 15m"
+    },
+    {
+      "date": "2026-02-16",
+      "time": "16:30",
+      "title": "deSPXA GTM Weekly",
+      "attendees": ["nadim", "graham", "anant", "anil", "jeroen"]
     }
   ]
 }
