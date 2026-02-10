@@ -1,9 +1,7 @@
 {
-  "updatedAt": "2026-02-10T08:00:00.000Z",
+  "updatedAt": "2026-02-10T12:00:00.000Z",
   "events": [
-    {"date": "2026-02-10", "time": "10:00", "summary": "Anil / Nadim - weekly"},
-    {"date": "2026-02-10", "time": "10:30", "summary": "Gami and Graham Nelson"},
-    {"date": "2026-02-10", "time": "12:00", "summary": "Vino 3.0"},
+    {"date": "2026-02-10", "time": "12:30", "summary": "Vino 3.0"},
     {"date": "2026-02-10", "time": "16:00", "summary": "ACDRX GTM Weekly: Morpho etc"},
     {"date": "2026-02-10", "time": "16:00", "summary": "Zoran Dukic and Nadim Chamoun"},
     {"date": "2026-02-10", "time": "17:15", "summary": "Block for Ambassadors"},
@@ -11,7 +9,7 @@
     {"date": "2026-02-11", "time": "10:30", "summary": "V3 vaults"},
     {"date": "2026-02-11", "time": "17:30", "summary": "deSPXA GTM Weekly"},
     {"date": "2026-02-12", "time": "09:00", "summary": "Call - Nadim Chamoun + Jorge Schnura"},
-    {"date": "2026-02-12", "time": "14:00", "summary": "Ava Labs 30-Minute Meeting with Olivia Vande Woude"},
+    {"date": "2026-02-12", "time": "14:00", "summary": "Ava Labs - Olivia Vande Woude"},
     {"date": "2026-02-12", "time": "17:30", "summary": "Centrifuge / Circle -- Next Phase"},
     {"date": "2026-02-12", "time": "19:15", "summary": "Rochelle"},
     {"date": "2026-02-13", "time": "07:45", "summary": "DAS booking deadline"},
