@@ -1,15 +1,19 @@
 {
-  "fetchedAt": "2026-02-11T12:00:00.000Z",
+  "fetchedAt": "2026-02-11T16:00:00.000Z",
   "events": [
     {"date": "2026-02-11T16:00:00", "summary": "Arkonix Investment Committee -- Centrifuge WL"},
-    {"date": "2026-02-11T17:30:00", "summary": "deSPXA GTM Weekly"},
+    {"date": "2026-02-11T17:45:00", "summary": "deSPXA GTM Weekly"},
     {"date": "2026-02-12T09:00:00", "summary": "Call - Nadim Chamoun + Jorge Schnura"},
     {"date": "2026-02-12T10:00:00", "summary": "OpenClawd setup!"},
     {"date": "2026-02-12T14:00:00", "summary": "Ava Labs 30-Minute Meeting with Olivia Vande Woude"},
     {"date": "2026-02-12T17:30:00", "summary": "Centrifuge / Circle -- Next Phase"},
+    {"date": "2026-02-12T19:15:00", "summary": "Rochelle"},
+    {"date": "2026-02-13T07:45:00", "summary": "DAS booking deadline"},
     {"date": "2026-02-13T15:00:00", "summary": "Katya Ternopolska and Nadim Chamoun"},
+    {"date": "2026-02-13T20:00:00", "summary": "Okko"},
     {"date": "2026-02-14T14:00:00", "summary": "Brat 7 people"},
     {"date": "2026-02-16T17:30:00", "summary": "deSPXA GTM Weekly"},
-    {"date": "2026-02-17T16:00:00", "summary": "ACDRX GTM Weekly: Morpho etc"}
+    {"date": "2026-02-17T16:00:00", "summary": "ACDRX GTM Weekly: Morpho etc"},
+    {"date": "2026-02-17T20:15:00", "summary": "Planque"}
   ]
 }
