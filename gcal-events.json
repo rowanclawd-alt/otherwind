@@ -1,81 +1,23 @@
 {
-  "source": "nadim@centrifuge.io",
-  "updated": "2026-02-12T00:00:00.000Z",
   "events": [
     {
-      "date": "2026-02-12",
-      "time": "09:00 UTC",
-      "summary": "Call - Nadim Chamoun + Jorge Schnura"
+      "summary": "Katya Ternopolska and Nadim Chamoun",
+      "start": "2026-02-13T15:00:00Z",
+      "end": "2026-02-13T15:30:00Z",
+      "location": "Google Meet",
+      "meetLink": "https://meet.google.com/poh-xnds-dcc"
     },
     {
-      "date": "2026-02-12",
-      "time": "10:00 UTC",
-      "summary": "OpenClawd setup!"
-    },
-    {
-      "date": "2026-02-12",
-      "time": "14:00 UTC",
-      "summary": "Ava Labs 30-Minute Meeting with Olivia Vande Woude"
-    },
-    {
-      "date": "2026-02-12",
-      "time": "17:30 UTC",
-      "summary": "Centrifuge / Circle -- Next Phase"
-    },
-    {
-      "date": "2026-02-12",
-      "time": "19:15 UTC",
-      "summary": "Rochelle"
-    },
-    {
-      "date": "2026-02-13",
-      "time": "07:45 UTC",
-      "summary": "DAS booking deadline"
-    },
-    {
-      "date": "2026-02-13",
-      "time": "15:00 UTC",
-      "summary": "Katya Ternopolska and Nadim Chamoun"
-    },
-    {
-      "date": "2026-02-13",
-      "time": "20:00 UTC",
-      "summary": "Okko"
-    },
-    {
-      "date": "2026-02-14",
-      "time": "14:00 UTC",
-      "summary": "Brat 7 people"
-    },
-    {
-      "date": "2026-02-16",
-      "time": "17:30 CET",
-      "summary": "deSPXA GTM Weekly"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "16:00 CET",
-      "summary": "ACDRX GTM Weekly: Morpho etc"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "14:30 UTC",
-      "summary": "Nadim Chamoun and Ryan Turner"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "20:15 UTC",
-      "summary": "Planque"
-    },
-    {
-      "date": "2026-02-18",
-      "time": "07:00 UTC",
-      "summary": "check on embassy"
-    },
-    {
-      "date": "2026-02-18",
-      "time": "07:30 PST",
-      "summary": "AI corner"
+      "summary": "Brat 7 people",
+      "start": "2026-02-14T14:00:00Z",
+      "end": "2026-02-14T16:15:00Z",
+      "location": null,
+      "meetLink": null
     }
-  ]
+  ],
+  "fetchedAt": "2026-02-12T04:00:00.000Z",
+  "range": {
+    "from": "2026-02-12",
+    "to": "2026-02-19"
+  }
 }
