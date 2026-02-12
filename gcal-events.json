@@ -1,31 +1,11 @@
 {
   "source": "nadim@centrifuge.io",
-  "updated": "2026-02-11T20:00:00.000Z",
+  "updated": "2026-02-12T00:00:00.000Z",
   "events": [
     {
-      "date": "2026-02-11",
-      "time": "06:15 UTC",
-      "summary": "rules of engagement and process work"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "08:30 GMT",
-      "summary": "Adam / Nadim Weekly"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "11:00 UTC",
-      "summary": "Product Spec Focus Session"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "16:00 UTC",
-      "summary": "Arkonix Investment Committee -- Centrifuge WL"
-    },
-    {
-      "date": "2026-02-11",
-      "time": "16:00 GMT",
-      "summary": "Bhaji / Nadim"
+      "date": "2026-02-12",
+      "time": "09:00 UTC",
+      "summary": "Call - Nadim Chamoun + Jorge Schnura"
     },
     {
       "date": "2026-02-12",
@@ -35,7 +15,7 @@
     {
       "date": "2026-02-12",
       "time": "14:00 UTC",
-      "summary": "Ava Labs 30-Minute Meeting (clone) with Olivia Vande Woude"
+      "summary": "Ava Labs 30-Minute Meeting with Olivia Vande Woude"
     },
     {
       "date": "2026-02-12",
@@ -49,8 +29,18 @@
     },
     {
       "date": "2026-02-13",
+      "time": "07:45 UTC",
+      "summary": "DAS booking deadline"
+    },
+    {
+      "date": "2026-02-13",
       "time": "15:00 UTC",
       "summary": "Katya Ternopolska and Nadim Chamoun"
+    },
+    {
+      "date": "2026-02-13",
+      "time": "20:00 UTC",
+      "summary": "Okko"
     },
     {
       "date": "2026-02-14",
