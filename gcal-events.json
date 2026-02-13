@@ -1,17 +1,15 @@
 {
-  "calendar": "nadim@centrifuge.io",
-  "fetchedAt": "2026-02-12T20:00:21Z",
-  "range": "2026-02-12 to 2026-02-19",
+  "fetchedAt": "2026-02-13T00:00:00Z",
+  "rangeStart": "2026-02-13",
+  "rangeEnd": "2026-02-19",
+  "note": "ICS was truncated; recurring event instances may be missing. Only explicit events in range are shown.",
   "events": [
     {
-      "summary": "AI corner",
-      "start": "2026-02-18T15:30:00Z",
-      "end": "2026-02-18T16:00:00Z",
-      "organizer": "bhaji@centrifuge.io",
-      "location": "Google Meet",
-      "description": "monthly standing session to share what we've all working on and learning",
-      "meetLink": "https://meet.google.com/kia-qbxp-rto"
+      "summary": "Planque",
+      "start": "2026-02-17T20:15:00Z",
+      "end": "2026-02-17T21:30:00Z",
+      "location": null,
+      "organizer": null
     }
-  ],
-  "note": "ICS was truncated at 50KB; some recurring events may be missing. Only 1 event found in next 7 days from available data."
+  ]
 }
