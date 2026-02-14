@@ -1,16 +1,19 @@
-[
-  {"start":"2026-02-14T14:00:00+00:00","end":"2026-02-14T16:15:00Z","summary":"Brat 7 people"},
-  {"start":"2026-02-16T10:00:00+00:00","end":"2026-02-16T10:15:00Z","summary":"Resolv checks: KYB, DDQ, Subscription, Side Letter, Rebate, En"},
-  {"start":"2026-02-16T11:00:00+00:00","end":"2026-02-16T11:30:00Z","summary":"Sonny Sood and Nadim Chamoun"},
-  {"start":"2026-02-16T14:00:00+00:00","end":"2026-02-16T14:30:00Z","summary":"Fabio Federici and Nadim Chamoun"},
-  {"start":"2026-02-16T15:30:00+00:00","end":"2026-02-16T16:00:00Z","summary":"Tempo and Nadim Chamoun"},
-  {"start":"2026-02-16T17:30:00+00:00","end":"2026-02-16T18:00:00Z","summary":"deSPXA GTM Weekly"},
-  {"start":"2026-02-17T14:00:00+00:00","end":"2026-02-17T14:30:00Z","summary":"Katya Ternopolska and Nadim Chamoun"},
-  {"start":"2026-02-17T14:30:00+00:00","end":"2026-02-17T15:00:00Z","summary":"Nadim Chamoun and Ryan Turner"},
-  {"start":"2026-02-17T16:00:00+00:00","end":"2026-02-17T16:30:00Z","summary":"ACDRX GTM Weekly: Morpho etc"},
-  {"start":"2026-02-17T20:15:00+00:00","end":"2026-02-17T21:30:00Z","summary":"Planque"},
-  {"start":"2026-02-18T07:00:00+00:00","end":"2026-02-18T07:15:00Z","summary":"check on embassy"},
-  {"start":"2026-02-18T07:30:00+00:00","end":"2026-02-18T08:00:00Z","summary":"AI corner"},
-  {"start":"2026-02-18T12:30:00+00:00","end":"2026-02-18T13:00:00Z","summary":"Giuliano Tell and Nadim Chamoun"},
-  {"start":"2026-02-18T15:00:00+00:00","end":"2026-02-18T15:30:00Z","summary":"Robert G Blair Jr and Nadim Chamoun"}
-]
+{
+  "fetchedAt": "2026-02-14T04:00:00.000Z",
+  "events": [
+    { "date": "2026-02-14", "time": "14:00-16:15 UTC", "summary": "Brat 7 people" },
+    { "date": "2026-02-16", "time": "10:00-10:15 UTC", "summary": "Resolv checks: KYB, DDQ, Subscription, Side Letter, Rebate, Engineering Testing" },
+    { "date": "2026-02-16", "time": "11:00-11:30 UTC", "summary": "Sonny Sood and Nadim Chamoun" },
+    { "date": "2026-02-16", "time": "14:00-14:30 UTC", "summary": "Fabio Federici and Nadim Chamoun" },
+    { "date": "2026-02-16", "time": "15:30-16:00 UTC", "summary": "Tempo and Nadim Chamoun" },
+    { "date": "2026-02-16", "time": "17:30-18:00 GMT", "summary": "deSPXA GTM Weekly" },
+    { "date": "2026-02-17", "time": "14:00-14:30 UTC", "summary": "Katya Ternopolska and Nadim Chamoun" },
+    { "date": "2026-02-17", "time": "14:30-15:00 UTC", "summary": "Nadim Chamoun and Ryan Turner" },
+    { "date": "2026-02-17", "time": "16:00-16:30 GMT", "summary": "ACDRX GTM Weekly: Morpho etc" },
+    { "date": "2026-02-17", "time": "20:15-21:30 UTC", "summary": "Planque" },
+    { "date": "2026-02-18", "time": "07:00-07:15 UTC", "summary": "check on embassy" },
+    { "date": "2026-02-18", "time": "07:30-08:00 PST", "summary": "AI corner" },
+    { "date": "2026-02-18", "time": "12:30-13:00 UTC", "summary": "Giuliano Tell and Nadim Chamoun" },
+    { "date": "2026-02-18", "time": "15:00-15:30 UTC", "summary": "Robert G Blair Jr and Nadim Chamoun" }
+  ]
+}
