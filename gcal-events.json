@@ -1,83 +1,18 @@
 {
-  "updatedAt": "2026-02-15T04:00:00Z",
+  "updated": "2026-02-15T08:00:00Z",
   "events": [
-    {
-      "date": "2026-02-16",
-      "time": "10:00",
-      "endTime": "10:15",
-      "summary": "Resolv checks: KYB, DDQ, Subscription, Side Letter, Rebate, En"
-    },
-    {
-      "date": "2026-02-16",
-      "time": "11:00",
-      "endTime": "11:30",
-      "summary": "Sonny Sood and Nadim Chamoun"
-    },
-    {
-      "date": "2026-02-16",
-      "time": "14:00",
-      "endTime": "14:30",
-      "summary": "Fabio Federici and Nadim Chamoun"
-    },
-    {
-      "date": "2026-02-16",
-      "time": "15:30",
-      "endTime": "16:00",
-      "summary": "Tempo and Nadim Chamoun"
-    },
-    {
-      "date": "2026-02-16",
-      "time": "17:30",
-      "endTime": "18:00",
-      "summary": "deSPXA GTM Weekly"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "14:00",
-      "endTime": "14:30",
-      "summary": "Katya Ternopolska and Nadim Chamoun"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "14:30",
-      "endTime": "15:00",
-      "summary": "Nadim Chamoun and Ryan Turner"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "16:00",
-      "endTime": "16:30",
-      "summary": "ACDRX GTM Weekly: Morpho etc"
-    },
-    {
-      "date": "2026-02-17",
-      "time": "20:15",
-      "endTime": "21:30",
-      "summary": "Planque"
-    },
-    {
-      "date": "2026-02-18",
-      "time": "07:00",
-      "endTime": "07:15",
-      "summary": "check on embassy"
-    },
-    {
-      "date": "2026-02-18",
-      "time": "07:30",
-      "endTime": "08:00",
-      "summary": "AI corner"
-    },
-    {
-      "date": "2026-02-18",
-      "time": "12:30",
-      "endTime": "13:00",
-      "summary": "Giuliano Tell and Nadim Chamoun"
-    },
-    {
-      "date": "2026-02-18",
-      "time": "15:00",
-      "endTime": "15:30",
-      "summary": "Robert G Blair Jr and Nadim Chamoun"
-    }
+    {"date": "2026-02-16T10:00:00Z", "summary": "Resolv checks: KYB, DDQ, Subscription, Side Letter, Rebate, En"},
+    {"date": "2026-02-16T11:00:00Z", "summary": "Sonny Sood and Nadim Chamoun"},
+    {"date": "2026-02-16T14:00:00Z", "summary": "Fabio Federici and Nadim Chamoun"},
+    {"date": "2026-02-16T15:30:00Z", "summary": "Tempo and Nadim Chamoun"},
+    {"date": "2026-02-16T17:30:00Z", "summary": "deSPXA GTM Weekly"},
+    {"date": "2026-02-17T14:00:00Z", "summary": "Katya Ternopolska and Nadim Chamoun"},
+    {"date": "2026-02-17T14:30:00Z", "summary": "Nadim Chamoun and Ryan Turner"},
+    {"date": "2026-02-17T16:00:00Z", "summary": "ACDRX GTM Weekly: Morpho etc"},
+    {"date": "2026-02-17T20:15:00Z", "summary": "Planque"},
+    {"date": "2026-02-18T07:00:00Z", "summary": "check on embassy"},
+    {"date": "2026-02-18T07:30:00Z", "summary": "AI corner"},
+    {"date": "2026-02-18T12:30:00Z", "summary": "Giuliano Tell and Nadim Chamoun"},
+    {"date": "2026-02-18T15:00:00Z", "summary": "Robert G Blair Jr and Nadim Chamoun"}
   ]
 }
