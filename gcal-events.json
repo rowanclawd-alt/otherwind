@@ -1,92 +1,83 @@
 {
-  "fetchedAt": "2026-02-15T00:00:00Z",
+  "updatedAt": "2026-02-15T04:00:00Z",
   "events": [
     {
       "date": "2026-02-16",
       "time": "10:00",
-      "tz": "UTC",
-      "summary": "Resolv checks: KYB, DDQ, Subscription, Side Letter, Rebate, Engineering Testing"
+      "endTime": "10:15",
+      "summary": "Resolv checks: KYB, DDQ, Subscription, Side Letter, Rebate, En"
     },
     {
       "date": "2026-02-16",
       "time": "11:00",
-      "tz": "UTC",
-      "summary": "Sonny Sood and Nadim Chamoun",
-      "attendees": ["sonny@synxlabs.com", "nicolas@synxlabs.com"]
+      "endTime": "11:30",
+      "summary": "Sonny Sood and Nadim Chamoun"
     },
     {
       "date": "2026-02-16",
       "time": "14:00",
-      "tz": "UTC",
+      "endTime": "14:30",
       "summary": "Fabio Federici and Nadim Chamoun"
     },
     {
       "date": "2026-02-16",
       "time": "15:30",
-      "tz": "UTC",
-      "summary": "Tempo and Nadim Chamoun",
-      "attendees": ["ninad@tempo.xyz", "eric@tempo.xyz"]
+      "endTime": "16:00",
+      "summary": "Tempo and Nadim Chamoun"
     },
     {
       "date": "2026-02-16",
-      "time": "16:30",
-      "tz": "UTC",
-      "summary": "deSPXA GTM Weekly",
-      "note": "17:30 Europe/Zurich = 16:30 UTC"
+      "time": "17:30",
+      "endTime": "18:00",
+      "summary": "deSPXA GTM Weekly"
     },
     {
       "date": "2026-02-17",
       "time": "14:00",
-      "tz": "UTC",
-      "summary": "Katya Ternopolska and Nadim Chamoun",
-      "attendees": ["kternopolska@sentora.com"]
+      "endTime": "14:30",
+      "summary": "Katya Ternopolska and Nadim Chamoun"
     },
     {
       "date": "2026-02-17",
       "time": "14:30",
-      "tz": "UTC",
-      "summary": "Nadim Chamoun and Ryan Turner",
-      "attendees": ["ryan@arkonix.xyz", "nestor@arkonix.xyz", "jeroen@centrifuge.io"]
+      "endTime": "15:00",
+      "summary": "Nadim Chamoun and Ryan Turner"
     },
     {
       "date": "2026-02-17",
-      "time": "15:00",
-      "tz": "UTC",
-      "summary": "ACDRX GTM Weekly: Morpho etc",
-      "note": "16:00 Europe/Zurich = 15:00 UTC"
+      "time": "16:00",
+      "endTime": "16:30",
+      "summary": "ACDRX GTM Weekly: Morpho etc"
     },
     {
       "date": "2026-02-17",
       "time": "20:15",
-      "tz": "UTC",
+      "endTime": "21:30",
       "summary": "Planque"
     },
     {
       "date": "2026-02-18",
       "time": "07:00",
-      "tz": "UTC",
+      "endTime": "07:15",
       "summary": "check on embassy"
     },
     {
       "date": "2026-02-18",
+      "time": "07:30",
+      "endTime": "08:00",
+      "summary": "AI corner"
+    },
+    {
+      "date": "2026-02-18",
       "time": "12:30",
-      "tz": "UTC",
-      "summary": "Giuliano Tell and Nadim Chamoun",
-      "attendees": ["giuliano.tell@bxdigital.ch", "claudio.tognella@bxdigital.ch"]
+      "endTime": "13:00",
+      "summary": "Giuliano Tell and Nadim Chamoun"
     },
     {
       "date": "2026-02-18",
       "time": "15:00",
-      "tz": "UTC",
-      "summary": "Robert G Blair Jr and Nadim Chamoun",
-      "attendees": ["rob@comanchex.com"]
-    },
-    {
-      "date": "2026-02-18",
-      "time": "15:30",
-      "tz": "UTC",
-      "summary": "AI corner (internal)",
-      "note": "07:30 America/Los_Angeles = 15:30 UTC"
+      "endTime": "15:30",
+      "summary": "Robert G Blair Jr and Nadim Chamoun"
     }
   ]
 }
