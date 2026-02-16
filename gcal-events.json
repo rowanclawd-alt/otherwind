@@ -1,19 +1,83 @@
 {
+  "updated": "2026-02-16T20:00:00Z",
   "events": [
-    {"date": "2026-02-16", "time": "10:00", "summary": "Resolv checks: KYB, DDQ, Subscription, Side Letter, Rebate"},
-    {"date": "2026-02-16", "time": "11:00", "summary": "Sonny Sood and Nadim Chamoun"},
-    {"date": "2026-02-16", "time": "14:00", "summary": "Fabio Federici and Nadim Chamoun"},
-    {"date": "2026-02-16", "time": "15:30", "summary": "Tempo and Nadim Chamoun"},
-    {"date": "2026-02-16", "time": "17:30", "summary": "deSPXA GTM Weekly"},
-    {"date": "2026-02-17", "time": "14:00", "summary": "Katya Ternopolska and Nadim Chamoun"},
-    {"date": "2026-02-17", "time": "14:30", "summary": "Nadim Chamoun and Ryan Turner"},
-    {"date": "2026-02-17", "time": "16:00", "summary": "ACDRX GTM Weekly: Morpho etc"},
-    {"date": "2026-02-17", "time": "20:15", "summary": "Planque"},
-    {"date": "2026-02-18", "time": "07:00", "summary": "check on embassy"},
-    {"date": "2026-02-18", "time": "07:30", "summary": "AI corner"},
-    {"date": "2026-02-18", "time": "12:30", "summary": "Giuliano Tell and Nadim Chamoun"},
-    {"date": "2026-02-18", "time": "15:00", "summary": "Robert G Blair Jr and Nadim Chamoun"}
-  ],
-  "updatedAt": "2026-02-16T04:00:00Z",
-  "range": "2026-02-16 to 2026-02-22"
+    {
+      "date": "2026-02-17",
+      "time": "13:00",
+      "summary": "DeFi Vaults Product",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-17",
+      "time": "14:00",
+      "summary": "Katya Ternopolska and Nadim Chamoun",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-17",
+      "time": "14:30",
+      "summary": "Nadim Chamoun and Ryan Turner",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-17",
+      "time": "15:00",
+      "summary": "ACDRX GTM Weekly: Morpho etc",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-17",
+      "time": "16:30",
+      "summary": "deSPXA GTM Weekly",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-17",
+      "time": "20:15",
+      "summary": "Planque",
+      "duration": 75
+    },
+    {
+      "date": "2026-02-18",
+      "time": "07:00",
+      "summary": "check on embassy",
+      "duration": 15
+    },
+    {
+      "date": "2026-02-18",
+      "time": "12:30",
+      "summary": "Giuliano Tell and Nadim Chamoun",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-18",
+      "time": "15:00",
+      "summary": "Robert G Blair Jr and Nadim Chamoun",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-18",
+      "time": "15:30",
+      "summary": "AI corner",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-20",
+      "time": "19:00",
+      "summary": "Castle - LRC",
+      "duration": 60
+    },
+    {
+      "date": "2026-02-25",
+      "time": "09:30",
+      "summary": "Sync - Product <> BD",
+      "duration": 60
+    },
+    {
+      "date": "2026-02-26",
+      "time": "10:30",
+      "summary": "Alex Pishchelka and Nadim Chamoun",
+      "duration": 30
+    }
+  ]
 }
