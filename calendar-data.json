@@ -127,6 +127,15 @@
       "done": false,
       "notes": "Reach out to Zero Hash, Bridge, M0 - should have Grove info by Friday",
       "gcalEventId": "gl22j9k81ra2up70dl9r7hbhto"
+    },
+    {
+      "id": "bd-weekly-prep-20260216",
+      "title": "BD Weekly Prep - collect items for Friday update",
+      "shortTitle": "BD Weekly Prep",
+      "date": "2026-02-16",
+      "time": "10:00",
+      "done": false,
+      "notes": "Gather BD items from Nadim + request Adam's items for Friday update"
     }
   ],
   "dailyBriefs": {
@@ -139,5 +148,5 @@
     "2026-02-04": "33o0srdq5nh52b0a9t8bbjlqn0",
     "2026-02-05": "tpop22u6hf685suo5e24sudk74"
   },
-  "updatedAt": "2026-02-09T20:00:00.000Z"
+  "updatedAt": "2026-02-16T09:00:00.000Z"
 }
