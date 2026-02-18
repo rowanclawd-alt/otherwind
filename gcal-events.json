@@ -1,29 +1,50 @@
 {
-  "fetchedAt": "2026-02-17T13:01:00Z",
   "events": [
     {
-      "date": "2026-02-17",
-      "time": "14:00",
-      "summary": "Sentora - Katya Ternopolska",
-      "type": "external"
+      "date": "2026-02-18",
+      "time": "07:00",
+      "summary": "Check on embassy",
+      "duration": 15
     },
     {
-      "date": "2026-02-17",
-      "time": "14:30",
-      "summary": "Arkonix - Ryan Turner",
-      "type": "external"
+      "date": "2026-02-18",
+      "time": "07:30",
+      "summary": "AI corner",
+      "duration": 30,
+      "meet": "https://meet.google.com/kia-qbxp-rto"
+    },
+    {
+      "date": "2026-02-18",
+      "time": "12:30",
+      "summary": "Giuliano Tell and Nadim Chamoun",
+      "duration": 30
     },
     {
       "date": "2026-02-18",
       "time": "15:00",
-      "summary": "ACDRX GTM Weekly: Morpho etc",
-      "type": "recurring"
+      "summary": "Robert G Blair Jr and Nadim Chamoun",
+      "duration": 30
     },
     {
-      "date": "2026-02-18",
-      "time": "TBD",
-      "summary": "Core BD Sync",
-      "type": "recurring"
+      "date": "2026-02-20",
+      "time": "15:30",
+      "summary": "Zoran Dukic and Nadim Chamoun",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-20",
+      "time": "19:00",
+      "summary": "Castle - LRC",
+      "duration": 30
+    },
+    {
+      "date": "2026-02-23",
+      "time": null,
+      "summary": "DAS NEW YORK",
+      "duration": "5 days",
+      "allDay": true,
+      "dateEnd": "2026-02-28"
     }
-  ]
+  ],
+  "updatedAt": "2026-02-18T04:00:00Z"
 }
