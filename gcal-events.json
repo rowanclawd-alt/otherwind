@@ -1,50 +1,59 @@
 {
+  "fetchedAt": "2026-02-18T20:00:00Z",
   "events": [
     {
-      "date": "2026-02-18",
-      "time": "07:00",
-      "summary": "Check on embassy",
-      "duration": 15
+      "date": "2026-02-19",
+      "time": "07:45",
+      "end": "08:15",
+      "summary": "CoWork House of Sol"
     },
     {
-      "date": "2026-02-18",
-      "time": "07:30",
-      "summary": "AI corner",
-      "duration": 30,
-      "meet": "https://meet.google.com/kia-qbxp-rto"
+      "date": "2026-02-19",
+      "time": "15:30",
+      "end": "16:00",
+      "summary": "Resolv / Centrifuge"
     },
     {
-      "date": "2026-02-18",
-      "time": "12:30",
-      "summary": "Giuliano Tell and Nadim Chamoun",
-      "duration": 30
-    },
-    {
-      "date": "2026-02-18",
-      "time": "15:00",
-      "summary": "Robert G Blair Jr and Nadim Chamoun",
-      "duration": 30
+      "date": "2026-02-20",
+      "time": "14:00",
+      "end": "14:20",
+      "summary": "Mariia, Centrifuge | 20m (Lera N)"
     },
     {
       "date": "2026-02-20",
       "time": "15:30",
-      "summary": "Zoran Dukic and Nadim Chamoun",
-      "duration": 30
+      "end": "16:00",
+      "summary": "Zoran Dukic and Nadim Chamoun"
+    },
+    {
+      "date": "2026-02-20",
+      "time": "17:00",
+      "end": "21:00",
+      "summary": "Fireside & Drinks with Fuse Energy"
     },
     {
       "date": "2026-02-20",
       "time": "19:00",
-      "summary": "Castle - LRC",
-      "duration": 30
+      "end": "20:00",
+      "summary": "Castle - LRC"
     },
     {
       "date": "2026-02-23",
-      "time": null,
-      "summary": "DAS NEW YORK",
-      "duration": "5 days",
-      "allDay": true,
-      "dateEnd": "2026-02-28"
+      "time": "11:00",
+      "end": "11:30",
+      "summary": "Poopman (Henry) <> CFG and Nadim Chamoun"
+    },
+    {
+      "date": "2026-02-23",
+      "time": "13:00",
+      "end": "13:30",
+      "summary": "Jason and Nadim Chamoun"
+    },
+    {
+      "date": "2026-02-25",
+      "time": "10:30",
+      "end": "11:30",
+      "summary": "Sync - Product <> BD"
     }
-  ],
-  "updatedAt": "2026-02-18T04:00:00Z"
+  ]
 }
