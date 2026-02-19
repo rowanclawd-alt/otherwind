@@ -1,20 +1,75 @@
 {
-  "fetchedAt": "2026-02-19T04:00:00Z",
+  "fetchedAt": "2026-02-19T08:00:00Z",
   "events": [
+    {
+      "date": "2026-02-19",
+      "time": "07:45",
+      "duration": 30,
+      "summary": "CoWork House of Sol",
+      "location": "Old Sessions House, 22 Clerkenwell Grn, London EC1R 0NA",
+      "recurring": "weekly Thu"
+    },
+    {
+      "date": "2026-02-19",
+      "time": "10:00",
+      "duration": 30,
+      "summary": "Romeo Ravagnan (3F)",
+      "attendees": ["romeo.ravagnan@3f.xyz"],
+      "meet": "https://meet.google.com/mqv-abam-zvj"
+    },
+    {
+      "date": "2026-02-19",
+      "time": "15:30",
+      "duration": 30,
+      "summary": "Tim @ Resolv + Anil",
+      "attendees": ["tim@resolv.im", "anil@anemoy.io"],
+      "meet": "https://meet.google.com/ycm-juzw-hzg"
+    },
     {
       "date": "2026-02-20",
       "time": "14:00",
       "duration": 20,
-      "summary": "Resolv meeting",
-      "attendees": ["mariia@centrifuge.io", "lera@resolv.im", "nadim@centrifuge.io", "tomas@centrifuge.io"],
+      "summary": "Resolv meeting (Lera)",
+      "attendees": ["lera@resolv.im", "mariia@centrifuge.io", "tomas@centrifuge.io"],
       "meet": "https://meet.google.com/hgb-vriy-myi"
     },
     {
       "date": "2026-02-20",
-      "time": "08:00",
-      "duration": 15,
-      "summary": "Monthly check-in (3rd Friday recurring)",
-      "uid": "4e0a56bhu2gks8qvqdim4rr1i9"
+      "time": "17:00",
+      "duration": 240,
+      "summary": "Somerset House Co-Working + After Event",
+      "location": "Somerset House, The Exchange Co Working Space, London",
+      "url": "https://luma.com/event/evt-iqK1C2OgkaBQ51L"
+    },
+    {
+      "date": "2026-02-23",
+      "time": "11:00",
+      "duration": 30,
+      "summary": "Henry Poon meeting",
+      "attendees": ["henrypoon0730@gmail.com"],
+      "meet": "https://meet.google.com/nuv-ivrc-ksu"
+    },
+    {
+      "date": "2026-02-23",
+      "time": "13:00",
+      "duration": 30,
+      "summary": "Euler (Jason + Kanv)",
+      "attendees": ["jason@euler.xyz", "kanv@euler.xyz"]
+    },
+    {
+      "date": "2026-02-25",
+      "time": "09:30",
+      "duration": 60,
+      "summary": "Monthly meeting (Frederik)",
+      "recurring": "monthly 4th Wed"
+    },
+    {
+      "date": "2026-02-26",
+      "time": "17:00",
+      "duration": 180,
+      "summary": "Solana Research Institute event",
+      "location": "Knotel at The Old Sessions House, London",
+      "url": "https://luma.com/event/evt-4ZdBtn3AuBBarBT"
     }
   ]
 }
