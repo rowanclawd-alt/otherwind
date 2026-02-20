@@ -1,60 +1,53 @@
 {
-  "fetchedAt": "2026-02-20T08:00:00Z",
-  "source": "nadim@centrifuge.io",
-  "upcoming": [
+  "updatedAt": "2026-02-20T16:00:00Z",
+  "events": [
     {
-      "date": "2026-02-20",
-      "time": "14:00 UTC",
-      "summary": "Mariia, Centrifuge | 20m (Lera N)",
-      "duration": "20m"
+      "start": "2026-02-20T17:00:00Z",
+      "summary": "Fireside & Drinks with Fuse Energy"
     },
     {
-      "date": "2026-02-20",
-      "time": "15:30 UTC",
-      "summary": "Zoran Dukic and Nadim Chamoun",
-      "duration": "30m"
+      "start": "2026-02-20T19:00:00Z",
+      "summary": "Castle - LRC"
     },
     {
-      "date": "2026-02-20",
-      "time": "19:00 UTC",
-      "summary": "Castle - LRC",
-      "duration": "1h"
+      "start": "2026-02-23T11:00:00Z",
+      "summary": "Poopman (Henry) <> CFG and Nadim Chamoun"
     },
     {
-      "date": "2026-02-23",
-      "time": "11:00 UTC",
-      "summary": "Poopman (Henry) <> CFG and Nadim Chamoun",
-      "duration": "30m"
+      "start": "2026-02-23T13:00:00Z",
+      "summary": "Jason and Nadim Chamoun"
     },
     {
-      "date": "2026-02-23",
-      "time": "13:00 UTC",
-      "summary": "Jason and Nadim Chamoun",
-      "duration": "30m"
+      "start": "2026-02-23T14:30:00Z",
+      "summary": "Andre Geest and Nadim Chamoun"
     },
     {
-      "date": "2026-02-23",
-      "time": "14:30 UTC",
-      "summary": "Andre Geest and Nadim Chamoun",
-      "duration": "30m"
+      "start": "2026-02-23T15:00:00Z",
+      "summary": "Nadim Chamoun and Phil Fogel - Re: Cork"
     },
     {
-      "date": "2026-02-25",
-      "time": "09:30 UTC",
-      "summary": "Sync - Product <> BD",
-      "duration": "1h"
+      "start": "2026-02-23T15:30:00Z",
+      "summary": "Zoran Dukic and Nadim Chamoun"
     },
     {
-      "date": "2026-02-26",
-      "time": "10:30 UTC",
-      "summary": "Alex Pishchelka and Nadim Chamoun",
-      "duration": "30m"
+      "start": "2026-02-24T10:00:00Z",
+      "summary": "Nadim Chamoun and Robin"
     },
     {
-      "date": "2026-02-26",
-      "time": "17:00 UTC",
-      "summary": "Solana Research Institute Launch",
-      "duration": "3h"
+      "start": "2026-02-24T11:30:00Z",
+      "summary": "Nadim Chamoun and Alexander Essle"
+    },
+    {
+      "start": "2026-02-25T10:30:00Z",
+      "summary": "Sync - Product <> BD"
+    },
+    {
+      "start": "2026-02-26T10:30:00Z",
+      "summary": "Alex Pishchelka and Nadim Chamoun"
+    },
+    {
+      "start": "2026-02-26T17:00:00Z",
+      "summary": "Solana Research Institute Launch"
     }
   ]
 }
