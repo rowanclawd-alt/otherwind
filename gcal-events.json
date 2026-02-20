@@ -1,77 +1,60 @@
 {
-  "events": [
+  "fetchedAt": "2026-02-20T08:00:00Z",
+  "source": "nadim@centrifuge.io",
+  "upcoming": [
     {
-      "date": "2026-02-19T07:45",
-      "end": "08:15",
-      "summary": "CoWork House of Sol",
-      "location": "Old Sessions House, Clerkenwell"
+      "date": "2026-02-20",
+      "time": "14:00 UTC",
+      "summary": "Mariia, Centrifuge | 20m (Lera N)",
+      "duration": "20m"
     },
     {
-      "date": "2026-02-19T10:00",
-      "end": "10:30",
-      "summary": "Chat w/Nadim"
-    },
-    {
-      "date": "2026-02-19T11:00",
-      "end": "12:00",
-      "summary": "Draft"
-    },
-    {
-      "date": "2026-02-19T15:30",
-      "end": "16:00",
-      "summary": "Resolv / Centrifuge"
-    },
-    {
-      "date": "2026-02-20T14:00",
-      "end": "14:20",
-      "summary": "Mariia, Centrifuge | 20m (Lera N)"
-    },
-    {
-      "date": "2026-02-20T15:30",
-      "end": "16:00",
+      "date": "2026-02-20",
+      "time": "15:30 UTC",
       "summary": "Zoran Dukic and Nadim Chamoun",
-      "location": "Google Meet"
+      "duration": "30m"
     },
     {
-      "date": "2026-02-20T17:00",
-      "end": "21:00",
-      "summary": "Fireside & Drinks with Fuse Energy",
-      "location": "Somerset House"
+      "date": "2026-02-20",
+      "time": "19:00 UTC",
+      "summary": "Castle - LRC",
+      "duration": "1h"
     },
     {
-      "date": "2026-02-20T19:00",
-      "end": "20:00",
-      "summary": "Castle - LRC"
+      "date": "2026-02-23",
+      "time": "11:00 UTC",
+      "summary": "Poopman (Henry) <> CFG and Nadim Chamoun",
+      "duration": "30m"
     },
     {
-      "date": "2026-02-23T11:00",
-      "end": "11:30",
-      "summary": "Poopman (Henry) <> CFG",
-      "location": "Google Meet"
-    },
-    {
-      "date": "2026-02-23T13:00",
-      "end": "13:30",
+      "date": "2026-02-23",
+      "time": "13:00 UTC",
       "summary": "Jason and Nadim Chamoun",
-      "location": "Google Meet"
+      "duration": "30m"
     },
     {
-      "date": "2026-02-23T14:30",
-      "end": "15:00",
+      "date": "2026-02-23",
+      "time": "14:30 UTC",
       "summary": "Andre Geest and Nadim Chamoun",
-      "location": "Google Meet"
+      "duration": "30m"
     },
     {
-      "date": "2026-02-25T10:30",
-      "end": "11:30",
-      "summary": "Sync - Product <> BD"
+      "date": "2026-02-25",
+      "time": "09:30 UTC",
+      "summary": "Sync - Product <> BD",
+      "duration": "1h"
     },
     {
-      "date": "2026-02-26T10:30",
-      "end": "11:00",
+      "date": "2026-02-26",
+      "time": "10:30 UTC",
       "summary": "Alex Pishchelka and Nadim Chamoun",
-      "location": "Google Meet"
+      "duration": "30m"
+    },
+    {
+      "date": "2026-02-26",
+      "time": "17:00 UTC",
+      "summary": "Solana Research Institute Launch",
+      "duration": "3h"
     }
-  ],
-  "updatedAt": "2026-02-19T16:00:33.089502Z"
+  ]
 }
