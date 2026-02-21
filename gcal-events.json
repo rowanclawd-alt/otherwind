@@ -1,95 +1,93 @@
-{
-  "events": [
-    {
-      "summary": "Mariia, Centrifuge | 20m (Lera N)",
-      "start": "2026-02-20T14:00:00Z",
-      "end": "2026-02-20T14:20:00Z"
-    },
-    {
-      "summary": "Fireside & Drinks with Fuse Energy",
-      "start": "2026-02-20T17:00:00Z",
-      "end": "2026-02-20T21:00:00Z"
-    },
-    {
-      "summary": "Castle - LRC",
-      "start": "2026-02-20T19:00:00Z",
-      "end": "2026-02-20T20:00:00Z"
-    },
-    {
-      "summary": "Poopman (Henry) <> CFG",
-      "start": "2026-02-23T11:00:00Z",
-      "end": "2026-02-23T11:30:00Z"
-    },
-    {
-      "summary": "Jason and Nadim Chamoun",
-      "start": "2026-02-23T13:00:00Z",
-      "end": "2026-02-23T13:30:00Z"
-    },
-    {
-      "summary": "Andre Geest and Nadim Chamoun",
-      "start": "2026-02-23T14:30:00Z",
-      "end": "2026-02-23T15:00:00Z"
-    },
-    {
-      "summary": "Nadim Chamoun and Phil Fogel - Re: Cork",
-      "start": "2026-02-23T15:00:00Z",
-      "end": "2026-02-23T15:30:00Z"
-    },
-    {
-      "summary": "Zoran Dukic and Nadim Chamoun",
-      "start": "2026-02-23T15:30:00Z",
-      "end": "2026-02-23T16:00:00Z"
-    },
-    {
-      "summary": "Nadim / Bhaji - quick sync",
-      "start": "2026-02-23T17:15:00Z",
-      "end": "2026-02-23T17:30:00Z"
-    },
-    {
-      "summary": "R3 / Centrifuge (Solana tokenisation, NYLI, deep-dive)",
-      "start": "2026-02-23T17:30:00Z",
-      "end": "2026-02-23T18:30:00Z"
-    },
-    {
-      "summary": "deSPXA GTM Weekly",
-      "start": "2026-02-23T17:30:00Z",
-      "end": "2026-02-23T18:00:00Z"
-    },
-    {
-      "summary": "Nadim Chamoun and Robin",
-      "start": "2026-02-24T10:00:00Z",
-      "end": "2026-02-24T10:30:00Z"
-    },
-    {
-      "summary": "Nadim Chamoun and Alexander Essle",
-      "start": "2026-02-24T11:30:00Z",
-      "end": "2026-02-24T12:00:00Z"
-    },
-    {
-      "summary": "ACDRX GTM Weekly: Morpho etc",
-      "start": "2026-02-24T16:00:00Z",
-      "end": "2026-02-24T16:30:00Z"
-    },
-    {
-      "summary": "Sync - Product <> BD",
-      "start": "2026-02-25T10:30:00Z",
-      "end": "2026-02-25T11:30:00Z"
-    },
-    {
-      "summary": "Alex Pishchelka and Nadim Chamoun",
-      "start": "2026-02-26T10:30:00Z",
-      "end": "2026-02-26T11:00:00Z"
-    },
-    {
-      "summary": "Mark+Leo (Martin Quensel)",
-      "start": "2026-02-26T16:30:00Z",
-      "end": "2026-02-26T17:00:00Z"
-    },
-    {
-      "summary": "Solana Research Institute Launch",
-      "start": "2026-02-26T17:00:00Z",
-      "end": "2026-02-26T20:00:00Z"
-    }
-  ],
-  "updated": "2026-02-21T08:00:00Z"
-}
+<string>:9: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[
+  {
+    "summary": "\u200b\u200b\u200b\u200bFireside & Drinks with Fuse Energy",
+    "start": "20260220T170000Z",
+    "end": "20260220T210000Z"
+  },
+  {
+    "summary": "Castle - LRC",
+    "start": "20260220T190000Z",
+    "end": "20260220T200000Z"
+  },
+  {
+    "summary": "Poopman (Henry)  <> CFG and Nadim Chamoun",
+    "start": "20260223T110000Z",
+    "end": "20260223T113000Z"
+  },
+  {
+    "summary": "Jason and Nadim Chamoun",
+    "start": "20260223T130000Z",
+    "end": "20260223T133000Z"
+  },
+  {
+    "summary": "Andre Geest and Nadim Chamoun",
+    "start": "20260223T143000Z",
+    "end": "20260223T150000Z"
+  },
+  {
+    "summary": "Nadim Chamoun and Phil Fogel - Re: Cork",
+    "start": "20260223T150000Z",
+    "end": "20260223T153000Z"
+  },
+  {
+    "summary": "Zoran Dukic and Nadim Chamoun",
+    "start": "20260223T153000Z",
+    "end": "20260223T160000Z"
+  },
+  {
+    "summary": "Nadim / Bhaji - quick sync",
+    "start": "20260223T171500Z",
+    "end": "20260223T173000Z"
+  },
+  {
+    "summary": "deSPXA GTM Weekly",
+    "start": "20260223T173000",
+    "end": "20260223T180000"
+  },
+  {
+    "summary": "R3 / Centrifuge  (Solana tokenisation\\, NYLI\\, deep-dive\\, etc)",
+    "start": "20260223T173000Z",
+    "end": "20260223T183000Z"
+  },
+  {
+    "summary": "Nadim Chamoun and Robin",
+    "start": "20260224T100000Z",
+    "end": "20260224T103000Z"
+  },
+  {
+    "summary": "Nadim Chamoun and Alexander Essle",
+    "start": "20260224T113000Z",
+    "end": "20260224T120000Z"
+  },
+  {
+    "summary": "ACDRX GTM Weekly: Morpho etc",
+    "start": "20260224T160000",
+    "end": "20260224T163000"
+  },
+  {
+    "summary": "Sync - Product <> BD",
+    "start": "20260225T103000",
+    "end": "20260225T113000"
+  },
+  {
+    "summary": "Sync - Product <> BD",
+    "start": "20260225T103000",
+    "end": "20260225T113000"
+  },
+  {
+    "summary": "Alex Pishchelka and Nadim Chamoun",
+    "start": "20260226T103000Z",
+    "end": "20260226T110000Z"
+  },
+  {
+    "summary": "Mark+Leo (Martin Quensel)",
+    "start": "20260226T163000Z",
+    "end": "20260226T170000Z"
+  },
+  {
+    "summary": "Solana Research Institute Launch",
+    "start": "20260226T170000Z",
+    "end": "20260226T200000Z"
+  }
+]
