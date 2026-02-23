@@ -1,47 +1,23 @@
 [
   {
-    "summary": "Resolv checks: KYB\\, DDQ\\, Subscription\\, Side Letter\\, Rebate\\, En",
-    "start": "20260216T100000Z",
-    "end": "20260216T101500Z",
-    "uid": "7sh1eiamvs5lknji5hibg3rjjf@google.com"
-  },
-  {
-    "summary": "Sonny Sood and Nadim Chamoun",
-    "start": "20260216T110000Z",
-    "end": "20260216T113000Z",
-    "location": "Google Meet (instructions in description)",
-    "uid": "0hvl21dm0lal9cdjnh1st98ukk@google.com"
-  },
-  {
-    "summary": "Fabio Federici and Nadim Chamoun",
-    "start": "20260216T140000Z",
-    "end": "20260216T143000Z",
-    "location": "Google Meet (instructions in description)",
-    "uid": "skjntbl35tt57pcikduinplk5g@google.com"
-  },
-  {
-    "summary": "Tempo and Nadim Chamoun",
-    "start": "20260216T153000Z",
-    "end": "20260216T160000Z",
-    "location": "Google Meet (instructions in description)",
-    "uid": "pbus37f34u05nt47d825doqfhk@google.com"
-  },
-  {
     "summary": "deSPXA GTM Weekly",
     "start": "20260216T173000",
     "end": "20260216T180000",
+    "location": "",
     "uid": "666ddba684d3474e8a35421421f28ee6_R20260216T163000@google.com"
   },
   {
     "summary": "Resolv <> Centrifuge",
     "start": "20260216T180000Z",
     "end": "20260216T183000Z",
+    "location": "",
     "uid": "6mlospju96m81ivu8u3npb8bhf@google.com"
   },
   {
     "summary": "DeFi Vaults Product",
     "start": "20260217T130000Z",
     "end": "20260217T133000Z",
+    "location": "",
     "uid": "2pqv26olt7j0jur9cfm5f62v4o@google.com"
   },
   {
@@ -62,30 +38,35 @@
     "summary": "deSPXA GTM Weekly",
     "start": "20260217T173000",
     "end": "20260217T180000",
+    "location": "",
     "uid": "666ddba684d3474e8a35421421f28ee6_R20260216T163000@google.com"
   },
   {
     "summary": "Planque",
     "start": "20260217T201500Z",
     "end": "20260217T213000Z",
+    "location": "",
     "uid": "6n7hbtpv9kpovb16k7l52dihjo@google.com"
   },
   {
     "summary": "check on embassy",
     "start": "20260218T070000Z",
     "end": "20260218T071500Z",
+    "location": "",
     "uid": "5b93h3bvi06bqbnj01blju08gb@google.com"
   },
   {
     "summary": "AI corner",
     "start": "20260218T073000",
     "end": "20260218T080000",
+    "location": "",
     "uid": "0qk70bi83mlnrkn2hh5r4lf76v@google.com"
   },
   {
     "summary": "AI corner",
     "start": "20260218T073000",
     "end": "20260218T080000",
+    "location": "",
     "uid": "0qk70bi83mlnrkn2hh5r4lf76v@google.com"
   },
   {
@@ -103,8 +84,10 @@
     "uid": "osej3ee3u8kal20119vmrb22v8@google.com"
   },
   {
+    "summary": "",
     "start": "20260218T173000Z",
     "end": "20260218T183000Z",
+    "location": "",
     "uid": "4rcktbg6iqhcqma7ov1fvuhk8s@google.com"
   },
   {
@@ -118,24 +101,28 @@
     "summary": "Chat w/Nadim",
     "start": "20260219T100000Z",
     "end": "20260219T103000Z",
+    "location": "",
     "uid": "3bn032rlv90svbpu8sv6s1co4l@google.com"
   },
   {
     "summary": "Draft",
     "start": "20260219T110000Z",
     "end": "20260219T120000Z",
+    "location": "",
     "uid": "6ugntavpaebr7i7qs599jgbg8g@google.com"
   },
   {
     "summary": "Resolv / Centrifuge",
     "start": "20260219T153000Z",
     "end": "20260219T160000Z",
+    "location": "",
     "uid": "1fj42uft18ehanf6ufapkg995p@google.com"
   },
   {
     "summary": "Mariia\\, Centrifuge | 20m (Lera N)",
     "start": "20260220T140000Z",
     "end": "20260220T142000Z",
+    "location": "",
     "uid": "ce2ui2b4487voniinn7h52aeas@google.com"
   },
   {
@@ -156,6 +143,7 @@
     "summary": "Castle - LRC",
     "start": "20260220T190000Z",
     "end": "20260220T200000Z",
+    "location": "",
     "uid": "0sr8i8psfrnutfhs5njuach81k@google.com"
   },
   {
@@ -164,6 +152,20 @@
     "end": "20260223T113000Z",
     "location": "Google Meet (instructions in description)",
     "uid": "p6dm53hvsq5sp05gu1lv2k19h0@google.com"
+  },
+  {
+    "summary": "David Plisek and Anil Sood",
+    "start": "20260223T113000Z",
+    "end": "20260223T120000Z",
+    "location": "Google Meet (instructions in description)",
+    "uid": "kd8g6n8rrink9rgdriv26ttuno@google.com"
+  },
+  {
+    "summary": "Call",
+    "start": "20260223T123000Z",
+    "end": "20260223T130000Z",
+    "location": "",
+    "uid": "7r1nigrt5rf4464nimr3e0snnm@google.com"
   },
   {
     "summary": "Jason and Nadim Chamoun",
@@ -183,6 +185,7 @@
     "summary": "Nadim Chamoun and Phil Fogel - Re: Cork",
     "start": "20260223T150000Z",
     "end": "20260223T153000Z",
+    "location": "",
     "uid": "e9im6r31d5miqsr3d1im8tbcd5n6ebbcd5n6meim64t66pj3cop68ohh5lgjicr55kq6cdp"
   },
   {
@@ -196,12 +199,14 @@
     "summary": "Nadim / Bhaji - quick sync",
     "start": "20260223T171500Z",
     "end": "20260223T173000Z",
+    "location": "",
     "uid": "1j6o5mh2bmmoonoe011rfvgqb5@google.com"
   },
   {
     "summary": "deSPXA GTM Weekly",
     "start": "20260223T173000",
     "end": "20260223T180000",
+    "location": "",
     "uid": "666ddba684d3474e8a35421421f28ee6_R20260216T163000@google.com"
   },
   {
@@ -215,6 +220,7 @@
     "summary": "NEW: BD Pipeline Meeting (Weekly)",
     "start": "20260224T043000",
     "end": "20260224T050000",
+    "location": "",
     "uid": "d7937e4b9028415b9f16af097da544c5_R20251118T093000@google.com"
   },
   {
@@ -235,18 +241,28 @@
     "summary": "ACDRX GTM Weekly: Morpho etc",
     "start": "20260224T160000",
     "end": "20260224T163000",
+    "location": "",
     "uid": "40e625ccf71244e881479ee5f58b1863_R20260120T150000@google.com"
+  },
+  {
+    "summary": "Hubspot Deadline",
+    "start": "20260225T080000Z",
+    "end": "20260225T081500Z",
+    "location": "",
+    "uid": "50jro6n85cfe6qitd8jqetgq2q@google.com"
   },
   {
     "summary": "Sync - Product <> BD",
     "start": "20260225T103000",
     "end": "20260225T113000",
+    "location": "",
     "uid": "6ua3ur65qj3ipi3jikbgd1ghdf@google.com"
   },
   {
     "summary": "Sync - Product <> BD",
     "start": "20260225T103000",
     "end": "20260225T113000",
+    "location": "",
     "uid": "6ua3ur65qj3ipi3jikbgd1ghdf@google.com"
   },
   {
@@ -260,6 +276,7 @@
     "summary": "Mark+Leo (Martin Quensel)",
     "start": "20260226T163000Z",
     "end": "20260226T170000Z",
+    "location": "",
     "uid": "c0ip99ema3pvddsk9cslva4e90@google.com"
   },
   {
@@ -273,6 +290,7 @@
     "summary": "Anil / Nadim - weekly",
     "start": "20260302T103000",
     "end": "20260302T110000",
+    "location": "",
     "uid": "4n3jaabkqlrohtims3kb5d3foh@google.com"
   }
 ]
