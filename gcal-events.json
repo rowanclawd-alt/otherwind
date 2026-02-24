@@ -1,18 +1,125 @@
 {
   "events": [
-    {"start": "2026-02-24T04:30:00Z", "end": "2026-02-24T05:00:00Z", "summary": "NEW: BD Pipeline Meeting (Weekly)"},
-    {"start": "2026-02-24T10:00:00Z", "end": "2026-02-24T10:30:00Z", "summary": "Nadim Chamoun and Robin"},
-    {"start": "2026-02-24T11:30:00Z", "end": "2026-02-24T12:00:00Z", "summary": "Nadim Chamoun and Alexander Essle"},
-    {"start": "2026-02-24T17:30:00Z", "end": "2026-02-24T18:00:00Z", "summary": "Kraken / Centrifuge"},
-    {"start": "2026-02-25T08:00:00Z", "end": "2026-02-25T09:00:00Z", "summary": "Hubspot Deadline"},
-    {"start": "2026-02-25T10:30:00Z", "end": "2026-02-25T11:00:00Z", "summary": "Sync - Product <> BD"},
-    {"start": "2026-02-26T10:30:00Z", "end": "2026-02-26T11:00:00Z", "summary": "Alex Pishchelka and Nadim Chamoun"},
-    {"start": "2026-02-26T15:00:00Z", "end": "2026-02-26T15:30:00Z", "summary": "Anant/Nadim"},
-    {"start": "2026-02-26T16:30:00Z", "end": "2026-02-26T17:00:00Z", "summary": "Mark+Leo (Martin Quensel)"},
-    {"start": "2026-02-26T17:00:00Z", "end": "2026-02-26T18:00:00Z", "summary": "Solana Research Institute Launch"},
-    {"start": "2026-02-27T14:00:00Z", "end": "2026-02-27T14:30:00Z", "summary": "Centrifuge / Castle Island VC - DeFi Product & Distribution"},
-    {"start": "2026-03-02T10:30:00Z", "end": "2026-03-02T11:00:00Z", "summary": "Anil / Nadim - weekly"}
+    {
+      "summary": "NEW: BD Pipeline Meeting (Weekly)",
+      "start": "20260224T043000",
+      "end": "20260224T050000",
+      "date": "2026-02-24",
+      "time": "04:30"
+    },
+    {
+      "summary": "Nadim Chamoun and Robin",
+      "start": "20260224T100000Z",
+      "end": "20260224T103000Z",
+      "date": "2026-02-24",
+      "time": "10:00"
+    },
+    {
+      "summary": "Nadim Chamoun and Alexander Essle",
+      "start": "20260224T113000Z",
+      "end": "20260224T120000Z",
+      "date": "2026-02-24",
+      "time": "11:30"
+    },
+    {
+      "summary": "Hubspot Deadline",
+      "start": "20260225T080000Z",
+      "end": "20260225T081500Z",
+      "date": "2026-02-25",
+      "time": "08:00"
+    },
+    {
+      "summary": "Sync - Product <> BD",
+      "start": "20260225T103000",
+      "end": "20260225T113000",
+      "date": "2026-02-25",
+      "time": "10:30"
+    },
+    {
+      "summary": "Sync - Product <> BD",
+      "start": "20260225T103000",
+      "end": "20260225T113000",
+      "date": "2026-02-25",
+      "time": "10:30"
+    },
+    {
+      "summary": "Alex Pishchelka and Nadim Chamoun",
+      "start": "20260226T103000Z",
+      "end": "20260226T110000Z",
+      "date": "2026-02-26",
+      "time": "10:30"
+    },
+    {
+      "summary": "Anant/Nadim",
+      "start": "20260226T150000Z",
+      "end": "20260226T152500Z",
+      "date": "2026-02-26",
+      "time": "15:00"
+    },
+    {
+      "summary": "Solana Research Institute Launch",
+      "start": "20260226T170000Z",
+      "end": "20260226T200000Z",
+      "date": "2026-02-26",
+      "time": "17:00"
+    },
+    {
+      "summary": "Mark+Leo (Martin Quensel)",
+      "start": "20260226T183000Z",
+      "end": "20260226T190000Z",
+      "date": "2026-02-26",
+      "time": "18:30"
+    },
+    {
+      "summary": "Aur\u00e9lien and Nadim Chamoun",
+      "start": "20260227T103000Z",
+      "end": "20260227T110000Z",
+      "date": "2026-02-27",
+      "time": "10:30"
+    },
+    {
+      "summary": "Alex Chehade and Nadim Chamoun",
+      "start": "20260227T110000Z",
+      "end": "20260227T113000Z",
+      "date": "2026-02-27",
+      "time": "11:00"
+    },
+    {
+      "summary": "Centrifuge / Castle Island VC - DeFi Product & Distribution",
+      "start": "20260227T140000Z",
+      "end": "20260227T143000Z",
+      "date": "2026-02-27",
+      "time": "14:00"
+    },
+    {
+      "summary": "NEIN!",
+      "start": "20260227T170000Z",
+      "end": "20260227T200000Z",
+      "date": "2026-02-27",
+      "time": "17:00"
+    },
+    {
+      "summary": "Anil / Nadim - weekly",
+      "start": "20260302T103000",
+      "end": "20260302T110000",
+      "date": "2026-03-02",
+      "time": "10:30"
+    },
+    {
+      "summary": "Jeroen Gillekens and Nadim Chamoun",
+      "start": "20260302T110000Z",
+      "end": "20260302T113000Z",
+      "date": "2026-03-02",
+      "time": "11:00"
+    },
+    {
+      "summary": "Euler x Centrifuge (recurring)",
+      "start": "20260302T130000",
+      "end": "20260302T133000",
+      "date": "2026-03-02",
+      "time": "13:00"
+    }
   ],
-  "updatedAt": "2026-02-24T08:00:00Z",
-  "source": "nadim@centrifuge.io ICS"
+  "count": 17,
+  "updated": "2026-02-24T16:00:38.539382+00:00"
 }
