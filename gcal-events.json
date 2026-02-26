@@ -1,95 +1,93 @@
 {
   "events": [
     {
+      "date": "2026-02-26T10:30:00.000Z",
       "summary": "Alex Pishchelka and Nadim Chamoun",
-      "start": "2026-02-26T10:30:00",
       "location": "Google Meet (instructions in description)"
     },
     {
-      "summary": "Anant/Nadim",
-      "start": "2026-02-26T15:00:00",
-      "location": null
+      "date": "2026-02-26T15:00:00.000Z",
+      "summary": "Anant/Nadim"
     },
     {
+      "date": "2026-02-26T17:00:00.000Z",
       "summary": "Solana Research Institute Launch",
-      "start": "2026-02-26T17:00:00",
       "location": "Knotel at The Old Sessions House\\, 23 Clerkenwell Grn\\, London EC1"
     },
     {
-      "summary": "Mark+Leo (Martin Quensel)",
-      "start": "2026-02-26T18:30:00",
-      "location": null
+      "date": "2026-02-26T18:30:00.000Z",
+      "summary": "Mark+Leo (Martin Quensel)"
     },
     {
-      "summary": "Aur\u00e9lien and Nadim Chamoun",
-      "start": "2026-02-27T10:30:00",
+      "date": "2026-02-27T10:30:00.000Z",
+      "summary": "Aurélien and Nadim Chamoun",
       "location": "Google Meet (instructions in description)"
     },
     {
+      "date": "2026-02-27T11:00:00.000Z",
       "summary": "Alex Chehade and Nadim Chamoun",
-      "start": "2026-02-27T11:00:00",
       "location": "Google Meet (instructions in description)"
     },
     {
-      "summary": "Centrifuge / Castle Island VC - DeFi Product & Distribution",
-      "start": "2026-02-27T14:00:00",
-      "location": null
+      "date": "2026-02-27T14:00:00.000Z",
+      "summary": "Centrifuge / Castle Island VC - DeFi Product & Distribution"
     },
     {
+      "date": "2026-02-27T15:00:00.000Z",
       "summary": "Salim Talout and Nadim Chamoun",
-      "start": "2026-02-27T15:00:00",
       "location": "Google Meet (instructions in description)"
     },
     {
-      "summary": "NEIN!",
-      "start": "2026-02-27T17:00:00",
-      "location": null
+      "date": "2026-03-02T10:30:00.000Z",
+      "summary": "Anil / Nadim - weekly"
     },
     {
-      "summary": "Anil / Nadim - weekly",
-      "start": "2026-03-02T10:30:00",
-      "location": null
-    },
-    {
+      "date": "2026-03-02T11:00:00.000Z",
       "summary": "Jeroen Gillekens and Nadim Chamoun",
-      "start": "2026-03-02T11:00:00",
       "location": "Google Meet (instructions in description)"
     },
     {
+      "date": "2026-03-02T11:30:00.000Z",
       "summary": "andrew and Nadim Chamoun",
-      "start": "2026-03-02T11:30:00",
       "location": "Google Meet (instructions in description)"
     },
     {
+      "date": "2026-03-02T13:00:00.000Z",
       "summary": "Euler x Centrifuge (recurring)",
-      "start": "2026-03-02T13:00:00",
       "location": "Google Meet (instructions in description)"
     },
     {
+      "date": "2026-03-02T13:00:00.000Z",
       "summary": "Euler x Centrifuge (recurring)",
-      "start": "2026-03-02T13:00:00",
       "location": "Google Meet (instructions in description)"
     },
     {
+      "date": "2026-03-02T14:30:00.000Z",
+      "summary": "Leo Henkels and Nadim Chamoun",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "date": "2026-03-03T10:30:00.000Z",
       "summary": "Nadim Chamoun and Alpkan Ornek",
-      "start": "2026-03-03T10:30:00",
       "location": "Google Meet (instructions in description)"
     },
     {
-      "summary": "What's Up Centrifuge?! \ud83c\udf15",
-      "start": "2026-03-04T08:00:00",
-      "location": null
+      "date": "2026-03-03T14:00:00.000Z",
+      "summary": "Nadim Chamoun and Ryan Turner",
+      "location": "Google Meet (instructions in description)"
     },
     {
-      "summary": "\u25b6\ufe0f ACRDX Launch Announcement @ 11:00 AM ET",
-      "start": "2026-03-04T15:45:00",
-      "location": null
+      "date": "2026-03-04T08:00:00.000Z",
+      "summary": "What's Up Centrifuge?! 🌕"
     },
     {
-      "summary": "R3 <> Centrifuge",
-      "start": "2026-03-04T17:00:00",
-      "location": null
+      "date": "2026-03-04T15:45:00.000Z",
+      "summary": "▶️ ACRDX Launch Announcement @ 11:00 AM ET"
+    },
+    {
+      "date": "2026-03-04T17:00:00.000Z",
+      "summary": "R3 <> Centrifuge"
     }
   ],
-  "updated": "2026-02-26T08:00:00Z"
+  "updated": "2026-02-26T16:00:20.391Z"
 }
