@@ -1,274 +1,95 @@
-[
-  {
-    "summary": "CoWork House of Sol",
-    "start": "2026-02-19T07:45:00+00:00",
-    "uid": "3s9ikb9dr90rb8t5qbvsauttd2@google.com",
-    "end": "2026-02-19T08:15:00+00:00",
-    "location": "Old Sessions House\\, 22 Clerkenwell Grn\\, London EC1R 0NA\\, UK"
-  },
-  {
-    "summary": "Chat w/Nadim",
-    "start": "2026-02-19T10:00:00+00:00",
-    "uid": "3bn032rlv90svbpu8sv6s1co4l@google.com",
-    "end": "2026-02-19T10:30:00+00:00"
-  },
-  {
-    "summary": "Draft",
-    "start": "2026-02-19T11:00:00+00:00",
-    "uid": "6ugntavpaebr7i7qs599jgbg8g@google.com",
-    "end": "2026-02-19T12:00:00+00:00"
-  },
-  {
-    "summary": "Resolv / Centrifuge",
-    "start": "2026-02-19T15:30:00+00:00",
-    "uid": "1fj42uft18ehanf6ufapkg995p@google.com",
-    "end": "2026-02-19T16:00:00+00:00"
-  },
-  {
-    "summary": "Mariia\\, Centrifuge | 20m (Lera N)",
-    "start": "2026-02-20T14:00:00+00:00",
-    "uid": "ce2ui2b4487voniinn7h52aeas@google.com",
-    "end": "2026-02-20T14:20:00+00:00"
-  },
-  {
-    "summary": "Canceled: Zoran Dukic and Nadim Chamoun",
-    "start": "2026-02-20T15:30:00+00:00",
-    "uid": "aoag4r3mv95f013amfib85no9s@google.com",
-    "end": "2026-02-20T16:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "\u200b\u200b\u200b\u200bFireside & Drinks with Fuse Energy",
-    "start": "2026-02-20T17:00:00+00:00",
-    "uid": "evt-iqK1C2OgkaBQ51L@events.lu.ma",
-    "end": "2026-02-20T21:00:00+00:00",
-    "location": "Somerset House\\, Strand\\, London WC2R 1LA\\, UK"
-  },
-  {
-    "summary": "Castle - LRC",
-    "start": "2026-02-20T19:00:00+00:00",
-    "uid": "0sr8i8psfrnutfhs5njuach81k@google.com",
-    "end": "2026-02-20T20:00:00+00:00"
-  },
-  {
-    "summary": "Poopman (Henry)  <> CFG and Nadim Chamoun",
-    "start": "2026-02-23T11:00:00+00:00",
-    "uid": "p6dm53hvsq5sp05gu1lv2k19h0@google.com",
-    "end": "2026-02-23T11:30:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "David Plisek and Anil Sood",
-    "start": "2026-02-23T11:30:00+00:00",
-    "uid": "kd8g6n8rrink9rgdriv26ttuno@google.com",
-    "end": "2026-02-23T12:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Call",
-    "start": "2026-02-23T12:30:00+00:00",
-    "uid": "7r1nigrt5rf4464nimr3e0snnm@google.com",
-    "end": "2026-02-23T13:00:00+00:00"
-  },
-  {
-    "summary": "Jason and Nadim Chamoun",
-    "start": "2026-02-23T13:00:00+00:00",
-    "uid": "s6mv0kllla4icb3pfhp7is6d3s@google.com",
-    "end": "2026-02-23T13:30:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Andre Geest and Nadim Chamoun",
-    "start": "2026-02-23T14:30:00+00:00",
-    "uid": "2e4mgaovbdfr160fs4jpaqd26o@google.com",
-    "end": "2026-02-23T15:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Nadim Chamoun and Phil Fogel - Re: Cork",
-    "start": "2026-02-23T15:00:00+00:00",
-    "uid": "e9im6r31d5miqsr3d1im8tbcd5n6ebbcd5n6meim64t66pj3cop68ohh5lgjicr55kq6cdp",
-    "end": "2026-02-23T15:30:00+00:00"
-  },
-  {
-    "summary": "Zoran Dukic and Nadim Chamoun",
-    "start": "2026-02-23T15:30:00+00:00",
-    "uid": "c6p0q8fllf0kffes5jhp4il978@google.com",
-    "end": "2026-02-23T16:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Nadim / Bhaji - quick sync",
-    "start": "2026-02-23T17:15:00+00:00",
-    "uid": "1j6o5mh2bmmoonoe011rfvgqb5@google.com",
-    "end": "2026-02-23T17:30:00+00:00"
-  },
-  {
-    "summary": "deSPXA GTM Weekly",
-    "start": "2026-02-23T17:30:00+00:00",
-    "uid": "666ddba684d3474e8a35421421f28ee6_R20260216T163000@google.com",
-    "end": "2026-02-23T18:00:00+00:00"
-  },
-  {
-    "summary": "NEW: BD Pipeline Meeting (Weekly)",
-    "start": "2026-02-24T04:30:00+00:00",
-    "uid": "d7937e4b9028415b9f16af097da544c5_R20251118T093000@google.com",
-    "end": "2026-02-24T05:00:00+00:00"
-  },
-  {
-    "summary": "Nadim Chamoun and Robin",
-    "start": "2026-02-24T10:00:00+00:00",
-    "uid": "dfbh37aqu9g4l1d6bm0ii5q83k@google.com",
-    "end": "2026-02-24T10:30:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Nadim Chamoun and Alexander Essle",
-    "start": "2026-02-24T11:30:00+00:00",
-    "uid": "sdkn079gpc0vvkiemrah92g6ko@google.com",
-    "end": "2026-02-24T12:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Hubspot Deadline",
-    "start": "2026-02-25T08:00:00+00:00",
-    "uid": "50jro6n85cfe6qitd8jqetgq2q@google.com",
-    "end": "2026-02-25T08:15:00+00:00"
-  },
-  {
-    "summary": "Sync - WL onboarding",
-    "start": "2026-02-25T09:00:00+00:00",
-    "uid": "1d4c98p7csltsvh5fis72a7f5j@google.com",
-    "end": "2026-02-25T09:30:00+00:00"
-  },
-  {
-    "summary": "Sync - Product <> BD",
-    "start": "2026-02-25T10:30:00+00:00",
-    "uid": "6ua3ur65qj3ipi3jikbgd1ghdf@google.com",
-    "end": "2026-02-25T11:00:00+00:00"
-  },
-  {
-    "summary": "Sync - Product <> BD",
-    "start": "2026-02-25T10:30:00+00:00",
-    "uid": "6ua3ur65qj3ipi3jikbgd1ghdf@google.com",
-    "end": "2026-02-25T11:00:00+00:00"
-  },
-  {
-    "summary": "Alex Pishchelka and Nadim Chamoun",
-    "start": "2026-02-26T10:30:00+00:00",
-    "uid": "ql0fi5o4qjh34646del5tk1ess@google.com",
-    "end": "2026-02-26T11:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Anant/Nadim",
-    "start": "2026-02-26T15:00:00+00:00",
-    "uid": "4qubsv5k46jpchdticcg4hrue2@google.com",
-    "end": "2026-02-26T15:25:00+00:00"
-  },
-  {
-    "summary": "Solana Research Institute Launch",
-    "start": "2026-02-26T17:00:00+00:00",
-    "uid": "evt-4ZdBtn3AuBBarBT@events.lu.ma",
-    "end": "2026-02-26T20:00:00+00:00",
-    "location": "Knotel at The Old Sessions House\\, 23 Clerkenwell Grn\\, London EC1"
-  },
-  {
-    "summary": "Mark+Leo (Martin Quensel)",
-    "start": "2026-02-26T18:30:00+00:00",
-    "uid": "c0ip99ema3pvddsk9cslva4e90@google.com",
-    "end": "2026-02-26T19:00:00+00:00"
-  },
-  {
-    "summary": "Aur\u00e9lien and Nadim Chamoun",
-    "start": "2026-02-27T10:30:00+00:00",
-    "uid": "ihmc788g0e53ggpl3qlnne0svg@google.com",
-    "end": "2026-02-27T11:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Alex Chehade and Nadim Chamoun",
-    "start": "2026-02-27T11:00:00+00:00",
-    "uid": "0uk0th9bc8b0cjr6n96i02a0no@google.com",
-    "end": "2026-02-27T11:30:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Centrifuge / Castle Island VC - DeFi Product & Distribution",
-    "start": "2026-02-27T14:00:00+00:00",
-    "uid": "20bjeo7pvqf3hufcicg0iv26v1@google.com",
-    "end": "2026-02-27T14:30:00+00:00"
-  },
-  {
-    "summary": "Salim Talout and Nadim Chamoun",
-    "start": "2026-02-27T15:00:00+00:00",
-    "uid": "nfr0bqi8lg1ve55kdf7mlo6j7g@google.com",
-    "end": "2026-02-27T15:30:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "NEIN!",
-    "start": "2026-02-27T17:00:00+00:00",
-    "uid": "33q2knsruo4gbqm9ibr8tql54k@google.com",
-    "end": "2026-02-27T20:00:00+00:00"
-  },
-  {
-    "summary": "Anil / Nadim - weekly",
-    "start": "2026-03-02T10:30:00+00:00",
-    "uid": "4n3jaabkqlrohtims3kb5d3foh@google.com",
-    "end": "2026-03-02T11:00:00+00:00"
-  },
-  {
-    "summary": "Jeroen Gillekens and Nadim Chamoun",
-    "start": "2026-03-02T11:00:00+00:00",
-    "uid": "kf67g8j4p8h3o109o58uqsd9e0@google.com",
-    "end": "2026-03-02T11:30:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "andrew and Nadim Chamoun",
-    "start": "2026-03-02T11:30:00+00:00",
-    "uid": "hir60vrero8tuvnic6su3l0spk@google.com",
-    "end": "2026-03-02T12:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Euler x Centrifuge (recurring)",
-    "start": "2026-03-02T13:00:00+00:00",
-    "uid": "5dcboebqkdttq9c1857n7h7oou@google.com",
-    "end": "2026-03-02T13:30:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Euler x Centrifuge (recurring)",
-    "start": "2026-03-02T13:00:00+00:00",
-    "uid": "5dcboebqkdttq9c1857n7h7oou@google.com",
-    "end": "2026-03-02T13:30:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "Nadim Chamoun and Alpkan Ornek",
-    "start": "2026-03-03T10:30:00+00:00",
-    "uid": "rqjjcmfo5egq6q0r07bnlkjr8k@google.com",
-    "end": "2026-03-03T11:00:00+00:00",
-    "location": "Google Meet (instructions in description)"
-  },
-  {
-    "summary": "What's Up Centrifuge?! \ud83c\udf15",
-    "start": "2026-03-04T08:00:00+00:00",
-    "uid": "his9t3vohpg7l9qnb5c3fn9e5p_R20260204T160000@google.com",
-    "end": "2026-03-04T09:00:00+00:00"
-  },
-  {
-    "summary": "\u25b6\ufe0f ACRDX Launch Announcement @ 11:00 AM ET",
-    "start": "2026-03-04T15:45:00+00:00",
-    "uid": "7gn6r4np6sp02gb0nmcdipvg28@google.com",
-    "end": "2026-03-04T16:15:00+00:00"
-  },
-  {
-    "summary": "R3 <> Centrifuge",
-    "start": "2026-03-04T17:00:00+00:00",
-    "uid": "3t3vo9maeufdnnpsbvbedq9qri@google.com",
-    "end": "2026-03-04T17:30:00+00:00"
-  }
-]
+{
+  "events": [
+    {
+      "summary": "Alex Pishchelka and Nadim Chamoun",
+      "start": "2026-02-26T10:30:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "Anant/Nadim",
+      "start": "2026-02-26T15:00:00",
+      "location": null
+    },
+    {
+      "summary": "Solana Research Institute Launch",
+      "start": "2026-02-26T17:00:00",
+      "location": "Knotel at The Old Sessions House\\, 23 Clerkenwell Grn\\, London EC1"
+    },
+    {
+      "summary": "Mark+Leo (Martin Quensel)",
+      "start": "2026-02-26T18:30:00",
+      "location": null
+    },
+    {
+      "summary": "Aur\u00e9lien and Nadim Chamoun",
+      "start": "2026-02-27T10:30:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "Alex Chehade and Nadim Chamoun",
+      "start": "2026-02-27T11:00:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "Centrifuge / Castle Island VC - DeFi Product & Distribution",
+      "start": "2026-02-27T14:00:00",
+      "location": null
+    },
+    {
+      "summary": "Salim Talout and Nadim Chamoun",
+      "start": "2026-02-27T15:00:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "NEIN!",
+      "start": "2026-02-27T17:00:00",
+      "location": null
+    },
+    {
+      "summary": "Anil / Nadim - weekly",
+      "start": "2026-03-02T10:30:00",
+      "location": null
+    },
+    {
+      "summary": "Jeroen Gillekens and Nadim Chamoun",
+      "start": "2026-03-02T11:00:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "andrew and Nadim Chamoun",
+      "start": "2026-03-02T11:30:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "Euler x Centrifuge (recurring)",
+      "start": "2026-03-02T13:00:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "Euler x Centrifuge (recurring)",
+      "start": "2026-03-02T13:00:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "Nadim Chamoun and Alpkan Ornek",
+      "start": "2026-03-03T10:30:00",
+      "location": "Google Meet (instructions in description)"
+    },
+    {
+      "summary": "What's Up Centrifuge?! \ud83c\udf15",
+      "start": "2026-03-04T08:00:00",
+      "location": null
+    },
+    {
+      "summary": "\u25b6\ufe0f ACRDX Launch Announcement @ 11:00 AM ET",
+      "start": "2026-03-04T15:45:00",
+      "location": null
+    },
+    {
+      "summary": "R3 <> Centrifuge",
+      "start": "2026-03-04T17:00:00",
+      "location": null
+    }
+  ],
+  "updated": "2026-02-26T08:00:00Z"
+}
